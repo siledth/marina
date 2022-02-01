@@ -80,6 +80,8 @@ function valideKey(evt){
 				$('#nombrebuque_edit').val(response['nombrebuque']);
                 $('#matricula_edit').val(response['matricula']);
                 $('#color_edit').val(response['color']);
+				$('#trailer_edit').val(response['trailer']);
+				$('#ubicacion_edit').val(response['ubicacion']);
 			}
 		});
 	}
@@ -115,6 +117,8 @@ function valideKey(evt){
 						data: {id: id,
 							nombrebuque: nombrebuque,
                             color: color,
+							ubicacion: ubicacion,
+							trailer: trailer,
 						},
 					dataType:'json',
 						success: function(response){

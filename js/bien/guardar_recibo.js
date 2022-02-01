@@ -30,6 +30,14 @@ $(document).ready(function(){
         }
     });
 }); 
+function hab_campo(){
+    var otro = document. getElementById('cssRadio5').checked;
+    if (otro == true) {
+        $("#hab_campo_esp").show();
+    }else {
+        $('#hab_campo_esp').hide();
+    }
+}
 function guardar_bien(){
     event.preventDefault();
     swal.fire({

@@ -20,6 +20,7 @@ class Factura extends CI_Controller {
         $data['mat'] = $this->Programacion_model->consulta_matricula();
         $data['iva'] 	= $this->Programacion_model->consulta_iva();
         $data['dolar'] 	= $this->Programacion_model->consulta_dolar();
+        $data['banco'] 	= $this->Programacion_model->consulta_banco();
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('factura/factura.php', $data);
@@ -38,12 +39,30 @@ class Factura extends CI_Controller {
         $acc_cargar = 1;    
         $nombre     = $this->input->post("nombre");
         $matricula  = $this->input->post("matricular");
+        $cedula  = $this->input->post("cedula");
         $tele_1     = $this->input->post("tele_1");    
+        
+        $dato = $_POST['radio_css'];
+
+		if ($dato == 1){
+			$bolivares = 'Efectivo';
+			$petros  = '';
+			$dolar  = '';
+			$euro  = '';
+			$otro  = '';
+		}elseif ($dato == 5){
+			$bolivares = '';
+			$petros  = '';
+			$dolar  = '';
+			$euro  = '';
+			$otro  = 'Trasferencia';
+		}
         
         $dato1 = array(
             "nro_factura"   => $this->input->post('numfact'),
             "nombre"        => $this->input->post('nombre'),
             "matricula"     => $this->input->post('matricular'),
+            "cedula"        => $this->input->post('cedula'),
             "tele_1"        => $this->input->post('tele_1'),
             "total_iva"     => $this->input->post('total_iva'),
             "total_mas_iva" => $this->input->post('total_mas_iva'),
@@ -52,6 +71,11 @@ class Factura extends CI_Controller {
             "id_status"     => 0,
             "fecha_update"  => date("Y-m-d"),
             "valor_iva"   => $this->input->post('dolar'),
+            'efectivo' 				=> $bolivares,
+            'transferencia' 				=> $otro,
+            'banco' 			=> $this->input->POST('banco'),
+            'trnas' 			=> $this->input->POST('trnas'),
+            'fechatrnas' 			=> $this->input->POST('fecha1'),
         );
 
         
@@ -133,6 +157,7 @@ class Factura extends CI_Controller {
         $data['mat'] = $this->Programacion_model->consulta_matricula();
         $data['iva'] 	= $this->Programacion_model->consulta_iva();
         $data['dolar'] 	= $this->Programacion_model->consulta_dolar();
+        $data['banco'] 	= $this->Programacion_model->consulta_banco();
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('factura/recibo.php', $data);
@@ -146,15 +171,32 @@ class Factura extends CI_Controller {
 
     public function registrar_recibo(){
         if(!$this->session->userdata('session'))redirect('login');
+      
         $acc_cargar = 1;    
         $nombre     = $this->input->post("nombre");
+        $cedula  = $this->input->post("cedula");
         $matricula  = $this->input->post("matricular");
         $tele_1     = $this->input->post("tele_1");    
-        
+        $dato = $_POST['radio_css'];
+
+		if ($dato == 1){
+			$bolivares = 'Efectivo';
+			$petros  = '';
+			$dolar  = '';
+			$euro  = '';
+			$otro  = '';
+		}elseif ($dato == 5){
+			$bolivares = '';
+			$petros  = '';
+			$dolar  = '';
+			$euro  = '';
+			$otro  = 'Trasferencia';
+		}
         $dato1 = array(
             "nro_factura"   => $this->input->post('numfact'),
             "nombre"        => $this->input->post('nombre'),
             "matricula"     => $this->input->post('matricular'),
+            "cedula"        => $this->input->post('cedula'),
             "tele_1"        => $this->input->post('tele_1'),
             "total_iva"     => $this->input->post('total_iva'),
             "total_mas_iva" => $this->input->post('total_mas_iva'),
@@ -163,9 +205,14 @@ class Factura extends CI_Controller {
             "id_status"     => 0,
             "fecha_update"  => date("Y-m-d"),
             "valor_iva"   => $this->input->post('dolar'),
+            'efectivo' 				=> $bolivares,
+            'transferencia' 				=> $otro,
+            'banco' 			=> $this->input->POST('banco'),
+            'trnas' 			=> $this->input->POST('trnas'),
+            'fechatrnas' 			=> $this->input->POST('fecha1'),
         );
 
-        $p_items = array( //factura
+        $p_items = array( 
             'pies'   		    => $this->input->post('pies'),
             'ob'          	    => $this->input->post('ob'),
             'tarifa'            => $this->input->post('tarifa'),

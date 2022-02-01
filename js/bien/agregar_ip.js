@@ -25,6 +25,7 @@ function agregar_ccnu_accToCartTable(cells){
 	var tele_1t = $("#tele_1t").val();
  	var emailt  = $("#emailt").val();
    	var cargot  = $("#cargot").val();
+	var autor  = $("#autor").val();
    	
 	if (nombrecomt == '' || cedulat == '' || cargot == ''  ){
 
@@ -53,7 +54,7 @@ function agregar_ccnu_accToCartTable(cells){
 		<td>${emailt}<input type="text" hidden name="emaitl[]" id="ins-pres-${increment}" value="${emailt}"></td>
 
 		<td>${cargot}<input type="text" hidden name="cargot[]" id="ins-pres-${increment}" value="${cargot}"></td>
-	
+		<td>${autor}<input type="text" hidden name="autor[]" id="ins-pres-${increment}" value="${autor}"></td>
 
 		
 		`;
@@ -70,6 +71,7 @@ function agregar_ccnu_accToCartTable(cells){
 		$("#tele_1t").val('');
 		$("#emailt").val('');
 		$("#cargot").val('');
+		
 
 		$("#btn_guar_2").prop('disabled', false);
 	}

@@ -10,85 +10,7 @@ class Buque extends CI_Controller {
 		$this->load->view('user/buque.php');
         $this->load->view('templates/footer.php');
 	}
-    //ESTE SE UTILIZA EN ALGUN LADO?
-    public function savebuques(){
-        $nombrebuque = $this->input->post("nombrebuque");
-        $matricula   = $this->input->post("matricula");
-        $trailer     = $this->input->post("trailer");
-        $pie         = $this->input->post("pie");
-        $tipo        = $this->input->post("tipo");
-        $color       = $this->input->post("color");
-        $eslora      = $this->input->post("eslora");
-        $manga       = $this->input->post("manga");
-        $puntal      = $this->input->post("puntal");
-        $bruto       = $this->input->post("bruto");
-        $neto        = $this->input->post("neto");
-        
-        $nombrecom   = $this->input->post("nombrecom");
-        $apellido    = $this->input->post("apellido");
-        $tipo_ced    = $this->input->post("tipo_ced");
-        $cedula      = $this->input->post("cedula");
-        $tele_1      = $this->input->post("tele_1");
-        $email       = $this->input->post("email");
 
-        //aca empiezo las validaciones
-        
-        $this->form_validation->set_rules('nombrebuque', 'nombrebuque ', 'required|min_length[3]');
-        $this->form_validation->set_rules('matricula', 'matricula ', 'required|min_length[1]');
-        $this->form_validation->set_rules('trailer', 'trailer ', 'required|min_length[1]');
-        $this->form_validation->set_rules('pie', 'pie', 'required|is_natural');
-        $this->form_validation->set_rules('tipo', 'tipo ', 'required|min_length[1]');
-        $this->form_validation->set_rules('color', 'color ', 'required|min_length[1]');
-		
-        $this->form_validation->set_rules('nombrecom', 'Nombre ', 'required|min_length[3]');
-        $this->form_validation->set_rules('apellido', 'Apellido ', 'required|min_length[1]');
-        $this->form_validation->set_rules('tipo_ced', 'tipo_ced ', 'required|min_length[1]');
-        $this->form_validation->set_rules('cedula', 'cedula de dentidad', 'required|min_length[6]|max_length[20]|is_natural');
-        $this->form_validation->set_rules('tele_1', 'telefono ', 'required|min_length[6]|max_length[15]|is_natural');
-        $this->form_validation->set_rules('email', 'Correo eléctronico ', 'required');
-      
-        if ($this->form_validation->run() == false) {
-            
-            $this->load->view('templates/header.php');
-            $this->load->view('templates/navigator.php');
-            $this->load->view('user/buque.php');
-            $this->load->view('templates/footer.php');
-        } else {
-           
-            $data1 = array(
-                "nombrebuque"  => $nombrebuque,
-                "matricula"    => $matricula,
-                "trailer"      => $trailer,
-                "pie"          => $pie,
-                "tipo"         => $tipo,
-                "color"        => $color,
-                "eslora"       => $eslora,
-                "manga"        => $manga,
-                "puntal"       => $puntal,
-                "bruto"        => $bruto,
-                "neto"         => $neto,
-                "canon"        => $pie,
-                "fechaingreso" => date("Y-m-d h:m:s")       
-			);
-            
-			$data2 = array(
-				"cedula" => $cedula,
-                "tipo_ced" => $tipo_ced,
-                "nombrecom" => $nombrecom,
-                "apellido" => $apellido,
-                "fecha" => date("Y-m-d h:m:s"),
-                "tele_1" => $tele_1,
-                "email" => $email,   
-				"id_buque" => null,
-                "matricula" => $matricula
-			);
-            
-            $this->User_model->savebueque($data1,$data2);
-            $this->session->set_flashdata('success', 'Registrado.');
-            
-            redirect('user/buques');
-        }
-    }
 
     public function Plantilla(){
 		if(!$this->session->userdata('session'))redirect('login');
@@ -116,7 +38,7 @@ class Buque extends CI_Controller {
 	}
 
     //¡¡¡ESTA FUNCION SI REGISTRA AL BUQUE!!!!
-    public function registrar_buque(){
+    public function registrar_buque(){ 
         if(!$this->session->userdata('session'))redirect('login');
         $acc_cargar = $this->input->POST('acc_cargar');
         $nombrebuque = $this->input->post("nombrebuque");
@@ -135,6 +57,7 @@ class Buque extends CI_Controller {
         $explode = explode('/', $tarifas);
         $id_tarifa = $explode['0'];
         $tarifa = $explode['1'];
+        $idd_tarida = $explode['2'];
 
         $canon = $this->input->post("canon"); 
         $dia = $this->input->post("dia"); 
@@ -155,13 +78,13 @@ class Buque extends CI_Controller {
             "bruto"         => $bruto,
             "neto"          => $neto,
             "canon"         => $canon,
-            "id_tarifa"     => $id_tarifa,
+            "id_tarifa"     => $idd_tarida,
             "tarifa"        => $tarifa,
             "dia"           => $dia,
             "ubicacion"     => $ubicacion,   
             "fecha_pago"    => $fecha_pago,      
             "fechaingreso"  => date("Y-m-d")            
-        );
+        ); 
 
         $tripulacion = array( //tripulacion
             'cedulat'   	=> $this->input->post('cedulat'),
@@ -169,6 +92,7 @@ class Buque extends CI_Controller {
             'nombrecomt'    => $this->input->post('nombrecomt'),
             'tele_1t' 	    => $this->input->post('tele_1t'),  
             'cargot' 	    => $this->input->post('cargot'), 
+            'autor' 	    => $this->input->post('autor'), 
             "matricula"     => $matricula, 
                     
         );
@@ -230,6 +154,8 @@ class Buque extends CI_Controller {
             'id' => $data['id'],
             'nombrebuque' => $data['nombrebuque'],
             'color' => $data['color'],
+            'trailer' => $data['trailer'],
+            'ubicacion' => $data['ubicacion'],
         );
 
         $data = $this->Buque_model->editar_tc($data);

@@ -1,3 +1,25 @@
+function trae_inf(){
+    var matricular = $('#matricular').val();
+    
+    var base_url =window.location.origin+'/marina/index.php/factura/listar_info';
+
+    $.ajax({
+        url: base_url,
+        method:'post',
+        data: {matricular: matricular},
+        dataType:'json',
+
+        success: function(response){
+            console.log(response);
+            $("#cedula").val(response['cedula']);
+            $("#nombre").val(response['nombrecom']);
+            $("#pies").val(response['pies']);
+            $("#tele_1").val(response['tele_1']);
+        }
+    });
+} 
+
+
 function calcular_bienes(){
 
     var pies = $('#pies').val();
@@ -7,10 +29,11 @@ function calcular_bienes(){
     let explode = tarifas.split('/');
     let id_tarifa = explode[0];
     let tarifa = explode[1];
-    
+    let idd_tarida = explode[2];
+
    // $('#cant_total_distribuir').val(cant_total_distribuir);
 
-    if (pies < 1) {
+    /*if (pies < 1) {
         swal({
             title: "¡ATENCION!",
             text: "los pies no pueden ser menor que 1! Por favor modifique para seguir con la carga.",
@@ -26,7 +49,7 @@ function calcular_bienes(){
         $("#canon").prop('canon', true);
         $("#id_alicuota_iva").prop('disabled', true);
        
-    }else{
+    }else{*/
         $("#canon").prop('disabled', false);
         $("#id_alicuota_iva").prop('disabled', false);
         
@@ -36,16 +59,44 @@ function calcular_bienes(){
             var newstr2 = newstr.replace('.', "");
             var newstr3 = newstr2.replace('.', "");
             var newstr4 = newstr3.replace('.', "");
-            var precio = newstr4.replace(',', ".");
+            var piess = newstr4.replace(',', "."); 
 
-            var tota = (((tarifa * precio)/cantidad2)) * dia;
-            var tota2 = parseFloat(tota).toFixed(2);
-            var canon = Intl.NumberFormat("de-DE").format(tota2);
-            $('#canon').val(canon);
+            if (id_tarifa == 'PIE') {
 
+                if (idd_tarida == 1 && pies < 33 ){
+                    swal({
+                        title: "¡ATENCION!",
+                        text: "El calculo es menor a 33, se modificara para el cálculo.",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonColor: "#00897b",
+                        confirmButtonText: "CONTINUAR",
+                        closeOnConfirm: false
+                    }, function(){
+                        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                    });
+
+                    var tota = ((tarifa * 33)) * dia;
+                    var tota2 = parseFloat(tota).toFixed(2);
+                    var canon = Intl.NumberFormat("de-DE").format(tota2);
+                    $('#canon').val(canon);
+                }else{
+                    var tota = ((tarifa * piess)) * dia;
+                    var tota2 = parseFloat(tota).toFixed(2);
+                    var canon = Intl.NumberFormat("de-DE").format(tota2);
+                    $('#canon').val(canon);
+                }
+
+
+                
+            }else if(id_tarifa == 'DIA'){
+                var tota = tarifa * dia;
+                var tota2 = parseFloat(tota).toFixed(2);
+                var canon = Intl.NumberFormat("de-DE").format(tota2);
+                $('#canon').val(canon);
+            }
 
             var id_alicuota_iva = $('#id_alicuota_iva').val();
-            console.log(id_alicuota_iva);
             var separar = id_alicuota_iva.split("/");
             var porcentaje = parseFloat(separar['0']);
 
@@ -70,8 +121,7 @@ function calcular_bienes(){
             var monto_total_estimadoo = parseFloat(monto_t_estimado).toFixed(2);
             var monto_total_estimado = Intl.NumberFormat("de-DE").format(monto_total_estimadoo);
             $('#monto_estimado').val(monto_total_estimado);
-        
-    }
+    /*}*/
 }
 
 function control(){

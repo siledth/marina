@@ -13,7 +13,8 @@
             $this->db->select('b.id,
                                 b.pies,
                                 concat(p.tipo_ced, \'-\',p.cedula) as cedula,
-                                p.nombrecom');
+                                p.nombrecom,
+                                p.tele_1');
             $this->db->where('b.matricula', $data['matricular']);
             $this->db->where('p.tipo', 'principal');
             $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
@@ -75,6 +76,7 @@
         }
         public function consulta_tarifa(){
             $this->db->select('*');
+            $this->db->order_by('id_tarifa desc');
             $query = $this->db->get('public.tarifa');
             return $result = $query->result_array();
         }
@@ -103,6 +105,11 @@
         public function consulta_dolar(){
             $this->db->select('*');
             $query = $this->db->get('public.dolar');
+            return $result = $query->result_array();
+        }
+        public function consulta_banco(){
+            $this->db->select('*');
+            $query = $this->db->get('public.banco');
             return $result = $query->result_array();
         }
 
@@ -237,6 +244,7 @@
                             'dia' 	         => $p_items['dia'][$i],
                             'canon' 	     => $p_items['canon'][$i],
                             'monto_estimado' => $p_items['monto_estimado'][$i],
+
                         );
                         $quert = $this->db->insert('public.deta_factura',$data1);
                         
@@ -267,7 +275,60 @@
                 return true;
             //}
         }
+        public function save_recibo($acc_cargar,$dato1,$p_items){
+            //if ($acc_cargar == '1') {
+                $quers =$this->db->insert('public.recibo', $dato1);
+                if ($quers) {
+                    $id = $this->db->insert_id();
+                    $cant_proy = $p_items['pies'];
+                    $count_prog = count($cant_proy);
+                    for ($i=0; $i < $count_prog; $i++) {
 
+                        $tarifas = $p_items['tarifa'][$i];
+                        $explode = explode('/', $tarifas);
+                        $tarifa = $explode['0'];
+                        $id_tarifa = $explode['1'];
+
+                        $data1 = array(
+                            'id_fact'        => $id,
+                            'pies'   		 => $p_items['pies'][$i],
+                            'matricula'      => $p_items['matricula'][$i],
+                            'ob'          	 => $p_items['ob'][$i],
+                            'id_tarifa'      => $id_tarifa,
+                            'tarifa'         => $p_items['tarifa'][$i],
+                            'dia' 	         => $p_items['dia'][$i],
+                            'canon' 	     => $p_items['canon'][$i],
+                            'monto_estimado' => $p_items['monto_estimado'][$i],
+                        );
+                        $quert = $this->db->insert('public.deta_factura',$data1);
+                        
+                        if ($quert) {
+                            $this->db->select('*');
+                            $this->db->from('public.mensualidad');
+                            $this->db->where('matricula', $p_items['matricula'][$i]);
+                            $this->db->where('id_tarifa', $id_tarifa);
+                            $this->db->where('id_status', 0);
+                            $query = $this->db->get();
+                            $resultado = $query->row_array();
+                            //print_r($resultado);die;
+                            if ($resultado){
+                                $fecha_deuda = $resultado['fecha_deuda'];
+                                $explode = explode('-', $fecha_deuda);
+                                $mes = $explode['1'];
+                                $fecha_update = date('Y-m-d h:i:s');
+                                $this->db->set('id_status', 2);
+                                $this->db->set('fecha_update', $fecha_update);
+                                $this->db->set('id_factura',  $id);
+                                $this->db->where('matricula', $p_items['matricula'][$i]);
+                                $this->db->where("TO_CHAR(fecha_deuda,'MM')", $mes);
+                                $this->db->update('public.mensualidad');
+                            }
+                        }
+                    }                    
+                }
+                return true;
+            //}
+        }
 
         function consulta_facturas(){
             $this->db->select("f.id,
@@ -303,8 +364,14 @@
                                p.nombrecom,	
                                f.nombre,
                                f.tele_1,
+                               f.fechaingreso,
                                f.matricula,
                                f.total_bs as total,
+                               f.efectivo, 
+                               f.transferencia,
+                                f.banco,
+                                f.trnas,
+                               f.fechatrnas,
                                e.id_status,
                                f.valor_iva,
                                f.total_iva,
@@ -330,19 +397,31 @@
         function ver_recibo($data){
             //print_r($data);die;
             $this->db->select("f.id,
-                               f.nro_factura,
-                               f.nombre,
-                               f.tele_1,
-                               f.matricula,
-                               f.total_bs as total,
-                               e.id_status,
-                               f.valor_iva,
-                               f.total_iva,
-                               f.total_mas_iva,
-                               f.total_bs,
-	                           e.descripcion as estatus");
+                             f.nro_factura,
+                            b.id as id_buque,
+                            concat(p.tipo_ced, '-', p.cedula) as cedula,
+                            p.nombrecom,	
+                            f.nombre,
+                            f.tele_1,
+                            f.fechaingreso,
+                            f.matricula,
+                            f.total_bs as total,
+                            f.efectivo, 
+                            f.transferencia,
+                            f.banco,
+                            f.trnas,
+                            f.fechatrnas,
+                            e.id_status,
+                            f.valor_iva,
+                            f.total_iva,
+                            f.total_mas_iva,
+                            f.total_bs,
+                            e.descripcion as estatus");
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
+            $this->db->join('buque b', 'b.matricula = f.matricula', 'left');
+            $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
             $this->db->where('f.id',$data);
+            $this->db->where('p.tipo', 'principal');
             $query = $this->db->get('recibo f');
             return $result = $query->row_array();
         }
@@ -368,7 +447,7 @@
             $response = $query->row_array();
             return $response;
         }
-        public function save_recibo($acc_cargar,$dato1,$p_items){
+    /*    public function save_recibo($acc_cargar,$dato1,$p_items){
             if ($acc_cargar == '1') {
                 $quers =$this->db->insert('public.recibo', $dato1);
                 if ($quers) {
@@ -391,7 +470,7 @@
                 }
                 return true;
             }
-        }
+        }*/
 
         //------------------------------------------------------
         // INVESTIGAR

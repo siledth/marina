@@ -112,16 +112,17 @@
                             <div class="form-group col-3">
                                 <label>Tarifa <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select style="width: 100%;" id="tarifa" name="tarifa" onchange="calcular_bienes();" class="form-control">
-                                    <option value="0">Seleccione</option>
+                                    <option value="0">Seleccione</option> 
                                     <?php foreach ($tarifa as $data): ?>
-                                    <option value="<?=$data['id_tarifa']?>/<?=$data['desc_tarifa']?>">
-                                    <?=$data['desc_tarifa']?> $/ <?=$data['desc_concepto']?>/<?=$data['desc_condicion']?></option>
+                                        <option value="<?=$data['des_unidad']?>/<?=$data['desc_tarifa']?>/<?=$data['id_tarifa']?>">
+                                        <?=$data['desc_tarifa']?>$ /
+                                        <?=$data['desc_concepto']?>/<?=$data['desc_condicion']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group col-2">
                                 <label>Dias <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);" value="30">
+                                <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);" value="1">
                                 <label>Solo Cambiar si es por dias <b title="Campo Obligatorio" style="color:red">*</b></label>
                             </div>
                             <div class="form-group col-2">
@@ -291,7 +292,15 @@
                                 <input type="text" id="cargot" name="cargot" placeholder=""
                                     class="form-control <?php echo form_error('cargo') ? 'is-invalid' : ''; ?>"
                                     value="<?php echo set_value('cargo'); ?>" />
-
+                            </div>
+                            <div class="form-group col-2">
+                                <label>Se autoriza ingresar a la marina </label>
+                                <select class="default-select2 form-control " id="autor" name="autor" readonly>
+                                    <option value="0">Selecione</option>
+                                    <option value="CON ACOMPAÑANTES">CON ACOMPAÑANTES</option>
+                                    <option value="SIN ACOMPAÑANTES">SIN ACOMPAÑANTES</option>
+                                    
+                                </select>
                             </div>
 
                             <div class="col-12">
@@ -319,6 +328,7 @@
                                             <th>telf.</th>
                                             <th>Correp</th>
                                             <th>Cargo</th>
+                                            <th>ingresar a la marina</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -340,7 +350,7 @@
                 </div>
                 </form>
             </div>
-        </div>
+        </div> 
     </div>
 </div>
 <!-- <script src="<?=base_url()?>/js/programacion.js"></script> -->

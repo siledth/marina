@@ -22,6 +22,8 @@
                                
                                 <td><?=$data['nombrebuque']?> </td>
                                 <td><?=$data['matricula']?> </td>
+                              
+                                
                                 <td class="center">
 									<a class="button">
                                         <i title="Editar" onclick="modal_ver_tc(<?php echo $data['id']?>);" data-toggle="modal" data-target="#exampleModal" class="fas fa-lg fa-fw fa-edit" style="color:green"></i>
@@ -69,6 +71,14 @@
                         <div class="form-group col-12">
                             <label>Color</label>
                             <input type="text" class="form-control"  onkeypress="may(this);" id="color_edit" name="color_edit">
+                        </div>
+                        <div class="form-group col-12">
+                            <label>Ubicacion</label>
+                            <input type="text" class="form-control"  onkeypress="may(this);" id="ubicacion_edit" name="ubicacion_edit">
+                        </div>
+                        <div class="form-group col-12">
+                            <label>Trailer</label>
+                            <input type="text" class="form-control"  onkeypress="may(this);" id="trailer_edit" name="trailer_edit">
                         </div>
 					</div>
                 </form>

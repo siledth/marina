@@ -74,7 +74,14 @@ function guardar_bien(){
         }
     });
 }
-
+function hab_campo(){
+    var otro = document. getElementById('cssRadio5').checked;
+    if (otro == true) {
+        $("#hab_campo_esp").show();
+    }else {
+        $('#hab_campo_esp').hide();
+    }
+}
 function anular_factura(id_fact){
     event.preventDefault();
     swal.fire({

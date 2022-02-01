@@ -25,6 +25,8 @@
                             'nombrecomt'           	=> $tripulacion['nombrecomt'][$i],
                             'tele_1t' 	            => $tripulacion['tele_1t'][$i],
                             'cargot' 	            => $tripulacion['cargot'][$i],
+                            'autor' 	            => $tripulacion['autor'][$i],
+                            
                             'matricula'             => $tripulacion['matricula'],  
                         );
                         $this->db->insert('public.tripulacion',$data1);

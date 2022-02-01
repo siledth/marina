@@ -2,7 +2,7 @@ function trae_inf(){
     var matricular = $('#matricular').val();
     
     var base_url =window.location.origin+'/marina/index.php/factura/listar_info';
-
+//llenan los datos en la factura del propietario
     $.ajax({
         url: base_url,
         method:'post',
@@ -14,6 +14,7 @@ function trae_inf(){
             $("#cedula").val(response['cedula']);
             $("#nombre").val(response['nombrecom']);
             $("#pies").val(response['pies']);
+            $("#tele_1").val(response['tele_1']);
         }
     });
 }
@@ -58,7 +59,7 @@ function calcular_bienes(){
             var newstr2 = newstr.replace('.', "");
             var newstr3 = newstr2.replace('.', "");
             var newstr4 = newstr3.replace('.', "");
-            var piess = newstr4.replace(',', ".");
+            var piess = newstr4.replace(',', "."); 
 
             if (id_tarifa == 'PIE') {
 
