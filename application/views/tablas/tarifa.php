@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="col-1"></div>
-                <div class="col-10 mt-3">
+                <div class="col-12 mt-3">
                     <table id="records" class="table table-bordered table-hover">
                         <thead style="background:#e4e7e8">
                             <tr class="text-center">

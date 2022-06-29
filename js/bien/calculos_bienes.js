@@ -3,8 +3,11 @@ function calcular_bienes(){
     var pies = $('#pies').val();
     var dia = $('#dia').val();
     var cantidad2 = 30;
-    var tarifa = $('#tarifa').val();
-    
+    var tarifas = $('#tarifa').val();
+    let explode = tarifas.split('/');
+    let id_tarifa = explode[0];
+    let tarifa = explode[1];
+
    // $('#cant_total_distribuir').val(cant_total_distribuir);
 
     if (pies < 1) {
@@ -33,13 +36,19 @@ function calcular_bienes(){
             var newstr2 = newstr.replace('.', "");
             var newstr3 = newstr2.replace('.', "");
             var newstr4 = newstr3.replace('.', "");
-            var precio = newstr4.replace(',', ".");
+            var piess = newstr4.replace(',', ".");
 
-            var tota = (((tarifa * precio)/cantidad2)) * dia;
-            var tota2 = parseFloat(tota).toFixed(2);
-            var canon = Intl.NumberFormat("de-DE").format(tota2);
-            $('#canon').val(canon);
-
+            if (id_tarifa == 'PIE') {
+                var tota = (((tarifa * piess)/cantidad2)) * dia;
+                var tota2 = parseFloat(tota).toFixed(2);
+                var canon = Intl.NumberFormat("de-DE").format(tota2);
+                $('#canon').val(canon);
+            }else if(id_tarifa == 'DIA'){
+                var tota = tarifa * dia;
+                var tota2 = parseFloat(tota).toFixed(2);
+                var canon = Intl.NumberFormat("de-DE").format(tota2);
+                $('#canon').val(canon);
+            }
 
             var id_alicuota_iva = $('#id_alicuota_iva').val();
             var separar = id_alicuota_iva.split("/");
@@ -66,7 +75,6 @@ function calcular_bienes(){
             var monto_total_estimadoo = parseFloat(monto_t_estimado).toFixed(2);
             var monto_total_estimado = Intl.NumberFormat("de-DE").format(monto_total_estimadoo);
             $('#monto_estimado').val(monto_total_estimado);
-        
     }
 }
 
