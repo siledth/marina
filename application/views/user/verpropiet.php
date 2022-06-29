@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link href="<?= base_url() ?>/css/buque.css?<?= time() ?>" rel="stylesheet" />
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
     <div class="row">
@@ -75,7 +75,8 @@
             </div>
         </div>
 
-       
+        <script src="<?=base_url()?>/js/cloudflare.js"></script>
+<script src="<?=base_url()?>/js/toastr.js"></script>
         <!-- Add Records -->
         <script>
         // Fetch Records

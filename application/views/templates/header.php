@@ -63,6 +63,8 @@
 	<link href="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css" rel="stylesheet" />
 	<link href="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css" rel="stylesheet" />
 	<link href="<?= base_url() ?>/css/asnc.css?<?= time() ?>" rel="stylesheet" />
+	<link href="<?= base_url() ?>/css/asnc.css?<?= time() ?>" rel="stylesheet" />
+	<link href="<?= base_url() ?>/css/buque.css?<?= time() ?>" rel="stylesheet" />
 
 	<!-- ================== END PAGE LEVEL STYLE ================== -->
 
@@ -71,6 +73,8 @@
 	<link href="<?= base_url() ?>Plantilla/admin/assets/plugins/parsley/src/parsley.css" rel="stylesheet" />
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/pace/pace.min.js"></script>
+	<script src="<?= base_url() ?>/js/cloudflare.js"></script>
+	<script src="<?= base_url() ?>/js/toastr.js"></script>
 	<!-- ================== END BASE JS ================== -->
 
 	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery/jquery-3.3.1.min.js"></script>

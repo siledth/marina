@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link href="<?= base_url() ?>/css/buque.css?<?= time() ?>" rel="stylesheet" />
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
     <div class="row">
@@ -125,9 +125,9 @@
         </div>
     </div>
 </div>
-<!-- Toastr -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> <!-- Font Awesome -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js"></script>
+<!-- Toastr --> 
+<script src="<?=base_url()?>/js/cloudflare.js"></script>
+<script src="<?=base_url()?>/js/toastr.js"></script>
 
 <!-- Add Records -->
 <script>

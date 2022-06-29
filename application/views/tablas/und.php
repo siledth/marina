@@ -1,5 +1,5 @@
 <!-- Toastr -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link href="<?= base_url() ?>/css/buque.css?<?= time() ?>" rel="stylesheet" />
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
     <div class="row">
@@ -93,10 +93,8 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
         <!-- Toastr -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-        <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
+        <script src="<?=base_url()?>/js/cloudflare.js"></script>
+<script src="<?=base_url()?>/js/toastr.js"></script>
 
         <script>
             $(document).on("click", "#add", function(e) {
