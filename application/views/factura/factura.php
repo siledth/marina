@@ -57,9 +57,8 @@
                             <div class="col-12 text-center">
                                 <h4 style="color:red;">Detalle de Factura</h4>
                             </div>
-
-
-                            <div class="form-group col-2">
+                          
+                                <div class="form-group col-2">
                                 <label>Pies <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input id="pies" name="pies" onblur="calcular_bienes();" class="form-control"
                                     onkeypress="return valideKey(event);">
