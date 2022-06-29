@@ -15,6 +15,7 @@ class Factura extends CI_Controller {
         $data['tarifa'] = $this->Programacion_model->consulta_tarifa();
         $data['mat'] = $this->Programacion_model->consulta_matricula();
         $data['iva'] 	= $this->Programacion_model->consulta_iva();
+        $data['dolar'] 	= $this->Programacion_model->consulta_dolar();
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('factura/factura.php', $data);
@@ -25,7 +26,7 @@ class Factura extends CI_Controller {
         if(!$this->session->userdata('session'))redirect('login');
         $acc_cargar = $this->input->POST('acc_cargar');     
         $nombre = $this->input->post("nombre");
-        $matricula = $this->input->post("matricular");
+        $matricula = $this->input->post("matricula");
         $tele_1 = $this->input->post("tele_1");    
         
         $dato1 = array(

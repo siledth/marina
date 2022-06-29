@@ -104,6 +104,11 @@
             $query = $this->db->get('public.alicuota_iva');
             return $result = $query->result_array();
         }
+        public function consulta_dolar(){
+            $this->db->select('*');
+            $query = $this->db->get('public.dolar');
+            return $result = $query->result_array();
+        }
 
         public function consulta_tip_obra(){
             $this->db->select('*');

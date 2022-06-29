@@ -32,39 +32,44 @@
 
                             <div class="form-group col-6">
                                 <label>Nombre/Rif Empresa <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="nombre" onkeyup="mayusculas(this);"
-                                    class="form-control">
+                                <input type="text" name="nombre" onkeyup="mayusculas(this);" class="form-control">
                             </div>
                             <div class="form-group col-3">
                                 <label>Telefono <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="tele_1" onkeyup="mayusculas(this);"
-                                    class="form-control">
+                                <input type="text" name="tele_1" onkeyup="mayusculas(this);" class="form-control">
                             </div>
-                            <div class="form-group col-3">
-                                <label>Embarcación/Matricula <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <select style="width: 100%;" id="matricular" name="matricular" 
-                                    class="form-control">
+                            <div class="form-group col-4">
+                                <label>Embarcación/Matricula <b title="Campo Obligatorio"
+                                        style="color:red">*</b></label>
+                                <select style="width: 100%;" id="matricular" name="matricular" class="form-control">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($mat as $data): ?>
                                     <option value="<?=$data['matricula']?>"> <?=$data['matricula']?> $</option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            
+                            <div class="form-group col-2" >
+                                <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
+                                <?php foreach ($dolar as $data): ?>
+                                <input type="text" name="dolar" id="dolar" class="form-control"
+                                    value="<?=$data['desc_dolarc']?>">
+                                <?php endforeach; ?>
+                            </div>
+
                             <div class="col-12">
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                             </div>
                             <div class="col-12 text-center">
                                 <h4 style="color:red;">Detalle de Factura</h4>
                             </div>
-                          
-                                <div class="form-group col-2">
+
+                            <div class="form-group col-2">
                                 <label>Pies <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input id="pies" name="pies" onblur="calcular_bienes();" class="form-control"
                                     onkeypress="return valideKey(event);">
 
                             </div>
-                            
+
                             <div class="form-group col-2">
                                 <label>Descripcion de Servicio <b title="Campo Obligatorio"
                                         style="color:red">*</b></label>
@@ -107,22 +112,25 @@
                                 </div>
                             </div>
                             <div class="form-group col-2">
-									<label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
-									<select style="width: 100%;" name="id_alicuota_iva" id="id_alicuota_iva" onchange="calcular_bienes();" class="form-control">
-										<option value="">SELECCIONE</option>
-										<?php foreach ($iva as $data): ?>
-											<option value="<?=$data['desc_alicuota_iva']?>/<?=$data['desc_porcentaj']?>"><?=$data['desc_porcentaj']?></option>
-										<?php endforeach; ?>
-									</select>
-								</div>
-                                <div class="form-group col-2">
-									<label>Monto IVA Estimado<b style="color:red">*</b></label>
-									<input id="iva_estimado" name="iva_estimado" type="text" class="form-control" disabled>
-								</div>
-								<div class="form-group col-3">
-									<label>Monto total Estimado<b style="color:red">*</b></label>
-									<input id="monto_estimado" name="monto_estimado" type="text" class="form-control" disabled>
-								</div>
+                                <label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
+                                <select style="width: 100%;" name="id_alicuota_iva" id="id_alicuota_iva"
+                                    onchange="calcular_bienes();" class="form-control">
+                                    <option value="">SELECCIONE</option>
+                                    <?php foreach ($iva as $data): ?>
+                                    <option value="<?=$data['desc_alicuota_iva']?>/<?=$data['desc_porcentaj']?>">
+                                        <?=$data['desc_porcentaj']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-2">
+                                <label>Monto IVA Estimado<b style="color:red">*</b></label>
+                                <input id="iva_estimado" name="iva_estimado" type="text" class="form-control" disabled>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Monto total Estimado<b style="color:red">*</b></label>
+                                <input id="monto_estimado" name="monto_estimado" type="text" class="form-control"
+                                    disabled>
+                            </div>
 
 
                             <div class="col-12">
