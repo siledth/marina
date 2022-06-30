@@ -87,7 +87,7 @@
                         <li class="has-sub">
                             <a href="javascript:;">
                                 <b class="caret"></b>
-                                <span>Crear Factura</span>
+                                <span>Factura</span>
                             </a>
                             <ul class="sub-menu">
                                 <li><a href="<?= base_url() ?>index.php/Factura/fac">Registrar</a></li>
@@ -97,10 +97,11 @@
                         <li class="has-sub">
                             <a href="javascript:;">
                                 <b class="caret"></b>
-                                <span>Crear Recibo</span>
+                                <span>Recibo</span>
                             </a>
                             <ul class="sub-menu">
                                 <li><a href="<?= base_url() ?>index.php/Factura/Rec">Registrar</a></li>
+                                <li><a href="<?= base_url() ?>index.php/Factura/verRecibo">Ver </a></li>
                             </ul>
                         </li>
                     </ul>
@@ -140,7 +141,7 @@
                                     - Modificar Propietarios
                                 </a>
                                 <b class="caret"></b>
-                              <a href="<?= base_url() ?>index.php/Buque/Buqu">
+                              <a href="<?= base_url() ?>index.php/Buque/barco">
                                     - Modificar Barcos
                                 </a>
                             </a>

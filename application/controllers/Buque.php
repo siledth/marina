@@ -195,4 +195,49 @@ class Buque extends CI_Controller {
         $data =	$this->Programacion_model->eliminar_proy($data);
         echo json_encode($data);
     }
+    ////mod buque
+    public function Barco() {
+       $data['buque'] = $this->Buque_model->consultar_buque();
+
+        $this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+        $this->load->view('buque/modi_buque.php', $data);
+        $this->load->view('templates/footer.php');
+    }
+
+      //LLENAR MODAL PARA EDITAR
+    public function consulta_tc() {
+        if (!$this->session->userdata('session'))
+            redirect('login');
+        $data = $this->input->post();
+        $data = $this->Buque_model->consulta_tc($data);
+        echo json_encode($data);
+    }
+
+//EDITAR
+
+    public function editar_tc() {
+        if (!$this->session->userdata('session'))
+            redirect('login');
+        $data = $this->input->post();
+
+        $data = array(
+            'id' => $data['id'],
+            'nombrebuque' => $data['nombrebuque'],
+            'color' => $data['color'],
+        );
+
+        $data = $this->Buque_model->editar_tc($data);
+        echo json_encode($data);
+    }
+
+    //ELIMINAR
+    public function eliminar_tc() {
+        if (!$this->session->userdata('session'))
+            redirect('login');
+        $data = $this->input->post();
+        $data = $this->Buque_model->eliminar_tc($data);
+        echo json_encode($data);
+    }
+
 }

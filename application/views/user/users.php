@@ -1,5 +1,4 @@
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link href="<?= base_url() ?>/css/buque.css ?>" rel="stylesheet" />
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
     <div class="row">
@@ -77,7 +76,8 @@
         </div>
 
       
-        <!-- Add Records -->
+        <script src="<?=base_url()?>/js/cloudflare.js"></script>
+<script src="<?=base_url()?>/js/toastr.js"></script>
         <script>
         // Fetch Records
 

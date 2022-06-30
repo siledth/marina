@@ -64,7 +64,7 @@
                                         <?=$data['desc_concepto']?>/<?=$data['desc_condicion']?></option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>
+                            </div> 
                             <div class="form-group col-2">
                                 <label>Dias <b title="Campo Obligatorio / Solo debe cambiar si es por días" style="color:red">* <i class="fas fa-info-circle"></i></b> </label>
                                 <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control"

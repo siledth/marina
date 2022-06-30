@@ -23,10 +23,7 @@ class Login_model extends CI_model {
                         $this->db->update('seguridad.usuarios');
                         return 'FALLIDO';
                     } else {
-                        $this->db->set('id_estatus', 100);
-                        $this->db->where('nombre', $usuario);
-                        $this->db->update('seguridad.usuarios');
-                        return 'FALLIDO';
+                       
                     }
                 }
             } else {
@@ -43,31 +40,9 @@ class Login_model extends CI_model {
         $this->db->from('empresa');
         $result = $this->db->get();
 
-        if ($result->num_rows() != 1) {
-            $this->db->select('e.id,
-                                   e.id_entes,
-                                   e.descripcion,
-                            	   e.rif');
-            $this->db->where('e.rif', $id_unidad);
-            $this->db->from('empresa e');
-            $result = $this->db->get();
-
-            if ($result->num_rows() != 1) {
-                $this->db->select('ea.id,
-                                       ea.descripcion,
-                                       ea.codigo,
-                                       ea.rif,
-                                       ea.rif');
-                $this->db->where('ea.rif', $id_unidad);
-                $this->db->from('empresa ea');
-                $result = $this->db->get();
-                return $result->row_array();
-            } else {
-                return $result->row_array();
-            }
-        } else {
+        
             return $result->row_array();
-        }
+        
     }
 
     public function cambiar_clave($id_usuario, $data) {

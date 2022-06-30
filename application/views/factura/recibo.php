@@ -3,7 +3,7 @@
     <div class="col-lg-12">
         <div class="row">
             <div class="panel panel-inverse">
-                <div class="panel-body">
+                <div class="panel-body"> 
 
                     <form id="reg_bien" method="POST" class="form-horizontal">
                         <div class="row">
@@ -17,7 +17,7 @@
                             </div>
                             <div class="form-group col-2">
                                 <label>N° Recibo <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="numfact" onkeyup="mayusculas(this);" class="form-control">
+                                <input type="text" name="numfact" id="numfact" onkeyup="mayusculas(this);" class="form-control" readonly>
                             </div>
                             <div class="form-group col-7">
                                 <label>Nombre/Rif Empresa <b title="Campo Obligatorio" style="color:red">*</b></label>
@@ -27,14 +27,15 @@
                                 <label>Telefono <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" name="tele_1" onkeyup="mayusculas(this);" class="form-control">
                             </div>
-                            <div class="col-6"></div>
+                            <div class="col-3"></div>
                             <div class="form-group col-4">
                                 <label>Embarcación/Matricula <b title="Campo Obligatorio"
                                         style="color:red">*</b></label>
                                 <select style="width: 100%;" id="matricular" name="matricular" class="form-control">
                                     <option value="0">Seleccione</option>
-                                    <?php foreach ($matricular as $data): ?>
-                                    <option value="<?=$data['matricula']?>"> <?=$data['matricula']?> $</option>
+                                    <?php foreach ($mat as $data): ?>
+                                    <option value="<?=$data['nombrebuque']?>">
+                                     <?=$data['matricula']?> /<?=$data['nombrebuque']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -63,7 +64,7 @@
                                         <?=$data['desc_concepto']?>/<?=$data['desc_condicion']?></option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>
+                            </div> 
                             <div class="form-group col-2">
                                 <label>Dias <b title="Campo Obligatorio / Solo debe cambiar si es por días" style="color:red">* <i class="fas fa-info-circle"></i></b> </label>
                                 <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control"
@@ -84,18 +85,19 @@
                                 <label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
                                 <select style="width: 100%;" name="id_alicuota_iva" id="id_alicuota_iva"
                                     onchange="calcular_bienes();" class="form-control">
+                                    <option value="">SELECCIONE</option>
                                     <option value="0">0</option>
-                                    
+                                   
                                 </select>
                             </div>
                             <div class="form-group col-2">
                                 <label>Monto IVA Estimado<b style="color:red">*</b></label>
-                                <input id="iva_estimado" name="iva_estimado" type="text" class="form-control" disabled>
+                                <input id="iva_estimado" name="iva_estimado" type="text" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Monto total Estimado<b style="color:red">*</b></label>
                                 <input id="monto_estimado" name="monto_estimado" type="text" class="form-control"
-                                    disabled>
+                                readonly>
                             </div>
                             <div class="col-5 mt-2">
                                 <div class="card card-outline-danger text-center bg-white">
@@ -105,7 +107,7 @@
                                                 <label>Total <b title="Campo Obligatorio"
                                                         style="color:red">*</b></label>
                                                 <input id="canon" name="canon" type="text" class="form-control"
-                                                    disabled>
+                                                readonly>
                                             </div>
                                         </blockquote>
                                     </div>
@@ -146,21 +148,21 @@
                             <div class="form-group row col-6">
                                 <label class="col-form-label col-md-6 text-right" >Total IVA $</label>
                                 <div class="col-md-6">
-                                <input id="total_iva" name="total_iva" type="text" class="form-control text-center" disabled>
+                                <input id="total_iva" name="total_iva" type="text" class="form-control text-center" readonly>
                                 </div>
                             </div>
                             <div class="col-6"></div>
                             <div class="form-group row col-6">
                                 <label class="col-form-label col-md-6 text-right" >Total + IVA $</label>
                                 <div class="col-md-6">
-                                    <input id="total_mas_iva" name="total_mas_iva" type="text" class="form-control text-center" disabled>
+                                    <input id="total_mas_iva" name="total_mas_iva" type="text" class="form-control text-center" readonly>
                                 </div>
                             </div>
                             <div class="col-6"></div>
                             <div class="form-group row col-6">
                                 <label class="col-form-label col-md-6 text-right" >Total en Bs</label>
                                 <div class="col-md-6">
-                                    <input id="total_bs" name="total_bs" type="text" class="form-control text-center" disabled>
+                                    <input id="total_bs" name="total_bs" type="text" class="form-control text-center" readonly>
                                 </div>
                             </div>
                         </div>
@@ -175,12 +177,12 @@
                                     href="javascript:history.back()"> Volver</a>
                             </div>
                         </div>
-                </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+</div> 
 <script src="<?=base_url()?>/js/programacion.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_fac.js"></script>
 <script src="<?=base_url()?>/js/bien/calculos_bienes.js"></script>

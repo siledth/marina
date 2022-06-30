@@ -29,7 +29,7 @@ $(document).ready(function(){
             //console.log(zeroFill(numero, 5));
         }
     });
-});
+}); 
 
 function guardar_bien(){
     event.preventDefault();
