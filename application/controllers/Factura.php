@@ -3,7 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Factura extends CI_Controller {
    
-	
+	public function cons_nro_factura(){
+        if(!$this->session->userdata('session'))redirect('login');
+	   	$data =	$this->Programacion_model->cons_nro_factura();
+	   	echo json_encode($data);
+    }
+
     public function Fac(){		
 		if(!$this->session->userdata('session'))redirect('login');
         $data['descripcion'] = $this->session->userdata('unidad');
@@ -28,13 +33,18 @@ class Factura extends CI_Controller {
         $matricula  = $this->input->post("matricular");
         $tele_1     = $this->input->post("tele_1");    
         
-        $dato1 = array(   
+        $dato1 = array(
+            "nro_factura"   => $this->input->post('numfact'),
             "nombre"        => $this->input->post('nombre'),
             "matricula"     => $this->input->post('matricular'),
             "tele_1"        => $this->input->post('tele_1'),
+            "total_iva"     => $this->input->post('total_iva'),
+            "total_mas_iva" => $this->input->post('total_mas_iva'),
+            "total_bs"      => $this->input->post('total_bs'),
             "fechaingreso"  => date("Y-m-d"),
-            "id_status"  => 0,
+            "id_status"     => 0,
             "fecha_update"  => date("Y-m-d"),
+            "valor_iva"   => $this->input->post('dolar'),
         );
 
         $p_items = array( //factura
@@ -63,6 +73,25 @@ class Factura extends CI_Controller {
 		$this->load->view('factura/anufactura.php', $data);
         $this->load->view('templates/footer.php');
 	}
+
+    public function verFactura(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos();
+        $data['time']=date("d-m-Y");
+        
+        $id_factura = $this->input->get('id');
+
+        $data['factura_ind'] = $this->Programacion_model->ver_factura($id_factura);
+        $data['factura_ind_tabla'] = $this->Programacion_model->ver_factura_tabla($id_factura);
+        
+        $this->load->view('templates/header.php');
+        
+        $this->load->view('templates/navigator.php');
+        $this->load->view('factura/ver', $data);
+        $this->load->view('templates/footer.php');
+    }
 
     // ANULAR
     public function anular_factura(){

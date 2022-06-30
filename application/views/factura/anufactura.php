@@ -33,9 +33,9 @@
                                                     <td><?=$lista['total']?></td>
                                                     <td><?=$lista['estatus']?></td>
                                                     <td>
-                                                        <!-- <a class="button" href="<?php echo base_url();?>index.php/Consignacion/ver_consignacion?id=<?php echo $lista['id'];?>" >
+                                                        <a class="button" href="<?php echo base_url() ?>index.php/Factura/verFactura?id=<?php echo $lista['id'];?>" >
                                                             <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/> -->
+                                                        <a/>
                                                         <?php if ($lista['id_status'] == 0): ?>
                                                             <a title="Anular" onclick="anular_factura(<?php echo $lista['id'];?>);" class="button">
                                                                 <i class="fas fa-lg fa-fw fa-times-circle" style="color:#d84600"></i>

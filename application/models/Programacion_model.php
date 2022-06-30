@@ -191,6 +191,15 @@
                 return true;
             }
         }
+
+        public function cons_nro_factura(){
+            $this->db->select('id');
+            $this->db->order_by('r.id desc');
+            $query = $this->db->get('factura r');
+            $response = $query->row_array();
+            return $response;
+        }
+
         public function save_recibo($acc_cargar,$dato1,$p_items){
             if ($acc_cargar == '1') {
                 $quers =$this->db->insert('public.recibo',$dato1);
@@ -297,16 +306,43 @@
             $this->db->select("f.id,
                                f.nombre,
                                f.matricula,
-                               sum(to_number(df.monto_estimado,'999999999999D99')) as total,
+                               f.total_bs as total,
                                e.id_status,
 	                           e.descripcion as estatus");
-            $this->db->join('deta_factura df', 'df.id_fact = f.id', 'left');
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
-            $this->db->group_by('f.id, f.nombre,f.matricula, e.id_status, e.descripcion');
             $query = $this->db->get('factura f');
             return $result = $query->result_array();
 
         }
+
+        function ver_factura($data){
+            //print_r($data);die;
+            $this->db->select("f.id,
+                               f.nro_factura,
+                               f.nombre,
+                               f.tele_1,
+                               f.matricula,
+                               f.total_bs as total,
+                               e.id_status,
+                               f.valor_iva,
+                               f.total_iva,
+                               f.total_mas_iva,
+                               f.total_bs,
+	                           e.descripcion as estatus");
+            $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
+            $this->db->where('f.id',$data);
+            $query = $this->db->get('factura f');
+            return $result = $query->row_array();
+        }
+
+        function ver_factura_tabla($data){
+            //print_r($data);die;
+            $this->db->select("*");
+            $this->db->where('df.id_fact',$data);
+            $query = $this->db->get('deta_factura df');
+            return $result = $query->result_array();
+        }
+
 
         function anular_factura($data){
             $data1 = array('id_status' => '1',

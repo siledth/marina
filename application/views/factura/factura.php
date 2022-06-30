@@ -17,7 +17,7 @@
                             </div>
                             <div class="form-group col-2">
                                 <label>N° Factura <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="numfact" onkeyup="mayusculas(this);" class="form-control">
+                                <input type="text" name="numfact" id="numfact" onkeyup="mayusculas(this);" class="form-control" readonly>
                             </div>
                             <div class="form-group col-7">
                                 <label>Nombre/Rif Empresa <b title="Campo Obligatorio" style="color:red">*</b></label>
@@ -94,12 +94,12 @@
                             </div>
                             <div class="form-group col-2">
                                 <label>Monto IVA Estimado<b style="color:red">*</b></label>
-                                <input id="iva_estimado" name="iva_estimado" type="text" class="form-control" disabled>
+                                <input id="iva_estimado" name="iva_estimado" type="text" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Monto total Estimado<b style="color:red">*</b></label>
                                 <input id="monto_estimado" name="monto_estimado" type="text" class="form-control"
-                                    disabled>
+                                readonly>
                             </div>
                             <div class="col-5 mt-2">
                                 <div class="card card-outline-danger text-center bg-white">
@@ -109,7 +109,7 @@
                                                 <label>Total <b title="Campo Obligatorio"
                                                         style="color:red">*</b></label>
                                                 <input id="canon" name="canon" type="text" class="form-control"
-                                                    disabled>
+                                                readonly>
                                             </div>
                                         </blockquote>
                                     </div>
@@ -150,21 +150,21 @@
                             <div class="form-group row col-6">
                                 <label class="col-form-label col-md-6 text-right" >Total IVA $</label>
                                 <div class="col-md-6">
-                                <input id="total_iva" name="total_iva" type="text" class="form-control text-center" disabled>
+                                <input id="total_iva" name="total_iva" type="text" class="form-control text-center" readonly>
                                 </div>
                             </div>
                             <div class="col-6"></div>
                             <div class="form-group row col-6">
                                 <label class="col-form-label col-md-6 text-right" >Total + IVA $</label>
                                 <div class="col-md-6">
-                                    <input id="total_mas_iva" name="total_mas_iva" type="text" class="form-control text-center" disabled>
+                                    <input id="total_mas_iva" name="total_mas_iva" type="text" class="form-control text-center" readonly>
                                 </div>
                             </div>
                             <div class="col-6"></div>
                             <div class="form-group row col-6">
                                 <label class="col-form-label col-md-6 text-right" >Total en Bs</label>
                                 <div class="col-md-6">
-                                    <input id="total_bs" name="total_bs" type="text" class="form-control text-center" disabled>
+                                    <input id="total_bs" name="total_bs" type="text" class="form-control text-center" readonly>
                                 </div>
                             </div>
                         </div>
