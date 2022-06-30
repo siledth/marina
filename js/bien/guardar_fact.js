@@ -41,3 +41,46 @@ function guardar_bien(){
         }
     });
 }
+
+function anular_factura(id_fact){
+    event.preventDefault();
+    swal.fire({
+        title: '¿Seguro que desea anular la factura selecionada?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: '¡Si, Anular!'
+    }).then((result) => {
+        if (result.value == true) {
+            var id_factura = id_fact
+
+            var base_url =window.location.origin+'/marina/index.php/Factura/anular_factura';
+
+            $.ajax({
+                url:base_url,
+                method: 'post',
+                data:{
+                    id_factura: id_factura
+                },
+                dataType: 'json',
+                success: function(response){
+                    if(response == 1) {
+                        swal.fire({
+                            title: 'Proceso Exitoso',
+                            type: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Ok'
+                        }).then((result) => {
+                            if (result.value == true) {
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+            })
+        }
+    });
+}

@@ -212,11 +212,6 @@
                         );
                         $this->db->insert('public.deta_recibo',$data1);
                     }
-
-                     
-                     
-
-                     
                 }
                 return true;
             }elseif ($acc_cargar == '2') {
@@ -295,6 +290,30 @@
                 }
                 return true;
             }
+        }
+
+
+        function consulta_facturas(){
+            $this->db->select("f.id,
+                               f.nombre,
+                               f.matricula,
+                               sum(to_number(df.monto_estimado,'999999999999D99')) as total,
+                               e.id_status,
+	                           e.descripcion as estatus");
+            $this->db->join('deta_factura df', 'df.id_fact = f.id', 'left');
+            $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
+            $this->db->group_by('f.id, f.nombre,f.matricula, e.id_status, e.descripcion');
+            $query = $this->db->get('factura f');
+            return $result = $query->result_array();
+
+        }
+
+        function anular_factura($data){
+            $data1 = array('id_status' => '1',
+                            'fecha_update' => date('Y-m-d h:i:s'));
+            $this->db->where('id', $data['id_factura']);
+            $update = $this->db->update('factura', $data1);
+            return true;
         }
         //------------------------------------------------------
         //REGISTRAR OBRAS

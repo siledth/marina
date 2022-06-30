@@ -4,8 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Factura extends CI_Controller {
    
 	
-    public function Fac(){
-		
+    public function Fac(){		
 		if(!$this->session->userdata('session'))redirect('login');
         $data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
@@ -33,7 +32,9 @@ class Factura extends CI_Controller {
             "nombre"        => $this->input->post('nombre'),
             "matricula"     => $this->input->post('matricular'),
             "tele_1"        => $this->input->post('tele_1'),
-            "fechaingreso"  => date("Y-m-d")            
+            "fechaingreso"  => date("Y-m-d"),
+            "id_status"  => 0,
+            "fecha_update"  => date("Y-m-d"),
         );
 
         $p_items = array( //factura
@@ -50,10 +51,31 @@ class Factura extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function anuFac(){		
+		if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['time']=date("d-m-Y");
+
+        $data['facturas'] 	= $this->Programacion_model->consulta_facturas();
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('factura/anufactura.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+
+    // ANULAR
+    public function anular_factura(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data = $this->input->post();
+        $data = $this->Programacion_model->anular_factura($data);
+        echo json_encode($data);
+    }
+
     public function delete(){
-    $id = $this->input->get('id');
-    $resultado = $this->Programacion_model->delete($id);
-    redirect('Buque/Plantilla');
+        $id = $this->input->get('id');
+        $resultado = $this->Programacion_model->delete($id);
+        redirect('Buque/Plantilla');
     }
 
     public function eliminar_proy(){
@@ -79,6 +101,7 @@ class Factura extends CI_Controller {
 		$this->load->view('factura/recibo.php', $data);
         $this->load->view('templates/footer.php');
 	}
+
     public function registrar_recibo(){
         if(!$this->session->userdata('session'))redirect('login');
         $acc_cargar = $this->input->POST('acc_cargar');

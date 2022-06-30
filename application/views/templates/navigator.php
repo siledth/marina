@@ -91,6 +91,7 @@
                             </a>
                             <ul class="sub-menu">
                                 <li><a href="<?= base_url() ?>index.php/Factura/fac">Registrar</a></li>
+                                <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Anular</a></li>
                             </ul>
                         </li>
                         <li class="has-sub">
