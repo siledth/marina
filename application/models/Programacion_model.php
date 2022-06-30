@@ -281,14 +281,14 @@
                     $count_prog = count($cant_proy);
                     for ($i=0; $i < $count_prog; $i++) {
                         $data1 = array(
-                            'id_fact'              => $id,
-                            'pies'   		        => $p_items['pies'][$i],
-                            'ob'          	=> $p_items['ob'][$i],
-                            'tarifa'             => $p_items['tarifa'][$i],
-                            'dia' 	            => $p_items['dia'][$i],
-                            'canon' 	            => $p_items['canon'][$i],
-                            'monto_estimado' 	            => $p_items['monto_estimado'][$i],
-                           
+                            'id_fact'        => $id,
+                            'pies'   		 => $p_items['pies'][$i],
+                            'matricula'      => $p_items['matricula'][$i],
+                            'ob'          	 => $p_items['ob'][$i],
+                            'tarifa'         => $p_items['tarifa'][$i],
+                            'dia' 	         => $p_items['dia'][$i],
+                            'canon' 	     => $p_items['canon'][$i],
+                            'monto_estimado' => $p_items['monto_estimado'][$i],
                         );
                         $this->db->insert('public.deta_factura',$data1);
                     }                    

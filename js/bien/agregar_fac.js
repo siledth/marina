@@ -109,7 +109,7 @@ function agregar_ccnu_accToCartTable(cells){
 		var increment = increment +1;
 		newRow.className='myTr';
 		newRow.innerHTML = `
-       <td>${matricular}<input type="text" name="matricular[]" id="ins-subtype-${increment}" hidden value="${matricular}"></td>
+       <td>${matricular}<input type="text" name="matricularr[]" id="ins-subtype-${increment}" hidden value="${matricular}"></td>
        <td>${ob}<input type="text" name="ob[]" id="ins-subtype-${increment}" hidden value="${ob}"></td>
        <td>${pies}<input type="text" name="pies[]" id="ins-type-${increment}" hidden value="${pies}"></td>
 		<td>${tarifa}<input type="text" name="tarifa[]" id="ins-type-${increment}" hidden value="${tarifa}"></td>

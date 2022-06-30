@@ -25,46 +25,37 @@ class Factura extends CI_Controller {
     public function registrar(){
         if(!$this->session->userdata('session'))redirect('login');
         $acc_cargar = 1;    
-        $nombre = $this->input->post("nombre");
-        $matricula = $this->input->post("matricular");
-        $tele_1 = $this->input->post("tele_1");    
+        $nombre     = $this->input->post("nombre");
+        $matricula  = $this->input->post("matricular");
+        $tele_1     = $this->input->post("tele_1");    
         
-        $dato1 = array(
-                
-            "nombre" => $this->input->post('nombre'),
-            "matricula" => $this->input->post('matricular'),
-            "tele_1" => $this->input->post('tele_1'),
-            "fechaingreso" => date("Y-m-d")            
+        $dato1 = array(   
+            "nombre"        => $this->input->post('nombre'),
+            "matricula"     => $this->input->post('matricular'),
+            "tele_1"        => $this->input->post('tele_1'),
+            "fechaingreso"  => date("Y-m-d")            
         );
-        
 
         $p_items = array( //factura
-            'pies'   		        => $this->input->post('pies'),
-            'ob'          	=> $this->input->post('ob'),
-            'tarifa'             => $this->input->post('tarifa'),
+            'pies'   		    => $this->input->post('pies'),
+            'ob'          	    => $this->input->post('ob'),
+            'tarifa'            => $this->input->post('tarifa'),
             'dia' 	            => $this->input->post('dia'),  
-            'canon' 	            => $this->input->post('canon'), 
-            'monto_estimado' 	     => $this->input->post('monto_estimado'), 
-            'matricula' 	            => $this->input->post('matricular'),
-            
-            
-                    
+            'canon' 	        => $this->input->post('canon'), 
+            'monto_estimado' 	=> $this->input->post('monto_estimado'), 
+            'matricula' 	    => $this->input->post('matricularr'),        
         );
-
-        
 
         $data = $this->Programacion_model->save_factura($acc_cargar,$dato1,$p_items);
         echo json_encode($data);
-        
-
     }
-    public function delete()
-{
+
+    public function delete(){
     $id = $this->input->get('id');
     $resultado = $this->Programacion_model->delete($id);
     redirect('Buque/Plantilla');
-   
-}
+    }
+
     public function eliminar_proy(){
         if(!$this->session->userdata('session'))redirect('login');
         $data = $this->input->post();
