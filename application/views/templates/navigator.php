@@ -139,7 +139,7 @@
                                     - Modificar Propietarios
                                 </a>
                                 <b class="caret"></b>
-                              <a href="<?= base_url() ?>index.php/Buque/buques">
+                              <a href="<?= base_url() ?>index.php/Buque/Buqu">
                                     - Modificar Barcos
                                 </a>
                             </a>

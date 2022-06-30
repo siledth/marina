@@ -320,7 +320,6 @@
                                             <th>telf.</th>
                                             <th>Correp</th>
                                             <th>Cargo</th>
-
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -349,7 +348,7 @@
 <script src="<?=base_url()?>/js/bien/calculos_bienes.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_ff.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_ip.js"></script>
-<script src="<?=base_url()?>/js/bien/calculos_bienes.js"></script>
+<script src="<?=base_url()?>/js/bien/calculo_canon.js"></script>
 <script src="<?=base_url()?>/js/bien/registro.js"></script>
 <script type="text/javascript">
 function mayusculas(e) {

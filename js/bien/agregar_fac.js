@@ -76,7 +76,7 @@ function remove_proy_acc() {
 	console.log(total_bs);
 	var total_bss = parseFloat(total_bs).toFixed(2);
 	var total_bsss = Intl.NumberFormat("de-DE").format(total_bss);
-	$('#total_bs').val(total_bsss);
+	$('#total_bs').val(total_bsss); 
 
 }
 
@@ -101,7 +101,7 @@ function agregar_ccnu_accToCartTable(cells){
 			document.getElementById("tarifa").focus();
 		}
 		else if (matricular == '') {
-			document.getElementById("matricula").focus();
+			document.getElementById("matricular").focus();
 		}
 		
 	}else{

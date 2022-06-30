@@ -72,26 +72,10 @@
             return $result = $query->result_array();
         }
 
-        public function consulta_fuente(){
-            $this->db->select('*');
-            $this->db->order_by('id_fuente_financiamiento ASC');
-            $query = $this->db->get('programacion.fuente_financiamiento');
-            return $result = $query->result_array();
-        }
+      
 
-        public function consulta_act_com(){
-            $this->db->select('*');
-            $this->db->where('id_objeto_contrata !=', 1);
-            $query = $this->db->get('programacion.objeto_contrata');
-            return $result = $query->result_array();
-        }
+        
 
-        public function consulta_cnnu(){
-            $this->db->select('*');
-            // $this->db->limit(10);
-            $query = $this->db->get('programacion.ccnu');
-            return $result = $query->result_array();
-        }
 
         public function consulta_unid(){
             $this->db->select('*');
@@ -110,23 +94,8 @@
             return $result = $query->result_array();
         }
 
-        public function consulta_tip_obra(){
-            $this->db->select('*');
-            $query = $this->db->get('programacion.tip_obra');
-            return $result = $query->result_array();
-        }
+        
 
-        public function consulta_alcance_obra(){
-            $this->db->select('*');
-            $query = $this->db->get('programacion.alcance_obra');
-            return $result = $query->result_array();
-        }
-
-        public function consulta_obj_obra(){
-            $this->db->select('*');
-            $query = $this->db->get('programacion.obj_obra');
-            return $result = $query->result_array();
-        }
         //------------------------------------------------------
        
         //------------------------------------------------------
@@ -222,9 +191,9 @@
                 return true;
             }
         }
-        public function save_factura($acc_cargar,$dato1,$p_items){
+        public function save_recibo($acc_cargar,$dato1,$p_items){
             if ($acc_cargar == '1') {
-                $quers =$this->db->insert('public.factura',$dato1);
+                $quers =$this->db->insert('public.recibo',$dato1);
                 if ($quers) {
                     $id = $this->db->insert_id();
                     $cant_proy = $p_items['dia'];
@@ -232,20 +201,22 @@
                     for ($i=0; $i < $count_prog; $i++) {
                         $data1 = array(
                             'id_fact'              => $id,
-                            'pies'   		        => $p_items['pies'][$i],
-                            'ob'          	=> $p_items['ob'][$i],
-                            'tarifa'             => $p_items['tarifa'][$i],
-                            'dia' 	            => $p_items['dia'][$i],
+                            'matricula'   		        => $p_items['matricular'][$i],
+                            'pies'          	=> $p_items['pies'][$i],
+                            'ob'             => $p_items['ob'][$i],
+                            'tarifa' 	            => $p_items['tarifa'][$i],
                             'canon' 	            => $p_items['canon'][$i],
-                            'monto_estimado' 	            => $p_items['monto_estimado'][$i],
-                           
+                            'monto_estimado'             => $p_items['monto_estimado'],
+                            'totald'             => $p_items['totald'],  
+                            'totalb'             => $p_items['totalb'],    
                         );
-                        $this->db->insert('public.deta_factura',$data1);
+                        $this->db->insert('public.deta_recibo',$data1);
                     }
 
-                   
+                     
+                     
 
-                    
+                     
                 }
                 return true;
             }elseif ($acc_cargar == '2') {
@@ -297,6 +268,30 @@
                         );
                         $this->db->insert('programacion.p_ffinanciamiento',$data2);
                     }
+                }
+                return true;
+            }
+        }
+        public function save_factura($acc_cargar,$dato1,$p_items){
+            if ($acc_cargar == '1') {
+                $quers =$this->db->insert('public.factura', $dato1);
+                if ($quers) {
+                    $id = $this->db->insert_id();
+                    $cant_proy = $p_items['pies'];
+                    $count_prog = count($cant_proy);
+                    for ($i=0; $i < $count_prog; $i++) {
+                        $data1 = array(
+                            'id_fact'              => $id,
+                            'pies'   		        => $p_items['pies'][$i],
+                            'ob'          	=> $p_items['ob'][$i],
+                            'tarifa'             => $p_items['tarifa'][$i],
+                            'dia' 	            => $p_items['dia'][$i],
+                            'canon' 	            => $p_items['canon'][$i],
+                            'monto_estimado' 	            => $p_items['monto_estimado'][$i],
+                           
+                        );
+                        $this->db->insert('public.deta_factura',$data1);
+                    }                    
                 }
                 return true;
             }

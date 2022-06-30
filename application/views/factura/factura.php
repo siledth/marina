@@ -3,7 +3,7 @@
     <div class="col-lg-12">
         <div class="row">
             <div class="panel panel-inverse">
-                <div class="panel-body">
+                <div class="panel-body"> 
 
                     <form id="reg_bien" method="POST" class="form-horizontal">
                         <div class="row">
@@ -34,7 +34,8 @@
                                 <select style="width: 100%;" id="matricular" name="matricular" class="form-control">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($mat as $data): ?>
-                                    <option value="<?=$data['matricula']?>"> <?=$data['matricula']?> $</option>
+                                    <option value="<?=$data['nombrebuque']?>">
+                                     <?=$data['matricula']?> /<?=$data['nombrebuque']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
