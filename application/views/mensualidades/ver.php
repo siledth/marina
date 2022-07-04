@@ -13,30 +13,35 @@
                             </div>
                             <div class="col-md-12" >
                                 <div class="panel-body">
+                                    <div class="col-12 text-center"> <h4>Mensualidades de acuerdo al día</h4> </div>
+                                   
                                     <table id="data-table-default" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th width="1%"></th>
-                                                <th class="text-nowrap">Nombre</th>
+                                                <th class="text-nowrap">Nombre del Buque</th>
                                                 <th class="text-nowrap">Embarcación/Matricula</th>
-                                                <th class="text-nowrap">Total</th>
+                                                <th class="text-nowrap">canon</th>
+                                                <th class="text-nowrap">Fecha Deuda</th>
                                                 <th class="text-nowrap">Estatus</th>
-                                                <th class="text-nowrap">Acciones</th>
+                                                <th class="text-nowrap">Acción</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach($facturas as $lista):?>
+                                            <?php foreach($ver_deudas as $lista):?>
                                                 <tr class="odd gradeX">
-                                                    <td><?=$lista['id']?></td>
-                                                    <td><?=$lista['nombre']?></td>
+                                                    <td><?=$lista['id_mensualidad']?></td>
+                                                    <td><?=$lista['nombrebuque']?></td>
                                                     <td><?=$lista['matricula']?></td>
-                                                    <td><?=$lista['total']?></td>
-                                                    <td><?=$lista['estatus']?></td>
+                                                    <td><?=$lista['canon']?></td>
+                                                    <td><?=$lista['fecha_deuda']?></td>
+                                                    <td><?=$lista['descripcion']?></td>
                                                     <td>
-                                                        <a class="button" href="<?php echo base_url() ?>index.php/Factura/ver_reci?id=<?php echo $lista['id'];?>" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
+                                                    <?php if ($lista['id_factura'] != 0): ?>
+                                                        <a class="button" href="<?php echo base_url() ?>index.php/Factura/verFactura?id=<?php echo $lista['id_factura'];?>" >
+                                                            <i title="Ver" class="fas fa-lg fa-fw fa-eye" style="color: #00d41a;"></i>
                                                         <a/>
-                                                        
+                                                        <?php endif; ?>
                                                     </td>
                                                 </tr>
                                                 

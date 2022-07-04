@@ -106,6 +106,19 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="has-sub">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fas fa-sliders-h" style="background-color:#1E90FF;"></i>
+                        <span>Mensualidades</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="<?= base_url() ?>index.php/Mensualidades/ver">Ver</a></li>
+                        <!-- <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver / Anular</a></li> -->
+                    </ul>
+                </li>
+               
                
                 <li class="has-sub">
                     <a href="javascript:;">

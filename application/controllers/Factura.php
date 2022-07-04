@@ -47,6 +47,7 @@ class Factura extends CI_Controller {
             "valor_iva"   => $this->input->post('dolar'),
         );
 
+        
         $p_items = array( //factura
             'pies'   		    => $this->input->post('pies'),
             'ob'          	    => $this->input->post('ob'),
@@ -56,7 +57,6 @@ class Factura extends CI_Controller {
             'monto_estimado' 	=> $this->input->post('monto_estimado'), 
             'matricula' 	    => $this->input->post('matricularr'),        
         );
-
         $data = $this->Programacion_model->save_factura($acc_cargar,$dato1,$p_items);
         echo json_encode($data);
     }

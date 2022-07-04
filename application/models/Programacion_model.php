@@ -110,9 +110,9 @@
                     for ($i=0; $i < $count_prog; $i++) {
                         $data1 = array(
                             'id_buque'              => $id,
-                            'cedulat'   		        => $p_items['cedulat'][$i],
+                            'cedulat'   		    => $p_items['cedulat'][$i],
                             'tipo_cedt'          	=> $p_items['tipo_cedt'][$i],
-                            'nombrecomt'             => $p_items['nombrecomt'][$i],
+                            'nombrecomt'            => $p_items['nombrecomt'][$i],
                             'tele_1t' 	            => $p_items['tele_1t'][$i],
                             'cargot' 	            => $p_items['cargot'][$i],
                             'matricula'             => $p_items['matricula'],  
@@ -131,7 +131,7 @@
                             'nombrecom'             => $p_ffinanciamiento['nombrecom'][$i],
                             'tele_1' 	            => $p_ffinanciamiento['tele_1'][$i],
                             'email' 	            => $p_ffinanciamiento['email'][$i],
-                            'tipo' 	            => $p_ffinanciamiento['tipo'][$i],
+                            'tipo' 	                => $p_ffinanciamiento['tipo'][$i],
                             'matricula'             => $p_ffinanciamiento['matricula'],
                         );
                         $this->db->insert('public.propiet',$data2);
@@ -209,17 +209,41 @@
                     $cant_proy = $p_items['pies'];
                     $count_prog = count($cant_proy);
                     for ($i=0; $i < $count_prog; $i++) {
+
+                        $tarifas = $p_items['tarifa'][$i];
+                        $explode = explode('/', $tarifas);
+                        $tarifa = $explode['0'];
+                        $id_tarifa = $explode['1'];
+
                         $data1 = array(
                             'id_fact'        => $id,
                             'pies'   		 => $p_items['pies'][$i],
                             'matricula'      => $p_items['matricula'][$i],
                             'ob'          	 => $p_items['ob'][$i],
-                            'tarifa'         => $p_items['tarifa'][$i],
+                            'id_tarifa'      => $id_tarifa,
+                            'tarifa'         => $tarifa,
                             'dia' 	         => $p_items['dia'][$i],
                             'canon' 	     => $p_items['canon'][$i],
                             'monto_estimado' => $p_items['monto_estimado'][$i],
                         );
                         $this->db->insert('public.deta_factura',$data1);
+
+                        $this->db->select('*');
+                        $this->db->from('public.mensualidad');
+                        $this->db->where('matricula', $p_items['matricula'][$i]);
+                        $this->db->where('id_tarifa', $id_tarifa);
+                        $this->db->where('id_status', 0);
+                        $query = $this->db->get();
+                        $resultado = $query->row_array();
+                        if ($resultado) {
+                            $fecha_update = date('Y-m-d h:i:s');
+                            $this->db->set('id_status', 2);
+                            $this->db->set('fecha_update', $fecha_update);
+                            $this->db->set('id_factura',  $id);
+                            $this->db->where('matricula', $p_items['matricula'][$i]);
+                            $this->db->update('public.mensualidad');
+                        }
+
                     }                    
                 }
                 return true;
@@ -349,9 +373,7 @@
         // INVESTIGAR
         public function inf_1($id_p_proyecto){
            
-            $this->db->select('*
-                        	  
-                               ');
+            $this->db->select('*');
            // $this->db->join('programacion.propiet oc', 'oc.matricula = pp.matricula');
             $this->db->where('pp.matricula', $id_p_proyecto);
             $query = $this->db->get('public.buque pp');

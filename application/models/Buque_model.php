@@ -9,6 +9,62 @@
 			$query = $this->db->get();
 			return $query->result_array();
 		}
+
+		public function save_buque($buque, $tripulacion, $propietarios){
+                $quers =$this->db->insert('public.buque',$buque);
+
+                $data_mens = array(
+                    'matricula'    => $buque['matricula'],
+                    'pies'         => $buque['pies'],
+                    'id_tarifa'    => $buque['id_tarifa'],
+                    'tarifa'       => $buque['tarifa'],
+                    'dia'          => $buque['dia'],
+                    'canon'        => $buque['canon'],
+                    'fecha_deuda'  => date('Y-m-d'),
+                    'id_status'    => 0,
+                    'fecha_update' => date('Y-m-d'),
+                    'id_factura'   => 0
+                );
+                $this->db->insert('public.mensualidad',$data_mens);
+
+                if ($quers) {
+                    $id = $this->db->insert_id();
+                    $cant_proy = $tripulacion['cedulat'];
+                    $count_prog = count($cant_proy);
+                    for ($i=0; $i < $count_prog; $i++) {
+                        $data1 = array(
+                            'id_buque'              => $id,
+                            'cedulat'   		    => $tripulacion['cedulat'][$i],
+                            'tipo_cedt'          	=> $tripulacion['tipo_cedt'][$i],
+                            'nombrecomt'           	=> $tripulacion['nombrecomt'][$i],
+                            'tele_1t' 	            => $tripulacion['tele_1t'][$i],
+                            'cargot' 	            => $tripulacion['cargot'][$i],
+                            'matricula'             => $tripulacion['matricula'],  
+                        );
+                        $this->db->insert('public.tripulacion',$data1);
+                    }
+
+                    $cant_pff = $propietarios['cedula'];
+                    $count_pff = count($cant_pff);
+
+                    for ($i=0; $i < $count_pff; $i++) {
+                        $data2 = array(
+                            'id_buque'              => $id,
+                            'cedula'   		        => $propietarios['cedula'][$i],
+                            'tipo_ced'          	=> $propietarios['tipo_ced'][$i],
+                            'nombrecom'             => $propietarios['nombrecom'][$i],
+                            'tele_1' 	            => $propietarios['tele_1'][$i],
+                            'email' 	            => $propietarios['email'][$i],
+                            'tipo' 	            	=> $propietarios['tipo'][$i],
+                            'matricula'             => $propietarios['matricula'],
+                        );
+                        $this->db->insert('public.propiet',$data2);
+                    }
+                }
+                return true;
+        }
+
+
         function consulta_tc($data){
 			$this->db->select('*');
 			$this->db->from('public.buque');
@@ -19,7 +75,6 @@
 				return $query->row();
 			}
 		}
-
 		function editar_tc($data){
 			$this->db->where('id', $data['id']);
 			$update = $this->db->update('public.buque', $data);

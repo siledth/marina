@@ -34,7 +34,7 @@
                                 <select style="width: 100%;" id="matricular" name="matricular" class="form-control">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($mat as $data): ?>
-                                    <option value="<?=$data['nombrebuque']?>">
+                                    <option value="<?=$data['matricula']?>">
                                      <?=$data['matricula']?> /<?=$data['nombrebuque']?></option>
                                     <?php endforeach; ?>
                                 </select>
@@ -59,7 +59,7 @@
                                     class="form-control">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($tarifa as $data): ?>
-                                        <option value="<?=$data['des_unidad']?>/<?=$data['desc_tarifa']?>">
+                                        <option value="<?=$data['des_unidad']?>/<?=$data['desc_tarifa']?>/<?=$data['id_tarifa']?>">
                                         <?=$data['desc_tarifa']?>$ /
                                         <?=$data['desc_concepto']?>/<?=$data['desc_condicion']?></option>
                                     <?php endforeach; ?>

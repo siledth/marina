@@ -84,7 +84,7 @@ function agregar_ccnu_accToCartTable(cells){
 	var pies = $("#pies").val();
 	var tarifas = $("#tarifa").val();
 	let explode = tarifas.split('/');
-    let id_tarifa = explode[0];
+    let id_tarifa = explode[2];
     let tarifa = explode[1];
  	var dia = $("#dia").val();
 	var canon = $("#canon").val();
@@ -112,7 +112,7 @@ function agregar_ccnu_accToCartTable(cells){
        <td>${matricular}<input type="text" name="matricularr[]" id="ins-subtype-${increment}" hidden value="${matricular}"></td>
        <td>${ob}<input type="text" name="ob[]" id="ins-subtype-${increment}" hidden value="${ob}"></td>
        <td>${pies}<input type="text" name="pies[]" id="ins-type-${increment}" hidden value="${pies}"></td>
-		<td>${tarifa}<input type="text" name="tarifa[]" id="ins-type-${increment}" hidden value="${tarifa}"></td>
+		<td>${tarifa}<input type="text" name="tarifa[]" id="ins-type-${increment}" hidden value="${tarifa}/${id_tarifa}"></td>
 		<td>${dia}<input type="text" name="dia[]" id="ins-subtype-${increment}" hidden value="${dia}"></td>
         <td>${canon}<input type="text" name="canon[]" id="ins-subtype-${increment}" hidden value="${canon}"></td>
         <td>${monto_estimado}<input type="text" name="monto_estimado[]" id="ins-subtype-${increment}" hidden value="${monto_estimado}"></td>

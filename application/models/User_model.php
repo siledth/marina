@@ -191,8 +191,8 @@ class User_model extends CI_Model
         return $this->db->update('public.propiet', $data, array('cedula' => $data['cedula']));
     }
 
-    public function savebueque($data1,$data2)
-    {  
+    public function savebueque($data1,$data2){
+        print_r($data1);die;
         $this->db->insert("public.buque", $data1);
         //la funcion  insert_id(); me guarda el id del ultimo registo
         $identificador = $this->db->insert_id();

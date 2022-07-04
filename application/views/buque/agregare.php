@@ -105,7 +105,6 @@
                                 <input type="text" id="bruto" name="bruto" placeholder="bruto" class="form-control" />
 
                             </div>
-
                             <div class="form-group col-2">
                                 <label>Neto <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" id="neto" name="neto" placeholder="neto" class="form-control" />
@@ -115,7 +114,7 @@
                                 <select style="width: 100%;" id="tarifa" name="tarifa" onchange="calcular_bienes();" class="form-control">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($tarifa as $data): ?>
-                                    <option value="<?=$data['desc_tarifa']?>">
+                                    <option value="<?=$data['id_tarifa']?>/<?=$data['desc_tarifa']?>">
                                     <?=$data['desc_tarifa']?> $/ <?=$data['desc_concepto']?>/<?=$data['desc_condicion']?></option>
                                     <?php endforeach; ?>
                                 </select>
@@ -124,6 +123,10 @@
                                 <label>Dias <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);" value="30">
                                 <label>Solo Cambiar si es por dias <b title="Campo Obligatorio" style="color:red">*</b></label>
+                            </div>
+                            <div class="form-group col-2">
+                                <label>Fecha de Pago <b title="Campo Obligatorio" style="color:red">*</b></label>
+                                <input type="date" id="fecha_pago" name="fecha_pago"  class="form-control">
                             </div>
                             <div class="col-2 mt-2">
                                 <div class="card card-outline-danger text-center bg-white">
@@ -139,10 +142,6 @@
                                     </div>
                                 </div>
                             </div>
-                        
-
-                            
-
                             <div class="col-12">
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                             </div>
@@ -344,11 +343,15 @@
         </div>
     </div>
 </div>
-<script src="<?=base_url()?>/js/programacion.js"></script>
-<script src="<?=base_url()?>/js/bien/calculos_bienes.js"></script>
+<!-- <script src="<?=base_url()?>/js/programacion.js"></script> -->
+<!-- <script src="<?=base_url()?>/js/bien/calculos_bienes.js"></script> -->
+<!-- Agegar Propietario -->
 <script src="<?=base_url()?>/js/bien/agregar_ff.js"></script>
+<!-- Agegar Tripulacion -->
 <script src="<?=base_url()?>/js/bien/agregar_ip.js"></script>
+<!-- Calcular cannon -->
 <script src="<?=base_url()?>/js/bien/calculo_canon.js"></script>
+<!-- Registrar -->
 <script src="<?=base_url()?>/js/bien/registro.js"></script>
 <script type="text/javascript">
 function mayusculas(e) {

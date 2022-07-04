@@ -140,4 +140,5 @@ $autoload['model'] = array(
     'Tablas_model',
     'Tarifa_model',
     'Buque_model',
+    'Mensualidades_model'
 );

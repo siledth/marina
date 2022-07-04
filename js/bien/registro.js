@@ -14,7 +14,7 @@ function guardar_bien(){
 
             event.preventDefault();
             var datos = new FormData($("#reg_bien")[0]);
-            var base_url =window.location.origin+'/marina/index.php/Buque/registrar_bien';
+            var base_url =window.location.origin+'/marina/index.php/Buque/registrar_buque';
          //   var base_url = '/index.php/Programacion/registrar_bien';
             $.ajax({
                 url:base_url,

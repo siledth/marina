@@ -3,7 +3,10 @@ function calcular_bienes(){
     var pies = $('#pies').val();
     var dia = $('#dia').val();
     var cantidad2 = 30;
-    var tarifa = $('#tarifa').val();
+    var tarifas = $('#tarifa').val();
+    let explode = tarifas.split('/');
+    let id_tarifa = explode[0];
+    let tarifa = explode[1];
     
    // $('#cant_total_distribuir').val(cant_total_distribuir);
 
