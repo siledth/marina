@@ -202,7 +202,7 @@
 
        
         public function save_factura($acc_cargar,$dato1,$p_items){
-            if ($acc_cargar == '1') {
+            //if ($acc_cargar == '1') {
                 $quers =$this->db->insert('public.factura', $dato1);
                 if ($quers) {
                     $id = $this->db->insert_id();
@@ -226,28 +226,34 @@
                             'canon' 	     => $p_items['canon'][$i],
                             'monto_estimado' => $p_items['monto_estimado'][$i],
                         );
-                        $this->db->insert('public.deta_factura',$data1);
-
-                        $this->db->select('*');
-                        $this->db->from('public.mensualidad');
-                        $this->db->where('matricula', $p_items['matricula'][$i]);
-                        $this->db->where('id_tarifa', $id_tarifa);
-                        $this->db->where('id_status', 0);
-                        $query = $this->db->get();
-                        $resultado = $query->row_array();
-                        if ($resultado) {
-                            $fecha_update = date('Y-m-d h:i:s');
-                            $this->db->set('id_status', 2);
-                            $this->db->set('fecha_update', $fecha_update);
-                            $this->db->set('id_factura',  $id);
+                        $quert = $this->db->insert('public.deta_factura',$data1);
+                        
+                        if ($quert) {
+                            $this->db->select('*');
+                            $this->db->from('public.mensualidad');
                             $this->db->where('matricula', $p_items['matricula'][$i]);
-                            $this->db->update('public.mensualidad');
+                            $this->db->where('id_tarifa', $id_tarifa);
+                            $this->db->where('id_status', 0);
+                            $query = $this->db->get();
+                            $resultado = $query->row_array();
+                            //print_r($resultado);die;
+                            if ($resultado){
+                                $fecha_deuda = $resultado['fecha_deuda'];
+                                $explode = explode('-', $fecha_deuda);
+                                $mes = $explode['1'];
+                                $fecha_update = date('Y-m-d h:i:s');
+                                $this->db->set('id_status', 2);
+                                $this->db->set('fecha_update', $fecha_update);
+                                $this->db->set('id_factura',  $id);
+                                $this->db->where('matricula', $p_items['matricula'][$i]);
+                                $this->db->where("TO_CHAR(fecha_deuda,'MM')", $mes);
+                                $this->db->update('public.mensualidad');
+                            }
                         }
-
                     }                    
                 }
                 return true;
-            }
+            //}
         }
 
 

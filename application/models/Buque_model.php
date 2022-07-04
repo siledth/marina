@@ -11,7 +11,6 @@
 		}
 
 		public function save_buque($buque, $tripulacion, $propietarios){
-           // print_r($buque);die;
                 $quers =$this->db->insert('public.buque',$buque);
 
                 if ($quers) {
