@@ -11,21 +11,8 @@
 		}
 
 		public function save_buque($buque, $tripulacion, $propietarios){
+           // print_r($buque);die;
                 $quers =$this->db->insert('public.buque',$buque);
-
-                $data_mens = array(
-                    'matricula'    => $buque['matricula'],
-                    'pies'         => $buque['pies'],
-                    'id_tarifa'    => $buque['id_tarifa'],
-                    'tarifa'       => $buque['tarifa'],
-                    'dia'          => $buque['dia'],
-                    'canon'        => $buque['canon'],
-                    'fecha_deuda'  => date('Y-m-d'),
-                    'id_status'    => 0,
-                    'fecha_update' => date('Y-m-d'),
-                    'id_factura'   => 0
-                );
-                $this->db->insert('public.mensualidad',$data_mens);
 
                 if ($quers) {
                     $id = $this->db->insert_id();

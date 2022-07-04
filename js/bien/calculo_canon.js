@@ -45,6 +45,7 @@ function calcular_bienes(){
 
 
             var id_alicuota_iva = $('#id_alicuota_iva').val();
+            console.log(id_alicuota_iva);
             var separar = id_alicuota_iva.split("/");
             var porcentaje = parseFloat(separar['0']);
 
