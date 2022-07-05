@@ -10,6 +10,7 @@
 			$this->db->order_by("nombrebuque", "Asc");
 			$query = $this->db->get();
             $resultado = $query->result_array();
+            //print_r($resultado);die;
             //Los cuento :D
             $count_pff = count($resultado);
             for ($i=0; $i < $count_pff; $i++) {
@@ -49,6 +50,7 @@
                 }
                 return true;
             } 
+            return true;
 		}  
 
         public function ver_deudas(){

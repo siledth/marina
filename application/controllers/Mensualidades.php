@@ -12,10 +12,11 @@ class Mensualidades extends CI_Controller {
         
         $date = date('d');
         $generar = $this->Mensualidades_model->generar($date);
+        //print_r($generar);die;
         if ($generar) {
-            $data['ver_deudas'] = $this->Mensualidades_model->ver_deudas($date);
+            $data['ver_deudas'] = $this->Mensualidades_model->ver_deudas($date);           
         }
-       
+
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('mensualidades/ver.php', $data);
