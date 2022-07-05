@@ -27,6 +27,12 @@
                                 <label>Telefono <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" name="tele_1" onkeyup="mayusculas(this);" class="form-control">
                             </div>
+                            <div class="col-10">
+                                <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                            </div>
+                            <div class="col-12 text-center">
+                                <h4 style="color:red;">Propietario y Embarcación</h4>
+                            </div>
                             <div class="col-3">
                                 <label>Cédula</label>
                                 <input type="text" name="cedula" id="cedula" class="form-control" readonly>

@@ -298,6 +298,9 @@
             //print_r($data);die;
             $this->db->select("f.id,
                                f.nro_factura,
+                               b.id as id_buque,
+	                           concat(p.tipo_ced, '-', p.cedula) as cedula,
+                               p.nombrecom,	
                                f.nombre,
                                f.tele_1,
                                f.matricula,
@@ -309,7 +312,10 @@
                                f.total_bs,
 	                           e.descripcion as estatus");
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
+            $this->db->join('buque b', 'b.matricula = f.matricula', 'left');
+            $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
             $this->db->where('f.id',$data);
+            $this->db->where('p.tipo', 'principal');
             $query = $this->db->get('factura f');
             return $result = $query->row_array();
         }

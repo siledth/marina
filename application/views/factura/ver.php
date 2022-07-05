@@ -33,7 +33,20 @@
                             <label>Telefono <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h4><b><?=$factura_ind['tele_1']?></b> </h4> 
                         </div>
-                        <div class="col-6"></div>
+                        <div class="col-10">
+                            <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                        </div>
+                        <div class="col-12 text-center">
+                            <h4 style="color:red;">Propietario y Embarcación</h4>
+                        </div>
+                        <div class="col-3">
+                                <label>Cédula</label>
+                                <h4><b><?=$factura_ind['cedula']?></b> </h4> 
+                            </div>
+                            <div class="col-3">
+                                <label>Nombre y Apellido</label>
+                                <h4><b><?=$factura_ind['nombrecom']?></b> </h4> 
+                            </div>
                         <div class="form-group col-4">
                             <label>Embarcación/Matricula <b title="Campo Obligatorio"
                                     style="color:red">*</b></label>
