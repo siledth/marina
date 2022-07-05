@@ -39,7 +39,7 @@ function calcular_bienes(){
             var piess = newstr4.replace(',', ".");
 
             if (id_tarifa == 'PIE') {
-                var tota = (((tarifa * piess)/cantidad2)) * dia;
+                var tota = ((tarifa * piess)) * dia;
                 var tota2 = parseFloat(tota).toFixed(2);
                 var canon = Intl.NumberFormat("de-DE").format(tota2);
                 $('#canon').val(canon);
