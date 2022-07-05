@@ -10,14 +10,11 @@ function trae_inf(){
         dataType:'json',
 
         success: function(response){
-            console.log(response);
             $("#cedula").val(response['cedula']);
             $("#nombre").val(response['nombrecom']);
-            $("#pies").val(response['pies']);
         }
     });
 }
-
 
 function calcular_bienes(){
 
@@ -29,13 +26,13 @@ function calcular_bienes(){
     let id_tarifa = explode[0];
     let tarifa = explode[1];
     let idd_tarida = explode[2];
-
    // $('#cant_total_distribuir').val(cant_total_distribuir);
+
 
     /*if (pies < 1) {
         swal({
             title: "¡ATENCION!",
-            text: "los pies no pueden ser menor que 1! Por favor modifique para seguir con la carga.",
+            text: "Los pies no pueden ser menor que 1! Por favor modifique para seguir con la carga.",
             type: "warning",
             showCancelButton: false,
             confirmButtonColor: "#00897b",
@@ -60,12 +57,11 @@ function calcular_bienes(){
             var newstr4 = newstr3.replace('.', "");
             var piess = newstr4.replace(',', ".");
 
-            if (id_tarifa == 'PIE') {
-
-                if (idd_tarida == 1 && pies < 33 ){
+            if (id_tarifa == 'PIE'){
+                if (idd_tarida == 5 && pies < 33 ){
                     swal({
                         title: "¡ATENCION!",
-                        text: "El calculo es menor a 33, se modificara para el cálculo.",
+                        text: "Los pies no pueden ser menor que 33! Por favor modifique para seguir con la carga.",
                         type: "warning",
                         showCancelButton: false,
                         confirmButtonColor: "#00897b",
@@ -74,20 +70,12 @@ function calcular_bienes(){
                     }, function(){
                         swal("Deleted!", "Your imaginary file has been deleted.", "success");
                     });
-
-                    var tota = ((tarifa * piess)) * 33;
+                }else{
+                    var tota = (((tarifa * piess)/cantidad2)) * dia;
                     var tota2 = parseFloat(tota).toFixed(2);
                     var canon = Intl.NumberFormat("de-DE").format(tota2);
                     $('#canon').val(canon);
-                }else{
-                    var tota = ((tarifa * piess)) * dia;
-                var tota2 = parseFloat(tota).toFixed(2);
-                var canon = Intl.NumberFormat("de-DE").format(tota2);
-                $('#canon').val(canon);
                 }
-
-
-                
             }else if(id_tarifa == 'DIA'){
                 var tota = tarifa * dia;
                 var tota2 = parseFloat(tota).toFixed(2);
@@ -120,7 +108,7 @@ function calcular_bienes(){
             var monto_total_estimadoo = parseFloat(monto_t_estimado).toFixed(2);
             var monto_total_estimado = Intl.NumberFormat("de-DE").format(monto_total_estimadoo);
             $('#monto_estimado').val(monto_total_estimado);
-    /*}*/
+   /* }*/
 }
 
 function control(){

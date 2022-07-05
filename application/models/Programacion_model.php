@@ -9,6 +9,18 @@
             return $query->result_array();
         }
 
+        public function listar_info($data){
+            $this->db->select('b.id,
+                                b.pies,
+                                concat(p.tipo_ced, \'-\',p.cedula) as cedula,
+                                p.nombrecom');
+            $this->db->where('b.matricula', $data['matricular']);
+            $this->db->where('p.tipo', 'principal');
+            $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
+            $query = $this->db->get('buque b');
+            return $query->row_array();
+        }
+
         //----Registrar año de programación--
         public function agg_programacion_anio($data){
             $quers =$this->db->insert('programacion.programacion',$data);

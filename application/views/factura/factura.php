@@ -27,15 +27,22 @@
                                 <label>Telefono <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" name="tele_1" onkeyup="mayusculas(this);" class="form-control">
                             </div>
-                            <div class="col-6"></div>
+                            <div class="col-3">
+                                <label>Cédula</label>
+                                <input type="text" name="cedula" id="cedula" class="form-control" readonly>
+                            </div>
+                            <div class="col-3">
+                                <label>Nombre y Apellido</label>
+                                <input type="text" name="nombre" id="nombre" class="form-control" readonly>
+                            </div>
                             <div class="form-group col-4">
                                 <label>Embarcación/Matricula <b title="Campo Obligatorio"
                                         style="color:red">*</b></label>
-                                <select style="width: 100%;" id="matricular" name="matricular" class="form-control">
+                                <select style="width: 100%;" onclick="trae_inf();" id="matricular" name="matricular" class="form-control">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($mat as $data): ?>
                                     <option value="<?=$data['matricula']?>">
-                                     <?=$data['matricula']?> /<?=$data['nombrebuque']?></option>
+                                     <?=$data['matricula']?> / <?=$data['nombrebuque']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -135,7 +142,7 @@
                                         <tr class="text-center">
                                             <th>Matricula</th>
                                             <th>Descripción</th>
-                                            <th>Cantidad</th>
+                                            <th>Pies</th>
                                             <th>Tarifa $</th>
                                             <th>Dias</th>
                                             <th>Total $</th>

@@ -25,6 +25,13 @@ class Factura extends CI_Controller {
 		$this->load->view('factura/factura.php', $data);
         $this->load->view('templates/footer.php');
 	}
+
+    public function listar_info(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data = $this->input->post();
+        $data = $this->Programacion_model->listar_info($data);
+        echo json_encode($data);
+    }
     
     public function registrar(){
         if(!$this->session->userdata('session'))redirect('login');
