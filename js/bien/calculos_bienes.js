@@ -75,15 +75,15 @@ function calcular_bienes(){
                         swal("Deleted!", "Your imaginary file has been deleted.", "success");
                     });
 
-                    var tota = ((tarifa * piess)) * 33;
+                    var tota = ((tarifa * 33)) * dia;
                     var tota2 = parseFloat(tota).toFixed(2);
                     var canon = Intl.NumberFormat("de-DE").format(tota2);
                     $('#canon').val(canon);
                 }else{
                     var tota = ((tarifa * piess)) * dia;
-                var tota2 = parseFloat(tota).toFixed(2);
-                var canon = Intl.NumberFormat("de-DE").format(tota2);
-                $('#canon').val(canon);
+                    var tota2 = parseFloat(tota).toFixed(2);
+                    var canon = Intl.NumberFormat("de-DE").format(tota2);
+                    $('#canon').val(canon);
                 }
 
 
