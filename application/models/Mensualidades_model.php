@@ -70,5 +70,17 @@
                         $resultado = $query->result_array();
             return $resultado;
         }
+
+        public function consultar_mens($data){
+            $this->db->select('*');
+            $this->db->from('public.mensualidad m');
+            $this->db->join('buque b', 'b.matricula = m.matricula ', 'left');
+            $this->db->join('estatus e', 'e.id_status = m.id_status', 'left');
+            $this->db->where('id_mensualidad', $data['id_mensualidad']);
+            $this->db->order_by("m.id_mensualidad", "Asc");
+            $query = $this->db->get();
+            $resultado = $query->row_array();
+            return $resultado;
+	    }
 	}
 ?>

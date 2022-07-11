@@ -48,8 +48,6 @@
                                 <label>Telefono </label>
                                 <input type="text" name="tele_1" id="tele_1" class="form-control" >
                             </div>
-
-
                             <div class="col-12 text-center">
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                                 <h4 style="color:red;">Datos de Pago</h4>
@@ -164,7 +162,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-12">
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                             </div>

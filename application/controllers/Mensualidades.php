@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Mensualidades extends CI_Controller {
 
 	public function ver(){
-		if(!$this->session->userdata('session'))redirect('login');
         if(!$this->session->userdata('session'))redirect('login');
         $data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
@@ -23,4 +22,10 @@ class Mensualidades extends CI_Controller {
         $this->load->view('templates/footer.php');
 	}
 
+    public function consultar_mens(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data = $this->input->post();
+        $data =	$this->Mensualidades_model->consultar_mens($data);
+        echo json_encode($data);
+    }
 }

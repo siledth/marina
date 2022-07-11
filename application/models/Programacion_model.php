@@ -302,7 +302,7 @@
                         );
                         $quert = $this->db->insert('public.deta_factura',$data1);
                         
-                        if ($quert) {
+                        /*if ($quert) {
                             $this->db->select('*');
                             $this->db->from('public.mensualidad');
                             $this->db->where('matricula', $p_items['matricula'][$i]);
@@ -323,7 +323,7 @@
                                 $this->db->where("TO_CHAR(fecha_deuda,'MM')", $mes);
                                 $this->db->update('public.mensualidad');
                             }
-                        }
+                        }*/
                     }                    
                 }
                 return true;

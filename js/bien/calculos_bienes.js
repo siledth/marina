@@ -2,6 +2,7 @@ function trae_inf(){
     var matricular = $('#matricular').val();
     
     var base_url =window.location.origin+'/marina/index.php/factura/listar_info';
+    var base_url2 =window.location.origin+'/marina/index.php/factura/listar_mens';
 //llenan los datos en la factura del propietario
     $.ajax({
         url: base_url,
@@ -85,10 +86,7 @@ function calcular_bienes(){
                     var tota2 = parseFloat(tota).toFixed(2);
                     var canon = Intl.NumberFormat("de-DE").format(tota2);
                     $('#canon').val(canon);
-                }
-
-
-                
+                } 
             }else if(id_tarifa == 'DIA'){
                 var tota = tarifa * dia;
                 var tota2 = parseFloat(tota).toFixed(2);
