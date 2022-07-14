@@ -60,7 +60,7 @@
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>
-                        <i class="fas fa-sliders-h" style="background-color:#1E90FF;"></i>
+                        <i class="fas fa-sliders-h fa-lg"></i>
                         <span>Servicios</span>
                     </a>
 
@@ -79,7 +79,7 @@
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>
-                        <i class="fas fa-sliders-h" style="background-color:#1E90FF;"></i>
+                        <i class="fas fa-file-invoice-dollar fa-lg"></i>
                         <span>Facturación/Recibo</span>
                     </a>
 
@@ -110,7 +110,7 @@
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>
-                        <i class="fas fa-sliders-h" style="background-color:#1E90FF;"></i>
+                        <i class="fas fa-calendar-alt fa-lg"></i>
                         <span>Mensualidades</span>
                     </a>
                     <ul class="sub-menu">
@@ -123,8 +123,8 @@
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>
-                        <i class="fas fa-sliders-h" style="background-color:#1E90FF;"></i>
-                        <span>Planilla</span>
+                        <i class="fas fa-file-alt fa-lg"></i>
+                        <span> Planilla</span>
                     </a>
 
                     <ul class="sub-menu">
@@ -143,8 +143,8 @@
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>
-                        <i class="fas fa-server" style="background-color:#1E90FF;"></i>
-                        <span>Buque</span>
+                        <i class="fas fa-ship fa-lg"></i>
+                        <span> Buque</span>
                     </a>
                     <ul class="sub-menu">
                         <li class="has-sub">

@@ -36,10 +36,6 @@
                             <h4><b><?= date("d/m/Y", strtotime($factura_ind['fechaingreso']));?></b> </h4>
                             
                         </div>
-                       
-                       
-                       
-
                         <div class="col-10">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>
@@ -66,32 +62,31 @@
                             <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h4><b><?=$factura_ind['valor_iva']?></b> </h4>
                         </div>
-                        <div class="col-10">
+                        <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>
                         <div class="col-12 text-center">
-                            <h4 style="color:red;">Forma de Pago</h4>
+                            <h4 style="color:red;">Detalle del Pago</h4>
                         </div>
                         <div class="form-group col-3">
-
-                            <h4><b><?=$factura_ind['efectivo']?></b> </h4>
-                            <h4><b><?=$factura_ind['transferencia']?></b> </h4>
+                            <label>Tipo de Pago</label>
+                            <h4><b><?=$factura_ind['tipopago']?></b> </h4>
                         </div>
-                        <div class="form-group col-3">
+                        <?php if ($factura_ind['tipopago'] <= 2) {?>
+                            <div class="form-group col-3">
+                                <label>Nro. de Referencia</label>
+                                <h4><b><?=$factura_ind['nro_referencia']?></b> </h4>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Banco</label>
+                                <h4><b><?=$factura_ind['banco']?></b> </h4>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Fecha de Tranferencia</label>
+                                <h4><b><?=$factura_ind['fechatrnas']?></b> </h4>
+                            </div>
+                        <?php } ?>
 
-                            <h4><b><?=$factura_ind['banco']?></b> </h4>
-
-                        </div>
-                        <div class="form-group col-3">
-
-
-                            <h4><b><?=$factura_ind['trnas']?></b> </h4>
-                        </div>
-                        <div class="form-group col-3">
-
-                            <h4><b><?= date("d/m/Y", strtotime($factura_ind['fechatrnas']));?></b> </h4>
-
-                        </div>
                         <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>

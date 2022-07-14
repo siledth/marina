@@ -158,7 +158,7 @@
                 }
                 return true;
             }elseif ($acc_cargar == '2') {
-                $quers =$this->db->insert('programacion.p_acc_centralizada',$p_acc_centralizada);
+                $quers =$this->db->insert('programacion.p_acc_centralizada',$p_ffinanciamiento);
                 if ($quers) {
                     $id = $this->db->insert_id();
                     $cant_proy = $p_items['id_ccnu'];
@@ -367,10 +367,11 @@
                                f.fechaingreso,
                                f.matricula,
                                f.total_bs as total,
-                               f.efectivo, 
-                               f.transferencia,
-                                f.banco,
-                                f.trnas,
+                               f.id_tipo_pago,
+                               tp.descripcion tipopago,
+                               f.nro_referencia,
+                                f.id_banco,
+                               concat(ba.codigo_b, ' / ', ba.nombre_b) as banco,
                                f.fechatrnas,
                                e.id_status,
                                f.valor_iva,
@@ -381,6 +382,8 @@
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
             $this->db->join('buque b', 'b.matricula = f.matricula', 'left');
             $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
+            $this->db->join('tipopago tp', 'tp.id_tipo_pago = f.id_tipo_pago', 'left');
+            $this->db->join('banco ba', 'ba.id_banco = f.id_banco', 'left');
             $this->db->where('f.id',$data);
             $this->db->where('p.tipo', 'principal');
             $query = $this->db->get('factura f');

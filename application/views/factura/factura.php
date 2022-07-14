@@ -52,9 +52,35 @@
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                                 <h4 style="color:red;">Datos de Pago</h4>
                             </div>
-                            <div class="form-group col-5">
-                                <label>Forma de Pago <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <div class="form-group col-10">
+                            <div class="col-3">
+                                <label>Tipo de pago <b title="Campo Obligatorio" style="color:red">*</b></label>
+                                <select class="form-control" name="id_tipo_pago" id="id_tipo_pago" onclick="llenar_pago();">
+                                    <option value="0">Seleccione</option>
+                                    <?php foreach ($tipoPago as $data): ?>
+                                        <option value="<?=$data['id_tipo_pago']?>"><?=$data['descripcion']?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="row" id='campos' style="display: none;" >
+                                <div class="col-4">
+                                    <label>Banco</label>
+                                    <select class="form-control" name="id_banco" id="id_banco">
+                                        <option value="0">Seleccione</option>
+                                        <?php foreach ($banco as $data): ?>
+                                            <option value="<?=$data['id_banco']?>"><?=$data['codigo_b']?> / <?=$data['nombre_b']?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label>Número de referencia:</label>
+                                    <input class="form-control" type="text" name="nro_referencia" id="nro_referencia">
+                                </div>
+                                <div class="col-4">
+                                    <label>Fecha de Tranferencia:</label>
+                                    <input class="form-control" type="date" name="fechatrnas" id="fechatrnas">
+                                </div>
+                            </div>
+                                <!-- <div class="form-group col-10">
                                     <div class="radio radio-css">
                                         <input type="radio" name="radio_css" id="cssRadio1" value="1" />
                                         <label for="cssRadio1">Efectivo</label>
@@ -81,10 +107,8 @@
                                             <input class="form-control" type="date" name="fecha1" id="fecha1">
                                         </div>
                                     </div>
-                                </div>
-
-                            </div>
-                            <div class="form-group col-3">
+                                </div> -->
+                            <div class="col-2">
                                 <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <?php foreach ($dolar as $data): ?>
                                 <input type="text" name="dolar" id="dolar" class="form-control"

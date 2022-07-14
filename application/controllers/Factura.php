@@ -21,6 +21,9 @@ class Factura extends CI_Controller {
         $data['iva'] 	= $this->Programacion_model->consulta_iva();
         $data['dolar'] 	= $this->Programacion_model->consulta_dolar();
         $data['banco'] 	= $this->Programacion_model->consulta_banco();
+
+        $data['banco'] = $this->Mensualidades_model->ver_banco(); 
+        $data['tipoPago'] = $this->Mensualidades_model->ver_tipPago(); 
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('factura/factura.php', $data);
@@ -42,7 +45,7 @@ class Factura extends CI_Controller {
         $cedula  = $this->input->post("cedula");
         $tele_1     = $this->input->post("tele_1");    
         
-        $dato = $_POST['radio_css'];
+        /*$dato = $_POST['radio_css'];
 
 		if ($dato == 1){
 			$bolivares = 'Efectivo';
@@ -57,7 +60,7 @@ class Factura extends CI_Controller {
 			$euro  = '';
 			$otro  = 'Trasferencia';
 		}
-        
+        */
         $dato1 = array(
             "nro_factura"   => $this->input->post('numfact'),
             "nombre"        => $this->input->post('nombre'),
@@ -71,13 +74,13 @@ class Factura extends CI_Controller {
             "id_status"     => 0,
             "fecha_update"  => date("Y-m-d"),
             "valor_iva"   => $this->input->post('dolar'),
-            'efectivo' 				=> $bolivares,
-            'transferencia' 				=> $otro,
-            'banco' 			=> $this->input->POST('banco'),
-            'trnas' 			=> $this->input->POST('trnas'),
-            'fechatrnas' 			=> $this->input->POST('fecha1'),
+            "cedula"        => $this->input->post('cedula'),
+            'id_tipo_pago' 		=> $this->input->post('id_tipo_pago'),
+            'id_banco' 	        => $this->input->post('id_banco'),
+            'nro_referencia' 	=> $this->input->POST('nro_referencia'),
+            'fechatrnas' 		=> $this->input->POST('fechatrnas'),
         );
-
+        //print_r($dato1);die;
         
         $p_items = array( //factura
             'pies'   		    => $this->input->post('pies'),

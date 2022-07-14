@@ -113,6 +113,7 @@ class Buque extends CI_Controller {
     }
 
     public function delete(){
+        if(!$this->session->userdata('session'))redirect('login');
     $id = $this->input->get('id');
     $resultado = $this->Programacion_model->delete($id);
     redirect('Buque/Plantilla');
