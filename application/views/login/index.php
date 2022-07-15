@@ -1,44 +1,9 @@
 <?php
 srand(time());
-$captcha_value = (string) rand(1000, 9999);
-$captcha_numbers = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
+
 ?>
 
-<style>
-  .current_captcha {
-    font-family: emoji;
-    font-size: 22px;
-    font-weight: 400;
-    color: #ffffff;
-    background-image: url(http://localhost/asnc/Plantilla/img/images.jpeg);
-    margin: 0 0 25px;
-    overflow: hidden;
-    border-radius: 35px 0px 35px 0px;
-    -moz-border-radius: 35px 0px 35px 0px;
-    -webkit-border-radius: 35px 0px 35px 0px;
-    border: 2px solid #ca9258;
-    text-align: center;
-  }
 
-  .captha_numbers {
-    margin-bottom: 10px;
-  }
-
-  .captha_numbers a {
-    border: 1px solid #0085CF;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    color: #0085CF;
-    padding: 6px;
-    text-decoration: none;
-  }
-
-  .captha_numbers a:hover {
-    background-color: #0085CF;
-    color: #ffffff;
-  }
-</style>
 <html lang="es">
 
 <head>
@@ -96,15 +61,7 @@ $captcha_numbers = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
               <?php //echo $captcha_value; ?>
             </p>
 
-            <div class="col-12 text-center">
-              <p class="text form-group">
-                <label for="captcha" class="captha_numbers">
-                 
-                </label>
-                <input type="hidden" size="4" maxlength="4" id="captcha" name="captcha" class="form-control">
-                <input type="hidden" id="current_captcha" name="current_captcha" value="<?php echo $captcha_value; ?>">
-              </p>
-            </div>
+            
 
             <div class="login-buttons">
               <button onclick="$(this).hide();" name="submitContact" type="submit" class="btn btn-block btn-lg button" style="background-color:#1E90FF;;color:#FFFFFF">Ingresar</button>

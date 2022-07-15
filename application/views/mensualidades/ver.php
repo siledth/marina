@@ -48,7 +48,7 @@
                                                         <a/>
                                                         <?php if( ($lista['id_factura'] == 0) && $lista['id_status'] == 2):?>
                                                         <a class="button" href="<?php echo base_url() ?>index.php/Mensualidades/generar_fac?id=<?php echo $lista['id_mensualidad'];?>" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-plus" style="color: blue;"></i>
+                                                            <i title="GENERAR FAC" class="fas fa-lg fa-fw fa-plus" style="color: blue;"></i>
                                                         <a/>
                                                         <?php endif; ?>
                                                         <?php if ($lista['id_factura'] != 0): ?>
@@ -89,7 +89,7 @@
                 <form class="form-horizontal" id="guardar_proc_pag" data-parsley-validate="true" method="POST" enctype="multipart/form-data">
 					<div class="row">
 						<div class="form-group col-2">
-							<label>ID - Factura</label>
+							<label>ID - Mensualidad</label>
 							<input class="form-control" type="text" name="id_mesualidad_ver" id="id_mesualidad_ver" readonly>
 						</div>
                         <div class="col-10"></div>
@@ -112,7 +112,7 @@
                         <div class="form-group col-2">
 							<label>Valor Dolar</label>
                             <input class="form-control" type="hidden" name="id_dolar" id="id_dolar" readonly>
-							<input class="form-control" type="text" name="dolar" id="dolar" readonly>
+							<input class="form-control" type="text" name="dolar" id="dolar" >
 						</div>
                         <div class="form-group col-3">
 							<label>Canon</label>

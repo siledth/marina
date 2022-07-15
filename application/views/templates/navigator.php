@@ -3,7 +3,7 @@
     <div id="header" class="header navbar-default">
         <div class="navbar-header">
             <a href="" class="navbar-brand"><span class="navbar-logo"><i style="color:83CEEA"
-                        class="fas fa-briefcase"></i></span> <b>Marina</b> MCBLL</a>
+                        class="fas fa-briefcase"></i></span> <b>Marina</b> </a>
             <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -106,7 +106,7 @@
                         </li>
                     </ul>
                 </li>
-
+              
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>
@@ -133,6 +133,24 @@
                                 <b class="caret"></b>
                                 
                                 <li><a href="<?= base_url() ?>index.php/Buque/Plantilla">Registrar</a></li>
+                            </a>
+                            
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fas fa-file-alt fa-lg"></i>
+                        <span> Reporte</span>
+                    </a>
+
+                    <ul class="sub-menu">
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                
+                                <li><a href="<?= base_url() ?>index.php/Reporte/Report">Total Canon</a></li>
                             </a>
                             
                         </li>
@@ -189,6 +207,7 @@
                 </li>
             </ul>
             </li>
+            
             <?php endif; ?>
             <?php if (($this->session->userdata('perfil') == 1)) : ?>
             <li class="has-sub">

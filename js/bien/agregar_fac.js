@@ -11,9 +11,7 @@ function remove_proy_acc() {
 	var row = this.parentNode.parentNode;
     document.querySelector('#target_req_acc tbody').removeChild(row);
 	$("#tarifa").val($("#tarifa").data("default-value"));	
-	$("#pies").val('');
-	$("#canon").val('');
-    $("#monto_estimado").val('');
+
 	var id_alicuota_iva = $("#id_alicuota_iva").val();
 	let explode = id_alicuota_iva.split('/');
     let monto_iva = explode[0];
@@ -175,9 +173,9 @@ function agregar_ccnu_accToCartTable(cells){
 		cellremove_proy_accBtn.appendChild(createremove_proy_accBtn())
 		newRow.appendChild(cellremove_proy_accBtn);
 		document.querySelector('#target_req_acc tbody').appendChild(newRow);
-		$("#pies").val($("#pies").data("default-value"));
+		//$("#pies").val($("#pies").data("default-value"));
 		$("#tarifa").val($("#tarifa").data("default-value"));
-        $("#canon").val('');
+       // $("#canon").val('');
         $("#monto_estimado").val('');
 		$("#btn_guar_2").prop('disabled', false);
 	}

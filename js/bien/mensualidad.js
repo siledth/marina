@@ -32,7 +32,7 @@ function modal(id) {
             $("#dolar").val(data["valor"]);
             let dolar = data["valor"];
             var dolarr = dolar.replace(",", ".");
-            let calculo = canonn / dolarr;
+            let calculo = canonn * dolarr;
             var calculo_t = parseFloat(calculo).toFixed(2);
             var calculo_tt = Intl.NumberFormat("de-DE").format(calculo_t);
             $("#bs").val(calculo_tt);
@@ -114,7 +114,7 @@ function calcular_dol() {
     $("#total_otra").val(sub_total3);
 
     // Total a pagar en bs
-    var sub_total_dolar1 = cant_pag_otra / dolarr;
+    var sub_total_dolar1 = cant_pag_otra * dolarr;
     var sub_total_dolar2 = parseFloat(sub_total_dolar1).toFixed(2);
     var sub_total_dolar3 = Intl.NumberFormat("de-DE").format(sub_total_dolar2);
     $("#cantidad_pagar_bs").val(sub_total_dolar3);
@@ -127,7 +127,7 @@ function calcular_dol() {
     var cantidad_deu_bs4 = cantidad_deu_bs3.replace(".", "");
     var cantidad_deu_bsf = cantidad_deu_bs4.replace(",", ".");
 
-    var total_a_deber = cant_pag_otra / dolarr;
+    var total_a_deber = cant_pag_otra * dolarr;
     var total_deber_bol = cantidad_deu_bsf - total_a_deber;
     var total_deber_bol2 = parseFloat(total_deber_bol).toFixed(2);
     var total_a_deb_bs = Intl.NumberFormat("de-DE").format(total_deber_bol2);
@@ -224,7 +224,7 @@ function trae_inf() {
                     $("#dolar_a").val(data["desc_dolarc"]);
                     let dolar = data["desc_dolarc"];
                     var dolarr = dolar.replace(",", ".");
-                    let calculo = canonn / dolarr;
+                    let calculo = canonn * dolarr;
                     var calculo_t = parseFloat(calculo).toFixed(2);
                     var calculo_tt = Intl.NumberFormat("de-DE").format(calculo_t);
                     $("#bs_a").val(calculo_tt);
@@ -268,13 +268,13 @@ function calcular_bol_a() {
     $("#total_bs_pag_a").val(sub_total3);
 
     // total a pagar om
-    var sub_total_dolar = cant_pag_bs * dolarr;
+    var sub_total_dolar = cant_pag_bs / dolarr;
     var sub_total_dolar4 = parseFloat(sub_total_dolar).toFixed(2);
     var sub_total_dolar5 = Intl.NumberFormat("de-DE").format(sub_total_dolar4);
     $("#cantidad_pagar_otra_a").val(sub_total_dolar5);
 
     // total restante om
-    var sub_total_dolar = restant_bs * dolarr;
+    var sub_total_dolar = restant_bs / dolarr;
     var sub_total_dolar2 = parseFloat(sub_total_dolar).toFixed(2);
     var sub_total_dolar3 = Intl.NumberFormat("de-DE").format(sub_total_dolar2);
     $("#total_otra_a").val(sub_total_dolar3);
@@ -305,7 +305,7 @@ function calcular_dol_a() {
     $("#total_otra_a").val(sub_total3);
 
     // Total a pagar en bs
-    var sub_total_dolar1 = cant_pag_otra / dolarr;
+    var sub_total_dolar1 = cant_pag_otra * dolarr;
     var sub_total_dolar2 = parseFloat(sub_total_dolar1).toFixed(2);
     var sub_total_dolar3 = Intl.NumberFormat("de-DE").format(sub_total_dolar2);
     $("#cantidad_pagar_bs_a").val(sub_total_dolar3);
@@ -318,7 +318,7 @@ function calcular_dol_a() {
     var cantidad_deu_bs4 = cantidad_deu_bs3.replace(".", "");
     var cantidad_deu_bsf = cantidad_deu_bs4.replace(",", ".");
 
-    var total_a_deber = cant_pag_otra / dolarr;
+    var total_a_deber = cant_pag_otra * dolarr;
     var total_deber_bol = cantidad_deu_bsf - total_a_deber;
     var total_deber_bol2 = parseFloat(total_deber_bol).toFixed(2);
     var total_a_deb_bs = Intl.NumberFormat("de-DE").format(total_deber_bol2);
