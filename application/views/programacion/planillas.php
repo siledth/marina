@@ -69,6 +69,7 @@
                                         <th>cedula</th>
                                         <th>telefono</th>
                                         <th>Cargo</th>
+                                        <th>Se autoriza ingresar a la marina</th>
 
 
                                     </tr>
@@ -80,6 +81,7 @@
                                         <td><?=$inf_3['cedulat']?></td>
                                         <td><?=$inf_3['tele_1t']?></td>
                                         <td><?=$inf_3['cargot']?></td>
+                                        <td><?=$inf_3['autor']?></td> 
 
 
                                     </tr>
@@ -88,9 +90,7 @@
                             </table>
                         </div>
                         <div class="form-group mt-2  col-3">
-                            <label>y se autoriza ingresar a la marina</label>
-                            <label>CON ACOMPAÑANTES</label> <br> </p>
-                            <label>SIN ACOMPAÑANTES</label><br></p>
+                            
                             <label>Sin mas que agregar</label><br></p>
                            
                         </div>

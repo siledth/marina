@@ -54,13 +54,16 @@
                                             <a />
                                             <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_planilla?id=<?php echo $ver_proyecto['matricula'];?>"
                                                 class="button">
-                                                <i class="fas fa-lg fa-fw fa-edit"></i>
+                                                 <i class='fas fa-align-justify'> </i>
                                                 <a />
-                                                
+                                                <a href="<?php echo base_url();?>index.php/buque/editar_proy?id=<?php echo $ver_proyecto['id'];?>/<?php echo $ver_proyecto['matricula'];?>/<?php echo $ver_proyecto['id_propiet'];?>"
+                                            class="button">
+                                            <i class="fas fa-lg fa-fw  fa-edit"></i>
+                                        <a />
 
                                                     <a href="<?php echo base_url();?>index.php/Buque/delete?id=<?php echo $ver_proyecto['matricula'];?>"
                                                         class="button"><i class="fas fa-lg fa-fw  fa-trash-alt"
-                                                        style="color:red"></i><a />
+                                                            style="color:red"></i><a />
 
                                     </td>
                                 </tr>

@@ -48,7 +48,7 @@ class Programacion extends CI_Controller {
         $unidad = $this->session->userdata('id_unidad');
         $data['id_programacion'] = $this->input->get('id');
 
-        $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $unidad);
+      //  $data['programacion_anio'] = $this->Programacion_model->consultar_prog_anio($data['id_programacion'], $unidad);
         $data['anio'] = $data['programacion_anio']['anio'];
 
         //Traer todo los proyectos y acc registradas por el id_programación de cada unidad
