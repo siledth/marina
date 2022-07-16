@@ -101,7 +101,7 @@
                 return true;
             } 
             return true;
-		}  
+		}   
 
         public function ver_deudas(){
             $this->db->select('m.id_mensualidad,
@@ -210,10 +210,13 @@
         }
 
         public function ver_pagos($data){
-            $this->db->select('*');
+            $this->db->select('mc.*,
+                               tp.id_tipo_pago as pago,
+                               tp.descripcion');
             $this->db->from('mov_consig mc');
             $this->db->where('mc.id_mensualidad', $data);
             $this->db->where('mc.id_tipo_pago !=', '0');
+            $this->db->join('tipopago tp', 'mc.id_tipo_pago = tp.id_tipo_pago ', 'left');
             $query = $this->db->get();
             $resultado = $query->result_array();
             return $resultado;

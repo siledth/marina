@@ -9906,7 +9906,7 @@
 		 *
 		 *  @dtopt Option
 		 *  @name DataTable.defaults.data
-		 *
+		 * 
 		 *  @example
 		 *    // Using a 2D array data source
 		 *    $(document).ready( function () {
@@ -10178,7 +10178,8 @@
 		 *
 		 * Note that the `pageLength` property will be automatically set to the
 		 * first value given in this array, unless `pageLength` is also provided.
-		 *  @type array
+		 *  /
+		 * @type array
 		 *  @default [ 10, 25, 50, 100 ]
 		 *
 		 *  @dtopt Option
@@ -10191,7 +10192,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"aLengthMenu": [ 10, 25, 50, 100 ],
+		"aLengthMenu": [50,100, 500,1000 ],
 
 
 		/**

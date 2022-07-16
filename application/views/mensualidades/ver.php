@@ -22,7 +22,7 @@
                                     <div class="col-12 text-center"> <h4>Mensualidades de acuerdo al día</h4> </div>
                                    
                                     <table id="data-table-default" class="table table-striped table-bordered">
-                                        <thead>
+                                        <thead> 
                                             <tr>
                                                 <th width="1%"></th>
                                                 <th class="text-nowrap">Nombre del Buque</th>
@@ -40,7 +40,8 @@
                                                     <td><?=$lista['nombrebuque']?></td>
                                                     <td><?=$lista['matricula']?></td>
                                                     <td><?=$lista['canon']?></td>
-                                                    <td><?=$lista['fecha_deuda']?></td>
+                                                    <td><?=date("d-m-Y", strtotime($lista['fecha_deuda']));?></td>
+                                                   
                                                     <td><?=$lista['descripcion']?></td>
                                                     <td>
                                                         <a class="button" href="<?php echo base_url() ?>index.php/Mensualidades/verPago?id=<?php echo $lista['id_mensualidad'];?>" >

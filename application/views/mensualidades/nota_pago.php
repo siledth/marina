@@ -61,17 +61,14 @@
                             <label>Pies</label>
                             <h4><b><?=$inf_buque['pies']?></b> </h4>
                         </div>
+                        
                         <div class="form-group col-2">
-                            <label>Días</label>
-                            <h4><b><?=$inf_buque['dia']?></b> </h4>
+                            <label>Tarifa $</label>
+                            <h4><b><?=$inf_buque['tarifa']?>$</b> </h4>
                         </div>
                         <div class="form-group col-2">
-                            <label>Tarifa</label>
-                            <h4><b><?=$inf_buque['tarifa']?></b> </h4>
-                        </div>
-                        <div class="form-group col-2">
-                            <label>Canon</label>
-                            <h4><b><?=$inf_buque['canon']?></b> </h4>
+                            <label>Canon $</label>
+                            <h4><b><?=$inf_buque['canon']?>$</b> </h4>
                         </div>
 
                         <div class="col-12">
@@ -84,8 +81,8 @@
                             <table id="data-table" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th width="1%">ID</th>
-                                        <th class="text-nowrap">Tipo de pago</th>
+                                        
+                                        <th class="text-nowrap">Forma de pago</th>
                                         <th class="text-nowrap">Nro. Referencia</th>
                                         <th class="text-nowrap">Total Abonado $</th>
                                         <th class="text-nowrap">Total Abonado Bs.f</th>
@@ -96,8 +93,8 @@
                                 <tbody>
                                     <?php foreach($inf_pago as $lista):?>
                                         <tr class="odd gradeX">
-                                            <td><?=$lista['id_mov_consig']?></td>
-                                            <td><?=$lista['id_tipo_pago']?></td>
+                                           
+                                            <td><?=$lista['descripcion']?></td>
                                             <td><?=$lista['nro_referencia']?></td>
                                             <td><?=$lista['total_abonado_om']?></td>
                                             <td><?=$lista['total_abonado_bs']?></td>

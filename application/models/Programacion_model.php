@@ -2,7 +2,7 @@
     class Programacion_model extends CI_model{
 
         // PROGRAMACION
-        public function consultar_programaciones($unidad){
+        public function  consultar_programaciones($unidad){
             $this->db->select('*');
             $this->db->where('unidad', $unidad);
             $query = $this->db->get('programacion.programacion');
@@ -38,12 +38,27 @@
 
         //Consulta los proyectos por separado de cada programación
         public function consultar_proyectos(){
-            $this->db->select('id,
-                               matricula,                               
-                        	   nombrebuque,
+            $this->db->select('mc.*,
+                               tp.matricula
                         	   ');
-            $query = $this->db->get('public.buque');
+            $this->db->from('mc.public.buque');
+           // $query = $this->db->get('mc.public.buque');
+           $this->db->join('matricula tp', 'mc.matricula = tp.matricula', 'left');
+           $query = $this->db->get();
             return $query->result_array();
+            return $resultado;
+        }
+        public function ver_pagos($data){
+            $this->db->select('mc.*,
+                               tp.id_tipo_pago as pago,
+                               tp.descripcion');
+            $this->db->from('mov_consig mc');
+            $this->db->where('mc.id_mensualidad', $data);
+            $this->db->where('mc.id_tipo_pago !=', '0');
+            $this->db->join('tipopago tp', 'mc.id_tipo_pago = tp.id_tipo_pago ', 'left');
+            $query = $this->db->get();
+            $resultado = $query->result_array();
+            return $resultado;
         }
 
         public function consultar_proyectos_compl($id_programacion, $id_unidad){

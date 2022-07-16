@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-1"></div>
                     <div class="col-10 mt-3">
-                        <h3 class="text-center">Listado de Barcos</h3>
+                        <h3 class="text-center">Listado de Barcos Por Pagar</h3>
                         <table id="data-table-default" class="table table-bordered table-hover">
                             <thead style="background:#e4e7e8">
                                 <tr class="text-center">
@@ -29,20 +29,21 @@
                                     <th class="text-nowrap">Nombre del Buque</th>
                                     <th class="text-nowrap">Embarcación/Matricula</th>
                                     <th class="text-nowrap">Pies</th>
+                                    <th class="text-nowrap">Tarifa $</th>
                                     <th class="text-nowrap">Canon</th>
-                                    <th class="text-nowrap">Fecha de ingreso</th>
+                                    <th class="text-nowrap">Fecha de Deuda</th>
                                     <th class="text-nowrap"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($canon as $lista):?>
+                                <?php foreach($ver_deudas as $lista):?>
                                 <tr class="odd gradeX" style="text-align:center">
                                         <td><?=$lista['nombrebuque']?></td>
                                         <td><?=$lista['matricula']?></td>
                                         <td><?=$lista['pies']?></td>
+                                        <td><?=$lista['tarifa']?></td>
                                         <td><?=$lista['canon']?></td>
-                                        <td><?=date("d-m-Y", strtotime($lista['fechaingreso']));?></td>
-                                       
+                                        <td><?=date("d-m-Y", strtotime($lista['fecha_deuda']));?></td>
                                     <td class="center">
                                        
                                     </td>
@@ -58,18 +59,18 @@
                         <label>Barcos Existente<b title="Campo Obligatorio" style="color:red">*</b></label>
                         <?php foreach ($total as $data): ?>
                         <input wide type="text" name="total1" id="total1" class="form-control" 
-                            value="<?=$data['totalbarco']?>" style="text-align:center" readonly>
+                            value="<?=$data['barcos']?>" style="text-align:center" readonly>
                         <?php endforeach; ?>
                     </div>
                     <div class="form-group col-2">
-                        <label>Total de Ingresos $<b title="Campo Obligatorio" style="color:red">*</b></label>
+                        <label>Total por Pagar$<b title="Campo Obligatorio" style="color:red">*</b></label>
                         <?php foreach ($total as $data): ?>
                         <input SIZE=20  type="text" name="total1" id="total12" class="form-control" 
-                            value="<?=number_format($data['totalcanon']);?>$ " style="text-align:right" readonly>
+                            value="<?=number_format($data['deuda']);?>$ " style="text-align:right" readonly>
                         <?php endforeach; ?>
                     </div>
 
-                   
+                    
                 </div>
                 <div class="col-12 text-center mt-3 mb-3">
                         <a class="btn btn-circle waves-effect btn-lg waves-circle waves-float btn-primary"

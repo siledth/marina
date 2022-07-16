@@ -151,6 +151,7 @@
                                 <b class="caret"></b>
                                 
                                 <li><a href="<?= base_url() ?>index.php/Reporte/Report">Total Canon</a></li>
+                                <li><a href="<?= base_url() ?>index.php/Reporte/saldoxpagar">Saldo por Pagar</a></li>
                             </a>
                             
                         </li>
