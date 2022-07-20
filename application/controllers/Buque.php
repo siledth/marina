@@ -12,11 +12,11 @@ class Buque extends CI_Controller {
 	}
 
 
-    public function Plantilla(){
+    public function Plantilla(){ 
 		if(!$this->session->userdata('session'))redirect('login');
         $data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
-        $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos();
+        $data['ver_proyectos'] = $this->Programacion_model->consulta_matricula();
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('buque/planilla.php', $data);
@@ -138,7 +138,7 @@ class Buque extends CI_Controller {
         $separar                 = explode("/", $parametros);
         $data['id']   = $separar['0'];
         $data['matricula']       = $separar['1'];
-        $data['id_propiet'] = $separar['2'];
+        //$data['id_propiet'] = $separar['2'];
         
         $data['inf_1'] = $this->Programacion_model->inf_1($data['matricula']);
 

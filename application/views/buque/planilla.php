@@ -47,6 +47,7 @@
                                 <tr class="odd gradeX" style="text-align:center">
                                     <td><?=$ver_proyecto['nombrebuque']?> </td>
                                     <td><?=$ver_proyecto['matricula']?> </td>
+                                
                                     <td class="center">
                                         <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_proy?id=<?php echo $ver_proyecto['matricula'];?>"
                                             class="button">
@@ -56,7 +57,7 @@
                                                 class="button">
                                                  <i class='fas fa-align-justify'> </i>
                                                 <a />
-                                                <a href="<?php echo base_url();?>index.php/buque/editar_proy?id=<?php echo $ver_proyecto['id'];?>/<?php echo $ver_proyecto['matricula'];?>/<?php echo $ver_proyecto['id_propiet'];?>"
+                                                <a href="<?php echo base_url();?>index.php/buque/editar_proy?id=<?php echo $ver_proyecto['id'];?>/<?php echo $ver_proyecto['matricula'];?>"
                                             class="button">
                                             <i class="fas fa-lg fa-fw  fa-edit"></i>
                                         <a />

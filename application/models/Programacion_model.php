@@ -43,15 +43,20 @@
             $resultado = $query->result_array();
             return $resultado;
         }*/
-
+        public function consulta_buque(){
+            $this->db->select('*');
+            $query = $this->db->get('public.buque');
+            return $result = $query->result_array();
+        }
+        
         function consultar_proyectos(){
-            $this->db->select("f.*,
-                               e.id_buque  ,
-	                           e.id_tripulacion,
-                               v.id_propiet");
-            $this->db->join('tripulacion e', 'e.id_buque = f.id', 'left');
-            $this->db->join('propiet v', 'v.id_propiet = f.id', 'left');
-            $query = $this->db->get('buque f');
+            $this->db->select("f.Matricula,f.id,f.nombrebuque                          
+	                        ");
+            //$this->db->join('tripulacion e', 'e.id_buque = f.id', 'left');
+           // $this->db->join('propiet v', 'v.id_propiet = f.id', 'left');
+            $query = $this->db->get('public.buque');
+            $this->db->group_by('f.Matricula,f.id,f.nombrebuque'); 
+            $this->db->order_by('f.nombrebuque', 'asc');  # or desc
             return $result = $query->result_array();
         }
         public function ver_pagos($data){
@@ -67,17 +72,7 @@
             return $resultado;
         }
 
-        public function consultar_proyectos_compl($id_programacion, $id_unidad){
-            $this->db->select('pp.id_p_proyecto,
-	                           pp.nombre_proyecto,
-	                           oc.desc_objeto_contrata ');
-            $this->db->join('programacion.p_proyecto pp', 'pp.id_programacion = p.id_programacion');
-            $this->db->join('programacion.objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
-            $this->db->where('p.id_programacion', $id_programacion);
-            $query = $this->db->get('programacion..programacion p');
-            return $query->result_array();
-
-        }
+        
 
         public function llenar_ff($proyectos){
             foreach ($proyectos as $key){
