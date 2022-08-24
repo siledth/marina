@@ -36,10 +36,12 @@
                     //Consulto que ya no esten registrados en la tabla de mensualidad para no repetir :X
                     $this->db->select('*');
                     $this->db->where('matricula', $matricula);
-                    $this->db->where("TO_CHAR(fecha_deuda,'DD-MM')",  $fecha_pago_c);
+                    $this->db->where("TO_CHAR(fecha_deuda,'DD-MM-YY')",  $fecha_pago_c);
                     $this->db->from('public.mensualidad');
                     $query = $this->db->get();
                     $resultado = $query->result_array();
+                    
+                    //Si es diferente a un array vacio,realizara el ingreso
                     if ($resultado != Array ( )) {
                        return 'nop';
                     }else {
@@ -235,6 +237,8 @@
             $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
             $this->db->join('tarifa t', 't.id_tarifa = b.id_tarifa', 'left');
             $this->db->where('b.matricula', $data['matricular']);
+
+            //IMPORTANTE HAY QUE ESTABLECER QUE SIEMPRE DEBE HABER UN PRICIPAL SI NO, EL SISTEMA NO DEJARA ADELANTAR EL PAGO
             $this->db->where('p.tipo', 'principal');
             $query = $this->db->get('buque b');
             return $query->row_array();

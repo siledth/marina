@@ -7,14 +7,15 @@ class Login_model extends CI_model {
         $this->db->where('nombre', $usuario);
         $this->db->from('seguridad.usuarios');
         $result = $this->db->get();
+        
         if ($result->num_rows() == 1) {
             $id_estatus = $result->row('id_estatus');
             if ($id_estatus == 1) {
                 $db_clave = $result->row('password');
-                $rif = $result->row('rif');
+               
                 if (password_verify(base64_encode(hash('sha256', $contrasena, true)), $db_clave)) {
                     return $result->row_array();
-                } else {
+                }else {
                     $intento = $result->row('intentos');
                     if ($intento <= 1) {
                         $intento = $intento + 1;
@@ -22,12 +23,12 @@ class Login_model extends CI_model {
                         $this->db->where('nombre', $usuario);
                         $this->db->update('seguridad.usuarios');
                         return 'FALLIDO';
-                    } else {
-                       
-                    }
+                    } else if ($intento == 2) {
+                        return 'BLOQUEADO';
+                    };
                 }
             } else {
-                return 'BLOQUEADO';
+                return 'FALSE';
             }
         } else {
             return 'FALSE';
@@ -39,9 +40,7 @@ class Login_model extends CI_model {
         $this->db->where('rif', $id_unidad);
         $this->db->from('empresa');
         $result = $this->db->get();
-
-        
-            return $result->row_array();
+        return $result->row_array();
         
     }
 
