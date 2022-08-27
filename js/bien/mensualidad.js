@@ -1,3 +1,35 @@
+$(document).ready(function() {
+    //para consultar y crear el numero de factura modifique
+    var base_url =
+        window.location.origin + "/marina/index.php/Mensualidades/cons_nro_factura";
+
+    $.ajax({
+        url: base_url,
+        method: "post",
+        dataType: "json",
+
+        success: function(response) {
+            if (response === null) {
+                numero = "1";
+            } else {
+                numero_c = response["nro_factura"];
+                numero = Number(numero_c) + 1;
+            }
+
+            function zeroFill(number, width) {
+                width -= number.toString().length;
+                if (width > 0) {
+                    return (
+                        new Array(width + (/\./.test(number) ? 2 : 1)).join("0") + number
+                    );
+                }
+                return number + ""; // siempre devuelve tipo cadena
+            }
+            $("#numfact").val(zeroFill(numero, 5));
+            //console.log(zeroFill(numero, 5));
+        },
+    });
+});
 function modal(id) {
     var id_mensualidad = id;
 
@@ -28,25 +60,41 @@ function modal(id) {
             var newstr8 = newstr7.replace(".", "");
             var canonn = newstr8.replace(",", ".");
 
-            $("#id_dolar").val(data["id_dolar"]);
+          /*  $("#id_dolar").val(data["id_dolar"]);
             $("#dolar").val(data["valor"]);
             let dolar = data["valor"];
             var dolarr = dolar.replace(",", ".");
             let calculo = canonn * dolarr;
             var calculo_t = parseFloat(calculo).toFixed(2);
             var calculo_tt = Intl.NumberFormat("de-DE").format(calculo_t);
-            $("#bs").val(calculo_tt);
+            $("#bs").val(calculo_tt);*/
         },
     });
 }
 
 function llenar_pago() {
     var tipo_pago = $("#id_tipo_pago").val();
-    if (tipo_pago <= "2") {
+    if (tipo_pago <= "3") {
         $("#campos").show();
     } else {
         $("#campos").hide();
     }
+}
+function calcular_dolar(){
+    var dolar = $('#dolar').val();
+    var canon = $('#canon').val();
+    
+   /* var newstr = dolar.replace('.', "");
+    var newstr2 = newstr.replace('.', "");
+    var newstr3 = newstr2.replace('.', "");
+    var newstr4 = newstr3.replace('.', "");
+    var dolarr = newstr4.replace('.', ".");*/
+
+    var dolart = (dolar * canon);
+    var dolart1 = parseFloat(dolart).toFixed(2);
+    var bs = Intl.NumberFormat("de-DE").format(dolart1);
+    $('#bs').val(bs);
+
 }
 
 function calcular_bol() {
@@ -148,6 +196,20 @@ function guardar_proc_pago() {
             confirmButtonText: "¡Si, guardar!",
         })
         .then((result) => {
+            if (document.guardar_proc_pag.dolar.value.length==0){
+                alert("No Puede dejar el campo Valor Dolar vacio, Ingrese un Monto")
+                document.guardar_proc_pag.dolar.focus()
+                return 0;
+         } 
+            if (document.guardar_proc_pag.cantidad_pagar_otra.value.length==0){
+                alert("No Puede dejar el campo la Cantidad a pagar $ vacio, Ingrese un Monto")
+                document.guardar_proc_pag.cantidad_pagar_otra.focus()
+                return 0;
+         }     	if (document.guardar_proc_pag.id_tipo_pago.selectedIndex==0){
+            alert("Debe seleccionar un Tipo de pago.")
+            document.guardar_proc_pag.id_tipo_pago.focus()
+            return 0;
+     }
             if (result.value == true) {
                 event.preventDefault();
                 var datos = new FormData($("#guardar_proc_pag")[0]);

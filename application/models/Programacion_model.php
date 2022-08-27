@@ -14,6 +14,7 @@
                                 b.pies,
                                 concat(p.tipo_ced, \'-\',p.cedula) as cedula,
                                 p.nombrecom,
+                                b.nombrebuque,
                                 p.tele_1');
             $this->db->where('b.matricula', $data['matricular']);
             $this->db->where('p.tipo', 'principal');
@@ -48,15 +49,14 @@
             $query = $this->db->get('public.buque');
             return $result = $query->result_array();
         }
-        
         function consultar_proyectos(){
-            $this->db->select("f.Matricula,f.id,f.nombrebuque                          
-	                        ");
-            //$this->db->join('tripulacion e', 'e.id_buque = f.id', 'left');
-           // $this->db->join('propiet v', 'v.id_propiet = f.id', 'left');
-            $query = $this->db->get('public.buque');
-            $this->db->group_by('f.Matricula,f.id,f.nombrebuque'); 
-            $this->db->order_by('f.nombrebuque', 'asc');  # or desc
+            $this->db->select("f.*,
+                               e.id_buque  ,
+	                           e.id_tripulacion,
+                               v.id_propiet");
+            $this->db->join('tripulacion e', 'e.id_buque = f.id', 'left');
+            $this->db->join('propiet v', 'v.id_propiet = f.id', 'left');
+            $query = $this->db->get('buque f');
             return $result = $query->result_array();
         }
         public function ver_pagos($data){
@@ -72,7 +72,17 @@
             return $resultado;
         }
 
-        
+        public function consultar_proyectos_compl($id_programacion, $id_unidad){
+            $this->db->select('pp.id_p_proyecto,
+	                           pp.nombre_proyecto,
+	                           oc.desc_objeto_contrata ');
+            $this->db->join('programacion.p_proyecto pp', 'pp.id_programacion = p.id_programacion');
+            $this->db->join('programacion.objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
+            $this->db->where('p.id_programacion', $id_programacion);
+            $query = $this->db->get('programacion..programacion p');
+            return $query->result_array();
+
+        }
 
         public function llenar_ff($proyectos){
             foreach ($proyectos as $key){
@@ -316,7 +326,7 @@
                             'canon' 	     => $p_items['canon'][$i],
                             'monto_estimado' => $p_items['monto_estimado'][$i],
                         );
-                        $quert = $this->db->insert('public.deta_factura',$data1);
+                        $quert = $this->db->insert('public.deta_recibo',$data1);
                         
                         /*if ($quert) {
                             $this->db->select('*');
@@ -350,10 +360,12 @@
             $this->db->select("f.id,
                                f.nombre,
                                f.matricula,
+                               b.nombrebuque,
                                f.total_bs as total,
                                e.id_status,
 	                           e.descripcion as estatus");
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
+            $this->db->join('buque b', 'b.matricula = f.matricula', 'left');
             $query = $this->db->get('factura f');
             return $result = $query->result_array();
 
@@ -362,10 +374,12 @@
             $this->db->select("f.id,
                                f.nombre,
                                f.matricula,
-                               f.total_bs as total,
+                               b.nombrebuque,
+                               f.total_mas_iva as total,
                                e.id_status,
 	                           e.descripcion as estatus");
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
+            $this->db->join('buque b', 'b.matricula = f.matricula', 'left');
             $query = $this->db->get('recibo f');
             return $result = $query->result_array();
 
@@ -375,6 +389,7 @@
             //print_r($data);die;
             $this->db->select("f.id,
                                f.nro_factura,
+                               b.nombrebuque,
                                b.id as id_buque,
 	                           concat(p.tipo_ced, '-', p.cedula) as cedula,
                                p.nombrecom,	
@@ -417,6 +432,7 @@
             //print_r($data);die;
             $this->db->select("f.id,
                              f.nro_factura,
+                             b.nombrebuque,
                             b.id as id_buque,
                             concat(p.tipo_ced, '-', p.cedula) as cedula,
                             p.nombrecom,	
@@ -425,10 +441,11 @@
                             f.fechaingreso,
                             f.matricula,
                             f.total_bs as total,
-                            f.efectivo, 
-                            f.transferencia,
-                            f.banco,
-                            f.trnas,
+                            f.id_tipo_pago,
+                            tp.descripcion tipopago,
+                            f.nro_referencia,
+                             f.id_banco,
+                            concat(ba.codigo_b, ' / ', ba.nombre_b) as banco,
                             f.fechatrnas,
                             e.id_status,
                             f.valor_iva,
@@ -439,6 +456,8 @@
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
             $this->db->join('buque b', 'b.matricula = f.matricula', 'left');
             $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
+            $this->db->join('tipopago tp', 'tp.id_tipo_pago = f.id_tipo_pago', 'left');
+            $this->db->join('banco ba', 'ba.id_banco = f.id_banco', 'left');
             $this->db->where('f.id',$data);
             $this->db->where('p.tipo', 'principal');
             $query = $this->db->get('recibo f');

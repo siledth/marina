@@ -10,7 +10,7 @@
                             <div class="col-1"></div>
                             <div class="col-10 mt-2">
                                 <div class="card card-outline-danger text-center bg-white">
-                                    <h4 class="mt-2"> <b><?=$descripcion?></b></h4>
+                                    <h4 class="mt-2"> <b>Corporación Ormux 2020, CA</b></h4>
                                     <h5>RIF.: <?=$rif?></h5>
                                     <h5>Fecha.: <?=$time ?> </h5>
                                 </div>
@@ -140,6 +140,8 @@
                                         style="color:red">* <i class="fas fa-info-circle"></i></b> </label>
                                 <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control"
                                     onkeypress="return valideKey(event);" value="30">
+                                    <b title=""
+                                        style="color:red"> Solo debe cambiar si es PAGO por días * <i class="fas fa-info-circle"></i></b>
                             </div>
                             <div class="form-group col-2">
                                 <label>Pies <b title="Campo Obligatorio" style="color:red">*</b></label>

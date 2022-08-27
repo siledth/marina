@@ -58,38 +58,36 @@
                         </div>
                         <div class="form-group col-4">
                             <label>Matricula de la Embarcación <b title="Campo Obligatorio" style="color:red">*</b></label>
-                            <h4><b><?=$factura_ind['matricula']?></b> </h4>
+                            <h4><b><?=$factura_ind['nombrebuque']?>/<?=$factura_ind['matricula']?></b> </h4>
                         </div>
                         <div class="form-group col-3">
                             <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h4><b><?=$factura_ind['valor_iva']?></b> </h4>
                         </div>
-                        <div class="col-10">
+                        <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>
                         <div class="col-12 text-center">
-                            <h4 style="color:red;">Forma de Pago</h4>
+                            <h4 style="color:red;">Detalle del Pago</h4>
                         </div>
                         <div class="form-group col-3">
-
-                            <h4><b><?=$factura_ind['efectivo']?></b> </h4>
-                            <h4><b><?=$factura_ind['transferencia']?></b> </h4>
+                            <label>Tipo de Pago</label>
+                            <h4><b><?=$factura_ind['tipopago']?></b> </h4>
                         </div>
-                        <div class="form-group col-3">
-
-                            <h4><b><?=$factura_ind['banco']?></b> </h4>
-
-                        </div>
-                        <div class="form-group col-3">
-
-
-                            <h4><b><?=$factura_ind['trnas']?></b> </h4>
-                        </div>
-                        <div class="form-group col-3">
-
-                            <h4><b><?= date("d/m/Y", strtotime($factura_ind['fechatrnas']));?></b> </h4>
-
-                        </div>
+                        <?php if ($factura_ind['tipopago'] <= 2) {?>
+                            <div class="form-group col-3">
+                                <label>Nro. de Referencia</label>
+                                <h4><b><?=$factura_ind['nro_referencia']?></b> </h4>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Banco</label>
+                                <h4><b><?=$factura_ind['banco']?></b> </h4>
+                            </div>
+                            <div class="form-group col-3">
+                                <label>Fecha de Tranferencia</label>
+                                <h4><b><?=$factura_ind['fechatrnas']?></b> </h4>
+                            </div>
+                        <?php } ?>
 
                         <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
@@ -99,14 +97,13 @@
                         </div>
                         <div class="table-responsive">
                             <h5 class="text-center">Lista de Requerimiento</h5>
-                            <table id="target_req_acc" class="table table-bordered table-hover">
+                            <table id="target_req_acc" class="table table-bordered table-hover" style="font-size:18px">
                                 <thead style="background:#e4e7e8;">
                                     <tr class="text-center">
-                                        <th>Matricula de la Embarcación</th>
+                               
                                         <th>Descripción</th>
                                         <th>Cantidad</th>
                                         <th>Tarifa $</th>
-                                        <th>Dias</th>
                                         <th>Total $</th>
                                         <th>Total + iva $</th>
                                     </tr>
@@ -114,11 +111,11 @@
                                 <tbody>
                                 <?php foreach($factura_ind_tabla as $lista):?>
                                     <tr class="odd gradeX">
-                                        <td><?=$lista['matricula']?></td>
+                                      
                                         <td><?=$lista['ob']?></td>
                                         <td><?=$lista['dia']?></td>
                                         <td><?=$lista['tarifa']?></td>
-                                        <td><?=$lista['dia']?></td>
+                                      
                                         <td><?=$lista['canon']?></td>
                                         <td><?=$lista['monto_estimado']?></td>
                                     </tr>
@@ -135,7 +132,7 @@
                         </div>
                         <div class="col-6"></div>
                         <div class="form-group row col-6">
-                            <label class="col-form-label col-md-6 text-right" >Total + IVA $</label>
+                            <label class="col-form-label col-md-6 text-right" >Total $</label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control text-center" value="<?=$factura_ind['total_mas_iva']?>" readonly>
                             </div>

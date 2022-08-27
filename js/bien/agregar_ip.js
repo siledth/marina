@@ -13,7 +13,7 @@ function remove_proy_acc() {
 	$("#tipo_cedt").val($("#tipo_cedt").data("default-value"));
 	$("#cedulat").val('');
 	$("#tele_1t").val('');
-	$("#emailt").val('');
+	 
 	$("#cargot").val('');
 	
 }
@@ -23,7 +23,7 @@ function agregar_ccnu_accToCartTable(cells){
 	var tipo_cedt = $("#tipo_cedt").val();
  	var cedulat = $("#cedulat").val();
 	var tele_1t = $("#tele_1t").val();
- 	var emailt  = $("#emailt").val();
+  
    	var cargot  = $("#cargot").val();
 	var autor  = $("#autor").val();
    	
@@ -51,7 +51,7 @@ function agregar_ccnu_accToCartTable(cells){
 		<td>${cedulat}<input type="text" name="cedulat[]" id="ins-subtype-${increment}" hidden value="${cedulat}"></td>
 		<td>${tele_1t}<input type="text" name="tele_1t[]" id="ins-subtype-${increment}" hidden value="${tele_1t}"></td>
 
-		<td>${emailt}<input type="text" hidden name="emaitl[]" id="ins-pres-${increment}" value="${emailt}"></td>
+		 
 
 		<td>${cargot}<input type="text" hidden name="cargot[]" id="ins-pres-${increment}" value="${cargot}"></td>
 		<td>${autor}<input type="text" hidden name="autor[]" id="ins-pres-${increment}" value="${autor}"></td>
@@ -69,7 +69,7 @@ function agregar_ccnu_accToCartTable(cells){
 
 		$("#cedulat").val('');
 		$("#tele_1t").val('');
-		$("#emailt").val('');
+		 
 		$("#cargot").val('');
 		
 

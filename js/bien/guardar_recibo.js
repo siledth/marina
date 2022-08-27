@@ -30,14 +30,22 @@ $(document).ready(function(){
         }
     });
 }); 
-function hab_campo(){
+function llenar_pago() {
+    var tipo_pago = $("#id_tipo_pago").val();
+    if (tipo_pago <= "2") {
+        $("#campos").show();
+    } else {
+        $("#campos").hide();
+    }
+}
+/*function hab_campo(){
     var otro = document. getElementById('cssRadio5').checked;
     if (otro == true) {
         $("#hab_campo_esp").show();
     }else {
         $('#hab_campo_esp').hide();
     }
-}
+}*/
 function guardar_bien(){
     event.preventDefault();
     swal.fire({

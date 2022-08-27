@@ -17,7 +17,7 @@
                                                 <?=$descripcion?>.</p>
                                             <p class="f-s-16">RIF.: <?=$rif?> <br>
                                             <p class="f-s-16">Fecha.: <?=$time ?> <br>
-                                            <input type="text" id="id" name="id" value="<?=$id?>/<?=$matricula?>">
+                                            <input type="hidden" id="id" name="id" value="<?=$id?>/<?=$matricula?>">
                                         </blockquote>
                                     </div>
                                 </div>
@@ -162,6 +162,9 @@
                                     <option value="V">V</option>
                                     <option value="E">E</option>
                                     <option value="P">P</option>
+                                    <option value="J">J</option>
+                                    <option value="G">G</option>  
+
                                 </select>
 
                             </div>
@@ -227,7 +230,7 @@
                                             <tr class="text-center">
                                                 <th>Nombre Compĺeto</th>
                                                 <th>Nac.</th>
-                                                <th>Cedula</th>
+                                                <th>Cedula/Rif</th>
                                                 <th>Telefono</th>
                                                 <th>Correo</th>
                                                 <th>Tipo</th>
@@ -277,16 +280,7 @@
                                     <?php echo form_error('tele_1'); ?>
                                 </div>
                             </div>
-                            <div class="form-group col-4">
-                                <label>Correo <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="emailt" id="emailt"
-                                    class="form-control <?php echo form_error('email') ? 'is-invalid' : ''; ?>"
-                                    aria-describedby="emailHelp" placeholder="Correo eléctronico"
-                                    value="<?php echo set_value('email'); ?>">
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('email'); ?>
-                                </div>
-                            </div>
+                            
                             <div class="form-group col-2">
                                 <label>Cargo </label>
                                 <input type="text" id="cargot" name="cargot" placeholder=""
@@ -324,7 +318,6 @@
                                             <th>Nac.</th>
                                             <th>Cedula</th>
                                             <th>telf.</th>
-                                            <th>correo</th>
                                             <th>Cargo</th>
                                             <th>ingresar a la marina</th>
                                             <th>Acciones</th>

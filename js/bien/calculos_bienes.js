@@ -77,18 +77,18 @@ function calcular_bienes(){
                         swal("Deleted!", "Your imaginary file has been deleted.", "success");
                     });
 
-                    var tota = ((tarifa * 33)) * dia;
+                    var tota = (((tarifa * 33)) * dia)/cantidad2;
                     var tota2 = parseFloat(tota).toFixed(2);
                     var canon = Intl.NumberFormat("de-DE").format(tota2);
                     $('#canon').val(canon);
                 }else{
-                    var tota = ((tarifa * piess)) * dia;
+                    var tota = (((tarifa * piess)) * dia)/cantidad2;
                     var tota2 = parseFloat(tota).toFixed(2);
                     var canon = Intl.NumberFormat("de-DE").format(tota2);
                     $('#canon').val(canon);
                 } 
             }else if(id_tarifa == 'DIA'){
-                var tota = tarifa * dia;
+                var tota = (tarifa * dia)/cantidad2;
                 var tota2 = parseFloat(tota).toFixed(2);
                 var canon = Intl.NumberFormat("de-DE").format(tota2);
                 $('#canon').val(canon);

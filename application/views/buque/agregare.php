@@ -5,7 +5,7 @@
             <div class="panel panel-inverse">
                 <div class="panel-body">
 
-                    <form id="reg_bien" method="POST" class="form-horizontal">
+                    <form id="reg_bien" name="reg_bien"  method="POST" class="form-horizontal">
                         <div class="row">
 
                             <div class="col-1"></div>
@@ -24,13 +24,13 @@
                                 </div>
                             </div>
                             <div class="form-group col-3">
-                                <label>Nombre del Buque <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="nombrebuque" onkeyup="mayusculas(this);" class="form-control">
+                                <label>Nombre de la Embarcación <b title="Campo Obligatorio" style="color:red">*</b></label>
+                                <input type="text" id="nombrebuque" name="nombrebuque" onkeyup="mayusculas(this);" class="form-control">
 
                             </div>
                             <div class="form-group col-3">
                                 <label>Matrícula <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="matricula" onkeyup="mayusculas(this);"
+                                <input type="text" name="matricula" id="matricula"  onkeyup="mayusculas(this);"
                                     class="form-control  <?php echo form_error('matricula') ? 'is-invalid' : ''; ?>"
                                     onKeyUp="mayus(this);" value="<?php echo set_value('matricula'); ?>">
                                 <div class="invalid-feedback">
@@ -66,7 +66,7 @@
                                         <?=$data['desc_tipobarco']?></option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>
+                            </div> 
                             <div class="form-group col-2">
                                 <label>color <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" id="color" name="color" placeholder="color"
@@ -136,7 +136,7 @@
                                             <div class="form-group col-10">
                                                 <label >Canon Mensual <b title="Campo Obligatorio"
                                                         style="color:red">*</b></label>
-                                                        <input id="canon" name="canon" type="text" class="form-control" disabled>
+                                                        <input id="canon" name="canon" type="text" class="form-control" readonly>
                                               
                                             </div>
                                         </blockquote>
@@ -165,6 +165,8 @@
                                     <option value="V">V</option>
                                     <option value="E">E</option>
                                     <option value="P">P</option>
+                                    <option value="J">J</option>
+                                    <option value="G">G</option> 
                                 </select>
 
                             </div>
@@ -277,16 +279,7 @@
                                     <?php echo form_error('tele_1'); ?>
                                 </div>
                             </div>
-                            <div class="form-group col-4">
-                                <label>Correo <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="emailt" id="emailt"
-                                    class="form-control <?php echo form_error('email') ? 'is-invalid' : ''; ?>"
-                                    aria-describedby="emailHelp" placeholder="Correo eléctronico"
-                                    value="<?php echo set_value('email'); ?>">
-                                <div class="invalid-feedback">
-                                    <?php echo form_error('email'); ?>
-                                </div>
-                            </div>
+                           
                             <div class="form-group col-2">
                                 <label>Cargo </label>
                                 <input type="text" id="cargot" name="cargot" placeholder=""
@@ -313,7 +306,7 @@
                                 <button type="button" onclick="agregar_ccnu_acc(this);" class="btn btn-lg btn-default">
                                     Agregar
                                 </button>
-                            </div>
+                            </div> 
 
                             <div class="table-responsive mt-4">
                                 <h5 class="text-center">Lista de Requerimiento</h5>
@@ -326,7 +319,7 @@
                                             <th>Nac.</th>
                                             <th>Cedula</th>
                                             <th>telf.</th>
-                                            <th>Correp</th>
+                                            >
                                             <th>Cargo</th>
                                             <th>ingresar a la marina</th>
                                             <th>Acciones</th>

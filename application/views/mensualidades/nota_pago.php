@@ -22,63 +22,80 @@
                         <div class="col-1"></div>
                         <div class="col-10 mt-2">
                             <div class="card card-outline-danger text-center bg-white">
-                                <h4 class="mt-2"> <b><?=$descripcion?></b></h4>
-                                <h5>RIF.: <?=$rif?></h5>
-                                <h5>Fecha Impresión: <?=$time ?> </h5>
+                                <h3 class="mt-2"> <b><?=$descripcion?></b></h3>
+                                <h3>RIF.: <?=$rif?></h3>
+                                <h3>Fecha Impresión: <?=$time ?> </h3>
                             </div>
                         </div>
                         <div class="form-group col-10 mt-4">
-                           <h4 class="text-center"> <b>Pago de Mensualidad</b></h4> 
+                           <h2 class="text-center"> <b>Pago de Mensualidad</b></h2> 
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-6">
+                            <label><h3 > N° Recibo <b title="Campo Obligatorio" style="color:red">* </h3></b></label>
+                            <h3><b>M<?=$inf_buque['nro_factura']?></b> </h3>
+                        </div>
+                        <div class="form-group col-2" style="font-size:20px">
                             <label>Estatus<b title="Campo Obligatorio" style="color:red">*</b></label>
-                            <h4><b><?=$inf_buque['estatus']?></b> </h4>
+                            <h3><b><?=$inf_buque['estatus']?></b> </h3>
+                        </div>
+                        <div class="form-group col-10 mt-4">
+                           <h3 class="text-center"> <b> Pago de Arrendamiento de Mes</b></h3> 
+                        </div>
+                        <div class="form-group col-2" style="font-size:20px">
+                            <label>Fecha<b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <h3><b><?=date("d-m-Y", strtotime($inf_buque['fecha_deuda']));?></b> </h3>
                         </div>
                         <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>
                         <div class="col-12 text-center">
-                            <h4 style="color:red;">Propietario y Embarcación</h4>
+                            <h3 style="color:red;">Propietario y Embarcación</h3>
                         </div>
-                        <div class="col-3">
+                        <div class="col-3" style="font-size:20px">
                             <label>Cédula</label>
-                            <h4><b><?=$inf_buque['cedula']?></b> </h4>
+                            <h3><b><?=$inf_buque['cedula']?></b> </h3>
                         </div>
-                        <div class="col-3">
+                        <div class="col-3" style="font-size:20px">
                             <label>Nombre y Apellido</label>
-                            <h4><b><?=$inf_buque['nombrecom']?></b> </h4>
+                            <h3><b><?=$inf_buque['nombrecom']?></b> </h3>
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-2" style="font-size:20px">
                             <label>Telefono</label>
-                            <h4><b><?=$inf_buque['tele_1']?></b> </h4>
+                            <h3><b><?=$inf_buque['tele_1']?></b> </h3>
                         </div>
-                        <div class="form-group col-4">
+                        <div class="form-group col-4" style="font-size:20px">
                             <label>Embarcación/Matricula</label>
-                            <h4><b><?=$inf_buque['matricula']?></b> </h4>
+                            <h3><b><?=$inf_buque['nombrebuque']?>/<?=$inf_buque['matricula']?></b> </h3>
                         </div>
                         <div class="col-4"></div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-2" style="font-size:20px">
                             <label>Pies</label>
-                            <h4><b><?=$inf_buque['pies']?></b> </h4>
+                            <h3><b><?=$inf_buque['pies']?></b> </h3>
                         </div>
                         
-                        <div class="form-group col-2">
+                        <div class="form-group col-2" style="font-size:20px">
                             <label>Tarifa $</label>
-                            <h4><b><?=$inf_buque['tarifa']?>$</b> </h4>
+                            <h3><b><?=$inf_buque['tarifa']?>$</b> </h3>
                         </div>
-                        <div class="form-group col-2">
+                        <div class="form-group col-2" style="font-size:20px">
                             <label>Canon $</label>
-                            <h4><b><?=$inf_buque['canon']?>$</b> </h4>
+                            <h3><b><?=$inf_buque['canon']?>$</b> </h3>
                         </div>
+                        <div class="form-group col-10 mt-4" style="font-size:20px">
+                            <label>Nota</label><b title=""
+                                        style="color:red">  * </b>
+                            <h3><b><?=$inf_buque['nota']?></b> </h3>
+                        </div>
+                        
 
                         <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>
                         <div class="col-12 text-center">
-                            <h4 style="color:red;">Descripcion del pago</h4>
+                            <h3 style="color:red;">Descripcion del Pago</h3>
                         </div>
                         <div class="col-12 mt-2">
-                            <table id="data-table" class="table table-striped table-bordered">
+                            <table id="data-table" class="table table-striped table-bordered" style="font-size:18px" >
                                 <thead>
                                     <tr>
                                         

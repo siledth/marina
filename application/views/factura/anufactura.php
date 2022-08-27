@@ -18,7 +18,7 @@
                                             <tr>
                                                 <th width="1%"></th>
                                                 <th class="text-nowrap">Nombre</th>
-                                                <th class="text-nowrap">Embarcación/Matricula</th>
+                                                <th class="text-nowrap">Embarcación</th>
                                                 <th class="text-nowrap">Total</th>
                                                 <th class="text-nowrap">Estatus</th>
                                                 <th class="text-nowrap">Acciones</th>
@@ -29,7 +29,7 @@
                                                 <tr class="odd gradeX">
                                                     <td><?=$lista['id']?></td>
                                                     <td><?=$lista['nombre']?></td>
-                                                    <td><?=$lista['matricula']?></td>
+                                                    <td><?=$lista['nombrebuque']?></td>
                                                     <td><?=$lista['total']?></td>
                                                     <td><?=$lista['estatus']?></td>
                                                     <td>

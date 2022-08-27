@@ -84,7 +84,7 @@ if ($('#id').val().length != " "){//FUNCION EN DONDE SE CARGA LA TABLA DE IP
                     <td>${value.tipo_cedt}<input type="text" name="tipo_cedt[]" id="ins-type-${increment}" hidden value="${value.tipo_cedt}"></td>
                     <td>${value.cedulat}<input type="text" name="cedulat[]" id="ins-type-${increment}" hidden value="${value.cedulat}"></td>
                     <td>${value.tele_1t}<input type="text" name="tele_1t[]" id="ins-type-${increment}" hidden value="${value.tele_1t}"></td>
-                    <td>${value.correot}<input type="text" name="correot[]" id="ins-type-${increment}" hidden value="${value.correot}"></td>
+                   
                     <td>${value.cargot}<input type="text" name="cargot[]" id="ins-type-${increment}" hidden value="${value.cargot}"></td>
                     <td>${value.autor}<input type="text" name="autor[]" id="ins-type-${increment}" hidden value="${value.autor}"></td>
                     

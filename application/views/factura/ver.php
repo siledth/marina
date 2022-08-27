@@ -16,13 +16,13 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="form-group col-1">
-                            <img style="width: 150%" height="100%" src=" <?= base_url() ?>Plantilla/img/logo.jpeg"
+                            <img style="width: 200%" height="100%" src=" <?= base_url() ?>Plantilla/img/logo.jpeg"
                                 alt="Card image">
                         </div>
                         <div class="col-1"></div>
                         <div class="col-10 mt-2">
                             <div class="card card-outline-danger text-center bg-white">
-                                <h4 class="mt-2"> <b><?=$descripcion?></b></h4>
+                                <h4 class="mt-2"> <b>Corporación Ormux 2020, CA</b></h4>
                                 <h5>RIF.: <?=$rif?></h5>
                                 <h5>Fecha Impresión: <?=$time ?> </h5>
                             </div>
@@ -104,7 +104,7 @@
                                         <th>Tarifa $</th>
                                         <th>Dias</th>
                                         <th>Total $</th>
-                                        <th>Total + iva $</th>
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -116,7 +116,7 @@
                                         <td><?=$lista['tarifa']?></td>
                                         <td><?=$lista['dia']?></td>
                                         <td><?=$lista['canon']?></td>
-                                        <td><?=$lista['monto_estimado']?></td>
+                                        
                                     </tr>
                                     <?php endforeach;?>
                                 </tbody>
@@ -124,7 +124,7 @@
                         </div>
                         <div class="col-6"></div>
                         <div class="form-group row col-6">
-                            <label class="col-form-label col-md-6 text-right">Total IVA $</label>
+                            <label class="col-form-label col-md-6 text-right">Total IVA </label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control text-center"
                                     value="<?=$factura_ind['total_iva']?>" readonly>
@@ -132,20 +132,14 @@
                         </div>
                         <div class="col-6"></div>
                         <div class="form-group row col-6">
-                            <label class="col-form-label col-md-6 text-right">Total + IVA $</label>
+                            <label class="col-form-label col-md-6 text-right">Total + IVA </label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control text-center"
                                     value="<?=$factura_ind['total_mas_iva']?>" readonly>
                             </div>
                         </div>
                         <div class="col-6"></div>
-                        <div class="form-group row col-6">
-                            <label class="col-form-label col-md-6 text-right">Total en Bs</label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control text-center"
-                                    value="<?=$factura_ind['total_bs']?>" readonly>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

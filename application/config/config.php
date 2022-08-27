@@ -23,7 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = 'http://sistemaintegradoprueba.snc.gob.ve';
+
+//$config['base_url'] = 'http://192.168.0.101/marina';
 $config['base_url'] = 'http://localhost/marina';
 /*
 |--------------------------------------------------------------------------

@@ -1,6 +1,13 @@
 <?php
     class Mensualidades_model extends CI_model{
-
+        public function cons_nro_notapago(){
+            $this->db->select('nro_factura,id_status');
+            $this->db->where("id_status", 2);
+            $this->db->order_by('r.nro_factura desc');
+            $query = $this->db->get('mensualidad r');
+            $response = $query->row_array();
+            return $response;
+        }
         
         function ver_banco(){
             $this->db->select('*');
@@ -9,10 +16,11 @@
             $resultado = $query->result_array();
             return $resultado;
         }
-
+///modifique
         function ver_tipPago(){
             $this->db->select('*');
             $this->db->from('public.tipopago');
+            $this->db->order_by('id_tipo_pago asc');
             $query = $this->db->get();
             $resultado = $query->result_array();
             return $resultado;
@@ -21,8 +29,8 @@
 		function generar($date){
             //consulto los buques que tengan el día y el mes en ejecución
 			$this->db->select('*');
-            $this->db->where("TO_CHAR(fecha_pago,'DD')", $date);
-			$this->db->from('public.buque');
+            $this->db->where("diar", $date);
+			$this->db->from('public.mensualidadess');
 			$this->db->order_by("nombrebuque", "Asc");
 			$query = $this->db->get();
             $resultado = $query->result_array();
@@ -36,12 +44,10 @@
                     //Consulto que ya no esten registrados en la tabla de mensualidad para no repetir :X
                     $this->db->select('*');
                     $this->db->where('matricula', $matricula);
-                    $this->db->where("TO_CHAR(fecha_deuda,'DD-MM-YY')",  $fecha_pago_c);
+                    $this->db->where("TO_CHAR(fecha_deuda,'DD-MM')",  $fecha_pago_c);
                     $this->db->from('public.mensualidad');
                     $query = $this->db->get();
                     $resultado = $query->result_array();
-                    
-                    //Si es diferente a un array vacio,realizara el ingreso
                     if ($resultado != Array ( )) {
                        return 'nop';
                     }else {
@@ -179,9 +185,13 @@
                             'id_estatus'        => $id_estatus
                         );
             $x = $this->db->insert('mov_consig',$data1);
-
+//aca modifique
             $data1 = array('id_status' => $id_estatus,
-                            'fecha_update' => date('Y-m-d h:i:s'));
+                            'fecha_update' => date('Y-m-d h:i:s'),
+                            'nro_factura' => $data['numfact'],
+                            'nota' => $data['nota'],
+                        );
+                            
             $this->db->where('id_mensualidad', $data['id_mesualidad_ver']);
             $update = $this->db->update('mensualidad', $data1);
 
@@ -190,6 +200,7 @@
 
         public function ver_nota($data){
             $this->db->select("m.matricula,
+                                m.nro_factura,
                                 b.nombrebuque,
                                 concat(p.tipo_ced,'-', p.cedula) cedula,
                                 p.nombrecom,
@@ -197,8 +208,10 @@
                                 m.pies,
                                 m.id_tarifa,
                                 m.tarifa,
+                                m.fecha_deuda,
                                 m.dia,
                                 m.canon,
+                                m.nota,
                                 e.descripcion estatus");
             $this->db->from('public.mensualidad m');
             $this->db->join('buque b', 'b.matricula = m.matricula', 'left');
@@ -237,8 +250,6 @@
             $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
             $this->db->join('tarifa t', 't.id_tarifa = b.id_tarifa', 'left');
             $this->db->where('b.matricula', $data['matricular']);
-
-            //IMPORTANTE HAY QUE ESTABLECER QUE SIEMPRE DEBE HABER UN PRICIPAL SI NO, EL SISTEMA NO DEJARA ADELANTAR EL PAGO
             $this->db->where('p.tipo', 'principal');
             $query = $this->db->get('buque b');
             return $query->row_array();
@@ -424,8 +435,8 @@
             $query = $this->db->get();
             $resultado4 = $query->row_array();
 
-            $canonn = str_replace(".", "", $resultado1['canon']);
-            $total_iva = $canonn *  $resultado4['desc_alicuota_iva'] / 100;
+            $canonn = str_replace(".", "", $resultado2['total_abonado_bs']);
+            $total_iva = $canonn *  $resultado4['desc_alicuota_iva'] ;
 
             $total_mas_iva = $canonn + $total_iva;
             $total_bs_s =  $total_mas_iva / $resultado2['valor'];
@@ -461,7 +472,7 @@
             $p_items = array( //detalle factura
                 'matricula' 	    => $resultado1['matricula'],
                 'pies'   		    => $resultado1['pies'],
-                'ob'          	    => '',
+                'ob'          	    => $resultado1['fecha_deuda'],
                 'tarifa'            => $resultado1['id_tarifa'],
                 'dia' 	            => $resultado1['dia'],
                 'canon' 	        => $resultado1['canon'], 

@@ -25,9 +25,9 @@
                                         <thead> 
                                             <tr>
                                                 <th width="1%"></th>
-                                                <th class="text-nowrap">Nombre del Buque</th>
-                                                <th class="text-nowrap">Embarcación/Matricula</th>
-                                                <th class="text-nowrap">canon</th>
+                                                <th class="text-nowrap">Nombre de la Embarcación</th>
+                                                <th class="text-nowrap">Matricula</th>
+                                                <th class="text-nowrap">Canon</th>
                                                 <th class="text-nowrap">Fecha Deuda</th>
                                                 <th class="text-nowrap">Estatus</th>
                                                 <th class="text-nowrap">Acción</th>
@@ -87,8 +87,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="guardar_proc_pag" data-parsley-validate="true" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" id="guardar_proc_pag" name="guardar_proc_pag" data-parsley-validate="true" method="POST" enctype="multipart/form-data">
 					<div class="row">
+                    <div class="form-group col-2">
+                                <label>N° Recibo <b title="Campo Obligatorio" style="color:red">*</b></label>
+                                <input type="text" name="numfact" id="numfact" onkeyup="mayusculas(this);"
+                                    class="form-control" readonly>
+                            </div>
 						<div class="form-group col-2">
 							<label>ID - Mensualidad</label>
 							<input class="form-control" type="text" name="id_mesualidad_ver" id="id_mesualidad_ver" readonly>
@@ -112,8 +117,8 @@
 						</div>
                         <div class="form-group col-2">
 							<label>Valor Dolar</label>
-                            <input class="form-control" type="hidden" name="id_dolar" id="id_dolar" readonly>
-							<input class="form-control" type="text" name="dolar" id="dolar" >
+                            <input class="form-control" type="hidden" name="id_dolar" id="id_dolar" value="1" readonly>
+							<input class="form-control" type="text" name="dolar" id="dolar" onchange="calcular_dolar();" >
 						</div>
                         <div class="form-group col-3">
 							<label>Canon</label>
@@ -129,7 +134,7 @@
 						</div>
 						<div class="form-group col-3">
 							<label>Cantidad a pagar Bs. F</label>
-							<input class="form-control" type="text" id="cantidad_pagar_bs" name="cantidad_pagar_bs" onblur="calcular_bol();" onkeypress="return valideKey(event);">
+							<input class="form-control" type="text" id="cantidad_pagar_bs" name="cantidad_pagar_bs" onblur="calcular_bol();" onkeypress="return valideKey(event);" readonly>
 						</div>
                         <div class="form-group col-3">
 							<label>Cantidad restante $</label>
@@ -168,7 +173,11 @@
                             <input class="form-control" type="date" name="fechatrnas" id="fechatrnas">
                         </div>
                     </div>
-                </form>
+                    <div class="form-group col-3">
+                    <label>Nota</label>
+                    <textarea name="nota" id="nota" rows="5" cols="100"></textarea>
+                    </div>
+                </form> 
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="javascript:window.location.reload()" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -183,7 +192,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Pago Adelantadp</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Pago Adelantado</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -329,7 +338,7 @@
         }
     });
 
-    $("#cantidad_pagar_otra").on({
+   /* $("#cantidad_pagar_otra").on({
         "focus": function (event) {
             $(event.target).select();
         },
@@ -353,5 +362,5 @@
                             .replace(/\B(?=(\d{3})+(?!\d)\.?)/g, ".");
             });
         }
-    });
+    });*/
 </script>

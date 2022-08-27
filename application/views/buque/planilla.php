@@ -47,7 +47,6 @@
                                 <tr class="odd gradeX" style="text-align:center">
                                     <td><?=$ver_proyecto['nombrebuque']?> </td>
                                     <td><?=$ver_proyecto['matricula']?> </td>
-                                
                                     <td class="center">
                                         <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_proy?id=<?php echo $ver_proyecto['matricula'];?>"
                                             class="button">

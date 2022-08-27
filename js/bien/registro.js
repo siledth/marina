@@ -10,6 +10,39 @@ function guardar_bien(){
         cancelButtonText: 'Cancelar',
         confirmButtonText: '¡Si, guardar!'
     }).then((result) => {
+
+        if (document.reg_bien.nombrebuque.value.length==0){
+            alert("No Puede dejar el campo Nombre de Embarcacion vacio, Ingrese un Nombre")
+            document.reg_bien.nombrebuque.focus()
+            return 0;
+     } 
+     if (document.reg_bien.matricula.value.length==0){
+        alert("No Puede dejar el campo matricula vacio, Ingrese una matricula")
+        document.reg_bien.matricula.focus()
+        return 0;
+ }
+ if (document.reg_bien.ubicacion.value.length==0){
+    alert("No Puede dejar el campo ubicacion vacio, Ingrese una ubicacion")
+    document.reg_bien.ubicacion.focus()
+    return 0;
+}
+if (document.reg_bien.pies.value.length==0){
+    alert("No Puede dejar el campo Pie vacio, Ingrese un Pie")
+    document.reg_bien.pies.focus()
+    return 0;
+}   
+if (document.reg_bien.canon.value.length==0){
+    alert("No Puede dejar el campo canon vacio, Ingrese un canon")
+    document.reg_bien.canon.focus()
+    return 0;
+} 
+if (document.reg_bien.fecha_pago.value.length==0){
+    alert("No Puede dejar el campo  fecha Pago, Ingrese un fecha Pago")
+    document.reg_bien.fecha_pago.focus()
+    return 0;
+} 
+
+
         if (result.value == true) {
 
             event.preventDefault();

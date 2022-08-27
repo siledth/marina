@@ -25,7 +25,7 @@
                             'nombrecomt'           	=> $tripulacion['nombrecomt'][$i],
                             'tele_1t' 	            => $tripulacion['tele_1t'][$i],
                             'cargot' 	            => $tripulacion['cargot'][$i],
-                            'email' 	            => $propietarios['email'][$i],
+                           // 'email' 	            => $propietarios['email'][$i],
                             'autor' 	            => $tripulacion['autor'][$i],
                             
                             'matricula'             => $tripulacion['matricula'],  
@@ -73,7 +73,7 @@
                             'nombrecomt'           	=> $tripulacion['nombrecomt'][$i],
                             'tele_1t' 	            => $tripulacion['tele_1t'][$i],
                             'cargot' 	            => $tripulacion['cargot'][$i],
-                            'email' 	            => $propietarios['email'][$i],
+                          //  'email' 	            => $propietarios['email'][$i],
                             'autor' 	            => $tripulacion['autor'][$i],
                             
                             'matricula'             => $tripulacion['matricula'],

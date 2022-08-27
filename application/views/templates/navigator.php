@@ -122,8 +122,8 @@
                
                 <li class="has-sub">
                     <a href="javascript:;">
-                        <b class="caret"></b>
-                        <i class="fas fa-file-alt fa-lg"></i>
+                    <b class="caret"></b>
+                        <i class="fas fa-ship fa-lg"></i>
                         <span> Planilla</span>
                     </a>
 
@@ -159,29 +159,7 @@
                 </li>
                 <?php endif; ?>
                 <?php if (($this->session->userdata('perfil') == 1) || ($this->session->userdata('perfil') == 3)) : ?>
-                <li class="has-sub">
-                    <a href="javascript:;">
-                        <b class="caret"></b>
-                        <i class="fas fa-ship fa-lg"></i>
-                        <span> Buque</span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                              <a href="<?= base_url() ?>index.php/User/verpropietario">
-                                    - Modificar Propietarios
-                                </a>
-                                <b class="caret"></b>
-                              <a href="<?= base_url() ?>index.php/Buque/barco">
-                                    - Modificar Barcos
-                                </a>
-                            </a>
-                           
-                        </li>
-                    </ul>
-
-                </li>
+               
                 <?php endif; ?>
                 <?php if (($this->session->userdata('perfil') <= 2)) : ?>
                 <li class="has-sub">

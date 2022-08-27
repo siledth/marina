@@ -3,12 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mensualidades extends CI_Controller {
 
+    public function cons_nro_factura(){
+        if(!$this->session->userdata('session'))redirect('login');
+	   	$data =	$this->Mensualidades_model->cons_nro_notapago();
+	   	echo json_encode($data);
+    }
 	public function ver(){
         if(!$this->session->userdata('session'))redirect('login');
         $data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
         $data['time']=date("d-m-Y");
-        
+        $data['te']=date('d');
         $data['mat'] = $this->Programacion_model->consulta_matricula();
         $date = date('d');
         $generar = $this->Mensualidades_model->generar($date);
