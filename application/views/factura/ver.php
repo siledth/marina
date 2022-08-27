@@ -9,7 +9,7 @@
             <div class="col-1 mb-3">
                 <button class="btn btn-circle waves-effect waves-circle waves-float btn-primary" type="submit"
                     onclick="printDiv('areaImprimir');" name="action">Imprimir</button>
-            </div>
+            </div> 
         </div>
         <div class="row" id="imp1">
             <div class="panel panel-inverse">
@@ -31,12 +31,16 @@
                             <label>N° Factura <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h4><b><?=$factura_ind['nro_factura']?></b> </h4>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-3">
                             <label>Fecha de la Factura <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h4><b><?= date("d/m/Y", strtotime($factura_ind['fechaingreso']));?></b> </h4>
                             
                         </div>
-                        <div class="col-10">
+                        <div class="form-group col-3">
+                            <label>Pago de Arrendamiento de Mes <b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <h4><b><?=date("d/m/Y", strtotime($factura_ind['ob']));?></b> </h4> 
+                        </div>
+                        <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>
                         <div class="col-12 text-center">
@@ -56,8 +60,13 @@
                         </div>
                         <div class="form-group col-4">
                             <label>Embarcación/Matricula <b title="Campo Obligatorio" style="color:red">*</b></label>
-                            <h4><b><?=$factura_ind['matricula']?></b> </h4>
+                            <h4><b><?=$factura_ind['nombrebuque']?>/</b><b><?=$factura_ind['matricula']?></b> </h4> 
                         </div>
+                        <div class="form-group col-3">
+                            <label>Canon Mensual <b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <h3><b><?=$factura_ind['canon']?></b> </h3> 
+                        </div> 
+                       
                         <div class="form-group col-3">
                             <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h4><b><?=$factura_ind['valor_iva']?></b> </h4>

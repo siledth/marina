@@ -46,69 +46,42 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Telefono </label>
-                                <input type="text" name="tele_1" id="tele_1" class="form-control" >
+                                <input type="text" name="tele_1" id="tele_1" class="form-control">
                             </div>
                             <div class="col-12 text-center">
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                                 <h4 style="color:red;">Datos de Pago</h4>
                             </div>
                             <div class="col-3">
-                                <label>Tipo de pago <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <select class="form-control" name="id_tipo_pago" id="id_tipo_pago" onclick="llenar_pago();">
+                                <label>Tipo de pago</label>
+                                <select class="form-control" name="id_tipo_pago" id="id_tipo_pago"
+                                    onclick="llenar_pago();">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($tipoPago as $data): ?>
-                                        <option value="<?=$data['id_tipo_pago']?>"><?=$data['descripcion']?></option>
+                                    <option value="<?=$data['id_tipo_pago']?>"><?=$data['descripcion']?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="row" id='campos' style="display: none;" >
-                                <div class="col-4">
-                                    <label>Banco</label>
-                                    <select class="form-control" name="id_banco" id="id_banco">
-                                        <option value="0">Seleccione</option>
-                                        <?php foreach ($banco as $data): ?>
-                                            <option value="<?=$data['id_banco']?>"><?=$data['codigo_b']?> / <?=$data['nombre_b']?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="col-4">
-                                    <label>Número de referencia:</label>
-                                    <input class="form-control" type="text" name="nro_referencia" id="nro_referencia">
-                                </div>
-                                <div class="col-4">
-                                    <label>Fecha de Tranferencia:</label>
-                                    <input class="form-control" type="date" name="fechatrnas" id="fechatrnas">
-                                </div>
-                            </div>
-                                <!-- <div class="form-group col-10">
-                                    <div class="radio radio-css">
-                                        <input type="radio" name="radio_css" id="cssRadio1" value="1" />
-                                        <label for="cssRadio1">Efectivo</label>
-                                    </div>
-                                    <div class="radio radio-css">
-                                        <input onclick="hab_campo();" type="radio" name="radio_css" id="cssRadio5"
-                                            value="5" />
-                                        <label for="cssRadio5">Transferencia</label>
-                                    </div>
-                                    <div class="form-group col-10" style="display:none" id="hab_campo_esp">
-                                        <div class="form-group col-10">
-                                            <label>Banco</label>
-                                            <select style="width: 100%;" onclick="trae_inf();" id="banco" name="banco"
-                                                class="form-control">
-                                                <option value="">Seleccione</option>
-                                                <?php foreach ($banco as $data): ?>
-                                                <option value="<?=$data['nombre_b']?>">
-                                                    <?=$data['nombre_b']?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                            <label>N° Trasferencia</label>
-                                            <input class="form-control" type="text" name="trnas" id="trnas">
-                                            <label>Fecha</label>
-                                            <input class="form-control" type="date" name="fecha1" id="fecha1">
-                                        </div>
-                                    </div>
-                                </div> -->
-                            <div class="col-2">
+                            <div class="row" id='campos' style="display: none;">
+                        <div class="col-4">
+                            <label>Banco</label>
+                            <select class="form-control" name="id_banco" id="id_banco">
+                                <option value="0">Seleccione</option>
+                                <?php foreach ($banco as $data): ?>
+                                    <option value="<?=$data['id_banco']?>"><?=$data['codigo_b']?> / <?=$data['nombre_b']?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label>Número de referencia:</label>
+                            <input class="form-control" type="text" name="nro_referencia" id="nro_referencia">
+                        </div>
+                        <div class="col-4">
+                            <label>Fecha de Tranferencia:</label>
+                            <input class="form-control" type="date" name="fechatrnas" id="fechatrnas">
+                        </div>
+                    </div>
+                            <div class="form-group col-3">
                                 <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <?php foreach ($dolar as $data): ?>
                                 <input type="text" name="dolar" id="dolar" class="form-control"
@@ -140,8 +113,8 @@
                                         style="color:red">* <i class="fas fa-info-circle"></i></b> </label>
                                 <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control"
                                     onkeypress="return valideKey(event);" value="30">
-                                    <b title=""
-                                        style="color:red"> Solo debe cambiar si es PAGO por días * <i class="fas fa-info-circle"></i></b>
+                                <b title="" style="color:red"> Solo debe cambiar si es PAGO por días * <i
+                                        class="fas fa-info-circle"></i></b>
                             </div>
                             <div class="form-group col-2">
                                 <label>Pies <b title="Campo Obligatorio" style="color:red">*</b></label>

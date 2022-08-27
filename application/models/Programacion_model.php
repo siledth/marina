@@ -409,9 +409,12 @@
                                f.total_iva,
                                f.total_mas_iva,
                                f.total_bs,
-	                           e.descripcion as estatus");
+	                           e.descripcion as estatus,
+                               b.canon,
+                               d.ob");
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
             $this->db->join('buque b', 'b.matricula = f.matricula', 'left');
+            $this->db->join('deta_factura d', 'd.matricula = f.matricula', 'left');
             $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
             $this->db->join('tipopago tp', 'tp.id_tipo_pago = f.id_tipo_pago', 'left');
             $this->db->join('banco ba', 'ba.id_banco = f.id_banco', 'left');
