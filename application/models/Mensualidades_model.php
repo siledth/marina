@@ -25,29 +25,32 @@
             $resultado = $query->result_array();
             return $resultado;
         }
-
-		function generar($date){
+        
+       function generar($date){
+           
             //consulto los buques que tengan el día y el mes en ejecución
-			$this->db->select('*');
-            $this->db->where("diar", $date);
-			$this->db->from('public.mensualidadess');
+			$this->db->select('matricula, fecha_pago, pies, id_tarifa, tarifa, dia, canon');
+            $this->db->where("TO_CHAR(fecha_pago,'DD')", $date);
+			$this->db->from('public.buque');
 			$this->db->order_by("nombrebuque", "Asc");
 			$query = $this->db->get();
             $resultado = $query->result_array();
-            //print_r($resultado);die;
+            //
             //Los cuento :D
             $count_pff = count($resultado);
             for ($i=0; $i < $count_pff; $i++) {
                 foreach ($resultado as $key){
                     $matricula = $key['matricula'];
-                    $fecha_pago_c =  date('d-m');
+                    $fecha_pago_c =  date('Y-m-d');
+                    //print_r($fecha_pago_c);die;
                     //Consulto que ya no esten registrados en la tabla de mensualidad para no repetir :X
-                    $this->db->select('*');
+                    $this->db->select('matricula, fecha_deuda');
                     $this->db->where('matricula', $matricula);
-                    $this->db->where("TO_CHAR(fecha_deuda,'DD-MM')",  $fecha_pago_c);
+                    $this->db->where("fecha_deuda",  $fecha_pago_c);
                     $this->db->from('public.mensualidad');
                     $query = $this->db->get();
                     $resultado = $query->result_array();
+                    //Si es diferente a un array vacio,realizara el ingreso
                     if ($resultado != Array ( )) {
                        return 'nop';
                     }else {
@@ -109,7 +112,7 @@
                 return true;
             } 
             return true;
-		}   
+		}
 
         public function ver_deudas(){
             $this->db->select('m.id_mensualidad,
@@ -333,8 +336,6 @@
                 $mes_siguiente = date('m', strtotime('+1 month'));
                 
                 $fecha_f_deuda = $anio . '-' . $mes_siguiente . '-' . $dia;
-                //print_r($fecha_f_deuda);die;
-
                 if ($data['total_bs_pag_a'] == '0') {
                     $id_estatus = 2;
                 }else {

@@ -43,7 +43,7 @@ srand(time());
             <span class="logo">
               <i style="color:#1E90FF;" class="fas fa-user-shield"></i>
             </span>
-            <b class="ml-3"> Bienvenido</b>
+            <b class="ml-3"> Bienvenidos</b>
           </div>
           <div class="icon">
             <i class="fa fa-sign-in"></i>

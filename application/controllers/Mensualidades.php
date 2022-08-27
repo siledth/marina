@@ -8,7 +8,9 @@ class Mensualidades extends CI_Controller {
 	   	$data =	$this->Mensualidades_model->cons_nro_notapago();
 	   	echo json_encode($data);
     }
+
 	public function ver(){
+       
         if(!$this->session->userdata('session'))redirect('login');
         $data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
@@ -16,8 +18,9 @@ class Mensualidades extends CI_Controller {
         $data['te']=date('d');
         $data['mat'] = $this->Programacion_model->consulta_matricula();
         $date = date('d');
+        
         $generar = $this->Mensualidades_model->generar($date);
-        //print_r($generar);die;
+       
         if ($generar) {
             $data['ver_deudas'] = $this->Mensualidades_model->ver_deudas($date);           
         }
