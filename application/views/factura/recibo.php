@@ -62,7 +62,7 @@
                                         <option value="<?=$data['id_tipo_pago']?>"><?=$data['descripcion']?></option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div>
+                            </div> 
                             <div class="row" id='campos' style="display: none;" >
                                 <div class="col-4">
                                     <label>Banco</label>
@@ -258,7 +258,7 @@
                 </form>
             </div> 
         </div>
-    </div>
+    </div> 
 </div>
 <script src="<?=base_url()?>/js/programacion.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_fac.js"></script>
