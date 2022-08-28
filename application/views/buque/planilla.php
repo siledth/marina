@@ -37,8 +37,8 @@
                         <table id="data-table-default" class="table table-bordered table-hover">
                             <thead style="background:#e4e7e8">
                                 <tr class="text-center">
-                                    <th>Nombre del Barco</th>
-                                    <th>Placa del Barco</th>
+                                    <th>Embarcación</th>
+                                    <th>Placa de la Embarcación</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -61,9 +61,7 @@
                                             <i class="fas fa-lg fa-fw  fa-edit"></i>
                                         <a />
 
-                                                    <a href="<?php echo base_url();?>index.php/Buque/delete?id=<?php echo $ver_proyecto['matricula'];?>"
-                                                        class="button"><i class="fas fa-lg fa-fw  fa-trash-alt"
-                                                            style="color:red"></i><a />
+                                                  
 
                                     </td>
                                 </tr>
@@ -85,6 +83,7 @@
     </div>
 </div>
 
+
 <script type="text/javascript">
 function valideKey(evt) {
     var code = (evt.which) ? evt.which : evt.keyCode;
@@ -97,7 +96,3 @@ function valideKey(evt) {
     }
 }
 </script>
-<?php if ($this->session->flashdata('sa-success2')) { ?>
-<div hidden id="sa-success2"> <?= $this->session->flashdata('sa-success2') ?> </div>
-<?php } ?>
-<script src="<?=base_url()?>js/eliminar.js"></script>

@@ -10,8 +10,72 @@ class Buque extends CI_Controller {
 		$this->load->view('user/buque.php');
         $this->load->view('templates/footer.php');
 	}
+    public function desin(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('buque/desincorporar.php');
+        $this->load->view('templates/footer.php');
+	}
 
+    public function fetchtdesin()
+	{
+		if ($this->input->is_ajax_request()) {
+			$posts = $this->Buque_model->get_desin();
+			$data = array('responce' => 'success', 'posts' => $posts);
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+    public function editdesin()
+	{
+		if ($this->input->is_ajax_request()) {
+			$edit_id = $this->input->post('edit_id');
 
+			if ($post = $this->Buque_model->single_desin($edit_id)) {
+				$data = array('responce' => 'success', 'post' => $post);
+			} else {
+				$data = array('responce' => 'error', 'message' => 'error al guardar');
+			}
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+    public function updatedesin()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->form_validation->set_rules('edit_id', 'edit_id', 'required');
+			$this->form_validation->set_rules('edit_desincorporar', 'desincorporar', 'required');
+            $this->form_validation->set_rules('edit_observacion', 'observacion', 'required');
+			if ($this->form_validation->run() == FALSE) {
+				$data = array('responce' => 'error', 'message' => validation_errors());
+			} else {
+				$data['id'] = $this->input->post('edit_id');
+				$data['desincorporar'] = $this->input->post('edit_desincorporar');
+                $data['observacion'] = $this->input->post('edit_observacion');
+                $data['fecha_desincorporacion'] = date("Y-m-d h:m:s");
+               
+
+				if ($this->Buque_model->update_desin($data)) {
+					$data = array('responce' => 'success', 'message' => 'Se Actualizo Correctamente');
+				} else {
+					$data = array('responce' => 'error', 'message' => 'Error al actualizar , revise la información Suministrada');
+				}
+			}
+
+			echo json_encode($data);
+		} else {
+			echo "No direct script access allowed";
+		}
+	}
+    public function consultar_embarcacion(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data = $this->input->post();
+        $data =	$this->Buque_model->consultar_embarcaci($data);
+        echo json_encode($data);
+    }
     public function Plantilla(){
 		if(!$this->session->userdata('session'))redirect('login');
         $data['descripcion'] = $this->session->userdata('unidad');

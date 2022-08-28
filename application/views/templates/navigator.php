@@ -135,7 +135,18 @@
                                 <li><a href="<?= base_url() ?>index.php/Buque/Plantilla">Registrar</a></li>
                             </a>
                             
+                            
                         </li>
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                
+                                <li><a href="<?= base_url() ?>index.php/Buque/desin">Desincorporar</a></li>
+                            </a>
+                            
+                            
+                        </li>
+
                     </ul>
                 </li>
                 <li class="has-sub">

@@ -46,7 +46,9 @@
         }*/
         public function consulta_buque(){
             $this->db->select('*');
-            $query = $this->db->get('public.buque');
+            $this->db->from('buque ');
+            $this->db->where('desincorporar !=', '0');
+            $query = $this->db->get();
             return $result = $query->result_array();
         }
         function consultar_proyectos(){

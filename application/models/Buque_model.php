@@ -1,5 +1,41 @@
 <?php
     class Buque_model extends CI_model{
+        //consultar para desincorporar
+        public function consultar_embarcaci($data){
+            $this->db->select('m.matricula');
+            $this->db->from('public.buque m');
+            $this->db->join('public.mensualidad mc', 'm.matricula = mc.matricula', 'left');
+            $this->db->where('m.matricula', $data['matricula']);
+            $this->db->order_by('m.id desc');
+            $query = $this->db->get();
+            $resultado = $query->row_array();
+            return $resultado;
+	    }
+        public function get_desin() {
+            $this->db->select('b.*');
+            $this->db->from('public.buque b');
+            $this->db->join('mensualidad e', 'e.matricula = b.matricula', 'left');
+            $this->db->where('e.id_status =', '2');
+            $this->db->order_by('fecha_desincorporacion asc');
+            $query = $this->db->get();
+            if (count($query->result()) > 0) {
+                return $query->result();
+            }
+        }
+        public function single_desin($edit_id) {
+            $this->db->select('*');
+            $this->db->from('public.buque');
+
+            $this->db->where('id', $edit_id);
+            $query = $this->db->get();
+            if (count($query->result()) > 0) {
+                return $query->row();
+            }
+        }
+        public function update_desin($data) {
+            return $this->db->update('public.buque', $data, array('id' => $data['id']));
+        }
+    
 
 	//CRUP BANCO
 		function consultar_buque(){
