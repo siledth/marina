@@ -147,7 +147,9 @@ class Buque extends CI_Controller {
             "dia"           => $dia,
             "ubicacion"     => $ubicacion,   
             "fecha_pago"    => $fecha_pago,      
-            "fechaingreso"  => date("Y-m-d")            
+            "fechaingreso"  => date("Y-m-d"),
+            "desincorporar"  => 1
+
         ); 
 
         $tripulacion = array( //tripulacion
