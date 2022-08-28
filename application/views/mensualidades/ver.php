@@ -134,7 +134,7 @@
 						</div>
 						<div class="form-group col-3">
 							<label>Cantidad a pagar Bs. F</label>
-							<input class="form-control" type="text" id="cantidad_pagar_bs" name="cantidad_pagar_bs" onblur="calcular_bol();" onkeypress="return valideKey(event);" readonly>
+							<input class="form-control" type="text" id="cantidad_pagar_bs" name="cantidad_pagar_bs"  onkeypress="return valideKey(event);" readonly>
 						</div>
                         <div class="form-group col-3">
 							<label>Cantidad restante $</label>
