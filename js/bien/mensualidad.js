@@ -30,6 +30,8 @@ $(document).ready(function() {
         },
     });
 });
+
+//PARA EL PAGO
 function modal(id) {
     var id_mensualidad = id;
 
@@ -45,7 +47,6 @@ function modal(id) {
         data: { id_mensualidad: id_mensualidad },
         dataType: "json",
         success: function(data) {
-            console.log(data);
             $("#id_mesualidad_ver").val(id_mensualidad);
             $("#matricula").val(data["matricula"]);
             $("#pies").val(data["pies"]);
@@ -60,14 +61,14 @@ function modal(id) {
             var newstr8 = newstr7.replace(".", "");
             var canonn = newstr8.replace(",", ".");
 
-          /*  $("#id_dolar").val(data["id_dolar"]);
+            $("#id_dolar").val(data["id_dolar"]);
             $("#dolar").val(data["valor"]);
             let dolar = data["valor"];
             var dolarr = dolar.replace(",", ".");
             let calculo = canonn * dolarr;
             var calculo_t = parseFloat(calculo).toFixed(2);
             var calculo_tt = Intl.NumberFormat("de-DE").format(calculo_t);
-            $("#bs").val(calculo_tt);*/
+            $("#bs").val(calculo_tt);
         },
     });
 }
@@ -80,16 +81,11 @@ function llenar_pago() {
         $("#campos").hide();
     }
 }
+
 function calcular_dolar(){
     var dolar = $('#dolar').val();
     var canon = $('#canon').val();
     
-   /* var newstr = dolar.replace('.', "");
-    var newstr2 = newstr.replace('.', "");
-    var newstr3 = newstr2.replace('.', "");
-    var newstr4 = newstr3.replace('.', "");
-    var dolarr = newstr4.replace('.', ".");*/
-
     var dolart = (dolar * canon);
     var dolart1 = parseFloat(dolart).toFixed(2);
     var bs = Intl.NumberFormat("de-DE").format(dolart1);
@@ -113,7 +109,6 @@ function calcular_bol() {
     var newstr6 = newstr5.replace(".", "");
     var newstr7 = newstr6.replace(".", "");
     var cant_pag_bs = newstr7.replace(",", ".");
-    console.log(cant_pag_bs);
 
     var dolarr = valor_2.replace(",", ".");
 
@@ -125,7 +120,6 @@ function calcular_bol() {
 
     // total a pagar om
     var sub_total_dolar = cant_pag_bs * dolarr;
-    console.log(newstr);
     var sub_total_dolar4 = parseFloat(sub_total_dolar).toFixed(2);
     var sub_total_dolar5 = Intl.NumberFormat("de-DE").format(sub_total_dolar4);
     $("#cantidad_pagar_otra").val(sub_total_dolar5);
@@ -140,46 +134,62 @@ function calcular_bol() {
 function calcular_dol() {
     var cantidad_deu_om = $("#canon").val();
     var cantidad_pagar_otra = $("#cantidad_pagar_otra").val();
-    var valor_2 = $("#dolar").val();
 
-    var newstr = cantidad_deu_om.replace(".", "");
-    var newstr2 = newstr.replace(".", "");
-    var newstr3 = newstr2.replace(".", "");
-    var newstr4 = newstr3.replace(".", "");
-    var cant_deu_om = newstr4.replace(",", ".");
+    if (Number(cantidad_pagar_otra) > Number(cantidad_deu_om)) {
+        swal.fire({
+            title: 'El pago no puede ser mayor a la mensualidad',
+            type: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+        }).then((result) => {
+            if (result.value == true) {
+            }
+        });
+        $("#guardar_pago_fin").prop('disabled', true);
+    }else{
+        $("#guardar_pago_fin").prop('disabled', false);
+        var valor_2 = $("#dolar").val();
 
-    var newstr = cantidad_pagar_otra.replace(".", "");
-    var newstr5 = newstr.replace(".", "");
-    var newstr6 = newstr5.replace(".", "");
-    var newstr7 = newstr6.replace(".", "");
-    var cant_pag_otra = newstr7.replace(",", ".");
-
-    var dolarr = valor_2.replace(",", ".");
-    // Total a pagar de otra moneda
-    var sub_total = cant_deu_om - cant_pag_otra;
-    var sub_total2 = parseFloat(sub_total).toFixed(2);
-    var sub_total3 = Intl.NumberFormat("de-DE").format(sub_total2);
-    $("#total_otra").val(sub_total3);
-
-    // Total a pagar en bs
-    var sub_total_dolar1 = cant_pag_otra * dolarr;
-    var sub_total_dolar2 = parseFloat(sub_total_dolar1).toFixed(2);
-    var sub_total_dolar3 = Intl.NumberFormat("de-DE").format(sub_total_dolar2);
-    $("#cantidad_pagar_bs").val(sub_total_dolar3);
-
-    // Restante en bolvares
-    var cantidad_deu_bs = $("#bs").val();
-    var cantidad_deu_bs1 = cantidad_deu_bs.replace(".", "");
-    var cantidad_deu_bs2 = cantidad_deu_bs1.replace(".", "");
-    var cantidad_deu_bs3 = cantidad_deu_bs2.replace(".", "");
-    var cantidad_deu_bs4 = cantidad_deu_bs3.replace(".", "");
-    var cantidad_deu_bsf = cantidad_deu_bs4.replace(",", ".");
-
-    var total_a_deber = cant_pag_otra * dolarr;
-    var total_deber_bol = cantidad_deu_bsf - total_a_deber;
-    var total_deber_bol2 = parseFloat(total_deber_bol).toFixed(2);
-    var total_a_deb_bs = Intl.NumberFormat("de-DE").format(total_deber_bol2);
-    $("#total_bs_pag").val(total_a_deb_bs);
+        var newstr = cantidad_deu_om.replace(".", "");
+        var newstr2 = newstr.replace(".", "");
+        var newstr3 = newstr2.replace(".", "");
+        var newstr4 = newstr3.replace(".", "");
+        var cant_deu_om = newstr4.replace(",", ".");
+    
+        var newstr = cantidad_pagar_otra.replace(".", "");
+        var newstr5 = newstr.replace(".", "");
+        var newstr6 = newstr5.replace(".", "");
+        var newstr7 = newstr6.replace(".", "");
+        var cant_pag_otra = newstr7.replace(",", ".");
+    
+        var dolarr = valor_2.replace(",", ".");
+        // Total a pagar de otra moneda
+        var sub_total = cant_deu_om - cant_pag_otra;
+        var sub_total2 = parseFloat(sub_total).toFixed(2);
+        var sub_total3 = Intl.NumberFormat("de-DE").format(sub_total2);
+        $("#total_otra").val(sub_total3);
+    
+        // Total a pagar en bs
+        var sub_total_dolar1 = cant_pag_otra * dolarr;
+        var sub_total_dolar2 = parseFloat(sub_total_dolar1).toFixed(2);
+        var sub_total_dolar3 = Intl.NumberFormat("de-DE").format(sub_total_dolar2);
+        $("#cantidad_pagar_bs").val(sub_total_dolar3);
+    
+        // Restante en bolvares
+        var cantidad_deu_bs = $("#bs").val();
+        var cantidad_deu_bs1 = cantidad_deu_bs.replace(".", "");
+        var cantidad_deu_bs2 = cantidad_deu_bs1.replace(".", "");
+        var cantidad_deu_bs3 = cantidad_deu_bs2.replace(".", "");
+        var cantidad_deu_bs4 = cantidad_deu_bs3.replace(".", "");
+        var cantidad_deu_bsf = cantidad_deu_bs4.replace(",", ".");
+    
+        var total_a_deber = cant_pag_otra * dolarr;
+        var total_deber_bol = cantidad_deu_bsf - total_a_deber;
+        var total_deber_bol2 = parseFloat(total_deber_bol).toFixed(2);
+        var total_a_deb_bs = Intl.NumberFormat("de-DE").format(total_deber_bol2);
+        $("#total_bs_pag").val(total_a_deb_bs);
+    } 
 }
 
 function guardar_proc_pago() {
@@ -261,11 +271,7 @@ function calcular_dolar_a(){
     var dolart1 = parseFloat(dolart).toFixed(2);
     var bs = Intl.NumberFormat("de-DE").format(dolart1);
     $('#bs_a').val(bs);
-
 }
-
-
-
 
 function trae_inf() {
     var matricular = $("#matricular").val();
@@ -351,6 +357,22 @@ function calcular_bol_a() {
 function calcular_dol_a() {
     var cantidad_deu_om = $("#canon_a").val();
     var cantidad_pagar_otra = $("#cantidad_pagar_otra_a").val();
+
+    if ( Number(cantidad_pagar_otra) > Number(cantidad_deu_om)) {
+        swal.fire({
+            title: 'El pago no puede ser mayor a la mensualidad',
+            type: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Ok'
+        }).then((result) => {
+            if (result.value == true) {
+            }
+        });
+        $("#guardar_adelanto_pag_b").prop('disabled', true);
+    }else{
+    $("#guardar_adelanto_pag_b").prop('disabled', false);
+
     var valor_2 = $("#dolar_a").val();
 
     var newstr = cantidad_deu_om.replace(".", "");
@@ -391,6 +413,9 @@ function calcular_dol_a() {
     var total_deber_bol2 = parseFloat(total_deber_bol).toFixed(2);
     var total_a_deb_bs = Intl.NumberFormat("de-DE").format(total_deber_bol2);
     $("#total_bs_pag_a").val(total_a_deb_bs);
+
+    }
+
 }
 
 function guardar_adelanto_pag() {

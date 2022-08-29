@@ -184,7 +184,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="javascript:window.location.reload()" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" onclick="guardar_proc_pago();" class="btn btn-primary">Guardar</button>
+                <button type="button" id="guardar_pago_fin" onclick="guardar_proc_pago();" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>
@@ -218,7 +218,6 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
                         <div class="form-group col-4">
                             <label>Nombre</label>
                             <input class="form-control" type="text" name="nombre_a" id="nombre_a" readonly>
@@ -238,7 +237,7 @@
                             <input class="form-control" type="hidden" name="tarifa_a1" id="tarifa_a1" readonly>
                         </div>
                         <div class="form-group col-2">
-                            <label>Valor Dola</label>
+                            <label>Valor Dolar</label>
                             <input class="form-control" type="hidden" name="id_dolar_a" id="id_dolar_a" value="1" readonly>
                             <input class="form-control" type="text" name="dolar_a" id="dolar_a" onchange="calcular_dolar_a();">
                         </div>
@@ -305,7 +304,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" onclick="javascript:window.location.reload()" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" onclick="guardar_adelanto_pag();" class="btn btn-primary">Guardar</button>
+                <button type="button" id="guardar_adelanto_pag_b" onclick="guardar_adelanto_pag();" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>
@@ -353,7 +352,7 @@
         }
     });
 
-    /* $("#cantidad_pagar_otra").on({
+    /*$("#cantidad_pagar_otra").on({
          "focus": function (event) {
              $(event.target).select();
          },
