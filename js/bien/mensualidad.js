@@ -25,7 +25,7 @@ $(document).ready(function() {
                 }
                 return number + ""; // siempre devuelve tipo cadena
             }
-            $("#numfact").val(zeroFill(numero, 5));
+            $("#numfact").val(zeroFill(numero, 10));
             //console.log(zeroFill(numero, 5));
         },
     });
@@ -407,6 +407,7 @@ function guardar_adelanto_pag() {
             confirmButtonText: "¡Si, guardar!",
         })
         .then((result) => {
+          
             if (result.value == true) {
                 event.preventDefault();
                 var datos = new FormData($("#guardar_adelanto_pag")[0]);
