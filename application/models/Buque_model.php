@@ -15,11 +15,11 @@
         //LA CUESTION ES QUE DEBEN DE TENER TODO PAGO A LA FECHA, SI DEBEN ALGUNA MENSUALIDAD NO SE PUEDE EXONERAR.
         // COMO PLANTEO ESA EXECION ?
         public function get_desin() {
-            $this->db->select('b.matricula, b.nombrebuque, e.id_status, b.observacion, b.fecha_desincorporacion');
+            $this->db->select('b.id,b.matricula, b.nombrebuque, e.id_status, b.observacion, b.fecha_desincorporacion');
             $this->db->from('public.buque b');
             $this->db->join('mensualidad e', 'e.matricula = b.matricula', 'left');
             $this->db->where('e.id_status =', '2');
-            $this->db->group_by("b.matricula, b.nombrebuque, e.id_status, b.fecha_desincorporacion, b.observacion");
+            $this->db->group_by("b.matricula, b.nombrebuque, e.id_status, b.fecha_desincorporacion, b.observacion,b.id");
            $this->db->order_by('fecha_desincorporacion asc');
             $query = $this->db->get();
             if (count($query->result()) > 0) {

@@ -271,7 +271,7 @@ function fetch() {
                                 return a = i++;
                             }
                         },
-
+                       
                         {
                             "data": "desc_concepto"
                         },
