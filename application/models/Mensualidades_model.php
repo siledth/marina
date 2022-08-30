@@ -15,8 +15,7 @@
             $query = $this->db->get('public.mensualidad');
             $response = $query->row_array();
             return $response;
-        }
-      
+        } 
 
         function ver_banco(){
             $this->db->select('*');
@@ -25,7 +24,7 @@
             $resultado = $query->result_array();
             return $resultado;
         }
-///modifique
+        ///modifique
         function ver_tipPago(){
             $this->db->select('*');
             $this->db->from('public.tipopago');
@@ -35,8 +34,7 @@
             return $resultado;
         }
         
-       function generar($date){
-           
+        function generar($date){
             //consulto los buques que tengan el día y el mes en ejecución
 			$this->db->select('matricula, fecha_pago, pies, id_tarifa, tarifa, dia, canon');
             $this->db->where("TO_CHAR(fecha_pago,'DD')", $date);
@@ -198,7 +196,7 @@
                             'id_estatus'        => $id_estatus
                         );
             $x = $this->db->insert('mov_consig',$data1);
-//aca modifique
+            //aca modifique
             $data1 = array('id_status' => $id_estatus,
                             'fecha_update' => date('Y-m-d h:i:s'),
                             'nro_factura' => $data['numfact'],
@@ -401,7 +399,6 @@
         } 
 
         public function generar_factura($data){
-
             $this->db->select("m.id_mensualidad,
                                 m.matricula,
                                 b.nombrebuque,
@@ -495,6 +492,90 @@
                 'id_tarifa'         => $resultado1['id_tarifa'],          
             );
             $this->db->insert('public.deta_factura',$p_items);
+            return true;
+        }
+
+        //ELIMINACIÒN DEL PAGO
+        public function eliminar_pago($data){
+
+            $this->db->select('*');
+            $this->db->where('id_mensualidad', $data['id_mensualidad']);
+            $this->db->from('public.mov_consig');
+            $query = $this->db->get();
+            $resultado = $query->row_array();
+            
+            $this->db->select('*');
+            $this->db->where('id_mensualidad', $data['id_mensualidad']);
+            $this->db->from('public.mensualidad');
+            $query = $this->db->get();
+            $resultado1 = $query->row_array();
+            $matricula = $resultado1['matricula'];
+
+            $this->db->select('*');
+            $this->db->where('matricula', $matricula);
+            $this->db->from('public.buque');
+            $query = $this->db->get();
+            $resultado2 = $query->row_array();
+
+            
+            $id_dolar = $resultado['id_dolar'];
+            $dolar = $resultado['valor'];
+            
+            $canon = $resultado2['canon'];
+            $canonn = str_replace(".", "", $canon);
+
+            $valor = $canonn / $dolar;
+            $valor_bs = round($valor, 2);
+
+            $data_mov = array(
+                'id_mensualidad'    => $data['id_mensualidad'],
+                'id_tipo_pago'      => 0,
+                'nro_referencia'    => '',
+                'total_ant_d'       => '0',
+                'id_dolar'          => $resultado['id_dolar'],
+                'valor'             => $resultado['valor'],
+                'total_ant_bs'      => '0',
+                'total_abonado_bs'  => '0',
+                'total_abonado_om'  => '0',
+                'restante_bs'       => $valor_bs,
+                'restante_om'       => $canon,
+                'id_user'           => $this->session->userdata('id_user'),
+                'id_estatus'        => 0
+            );
+
+            $this->db->where('id_mensualidad', $data['id_mensualidad']);
+            $query = $this->db->delete('public.mov_consig');
+
+            $this->db->insert('public.mov_consig',$data_mov);
+            
+            if ($query){
+                $fecha_update = date('Y-m-d h:i:s');
+                $this->db->set('id_status', 0);
+                $this->db->set('fecha_update', $fecha_update);
+                $this->db->where('id_mensualidad', $data['id_mensualidad']);
+                $this->db->update('public.mensualidad');
+                return true;
+            }
+            return true;
+        }
+
+        function anular_factura($data){
+            $datos = explode('/', $data['id_factura']);
+            $id_factura = $datos['0'];
+            $id_mensualidad = $datos['1'];
+            $data1 = array('id_status' => '1',
+                        'fecha_update' => date('Y-m-d h:i:s'));
+            $this->db->where('id', $id_factura);
+            $update = $this->db->update('factura', $data1);
+            
+
+            $fecha_update = date('Y-m-d h:i:s');
+            $this->db->set('id_factura', 0);
+            $this->db->set('nro_factura', '');
+            $this->db->set('fecha_update', $fecha_update);
+            $this->db->where('id_mensualidad', $id_mensualidad);
+            $this->db->update('public.mensualidad');
+
             return true;
         }
 	}

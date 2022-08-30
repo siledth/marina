@@ -9,6 +9,7 @@ $(document).ready(function() {
         dataType: "json",
 
         success: function(response) {
+            console.log(response);
             if (response === null) {
                 numero = "1";
             } else {
@@ -26,7 +27,7 @@ $(document).ready(function() {
                 return number + ""; // siempre devuelve tipo cadena
             }
             $("#numfactura").val(zeroFill(numero, 10));
-            console.log(zeroFill(numero, 10));
+            //console.log(zeroFill(numero, 10));
         },
     });
 });

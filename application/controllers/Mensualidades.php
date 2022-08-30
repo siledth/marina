@@ -15,7 +15,6 @@ class Mensualidades extends CI_Controller {
     }
 
 	public function ver(){
-       
         if(!$this->session->userdata('session'))redirect('login');
         $data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
@@ -97,5 +96,20 @@ class Mensualidades extends CI_Controller {
         $id_mesualidad = $this->input->get('id');
         $data =	$this->Mensualidades_model->generar_factura($id_mesualidad);
         redirect('Mensualidades/ver', 'refres');
+    }
+
+    //ELIMINACIÒN DE PAGO
+    public function eliminar_pago(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data = $this->input->post();
+        $data = $this->Mensualidades_model->eliminar_pago($data);
+        echo json_encode($data);
+    }
+    //ANULACIÒN DE FACTURA
+    public function anular_factura(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data = $this->input->post();
+        $data = $this->Mensualidades_model->anular_factura($data);
+        echo json_encode($data);
     }
 }

@@ -52,12 +52,20 @@
                                                         <a />
                                                         <?php if (($lista['id_factura'] == 0) && $lista['id_status'] == 2) : ?>
                                                             <a class="button" href="<?php echo base_url() ?>index.php/Mensualidades/generar_fac?id=<?php echo $lista['id_mensualidad']; ?>">
-                                                                <i title="GENERAR FAC" class="fas fa-lg fa-fw fa-file-import" style="color: crimson;"></i>
+                                                                <i title="Generar Factura" class="fas fa-lg fa-fw fa-file-import" style="color: crimson;"></i>
+                                                            <a />
+                                                        <?php endif; ?>
+                                                        <?php if (($lista['id_factura'] == 0) && $lista['id_status'] >= 2) : ?>
+                                                            <a class="button" onclick="eliminar_pago(<?php echo $lista['id_mensualidad'] ?>);">
+                                                                <i title="Eliminar Pago" class="fas fa-lg fa-fw fa-trash" style="color: red;"></i>
                                                             <a />
                                                         <?php endif; ?>
                                                         <?php if ($lista['id_factura'] != 0) : ?>
                                                             <a class="button" href="<?php echo base_url() ?>index.php/Factura/verFactura?id=<?php echo $lista['id_factura']; ?>">
                                                                 <i title="Ver Factura" class="far fa-lg fa-fw fa-file-pdf" style="color: brown;"></i>
+                                                            <a />
+                                                            <a class="button" onclick="eliminar_factura(<?php echo $lista['id_factura']?> + '/' + <?php echo $lista['id_mensualidad']?> );">
+                                                                <i title="Eliminar Factura" class="fas fa-lg fa-fw fa-trash" style="color: orange;"></i>
                                                             <a />
                                                         <?php endif; ?>
                                                         <?php if ($lista['id_status'] != 2) : ?>
