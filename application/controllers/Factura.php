@@ -319,7 +319,7 @@ class Factura extends CI_Controller {
         
         $id_factura = $this->input->get('id');
 
-        $data['factura_ind'] = $this->Programacion_model->ver_factura($id_factura);
+        $data['factura_ind'] = $this->Programacion_model->ver_factura_transito($id_factura);
         $data['factura_ind_tabla'] = $this->Programacion_model->ver_factura_tabla($id_factura);
         
         $this->load->view('templates/header.php');

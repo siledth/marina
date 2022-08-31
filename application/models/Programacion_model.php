@@ -374,7 +374,44 @@
             return $result = $query->result_array();
 
         }
-        
+        //ver factura transito
+
+        function ver_factura_transito($data){
+            //print_r($data);die;
+            $this->db->select("f.id,
+                               f.nro_factura,                       
+                               f.nombre,
+                               f.tele_1,
+                               f.fechaingreso,
+                               f.matricula,
+                               f.nombrep, 
+                               f.cedulap,
+                               f.total_bs as total,
+                               f.id_tipo_pago,
+                               tp.descripcion tipopago,
+                               f.nro_referencia,
+                                f.id_banco,
+                               concat(ba.codigo_b, ' / ', ba.nombre_b) as banco,
+                               f.fechatrnas,
+                                
+                               f.valor_iva,
+                               f.total_iva,
+                               f.total_mas_iva,
+                               f.total_bs,
+	                           
+                               
+                               d.ob");
+           
+            
+            $this->db->join('deta_factura d', 'd.matricula = f.matricula', 'left');
+            
+            $this->db->join('tipopago tp', 'tp.id_tipo_pago = f.id_tipo_pago', 'left');
+            $this->db->join('banco ba', 'ba.id_banco = f.id_banco', 'left');
+            $this->db->where('f.id',$data);
+           
+            $query = $this->db->get('factura f');
+            return $result = $query->row_array();
+        }
 ///ver factura general
         function ver_factura($data){
             //print_r($data);die;

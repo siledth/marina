@@ -27,7 +27,7 @@
                                 <h5>Fecha Impresión: <?=$time ?> </h5>
                             </div>
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-9">
                             <label>N° Factura <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h4><b><?=$factura_ind['nro_factura']?></b> </h4>
                         </div>
@@ -36,10 +36,7 @@
                             <h4><b><?= date("d/m/Y", strtotime($factura_ind['fechaingreso']));?></b> </h4>
                             
                         </div>
-                        <div class="form-group col-3">
-                            <label>Pago de Arrendamiento de Mes <b title="Campo Obligatorio" style="color:red">*</b></label>
-                            <h4><b><?=date("d/m/Y", strtotime($factura_ind['ob']));?></b> </h4> 
-                        </div>
+                       
                         <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>
@@ -47,12 +44,12 @@
                             <h4 style="color:red;">Propietario y Embarcación</h4>
                         </div>
                         <div class="col-3">
-                            <label>Cédula</label>
-                            <h4><b><?=$factura_ind['cedula']?></b> </h4>
+                            <label>Cédula</label>, 
+                            <h4><b><?=$factura_ind['cedulap']?></b> </h4>
                         </div>
                         <div class="col-3">
                             <label>Nombre y Apellido</label>
-                            <h4><b><?=$factura_ind['nombrecom']?></b> </h4>
+                            <h4><b><?=$factura_ind['nombrep']?></b> </h4>
                         </div>
                         <div class="form-group col-2">
                             <label>Telefono <b title="Campo Obligatorio" style="color:red">*</b></label>
@@ -60,12 +57,9 @@
                         </div>
                         <div class="form-group col-4">
                             <label>Embarcación/Matricula <b title="Campo Obligatorio" style="color:red">*</b></label>
-                            <h4><b><?=$factura_ind['nombrebuque']?>/</b><b><?=$factura_ind['matricula']?></b> </h4> 
+                            <h4><b><?=$factura_ind['nombre']?>/</b><b><?=$factura_ind['matricula']?></b> </h4> 
                         </div>
-                        <div class="form-group col-3">
-                            <label>Canon Mensual <b title="Campo Obligatorio" style="color:red">*</b></label>
-                            <h3><b><?=$factura_ind['canon']?></b> </h3> 
-                        </div> 
+                        
                        
                         <div class="form-group col-3">
                             <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
