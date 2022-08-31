@@ -40,6 +40,14 @@
                             <label>Pago de Arrendamiento de Mes <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h4><b><?=date("d/m/Y", strtotime($factura_ind['ob']));?></b> </h4> 
                         </div>
+                        <?php if ($factura_ind['id_status'] == 1): ?>
+                        <div class="form-group col-3">
+                            <label>status <b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <h2><b><?= $factura_ind['descripcion']?></b> </h2>
+                            
+                        </div>
+                        <?php endif; ?>
+                       
                         <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                         </div>

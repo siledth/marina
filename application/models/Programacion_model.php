@@ -385,7 +385,7 @@
                                f.fechaingreso,
                                f.matricula,
                                f.nombrep, 
-                               f.cedulap,
+                               f.cedula,
                                f.total_bs as total,
                                f.id_tipo_pago,
                                tp.descripcion tipopago,
@@ -398,12 +398,14 @@
                                f.total_iva,
                                f.total_mas_iva,
                                f.total_bs,
-	                           
+	                           e.descripcion,
+                               f.id_status,
                                
                                d.ob");
            
             
             $this->db->join('deta_factura d', 'd.matricula = f.matricula', 'left');
+            $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
             
             $this->db->join('tipopago tp', 'tp.id_tipo_pago = f.id_tipo_pago', 'left');
             $this->db->join('banco ba', 'ba.id_banco = f.id_banco', 'left');
@@ -433,6 +435,7 @@
                                concat(ba.codigo_b, ' / ', ba.nombre_b) as banco,
                                f.fechatrnas,
                                e.id_status,
+                               e.descripcion,
                                f.valor_iva,
                                f.total_iva,
                                f.total_mas_iva,

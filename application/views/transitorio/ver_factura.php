@@ -36,6 +36,13 @@
                             <h4><b><?= date("d/m/Y", strtotime($factura_ind['fechaingreso']));?></b> </h4>
                             
                         </div>
+                        <?php if ($factura_ind['id_status'] == 1): ?>
+                        <div class="form-group col-3">
+                            <label>status <b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <h2><b><?= $factura_ind['descripcion']?></b> </h2>
+                            
+                        </div>
+                        <?php endif; ?>
                        
                         <div class="col-12">
                             <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
@@ -45,7 +52,7 @@
                         </div>
                         <div class="col-3">
                             <label>Cédula</label>, 
-                            <h4><b><?=$factura_ind['cedulap']?></b> </h4>
+                            <h4><b><?=$factura_ind['cedula']?></b> </h4>
                         </div>
                         <div class="col-3">
                             <label>Nombre y Apellido</label>
@@ -86,7 +93,7 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Fecha de Tranferencia</label>
-                                <h4><b><?=$factura_ind['fechatrnas']?></b> </h4>
+                                <h4><b><?=date("d/m/Y", strtotime($factura_ind['fechatrnas']));?></b> </h4>
                             </div>
                         <?php } ?>
 
@@ -135,10 +142,10 @@
                         </div>
                         <div class="col-6"></div>
                         <div class="form-group row col-6">
-                            <label class="col-form-label col-md-6 text-right">Total + IVA </label>
+                            <label class="col-form-label col-md-6 text-right">Total BS </label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control text-center"
-                                    value="<?=$factura_ind['total_mas_iva']?>" readonly>
+                                    value="<?=$factura_ind['total_bs']?>" readonly>
                             </div>
                         </div>
                         <div class="col-6"></div>

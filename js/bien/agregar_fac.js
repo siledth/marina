@@ -41,7 +41,7 @@ function remove_proy_acc() {
 
 	let monto_restar = iva_estimado * monto_iva;
 
-	var total_f_1 = Number(total_iva) - Number(monto_restar);
+	var total_f_1 = Number(total_iva) + Number(monto_restar);
 	var total_f_2 = parseFloat(total_f_1).toFixed(2);
 	var total_f = Intl.NumberFormat("de-DE").format(total_f_2);
 	$('#total_iva').val(total_f);
@@ -60,7 +60,7 @@ function remove_proy_acc() {
 	var newstr4 = newstr3.replace('.', "");
 	var tol_mas_iva = newstr4.replace(',', ".");
 
-	var total_ivas = Number(tol_mas_iva) - Number(restar_monto);
+	var total_ivas = Number(tol_mas_iva) + Number(restar_monto);
 	var total_ivass = parseFloat(total_ivas).toFixed(2);
 	var total_f = Intl.NumberFormat("de-DE").format(total_ivass);
 	$('#total_mas_iva').val(total_f);

@@ -42,7 +42,7 @@
                             </div>
                             <div class="col-3">
                                 <label>Nombre y Apellido</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control" >
+                                <input type="text" name="nombrep" id="nombrep" class="form-control" >
                             </div>
                             <div class="form-group col-3">
                                 <label>Telefono </label>
@@ -187,8 +187,8 @@
                                             <th>Pies</th>
                                             <th>Tarifa $</th>
                                             <th>Dias</th>
-                                            <th>Total $</th>
-                                            <th>Total + iva $</th>
+                                            <th>Ref Total $</th>
+                                            <th>Total + iva BS</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -197,7 +197,7 @@
                             </div>
                             <div class="col-6"></div>
                             <div class="form-group row col-6">
-                                <label class="col-form-label col-md-6 text-right">Total IVA $</label>
+                                <label class="col-form-label col-md-6 text-right">Total IVA BS</label>
                                 <div class="col-md-6">
                                     <input id="total_iva" name="total_iva" type="text" class="form-control text-center"
                                         readonly>
@@ -205,9 +205,8 @@
                             </div>
                             <div class="col-6"></div>
                             <div class="form-group row col-6">
-                                <label class="col-form-label col-md-6 text-right">Total + IVA $</label>
                                 <div class="col-md-6">
-                                    <input id="total_mas_iva" name="total_mas_iva" type="text"
+                                    <input id="total_mas_iva" name="total_mas_iva" type="hidden"
                                         class="form-control text-center" readonly>
                                 </div>
                             </div>
@@ -240,7 +239,7 @@
 <script src="<?=base_url()?>/js/programacion.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_fac.js"></script>
 <script src="<?=base_url()?>/js/bien/cal_transito.js"></script>
-<script src="<?=base_url()?>/js/bien/guardar_fact.js"></script>
+<script src="<?=base_url()?>/js/bien/guar_transito.js"></script>
 <script type="text/javascript">
 function mayusculas(e) {
     e.value = e.value.toUpperCase();
