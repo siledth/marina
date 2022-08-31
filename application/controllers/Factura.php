@@ -273,5 +273,39 @@ class Factura extends CI_Controller {
         $this->load->view('factura/ver_recb2', $data);
         $this->load->view('templates/footer.php');
     }
-    
+
+    ///////////////////////TRANSITO///////////////////////////////
+    public function transito(){		
+		if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos();
+        $data['time']=date("d-m-Y");
+        $data['fuente'] = $this->Programacion_model->consulta_part_pres();
+        $data['tarifa'] = $this->Programacion_model->consulta_tarifa();
+        $data['mat'] = $this->Programacion_model->consulta_matricula();
+        $data['iva'] 	= $this->Programacion_model->consulta_iva();
+        $data['dolar'] 	= $this->Programacion_model->consulta_dolar();
+        $data['banco'] 	= $this->Programacion_model->consulta_banco();
+
+        $data['banco'] = $this->Mensualidades_model->ver_banco(); 
+        $data['tipoPago'] = $this->Mensualidades_model->ver_tipPago(); 
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('transitorio/factura_transito.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+    ////////////////anular transito
+    public function anutransito(){		
+		if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['time']=date("d-m-Y");
+
+        $data['facturas'] 	= $this->Programacion_model->consulta_facturas_transito();
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('transitorio/anular.php', $data);
+        $this->load->view('templates/footer.php');
+	}
 }

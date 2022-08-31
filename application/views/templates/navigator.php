@@ -106,7 +106,18 @@
                         </li>
                     </ul>
                 </li>
-              
+                <li class="has-sub">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fas fa-ship fa-lg"></i>
+                        <span>Transitorio</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="<?= base_url() ?>index.php/Factura/transito">Registrar</a></li>
+                        <li><a href="<?= base_url() ?>index.php/Factura/anutransito">Ver</a></li>
+                        <!-- <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver / Anular</a></li> -->
+                    </ul>
+                </li>
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>

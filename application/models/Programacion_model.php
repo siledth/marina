@@ -314,7 +314,7 @@
                 return true;
             //}
         }
-
+//para ver solo facturas por mensualidades
         function consulta_facturas(){
             $this->db->select("f.id,
                                f.nombre,
@@ -325,7 +325,38 @@
 	                           e.descripcion as estatus");
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
             $this->db->join('buque b', 'b.matricula = f.matricula', 'left');
+            $this->db->join('deta_factura c', 'c.matricula = f.matricula', 'left');
+            $this->db->where('c.id_tarifa <=', '2');
+            $this->db->group_by("f.id,
+            f.nombre,
+            f.matricula,
+            b.nombrebuque,
+            f.total_bs,
+            e.id_status,
+            e.descripcion ");
             $query = $this->db->get('factura f');
+            
+            return $result = $query->result_array();
+
+        }
+/////////////vwe  facturatransito y otros
+        function consulta_facturas_transito(){
+            $this->db->select("f.id,
+                               f.nombre,
+                               f.matricula,
+                              f.id_status,
+                               f.total_bs as total,
+                               ");
+            $this->db->join('deta_factura c', 'c.matricula = f.matricula', 'left');
+            $this->db->where('c.id_tarifa >', '3');
+            $this->db->group_by("f.id,
+            f.nombre,
+            f.matricula,
+            f.id_status,
+            f.total_bs,
+            ");
+            $query = $this->db->get('factura f');
+            
             return $result = $query->result_array();
 
         }

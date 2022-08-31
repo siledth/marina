@@ -162,7 +162,7 @@ class Buque extends CI_Controller {
             'autor' 	    => $this->input->post('autor'), 
             "matricula"     => $matricula, 
                     
-        );
+        ); 
 
         $propietarios = array( //propietarios
             'cedula'   	 => $this->input->post('cedula'),

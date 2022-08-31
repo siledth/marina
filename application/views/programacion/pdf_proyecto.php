@@ -14,7 +14,7 @@
                                         <p class="f-s-16">RIF.: <?=$rif?> <br> </p>
                                     </blockquote>
                                 </div>
-                            </div>
+                            </div> 
                         </div>
                         <?php foreach($inf_1 as $inf_1):?><?php endforeach;?>
                        
