@@ -33,7 +33,7 @@
                                                     <td><?=$lista['total']?></td>
                                                     
                                                     <td>
-                                                        <a class="button" href="<?php echo base_url() ?>index.php/Factura/verFactura?id=<?php echo $lista['id'];?>" >
+                                                        <a class="button" href="<?php echo base_url() ?>index.php/Factura/verFactura_transito?id=<?php echo $lista['id'];?>" >
                                                             <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
                                                         <a/>
                                                         <?php if ($lista['id_status'] == 0): ?>

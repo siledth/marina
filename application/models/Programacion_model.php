@@ -374,7 +374,8 @@
             return $result = $query->result_array();
 
         }
-
+        
+///ver factura general
         function ver_factura($data){
             //print_r($data);die;
             $this->db->select("f.id,
