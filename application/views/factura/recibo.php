@@ -46,7 +46,7 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Telefono </label>
-                                <input type="text" name="tele_1" id="tele_1" class="form-control" >
+                                <input type="text" name="tele_1" id="tele_1" class="form-control">
                             </div>
 
 
@@ -56,20 +56,22 @@
                             </div>
                             <div class="col-3">
                                 <label>Tipo de pago <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <select class="form-control" name="id_tipo_pago" id="id_tipo_pago" onclick="llenar_pago();">
+                                <select class="form-control" name="id_tipo_pago" id="id_tipo_pago"
+                                    onclick="llenar_pago();">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($tipoPago as $data): ?>
-                                        <option value="<?=$data['id_tipo_pago']?>"><?=$data['descripcion']?></option>
+                                    <option value="<?=$data['id_tipo_pago']?>"><?=$data['descripcion']?></option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div> 
-                            <div class="row" id='campos' style="display: none;" >
+                            </div>
+                            <div class="row" id='campos' style="display: none;">
                                 <div class="col-4">
                                     <label>Banco</label>
                                     <select class="form-control" name="id_banco" id="id_banco">
                                         <option value="0">Seleccione</option>
                                         <?php foreach ($banco as $data): ?>
-                                            <option value="<?=$data['id_banco']?>"><?=$data['codigo_b']?> / <?=$data['nombre_b']?></option>
+                                        <option value="<?=$data['id_banco']?>"><?=$data['codigo_b']?> /
+                                            <?=$data['nombre_b']?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -82,7 +84,7 @@
                                     <input class="form-control" type="date" name="fechatrnas" id="fechatrnas">
                                 </div>
                             </div>
-                                <!-- <div class="form-group col-10">
+                            <!-- <div class="form-group col-10">
                                     <div class="radio radio-css">
                                         <input type="radio" name="radio_css" id="cssRadio1" value="1" />
                                         <label for="cssRadio1">Efectivo</label>
@@ -112,10 +114,10 @@
                                 </div> -->
                             <div class="form-group col-3">
                                 <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <?php foreach ($dolar as $data): ?>
-                                <input type="text" name="dolar" id="dolar" class="form-control"
-                                    value="<?=$data['desc_dolarc']?>">
-                                <?php endforeach; ?>
+                                
+                                <input type="text" name="dolar" id="dolar" class="form-control" onchange="calcular_bienes();">
+                                   
+                                
                             </div>
 
                             <div class="col-12">
@@ -138,11 +140,11 @@
                                 </select>
                             </div>
                             <div class="form-group col-2">
-                            <label>Dias  </label>
+                                <label>Dias </label>
                                 <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control"
                                     onkeypress="return valideKey(event);" value="30">
-                                    <b title=""
-                                        style="color:red"> Solo debe cambiar si es PAGO por días * <i class="fas fa-info-circle"></i></b>
+                                <b title="" style="color:red"> Solo debe cambiar si es PAGO por días * <i
+                                        class="fas fa-info-circle"></i></b>
                             </div>
                             <div class="form-group col-2">
                                 <label>Pies <b title="Campo Obligatorio" style="color:red">*</b></label>
@@ -160,9 +162,13 @@
                                 <select style="width: 100%;" name="id_alicuota_iva" id="id_alicuota_iva"
                                     onchange="calcular_bienes();" class="form-control">
                                     <option value="">SELECCIONE</option>
-                                    <option value="0">0</option> 
-                                   
+                                    <option value="0">0</option>
+
                                 </select>
+                            </div>
+                            <div class="form-group col-2">
+                                <label>Bolivar<b style="color:red">*</b></label>
+                                <input id="bolivar_estimado"   name="bolivar_estimado" type="text" class="form-control" readonly>
                             </div>
                             <div class="form-group col-2">
                                 <label>Monto IVA Estimado<b style="color:red">*</b></label>
@@ -228,9 +234,9 @@
                             </div>
                             <div class="col-6"></div>
                             <div class="form-group row col-6">
-                                <label class="col-form-label col-md-6 text-right">Total + IVA $</label>
+                              
                                 <div class="col-md-6">
-                                    <input id="total_mas_iva" name="total_mas_iva" type="text"
+                                    <input id="total_mas_iva" name="total_mas_iva" type="hidden"
                                         class="form-control text-center" readonly>
                                 </div>
                             </div>
@@ -256,9 +262,9 @@
                         </div>
                 </div>
                 </form>
-            </div> 
+            </div>
         </div>
-    </div> 
+    </div>
 </div>
 <script src="<?=base_url()?>/js/programacion.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_fac.js"></script>

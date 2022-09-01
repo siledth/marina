@@ -38,6 +38,7 @@
                                v.id_propiet");
             $this->db->join('tripulacion e', 'e.id_buque = f.id', 'left');
             $this->db->join('propiet v', 'v.id_propiet = f.id', 'left');
+           
             $query = $this->db->get('buque f');
             return $result = $query->result_array();
         }
@@ -408,10 +409,24 @@
                                b.nombrebuque,
                                f.total_mas_iva as total,
                                e.id_status,
-	                           e.descripcion as estatus");
+	                           e.descripcion as estatus,
+                               f.fechaingreso");
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
             $this->db->join('buque b', 'b.matricula = f.matricula', 'left');
+            $this->db->join('deta_recibo c', 'c.matricula = f.matricula', 'left');
+            $this->db->where('c.id_tarifa <=', '2');       
+            $this->db->group_by("f.id,            
+                               f.nombre, 
+                               f.matricula,
+                               b.nombrebuque,
+                               f.total_mas_iva  ,
+                               e.id_status,
+	                           e.descripcion,
+                               f.fechaingreso
+            ");
+            $this->db->order_by('f.id desc');
             $query = $this->db->get('recibo f');
+       
             return $result = $query->result_array();
 
         }

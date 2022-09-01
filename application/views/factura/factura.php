@@ -84,10 +84,10 @@
                     </div>
                             <div class="form-group col-3">
                                 <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <?php foreach ($dolar as $data): ?>
+                                
                                 <input type="text" name="dolar" id="dolar" class="form-control"
-                                    value="<?=$data['desc_dolarc']?>">
-                                <?php endforeach; ?>
+                                    value="">
+                                
                             </div>
 
                             <div class="col-12">

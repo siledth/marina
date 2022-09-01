@@ -134,7 +134,7 @@
                         $this->db->from('public.mensualidad m');
                         $this->db->join('buque b', 'b.matricula = m.matricula ', 'left');
                         $this->db->join('estatus e', 'e.id_status = m.id_status', 'left');
-                        $this->db->order_by("m.id_mensualidad", "Asc");
+                        $this->db->order_by("m.id_mensualidad", "desc");
                         $query = $this->db->get();
                         $resultado = $query->result_array();
             return $resultado;
