@@ -12,7 +12,8 @@
                                 <div class="card card-outline-danger text-center bg-white">
                                     <h4 class="mt-2"> <b>Corporación Ormux 2020, CA</b></h4>
                                     <h5>RIF.: <?=$rif?></h5>
-                                    <h5>Fecha.: <?=$time ?> </h5>
+                                    <h5>Fecha.: <?=$time ?> </h5> 
+                                    <h4 class="mt-2"> <b>Facturas Para Embarcaciones                       </b></h4>
                                 </div>
                             </div>
                             <div class="form-group col-2">
@@ -139,6 +140,10 @@
                                 </select>
                             </div>
                             <div class="form-group col-2">
+                                <label>Bolivar<b style="color:red">*</b></label>
+                                <input id="bolivar_estimado"   name="bolivar_estimado" type="text" class="form-control" readonly>
+                            </div>
+                            <div class="form-group col-2">
                                 <label>Monto IVA Estimado<b style="color:red">*</b></label>
                                 <input id="iva_estimado" name="iva_estimado" type="text" class="form-control" readonly>
                             </div>
@@ -201,9 +206,9 @@
                             </div>
                             <div class="col-6"></div>
                             <div class="form-group row col-6">
-                                <label class="col-form-label col-md-6 text-right">Total + IVA $</label>
+                          
                                 <div class="col-md-6">
-                                    <input id="total_mas_iva" name="total_mas_iva" type="text"
+                                    <input id="total_mas_iva" name="total_mas_iva" type="hidden"
                                         class="form-control text-center" readonly>
                                 </div>
                             </div>
@@ -231,7 +236,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 <script src="<?=base_url()?>/js/programacion.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_fac.js"></script>

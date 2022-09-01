@@ -28,7 +28,8 @@ function calcular_bienes(){
     let id_tarifa = explode[0];
     let tarifa = explode[1];
     let idd_tarida = explode[2];
-
+    var  dolars = $("#dolar").val();
+    var canon2 = $('#canon').val();
    // $('#cant_total_distribuir').val(cant_total_distribuir);
 
     /*if (pies < 1) {
@@ -90,12 +91,23 @@ function calcular_bienes(){
                 var canon = Intl.NumberFormat("de-DE").format(tota2);
                 $('#canon').val(canon);
             }
+            var newstr5 = canon2.replace('.', "");
+            var newstr6 = newstr5.replace('.', "");
+            var newstr7 = newstr6.replace('.', "");
+            var newstr8 = newstr7.replace('.', "");
+            var canon3 = newstr8.replace(',', ".");
+                        
+          
+            var bolivares = (canon3 * dolars);
+            var boli_tota2 = parseFloat(bolivares).toFixed(2);
+            var boli_tota3 = Intl.NumberFormat("de-DE").format(boli_tota2);
+            $('#bolivar_estimado').val(boli_tota3);
 
             var id_alicuota_iva = $('#id_alicuota_iva').val();
             var separar = id_alicuota_iva.split("/");
             var porcentaje = parseFloat(separar['0']);
 
-            var newstr5 = canon.replace('.', "");
+            var newstr5 = boli_tota3.replace('.', "");
             var newstr6 = newstr5.replace('.', "");
             var newstr7 = newstr6.replace('.', "");
             var newstr8 = newstr7.replace('.', "");

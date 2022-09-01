@@ -13,7 +13,10 @@
                                 p.tele_1');
             $this->db->where('b.matricula', $data['matricular']);
             $this->db->where('p.tipo', 'principal');
+            $this->db->where('desincorporar !=', '0');
+            
             $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
+        
             $query = $this->db->get('buque b');
             return $query->row_array();
         }
@@ -63,7 +66,8 @@
         }
         public function consulta_tarifa(){
             $this->db->select('*');
-            $this->db->order_by('id_tarifa desc');
+            $this->db->order_by('id_tarifa asc');
+            
             $query = $this->db->get('public.tarifa');
             return $result = $query->result_array();
         }

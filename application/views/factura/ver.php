@@ -141,7 +141,7 @@
                         </div>
                         <div class="col-6"></div>
                         <div class="form-group row col-6">
-                            <label class="col-form-label col-md-6 text-right">Total IVA </label>
+                            <label class="col-form-label col-md-6 text-right"> IVA </label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control text-center"
                                     value="<?=$factura_ind['total_iva']?>" readonly>
@@ -149,10 +149,10 @@
                         </div>
                         <div class="col-6"></div>
                         <div class="form-group row col-6">
-                            <label class="col-form-label col-md-6 text-right">Total + IVA </label>
+                            <label class="col-form-label col-md-6 text-right">Total BS </label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control text-center"
-                                    value="<?=$factura_ind['total_mas_iva']?>" readonly>
+                                    value="<?=$factura_ind['total_bs']?>" readonly>
                             </div>
                         </div>
                         <div class="col-6"></div>
