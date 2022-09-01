@@ -9,6 +9,7 @@ class Factura extends CI_Controller {
 	   	echo json_encode($data);
     }
 
+
     public function Fac(){		
 		if(!$this->session->userdata('session'))redirect('login');
         $data['descripcion'] = $this->session->userdata('unidad');
@@ -380,6 +381,7 @@ class Factura extends CI_Controller {
         $data = $this->Programacion_model->save_factura($acc_cargar,$dato1,$p_items);
         echo json_encode($data);
     }
+    
     ////////////////recibo transito
     public function recibo_transito(){		
 		if(!$this->session->userdata('session'))redirect('login');
@@ -401,5 +403,92 @@ class Factura extends CI_Controller {
 		$this->load->view('transitorio/crear_recibo_transito.php', $data);
         $this->load->view('templates/footer.php');
 	}
+	public function cons_nro_recibo(){
+        if(!$this->session->userdata('session'))redirect('login');
+	   	$data =	$this->Programacion_model->cons_nro_recib();
+	   	echo json_encode($data);
+    }
+    public function registrar_transito_recibo(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $acc_cargar = 1;    
+        $nombre     = $this->input->post("nombrep");
+        $matricula  = $this->input->post("matricular");
+        $cedula  = $this->input->post("cedula");
+        $tele_1     = $this->input->post("tele_1");   
+        $nombrep = $this->input->post("nombrebarco");
+        $cedulap  = $this->input->post("pies");    
+        
+       
+        $dato1 = array(
+            "nro_factura"   => $this->input->post('numfact'),
+            "nombre"        => $this->input->post('nombrep'),
+            "matricula"     => $this->input->post('matricular'),
+            "cedula"        => $this->input->post('cedula'),
+            "nombrep"        => $this->input->post('nombrebarco'),
+            
+            "tele_1"        => $this->input->post('tele_1'),
+            "total_iva"     => $this->input->post('total_iva'),
+            "total_mas_iva" => $this->input->post('total_mas_iva'),
+            "total_bs"      => $this->input->post('total_bs'),
+            "fechaingreso"  => date("Y-m-d"),
+            "id_status"     => 0,
+            "fecha_update"  => date("Y-m-d"),
+            "valor_iva"   => $this->input->post('dolar'),
+         
+            'id_tipo_pago' 		=> $this->input->post('id_tipo_pago'),
+            'id_banco' 	        => $this->input->post('id_banco'),
+            'nro_referencia' 	=> $this->input->POST('nro_referencia'),
+            'fechatrnas' 		=> $this->input->POST('fechatrnas'),
+        );
+        //print_r($dato1);die;
+        
+        $p_items = array( //factura
+            'pies'   		    => $this->input->post('pies'),
+            'ob'          	    => $this->input->post('ob'),
+            'tarifa'            => $this->input->post('tarifa'),
+            'dia' 	            => $this->input->post('dia'),  
+            'canon' 	        => $this->input->post('canon'), 
+            'monto_estimado' 	=> $this->input->post('monto_estimado'), 
+            'matricula' 	    => $this->input->post('matricularr'),        
+        );
+        $data = $this->Programacion_model->save_recibo($acc_cargar,$dato1,$p_items);
+        echo json_encode($data);
+    }
+    public function anutransitorecibo(){		
+		if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['time']=date("d-m-Y");
 
+        $data['facturas'] 	= $this->Programacion_model->consulta_recibo_transito();
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('transitorio/anulartransii.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+    public function ver_recibo_transito(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos();
+        $data['time']=date("d-m-Y");
+        
+        $id_factura = $this->input->get('id');
+
+        $data['factura_ind'] = $this->Programacion_model->ver_recibo_transito($id_factura);
+        $data['factura_ind_tabla'] = $this->Programacion_model->ver_recibotrs_tabla($id_factura);
+        
+        $this->load->view('templates/header.php');
+        
+        $this->load->view('templates/navigator.php');
+        $this->load->view('transitorio/ver_recibo_transito.php', $data);
+        $this->load->view('templates/footer.php');
+    }
+
+    public function anular_trasito(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data = $this->input->post();
+        $data = $this->Programacion_model->anular_trasitos($data);
+        echo json_encode($data);
+    }
 }

@@ -13,6 +13,7 @@
                                     <h4 class="mt-2"> <b>Corporación Ormux 2020, CA</b></h4>
                                     <h5>RIF.: <?=$rif?></h5>
                                     <h5>Fecha.: <?=$time ?> </h5>
+                                    <h4 class="mt-2"> <b>Recibos Para Embarcaciones Transitoria</b></h4>
                                 </div>
                             </div>
                             <div class="form-group col-2">
@@ -23,12 +24,12 @@
                             <div class="form-group col-4">
                                 <label>Nombre Embarcación <b title="Campo Obligatorio"
                                         style="color:red">*</b></label>
-                                <input type="text" name="nombrebarco" id="nombrebarco" class="form-control" >
+                                <input type="text" name="nombrebarco" id="nombrebarco" onkeyup="mayusculas(this);" class="form-control" >
                             </div>
                             <div class="form-group col-4">
                                 <label>Matricula <b title="Campo Obligatorio"
                                         style="color:red">*</b></label>
-                                <input type="text" name="matricular" id="matricular" class="form-control" >
+                                <input type="text" name="matricular" id="matricular" onkeyup="mayusculas(this);" class="form-control" >
                             </div>
                             
                             
@@ -38,11 +39,11 @@
                             </div>
                             <div class="col-3">
                                 <label>Cédula</label>
-                                <input type="text" name="cedula" id="cedula" class="form-control" >
+                                <input type="text" name="cedula" id="cedula" class="form-control" onkeyup="mayusculas(this);">
                             </div>
                             <div class="col-3">
                                 <label>Nombre y Apellido</label>
-                                <input type="text" name="nombrep" id="nombrep" class="form-control" >
+                                <input type="text" name="nombrep" id="nombrep" class="form-control" onkeyup="mayusculas(this);" >
                             </div>
                             <div class="form-group col-3">
                                 <label>Telefono </label>
@@ -81,13 +82,7 @@
                             <input class="form-control" type="date" name="fechatrnas" id="fechatrnas">
                         </div>
                     </div>
-                            <div class="form-group col-3">
-                                <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
-                               
-                                <input type="text" onchange="calcular_bienes();" name="dolar" id="dolar" class="form-control"
-                                    >
-                                
-                            </div>
+                            
 
                             <div class="col-12">
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
@@ -126,31 +121,33 @@
                                         style="color:red">*</b></label>
                                 <input type="text" id="ob" name="ob" onkeyup="mayusculas(this);" class="form-control">
                             </div>
-
                             <div class="form-group col-2">
-                                <label>Alícuota IVA Estimado<b style="color:red">*</b></label><br>
-                                <select style="width: 100%;" name="id_alicuota_iva" id="id_alicuota_iva"
-                                    onchange="calcular_bienes();" class="form-control">
-                                    <option value="">SELECCIONE</option>
-                                    <?php foreach ($iva as $data): ?>
-                                    <option value="<?=$data['desc_alicuota_iva']?>/<?=$data['desc_porcentaj']?>">
-                                        <?=$data['desc_porcentaj']?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <label>Dolar BCV <b title="Campo Obligatorio" style="color:red">*</b></label>
+                               
+                                <input type="text" onchange="calcular_bienes();" name="dolar" id="dolar" class="form-control"
+                                    >
+                                
                             </div>
                             <div class="form-group col-2">
                                 <label>Bolivar<b style="color:red">*</b></label>
                                 <input id="bolivar_estimado"   name="bolivar_estimado" type="text" class="form-control" readonly>
-                            </div>
-                            <div class="form-group col-2">
-                                <label>Monto IVA Estimado<b style="color:red">*</b></label>
-                                <input id="iva_estimado" name="iva_estimado" type="text" class="form-control" readonly>
                             </div>
                             <div class="form-group col-3">
                                 <label>Monto total Estimado<b style="color:red">*</b></label>
                                 <input id="monto_estimado" name="monto_estimado" type="text" class="form-control"
                                     readonly>
                             </div>
+                            <div class="form-group col-1">
+                                
+                                <input type="hidden" id="id_alicuota_iva" name="id_alicuota_iva" value="0"  class="form-control">
+                                
+                            </div>
+                     
+                            <div class="form-group col-2">
+                                
+                                <input id="iva_estimado" name="iva_estimado" type="hidden" class="form-control" readonly>
+                            </div>
+                          
                             <div class="col-5 mt-2">
                                 <div class="card card-outline-danger text-center bg-white">
                                     <div class="card-block">
@@ -188,7 +185,7 @@
                                             <th>Tarifa $</th>
                                             <th>Dias</th>
                                             <th>Ref Total $</th>
-                                            <th>Total + iva BS</th>
+                                            <th>Total estimado BS</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -239,7 +236,7 @@
 <script src="<?=base_url()?>/js/programacion.js"></script>
 <script src="<?=base_url()?>/js/bien/agregar_fac.js"></script>
 <script src="<?=base_url()?>/js/bien/cal_transito.js"></script>
-<script src="<?=base_url()?>/js/bien/guar_transito.js"></script>
+<script src="<?=base_url()?>/js/bien/reg_recib_trasi.js"></script>
 <script type="text/javascript">
 function mayusculas(e) {
     e.value = e.value.toUpperCase();

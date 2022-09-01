@@ -211,6 +211,13 @@
             $response = $query->row_array();
             return $response;
         }
+        public function cons_nro_recib(){
+            $this->db->select('id');
+            $this->db->order_by('r.id desc');
+            $query = $this->db->get('public.recibo r');
+            $response = $query->row_array();
+            return $response;
+        }
 
        
         public function save_factura($acc_cargar,$dato1,$p_items){
@@ -269,7 +276,7 @@
             //}
         }
         public function save_recibo($acc_cargar,$dato1,$p_items){
-            //if ($acc_cargar == '1') {
+           
                 $quers =$this->db->insert('public.recibo', $dato1);
                 if ($quers) {
                     $id = $this->db->insert_id();
@@ -320,7 +327,7 @@
                     }                    
                 }
                 return true;
-            //}
+            
         }
 //para ver solo facturas por mensualidades
         function consulta_facturas(){
@@ -364,6 +371,28 @@
             f.total_bs,
             ");
             $query = $this->db->get('factura f');
+            
+            return $result = $query->result_array();
+
+        }
+        function consulta_recibo_transito(){
+            $this->db->select("f.id,
+                               f.nombre,
+                               f.matricula,
+                               f.nombrep,
+                              f.id_status,
+                               f.total_bs as total,
+                               ");
+            $this->db->join('deta_recibo c', 'c.matricula = f.matricula', 'left');
+            $this->db->where('c.id_tarifa >', '3');
+            $this->db->group_by("f.id,
+            f.nombre,
+            f.matricula,
+            f.id_status,
+            f.total_bs,
+            f.nombrep
+            ");
+            $query = $this->db->get('recibo f');
             
             return $result = $query->result_array();
 
@@ -422,6 +451,54 @@
             $query = $this->db->get('factura f');
             return $result = $query->row_array();
         }
+        ////recibo transito
+        function ver_recibo_transito($data){
+            //print_r($data);die;
+            $this->db->select("f.id,
+                               f.nro_factura,                       
+                               f.nombre,
+                               f.tele_1,
+                               f.fechaingreso,
+                               f.matricula,
+                               f.nombrep, 
+                               f.cedula,
+                               f.total_bs as total,
+                               f.id_tipo_pago,
+                               tp.descripcion tipopago,
+                               f.nro_referencia,
+                                f.id_banco,
+                               concat(ba.codigo_b, ' / ', ba.nombre_b) as banco,
+                               f.fechatrnas,
+                                
+                               f.valor_iva,
+                               f.total_iva,
+                               f.total_mas_iva,
+                               f.total_bs,
+	                           e.descripcion,
+                               f.id_status,
+                               
+                               d.ob");
+           
+            
+            $this->db->join('deta_recibo d', 'd.matricula = f.matricula', 'left');
+            $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
+            
+            $this->db->join('tipopago tp', 'tp.id_tipo_pago = f.id_tipo_pago', 'left');
+            $this->db->join('banco ba', 'ba.id_banco = f.id_banco', 'left');
+            $this->db->where('f.id',$data);
+           
+            $query = $this->db->get('recibo f');
+            return $result = $query->row_array();
+        }
+        function ver_recibotrs_tabla($data){
+            //print_r($data);die;
+            $this->db->select("df.*, d.desc_tarifa as tarifa");
+            $this->db->join('public.tarifa d', 'd.id_tarifa = df.id_tarifa', 'left');
+            $this->db->where('df.id_fact',$data);
+            $query = $this->db->get('deta_recibo df');
+            return $result = $query->result_array();
+        }
+
 ///ver factura general
         function ver_factura($data){
             //print_r($data);die;
@@ -518,6 +595,13 @@
                             'fecha_update' => date('Y-m-d h:i:s'));
             $this->db->where('id', $data['id_factura']);
             $update = $this->db->update('factura', $data1);
+            return true;
+        }
+        function anular_trasitos($data){
+            $data1 = array('id_status' => '1',
+                            'fecha_update' => date('Y-m-d h:i:s'));
+            $this->db->where('id', $data['id_factura']);
+            $update = $this->db->update('recibo', $data1);
             return true;
         }
         public function cons_nro_recibo(){

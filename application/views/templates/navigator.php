@@ -106,36 +106,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="has-sub">
-                    <a href="javascript:;">
-                        <b class="caret"></b>
-                        <i class="fas fa-file-invoice-dollar fa-lg"></i>
-                        <span>Transito</span>
-                    </a>
-
-                    <ul class="sub-menu">
-                        <li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                                <span>Factura</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li><a href="<?= base_url() ?>index.php/Factura/transito">Registrar</a></li>
-                                <li><a href="<?= base_url() ?>index.php/Factura/anutransito">Ver</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                                <span>Recibo</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li><a href="<?= base_url() ?>index.php/Factura/recibo_transito">Registrar</a></li>
-                                <li><a href="<?= base_url() ?>index.php/Factura/ver_recibo_transito">Ver </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+               
 
                 
                 <li class="has-sub">
@@ -180,6 +151,36 @@
 
             </ul>
             </li>
+            <li class="has-sub">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fas fa-file-invoice-dollar fa-lg"></i>
+                        <span>Transito</span>
+                    </a>
+
+                    <ul class="sub-menu">
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <span>Factura</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="<?= base_url() ?>index.php/Factura/transito">Registrar</a></li>
+                                <li><a href="<?= base_url() ?>index.php/Factura/anutransito">Ver</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <span>Recibo</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="<?= base_url() ?>index.php/Factura/recibo_transito">Registrar</a></li>
+                                <li><a href="<?= base_url() ?>index.php/Factura/anutransitorecibo">Ver </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
             <li class="has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>

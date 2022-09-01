@@ -13,6 +13,7 @@
                                     <h4 class="mt-2"> <b>Corporación Ormux 2020, CA</b></h4>
                                     <h5>RIF.: <?=$rif?></h5>
                                     <h5>Fecha.: <?=$time ?> </h5>
+                                    <h4 class="mt-2"> <b>Facturas Para Embarcaciones Transitoria</b></h4>
                                 </div>
                             </div>
                             <div class="form-group col-2">

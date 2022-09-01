@@ -1,7 +1,7 @@
 $(document).ready(function() {
     //para consultar y crear el numero de factura
     var base_url =
-        window.location.origin + "/marina/index.php/Factura/cons_nro_factura";
+        window.location.origin + "/marina/index.php/Factura/cons_nro_recibo";
 
     $.ajax({
         url: base_url,
@@ -25,7 +25,7 @@ $(document).ready(function() {
                 }
                 return number + ""; // siempre devuelve tipo cadena
             }
-            $("#numfact").val(zeroFill(numero, 10));
+            $("#numfact").val(zeroFill(numero, 5));
             //console.log(zeroFill(numero, 5));
         },
     });
@@ -49,7 +49,7 @@ function guardar_bien() {
                 event.preventDefault();
                 var datos = new FormData($("#reg_bien")[0]);
                 var base_url =
-                    window.location.origin + "/marina/index.php/Factura/registrar_transito";
+                    window.location.origin + "/marina/index.php/Factura/registrar_transito_recibo";
                 //   var base_url = '/index.php/Programacion/registrar_bien';
                 $.ajax({
                     url: base_url,
@@ -95,7 +95,7 @@ function llenar_pago() {
     } else {
         $("#hab_campo_esp").hide();
     }
-}*/ 
+}*/
 
 function anular_factura(id_fact) {
     event.preventDefault();
@@ -114,7 +114,7 @@ function anular_factura(id_fact) {
                 var id_factura = id_fact;
 
                 var base_url =
-                    window.location.origin + "/marina/index.php/Factura/anular_factura";
+                    window.location.origin + "/marina/index.php/Factura/anular_trasito";
 
                 $.ajax({
                     url: base_url,
