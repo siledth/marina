@@ -222,19 +222,21 @@
 							<input class="form-control" type="text" name="pies_a" id="pies_a" readonly>
 						</div>
                         <div class="form-group col-2">
-							<label>Días</label>
-							<input class="form-control" type="text" name="dias_a" id="dias_a" readonly>
+							<label></label>
+							<input class="form-control" type="hidden" name="dias_a" id="dias_a" readonly>
 						</div>
 						<div class="form-group col-4">
 							<label>Tarifa</label>
-                            <input class="form-control" type="text" name="id_tarifa_a" id="id_tarifa_a" readonly>
+                            <input class="form-control" type="hidden" name="id_tarifa_a" id="id_tarifa_a" readonly>
 							<input class="form-control" type="text" name="tarifa_a" id="tarifa_a" readonly>
+                            <input class="form-control" type="hidden" name="tarifa_a1" id="tarifa_a1" readonly>
 						</div>
                         <div class="form-group col-2">
-							<label>Valor Dolar</label>
-                            <input class="form-control" type="hidden" name="id_dolar_a" id="id_dolar_a" readonly>
-							<input class="form-control" type="text" name="dolar_a" id="dolar_a" readonly>
+							<label>Valor Dola</label>
+                            <input class="form-control" type="hidden" name="id_dolar_a" id="id_dolar_a" value="1" readonly>
+							<input class="form-control" type="text" name="dolar_a" id="dolar_a" onchange="calcular_dolar_a();">
 						</div>
+                        
                         <div class="form-group col-3">
 							<label>Canon</label>
 							<input class="form-control" type="text" name="canon_a" id="canon_a" readonly>
@@ -249,7 +251,7 @@
 						</div>
 						<div class="form-group col-3">
 							<label>Cantidad a pagar Bs. F</label>
-							<input class="form-control" type="text" id="cantidad_pagar_bs_a" name="cantidad_pagar_bs_a" onblur="calcular_bol_a();" onkeypress="return valideKey(event);">
+							<input class="form-control" type="text" id="cantidad_pagar_bs_a" name="cantidad_pagar_bs_a"  onkeypress="return valideKey(event);" readonly>
 						</div>
                         <div class="form-group col-3">
 							<label>Cantidad restante $</label>
@@ -287,6 +289,10 @@
                             <label>Fecha de Tranferencia:</label>
                             <input class="form-control" type="date" name="fechatrnas_a" id="fechatrnas_a">
                         </div>
+                    </div>
+                    <div class="form-group col-3">
+                    <label>Nota</label>
+                    <textarea name="nota_a" id="nota_a" rows="5" cols="100"></textarea>
                     </div>
                 </form>
             </div>

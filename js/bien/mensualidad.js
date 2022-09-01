@@ -247,13 +247,32 @@ function guardar_proc_pago() {
 }
 
 //Para adelanto de mensualidades
+function calcular_dolar_a(){
+    var dolar = $('#dolar_a').val();
+    var canon = $('#canon_a').val();
+    
+   /* var newstr = dolar.replace('.', "");
+    var newstr2 = newstr.replace('.', "");
+    var newstr3 = newstr2.replace('.', "");
+    var newstr4 = newstr3.replace('.', "");
+    var dolarr = newstr4.replace('.', ".");*/
+
+    var dolart = (dolar * canon);
+    var dolart1 = parseFloat(dolart).toFixed(2);
+    var bs = Intl.NumberFormat("de-DE").format(dolart1);
+    $('#bs_a').val(bs);
+
+}
+
+
+
+
 function trae_inf() {
     var matricular = $("#matricular").val();
 
     var base_url =
         window.location.origin + "/marina/index.php/mensualidades/listar_info";
-    var base_url2 =
-        window.location.origin + "/marina/index.php/Mensualidades/consultar_dol";
+    
     $.ajax({
         url: base_url,
         method: "post",
@@ -268,6 +287,7 @@ function trae_inf() {
             $("#dias_a").val(response["dia"]);
             $("#tarifa_a").val(response["desc_concepto"]);
             $("#id_tarifa_a").val(response["id_tarifa"]);
+            $("#tarifa_a1").val(response["desc_tarifa"]);
             $("#canon_a").val(response["canon"]);
 
             let canon = response["canon"];
@@ -277,21 +297,7 @@ function trae_inf() {
             var newstr8 = newstr7.replace(".", "");
             var canonn = newstr8.replace(",", ".");
 
-            $.ajax({
-                url: base_url2,
-                method: "post",
-                dataType: "json",
-                success: function(data) {
-                    $("#id_dolar_a").val(data["id_dolar"]);
-                    $("#dolar_a").val(data["desc_dolarc"]);
-                    let dolar = data["desc_dolarc"];
-                    var dolarr = dolar.replace(",", ".");
-                    let calculo = canonn * dolarr;
-                    var calculo_t = parseFloat(calculo).toFixed(2);
-                    var calculo_tt = Intl.NumberFormat("de-DE").format(calculo_t);
-                    $("#bs_a").val(calculo_tt);
-                },
-            });
+           
         },
     });
 }
@@ -308,7 +314,7 @@ function llenar_pago_a() {
 function calcular_bol_a() {
     var cantidad_deu_bs = $("#bs_a").val();
     var cantidad_pagar_bs = $("#cantidad_pagar_bs_a").val();
-    var valor_2 = $("#dolar_a").val();
+    var valor_2 = $("#dolar_1a").val();
 
     var newstr = cantidad_deu_bs.replace(".", "");
     var newstr2 = newstr.replace(".", "");

@@ -249,6 +249,7 @@
                                 b.dia,
                                 b.id_tarifa,
                                 t.desc_concepto,
+                                t.desc_tarifa,
                                 b.canon");
             $this->db->join('propiet p', 'p.id_buque = b.id', 'left');
             $this->db->join('tarifa t', 't.id_tarifa = b.id_tarifa', 'left');
@@ -283,13 +284,14 @@
                         'matricula'    => $data['matricular'],
                         'pies'         => $data['pies_a'],
                         'id_tarifa'    => $data['id_tarifa_a'],
-                        'tarifa'       => $data['id_tarifa_a'],
+                        'tarifa'       => $data['tarifa_a1'],
                         'dia'          => $data['dias_a'],
                         'canon'        => $data['canon_a'],
                         'fecha_deuda'  => $fecha_f_deuda,
                         'id_status'    => $id_estatus,
                         'fecha_update' => date('Y-m-d'),
-                        'id_factura'   => 0
+                        'id_factura'   => 0,
+                        'nota'   => $data['nota_a']
                     );
                 
                 $query = $this->db->insert('public.mensualidad',$data_mens);
