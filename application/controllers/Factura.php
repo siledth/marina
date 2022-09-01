@@ -287,7 +287,7 @@ class Factura extends CI_Controller {
         $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos();
         $data['time']=date("d-m-Y");
         $data['fuente'] = $this->Programacion_model->consulta_part_pres();
-        $data['tarifa'] = $this->Programacion_model->consulta_tarifa();
+        $data['tarifa'] = $this->Programacion_model->consulta_tarifa2();
         $data['mat'] = $this->Programacion_model->consulta_matricula();
         $data['iva'] 	= $this->Programacion_model->consulta_iva();
         $data['dolar'] 	= $this->Programacion_model->consulta_dolar();
@@ -380,4 +380,26 @@ class Factura extends CI_Controller {
         $data = $this->Programacion_model->save_factura($acc_cargar,$dato1,$p_items);
         echo json_encode($data);
     }
+    ////////////////recibo transito
+    public function recibo_transito(){		
+		if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos();
+        $data['time']=date("d-m-Y");
+        $data['fuente'] = $this->Programacion_model->consulta_part_pres();
+        $data['tarifa'] = $this->Programacion_model->consulta_tarifa2();
+        $data['mat'] = $this->Programacion_model->consulta_matricula();
+        $data['iva'] 	= $this->Programacion_model->consulta_iva();
+        $data['dolar'] 	= $this->Programacion_model->consulta_dolar();
+        $data['banco'] 	= $this->Programacion_model->consulta_banco();
+
+        $data['banco'] = $this->Mensualidades_model->ver_banco(); 
+        $data['tipoPago'] = $this->Mensualidades_model->ver_tipPago(); 
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('transitorio/crear_recibo_transito.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+
 }

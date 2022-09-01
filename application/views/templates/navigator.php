@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <ul class="navbar-nav navbar-right"> 
+        <ul class="navbar-nav navbar-right">
             <li></li>
             <li class="dropdown"></li>
             <li class="dropdown navbar-user">
@@ -109,15 +109,35 @@
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>
-                        <i class="fas fa-ship fa-lg"></i>
-                        <span>Transitorio</span>
+                        <i class="fas fa-file-invoice-dollar fa-lg"></i>
+                        <span>Transito</span>
                     </a>
+
                     <ul class="sub-menu">
-                        <li><a href="<?= base_url() ?>index.php/Factura/transito">Registrar</a></li>
-                        <li><a href="<?= base_url() ?>index.php/Factura/anutransito">Ver</a></li>
-                        <!-- <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver / Anular</a></li> -->
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <span>Factura</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="<?= base_url() ?>index.php/Factura/transito">Registrar</a></li>
+                                <li><a href="<?= base_url() ?>index.php/Factura/anutransito">Ver</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <span>Recibo</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="<?= base_url() ?>index.php/Factura/recibo_transito">Registrar</a></li>
+                                <li><a href="<?= base_url() ?>index.php/Factura/ver_recibo_transito">Ver </a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
+
+                
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>
@@ -129,11 +149,11 @@
                         <!-- <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver / Anular</a></li> -->
                     </ul>
                 </li>
-               
-               
+
+
                 <li class="has-sub">
                     <a href="javascript:;">
-                    <b class="caret"></b>
+                        <b class="caret"></b>
                         <i class="fas fa-ship fa-lg"></i>
                         <span> Planilla</span>
                     </a>
@@ -142,73 +162,73 @@
                         <li class="has-sub">
                             <a href="javascript:;">
                                 <b class="caret"></b>
-                                
-                                <li><a href="<?= base_url() ?>index.php/Buque/Plantilla">Registrar</a></li>
-                            </a>
-                            
-                            
-                        </li>
-                        <li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                                
-                                <li><a href="<?= base_url() ?>index.php/Buque/desin">Desincorporar</a></li>
-                            </a>
-                            
-                            
-                        </li>
 
-                    </ul>
+                        <li><a href="<?= base_url() ?>index.php/Buque/Plantilla">Registrar</a></li>
+                        </a>
+
+
                 </li>
                 <li class="has-sub">
                     <a href="javascript:;">
                         <b class="caret"></b>
-                        <i class="fas fa-file-alt fa-lg"></i>
-                        <span> Reporte</span>
-                    </a>
 
-                    <ul class="sub-menu">
-                        <li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                                
-                                <li><a href="<?= base_url() ?>index.php/Reporte/Report">Total Canon</a></li>
-                                <li><a href="<?= base_url() ?>index.php/Reporte/saldoxpagar">Saldo por Pagar</a></li>
-                            </a>
-                            
-                        </li>
-                    </ul>
+                <li><a href="<?= base_url() ?>index.php/Buque/desin">Desincorporar</a></li>
+                </a>
+
+
                 </li>
-                <?php endif; ?>
-                <?php if (($this->session->userdata('perfil') == 1) || ($this->session->userdata('perfil') == 3)) : ?>
-               
-                <?php endif; ?>
-                <?php if (($this->session->userdata('perfil') <= 2)) : ?>
-                <li class="has-sub">
-                    <a href="javascript:;">
-                        <b class="caret"></b>
-                        <i class="ion-gear-b fa-spin" style="background-color:#1E90FF;"></i>
-                        <span>Configuración</span>
-                    </a>
 
-                    <ul class="sub-menu">
-                        <?php if (($this->session->userdata('perfil') <= 2)) : ?>
-
-                        <ul class="sub-menu">
-                            <li class="has-sub">
-                            <li>
-
-                            </li>
-                            <li>
-
-                            </li>
-                            <li>
-
-                            </li>
-                </li>
             </ul>
             </li>
-            
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fas fa-file-alt fa-lg"></i>
+                    <span> Reporte</span>
+                </a>
+
+                <ul class="sub-menu">
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+
+                    <li><a href="<?= base_url() ?>index.php/Reporte/Report">Total Canon</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/saldoxpagar">Saldo por Pagar</a></li>
+                    </a>
+
+            </li>
+            </ul>
+            </li>
+            <?php endif; ?>
+            <?php if (($this->session->userdata('perfil') == 1) || ($this->session->userdata('perfil') == 3)) : ?>
+
+            <?php endif; ?>
+            <?php if (($this->session->userdata('perfil') <= 2)) : ?>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="ion-gear-b fa-spin" style="background-color:#1E90FF;"></i>
+                    <span>Configuración</span>
+                </a>
+
+                <ul class="sub-menu">
+                    <?php if (($this->session->userdata('perfil') <= 2)) : ?>
+
+                    <ul class="sub-menu">
+                        <li class="has-sub">
+                        <li>
+
+                        </li>
+                        <li>
+
+                        </li>
+                        <li>
+
+                        </li>
+            </li>
+            </ul>
+            </li>
+
             <?php endif; ?>
             <?php if (($this->session->userdata('perfil') == 1)) : ?>
             <li class="has-sub">

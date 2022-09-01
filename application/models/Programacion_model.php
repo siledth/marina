@@ -67,6 +67,14 @@
             $query = $this->db->get('public.tarifa');
             return $result = $query->result_array();
         }
+        public function consulta_tarifa2(){
+            $this->db->select('*');
+            $this->db->order_by('id_tarifa desc');
+            $this->db->where('id_tarifa >', '2');
+            $query = $this->db->get('public.tarifa');
+
+            return $result = $query->result_array();
+        }
         public function consulta_matricula(){
             $this->db->select('*');
             $this->db->from('buque ');
