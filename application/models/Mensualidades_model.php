@@ -399,6 +399,7 @@
         } 
 
         public function generar_factura($data){
+            
             $this->db->select("m.id_mensualidad,
                                 m.matricula,
                                 b.nombrebuque,
@@ -422,21 +423,21 @@
             $this->db->order_by("m.id_mensualidad", "Asc");
             $query = $this->db->get();
             $resultado1 = $query->row_array();
-    
+            
             $this->db->select('*');
             $this->db->from('mov_consig mc');
             $this->db->where('mc.id_mensualidad', $data);
             $this->db->order_by('id_mov_consig desc');
             $query = $this->db->get();
             $resultado2 = $query->row_array();
-
+            
             $this->db->select(' max(f.id), f.nro_factura ');
             $this->db->from('factura f');
             $this->db->group_by('f.nro_factura');
             $this->db->order_by('f.nro_factura desc');
             $query = $this->db->get();
             $resultado3 = $query->row_array();
-            
+           
             $number = $resultado3['nro_factura'] + 1;
             $length = 5;
             $nro_factura = substr(str_repeat(0, $length).$number, - $length);

@@ -323,6 +323,13 @@
 <script src="<?= base_url() ?>/js/bien/numeroadelanto.js"></script>
 
 <script type="text/javascript">
+
+        $(document).ready(function() {
+        $("#matricular").select2({
+            dropdownParent: $("#exampleModal1")
+        });
+        });
+
     function valideKey(evt) {
         var code = (evt.which) ? evt.which : evt.keyCode;
         if (code == 8) { // backspace.

@@ -43,7 +43,12 @@ class Factura extends CI_Controller {
         $nombre     = $this->input->post("nombre");
         $matricula  = $this->input->post("matricular");
         $cedula  = $this->input->post("cedula");
-        $tele_1     = $this->input->post("tele_1");    
+        $fechatrnass     = $this->input->post("fechatrnas");
+        if ($fechatrnass =='') {
+            $fechatrnas = date('Y-m-d');
+        }else{
+            $fechatrnas = $fechatrnass;
+        }
         
         /*$dato = $_POST['radio_css'];
 
@@ -62,23 +67,23 @@ class Factura extends CI_Controller {
 		}
         */
         $dato1 = array(
-            "nro_factura"   => $this->input->post('numfact'),
-            "nombre"        => $this->input->post('nombre'),
-            "matricula"     => $this->input->post('matricular'),
-            "cedula"        => $this->input->post('cedula'),
-            "tele_1"        => $this->input->post('tele_1'),
-            "total_iva"     => $this->input->post('total_iva'),
-            "total_mas_iva" => $this->input->post('total_mas_iva'),
-            "total_bs"      => $this->input->post('total_bs'),
-            "fechaingreso"  => date("Y-m-d"),
-            "id_status"     => 0,
-            "fecha_update"  => date("Y-m-d"),
-            "valor_iva"   => $this->input->post('dolar'),
-            "cedula"        => $this->input->post('cedula'),
-            'id_tipo_pago' 		=> $this->input->post('id_tipo_pago'),
+            "nro_factura"       => $this->input->post('numfact'),
+            "nombre"            => $this->input->post('nombre'),
+            "matricula"         => $this->input->post('matricular'),
+            "cedula"            => $this->input->post('cedula'),
+            "tele_1"            => $this->input->post('tele_1'),
+            "total_iva"         => $this->input->post('total_iva'),
+            "total_mas_iva"     => $this->input->post('total_mas_iva'),
+            "total_bs"          => $this->input->post('total_bs'),
+            "fechaingreso"      => date("Y-m-d"),
+            "id_status"         => 2,
+            "fecha_update"      => date("Y-m-d"),
+            "valor_iva"         => $this->input->post('dolar'),
+            "cedula"            => $this->input->post('cedula'),
+            'id_tipo_pago' 	    => $this->input->post('id_tipo_pago'),
             'id_banco' 	        => $this->input->post('id_banco'),
             'nro_referencia' 	=> $this->input->POST('nro_referencia'),
-            'fechatrnas' 		=> $this->input->POST('fechatrnas'),
+            'fechatrnas' 		=> $fechatrnas
         );
         //print_r($dato1);die;
         

@@ -1,8 +1,6 @@
-function trae_inf(){
-    var matricular = $('#matricular').val();
-    
+$('#matricular').on('select2:select', function (e) {
+    var matricular = e.params.data['id'];
     var base_url =window.location.origin+'/marina/index.php/factura/listar_info';
-    var base_url2 =window.location.origin+'/marina/index.php/factura/listar_mens';
 //llenan los datos en la factura del propietario
     $.ajax({
         url: base_url,
@@ -11,14 +9,13 @@ function trae_inf(){
         dataType:'json',
 
         success: function(response){
-            console.log(response);
             $("#cedula").val(response['cedula']);
             $("#nombre").val(response['nombrecom']);
             $("#pies").val(response['pies']);
             $("#tele_1").val(response['tele_1']);
         }
     });
-}
+});
 
 
 function calcular_bienes(){

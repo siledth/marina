@@ -274,9 +274,9 @@ function calcular_dolar_a(){
     $('#bs_a').val(bs);
 }
 
-function trae_inf() {
-    var matricular = $("#matricular").val();
-
+//function trae_inf() {
+$('#matricular').on('select2:select', function (e) {
+    var matricular = e.params.data['id'];
     var base_url =
         window.location.origin + "/marina/index.php/mensualidades/listar_info";
     
@@ -307,7 +307,7 @@ function trae_inf() {
            
         },
     });
-}
+});
 
 function llenar_pago_a() {
     var tipo_pago = $("#id_tipo_pago_a").val();
