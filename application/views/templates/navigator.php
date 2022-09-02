@@ -194,6 +194,7 @@
                             <li class="has-sub">
                                 <a href="javascript:;">
                                     <li><a href="<?= base_url() ?>index.php/Reporte/tt_ing_egr">Totales Ingreso / Egresos</a></li>
+                                    <li><a href="<?= base_url() ?>index.php/Reporte/tt_ing_tar">Totales Ingreso (Tarifas)</a></li>
                                 </a>
                             </li>
                         </ul>

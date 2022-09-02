@@ -323,4 +323,24 @@ class Reporte_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function p_tt_ing_tar($data){
+        $start      = $data['start'];
+        $end        = $data['end'];
+        /*$query = $this->db->query("SELECT t.desc_concepto, sum(to_number(df.monto_estimado ,'999999999999D99')) as total
+                                    from deta_factura df
+                                    left join factura f on f.id = df.id_fact
+                                    left join tarifa t on t.id_tarifa = df.id_tarifa 
+                                    where f.fechaingreso >= '$start' and f.fechaingreso <= '$end'
+                                    group by t.desc_concepto");
+        $factura = $query->result_array();*/
+
+        $query2 = $this->db->query("SELECT t.desc_concepto,  sum(to_number(dr.monto_estimado ,'999999999999D99')) as total
+                                    from deta_recibo dr 
+                                    left join recibo r on r.id = dr.id_fact 
+                                    left join tarifa t on t.id_tarifa = dr.id_tarifa  
+                                    where r.fechaingreso >= '$start' and r.fechaingreso <= '$end'
+                                    group by t.desc_concepto");
+        return $query2->result_array();
+
+    }
 }

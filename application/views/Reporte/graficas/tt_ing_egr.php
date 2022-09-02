@@ -41,7 +41,7 @@
                     <div class="col-lg-6">
                         <div class="panel panel-inverse" data-sortable-id="chart-js-4">
                             <div class="panel-heading">
-                                <h4 class="panel-title">Polar Area Chart</h4>
+                                <h4 class="panel-title text-center">Resultados de la Gráfica</h4>
                             </div>
                             <div class="panel-body">
                                 <div>
