@@ -326,13 +326,6 @@ class Reporte_model extends CI_Model {
     public function p_tt_ing_tar($data){
         $start      = $data['start'];
         $end        = $data['end'];
-        /*$query = $this->db->query("SELECT t.desc_concepto, sum(to_number(df.monto_estimado ,'999999999999D99')) as total
-                                    from deta_factura df
-                                    left join factura f on f.id = df.id_fact
-                                    left join tarifa t on t.id_tarifa = df.id_tarifa 
-                                    where f.fechaingreso >= '$start' and f.fechaingreso <= '$end'
-                                    group by t.desc_concepto");
-        $factura = $query->result_array();*/
 
         $query2 = $this->db->query("SELECT t.desc_concepto,  sum(to_number(dr.monto_estimado ,'999999999999D99')) as total
                                     from deta_recibo dr 
@@ -341,6 +334,19 @@ class Reporte_model extends CI_Model {
                                     where r.fechaingreso >= '$start' and r.fechaingreso <= '$end'
                                     group by t.desc_concepto");
         return $query2->result_array();
+
+    }
+
+    public function f_p_tt_ing_tar($data){
+        $start      = $data['start'];
+        $end        = $data['end'];
+        $query = $this->db->query("SELECT t.desc_concepto, sum(to_number(df.monto_estimado ,'999999999999D99')) as total
+                                    from deta_factura df
+                                    left join factura f on f.id = df.id_fact
+                                    left join tarifa t on t.id_tarifa = df.id_tarifa 
+                                    where f.fechaingreso >= '$start' and f.fechaingreso <= '$end'
+                                    group by t.desc_concepto");
+        return $query->result_array();
 
     }
 }

@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-12">
                         <h4 class="text-center"> <b>Parametros de Búsqueda</b></h4>
-                        <h5 class="text-center"> <b>Recibos</b></h5>
+                        <h5 class="text-center"> <b>Factura</b></h5>
                     </div>
                     <div class="form-group mt-3 ml-5 row col-8">
                         <label class="col-md-3 col-form-label">Rango de Fecha:</label>
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="col-1 text-center mt-3">
-                        <a onclick="buscar_total_2();" class="btn btn-success btn-icon btn-circle btn-lg">
+                        <a onclick="buscar_total_3();" class="btn btn-success btn-icon btn-circle btn-lg">
                             <i style="color: white" class="mt-2 fas fa-search"></i>
                         </a>
                     </div>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="panel-body">
                             <div>
-                                <canvas id="miGrafico2"></canvas>
+                                <canvas id="miGrafico3"></canvas>
                             </div>
                         </div>
                     </div>
