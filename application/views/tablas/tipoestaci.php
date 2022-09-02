@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="panel panel-inverse" data-sortable-id="form-validation-1">
                 <div class="panel-heading">
-                    <h4 class="panel-title">Tipo de Estacionamiento</h4>
+                    <h4 class="panel-title">Ubicación</h4>
                 </div>
                 <div class="row">
                     <div class="col-md-12 mt-2">
@@ -13,7 +13,7 @@
                         <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal"
                             data-target="#exampleModal">
                             Nuevo
-                        </button>
+                         </button>
                            <!-- Modal insert -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                             aria-hidden="true">
@@ -28,10 +28,11 @@
                                     <div class="modal-body">
                                         <form action="" method="post" id="form">
                                             <div class="form-group">
-                                                <label for="">Tipo Estacionamiento</label>
-                                                <input type="text" class="form-control" id="desc_tipoestac"
-                                                    placeholder="Tipo Estacionamiento">
+                                                <label for="">Ubicación</label>
+                                                <input type="text" class="form-control" id="descripcion"
+                                                    placeholder="ubicación">
                                             </div>
+                                          
                                            
                                         </form>
                                     </div>
@@ -57,10 +58,10 @@
                                 </div>
                                 <div class="modal-body">
                                     <form action="" method="post" id="update_form">
-                                        <input type="hidden" id="edit_id_tipoestac"  value="">
+                                        <input type="hidden" id="edit_id"  value="">
                                         <div class="form-group">
-                                            <label for="">Tipo Estacionamiento</label>
-                                            <input type="text" class="form-control" id="edit_desc_tipoestac">
+                                            <label for="">Ubicación</label>
+                                            <input type="text" class="form-control" id="edit_descripcion">
                                         </div>
                                     </form>
                                 </div>
@@ -95,9 +96,9 @@
 <script>
 $(document).on("click", "#add", function(e) {
     e.preventDefault();
-    var desc_tipoestac = $("#desc_tipoestac").val();
+    var descripcion = $("#descripcion").val();
   // alert(descripcion );
-    if (desc_tipoestac == "") {
+    if (descripcion == "") {
         alert("El campo NO puede estar vacio.");
     } else {
         $.ajax({
@@ -106,7 +107,7 @@ $(document).on("click", "#add", function(e) {
             dataType: "json",
             data: {
                 
-                desc_tipoestac: desc_tipoestac
+                descripcion: descripcion
 
 
             },
@@ -156,14 +157,14 @@ function fetch() {
                         },
 
                         {
-                            "data": "desc_tipoestac"
+                            "data": "descripcion"
                         },
 
                         {
                             "render": function(data, type, row, meta) {
                                 var a = `
 
-                                    <a href="#" value="${row.id_tipoestac}" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
+                                    <a href="#" value="${row.id}" id="edit" class="btn btn-sm btn-outline-success"><i class="fas fa-edit"></i></a>
                             `;
                                 return a;
                             }
@@ -184,20 +185,20 @@ fetch();
 $(document).on("click", "#edit", function(e) {
     e.preventDefault();
 
-    var edit_id_tipoestac = $(this).attr("value");
+    var edit_id = $(this).attr("value");
 
     $.ajax({
         url: "<?php echo base_url(); ?>index.php/Fuentefinanc/edittipoestac",
         type: "post",
         dataType: "json",
         data: {
-            edit_id_tipoestac: edit_id_tipoestac
+            edit_id: edit_id
         },
         success: function(data) {
             if (data.responce == "success") {
                 $('#edit_modal').modal('show');
-                $("#edit_id_tipoestac").val(data.post.id_tipoestac);
-                $("#edit_desc_tipoestac").val(data.post.desc_tipoestac);
+                $("#edit_id").val(data.post.id);
+                $("#edit_descripcion").val(data.post.descripcion);
 
             } else {
                 toastr["error"](data.message);
@@ -211,9 +212,9 @@ $(document).on("click", "#edit", function(e) {
 $(document).on("click", "#update", function(e) {
                 e.preventDefault();
 
-                var edit_id_tipoestac = $("#edit_id_tipoestac").val();
-                var edit_desc_tipoestac = $("#edit_desc_tipoestac").val();
-                if (edit_id_tipoestac == "" || edit_desc_tipoestac == "") {
+                var edit_id = $("#edit_id").val();
+                var edit_descripcion = $("#edit_descripcion").val();
+                if (edit_id== "" || edit_descripcion == "") {
                     alert("No se puede Dejar el Campo Vacio, REQUERIDO");
                 } else {
                     $.ajax({
@@ -221,8 +222,8 @@ $(document).on("click", "#update", function(e) {
                         type: "post",
                         dataType: "json",
                         data: {
-                            edit_id_tipoestac: edit_id_tipoestac,
-                            edit_desc_tipoestac: edit_desc_tipoestac,
+                            edit_id: edit_id,
+                            edit_descripcion: edit_descripcion,
                         },
                         success: function(data) {
                             if (data.responce == "success") {

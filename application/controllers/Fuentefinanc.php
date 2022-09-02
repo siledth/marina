@@ -1225,7 +1225,7 @@ public function tipoestaci()
 public function savetipoestac()
 {
 	if ($this->input->is_ajax_request()) {
-		$this->form_validation->set_rules('desc_tipoestac','desc_tipoestac', 'required');
+		$this->form_validation->set_rules('descripcion','descripcion', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$data = array('responce' => 'error', 'message' => validation_errors());
 		} else {
@@ -1259,7 +1259,7 @@ public function fetchetipoestac()
 public function edittipoestac()
 {
 	if ($this->input->is_ajax_request()) {
-		$edit_id = $this->input->post('edit_id_tipoestac');
+		$edit_id = $this->input->post('edit_id');
 
 		if ($post = $this->Tablas_model->single_tipoestac($edit_id)) {
 			$data = array('responce' => 'success', 'post' => $post);
@@ -1274,12 +1274,12 @@ public function edittipoestac()
 public function updatetipoestac()
 {
 	if ($this->input->is_ajax_request()) {
-		$this->form_validation->set_rules('edit_desc_tipoestac', 'edit_id_tipoestac', 'required');
+		$this->form_validation->set_rules('edit_descripcion', 'edit_id', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$data = array('responce' => 'error', 'message' => validation_errors());
 		} else {
-			$data['id_tipoestac'] = $this->input->post('edit_id_tipoestac');
-			$data['desc_tipoestac'] = $this->input->post('edit_desc_tipoestac');
+			$data['id'] = $this->input->post('edit_id');
+			$data['descripcion'] = $this->input->post('edit_descripcion');
 
 			if ($this->Tablas_model->update_tipoestac($data)) {
 				$data = array('responce' => 'success', 'message' => 'Registro Modificado Con Exito');

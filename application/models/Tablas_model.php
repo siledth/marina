@@ -409,8 +409,8 @@ class Tablas_model extends CI_Model {
     }
 //_________________________________________tipo estacionamiento_________________
 public function get_tipoestac() {
-    $this->db->order_by("id_tipoestac", "ASC");
-    $query = $this->db->get('public.tipoestac');
+    $this->db->order_by("id", "ASC");
+    $query = $this->db->get('public.ubicacion');
 
     if (count($query->result()) > 0) {
         return $query->result();
@@ -419,13 +419,13 @@ public function get_tipoestac() {
 
 public function save_tipoestac($data) {
 
-    return $this->db->insert('public.tipoestac', $data);
+    return $this->db->insert('public.ubicacion', $data);
 }
 
 public function single_tipoestac($id) {
     $this->db->select('*');
-    $this->db->from('public.tipoestac');
-    $this->db->where('id_tipoestac', $id);
+    $this->db->from('public.ubicacion');
+    $this->db->where('id', $id);
     $query = $this->db->get();
     if (count($query->result()) > 0) {
         return $query->row();
@@ -433,7 +433,7 @@ public function single_tipoestac($id) {
 }
 
 public function update_tipoestac($data) {
-    return $this->db->update('public.tipoestac', $data, array('id_tipoestac' => $data['id_tipoestac']));
+    return $this->db->update('public.ubicacion', $data, array('id' => $data['id']));
 }
 //_____________________dolar____________________
 
