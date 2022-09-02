@@ -20,12 +20,11 @@
                         </div>
                     </div>
                     <div class="col-1"></div>
-                    <div class="col-10 mt-3">
+                    <div class="col-11 mt-3 ml-5">
                         <h3 class="text-center">Listado de Barcos</h3>
                         <table id="data-table-default" class="table table-bordered table-hover">
                             <thead style="background:#e4e7e8">
                                 <tr class="text-center">
-                                    
                                     <th class="text-nowrap">Nombre del Buque</th>
                                     <th class="text-nowrap">Embarcación/Matricula</th>
                                     <th class="text-nowrap">Pies</th>

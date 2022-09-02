@@ -8,8 +8,7 @@
         <div class="col-lg-12">
             <div class="panel panel-inverse">
                 <div class="row" id="imp1">
-                    <div class="col-1"></div>
-                    <div class="col-10 mt-4">
+                    <div class="col-11 mt-4 ml-5">
                         <div class="card card-outline-danger text-center bg-white">
                             <div class="card-block">
                                 <blockquote class="card-blockquote" style="margin-bottom: -19px;">

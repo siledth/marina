@@ -324,11 +324,11 @@
 
 <script type="text/javascript">
 
-        $(document).ready(function() {
+    $(document).ready(function() {
         $("#matricular").select2({
             dropdownParent: $("#exampleModal1")
         });
-        });
+    });
 
     function valideKey(evt) {
         var code = (evt.which) ? evt.which : evt.keyCode;
