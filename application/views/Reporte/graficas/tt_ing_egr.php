@@ -37,8 +37,8 @@
                     <div class="col-12">
                         <h4 class="text-center" id="mensaje" style="display:none"> <b style="color:red">Nota:</b>Por favor espere mientras se genera la información Completa</h4>
                     </div>
-                    <div class="col-3"></div>
-                    <div class="col-lg-6">
+                    <div class="col-2"></div>
+                    <div class="col-lg-8">
                         <div class="panel panel-inverse" data-sortable-id="chart-js-4">
                             <div class="panel-heading">
                                 <h4 class="panel-title text-center">Resultados de la Gráfica</h4>

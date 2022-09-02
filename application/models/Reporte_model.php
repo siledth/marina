@@ -331,7 +331,7 @@ class Reporte_model extends CI_Model {
                                     from deta_recibo dr 
                                     left join recibo r on r.id = dr.id_fact 
                                     left join tarifa t on t.id_tarifa = dr.id_tarifa  
-                                    where r.fechaingreso >= '$start' and r.fechaingreso <= '$end'
+                                    where dr.id_tarifa > 2 and r.fechaingreso >= '$start' and r.fechaingreso <= '$end'
                                     group by t.desc_concepto");
         return $query2->result_array();
 
@@ -344,7 +344,7 @@ class Reporte_model extends CI_Model {
                                     from deta_factura df
                                     left join factura f on f.id = df.id_fact
                                     left join tarifa t on t.id_tarifa = df.id_tarifa 
-                                    where f.fechaingreso >= '$start' and f.fechaingreso <= '$end'
+                                    where df.id_tarifa > 2 and f.fechaingreso >= '$start' and f.fechaingreso <= '$end'
                                     group by t.desc_concepto");
         return $query->result_array();
 
