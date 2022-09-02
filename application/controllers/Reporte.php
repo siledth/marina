@@ -53,6 +53,7 @@ class Reporte extends CI_Controller {
 		$this->load->view('Reporte/ver_ubicacion.php', $data);
         $this->load->view('templates/footer.php');
 	}
+
 	public function Report(){
 	
 		$data['descripcion'] = $this->session->userdata('unidad');
@@ -66,6 +67,7 @@ class Reporte extends CI_Controller {
 		$this->load->view('Reporte/total_canon.php', $data);
         $this->load->view('templates/footer.php');
 	}
+
 	public function saldoxpagar(){
 	
 		$data['descripcion'] = $this->session->userdata('unidad');
@@ -163,6 +165,53 @@ class Reporte extends CI_Controller {
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('Reporte/cxc_embarcacion/result_cxc_embarcaciones.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+
+	//Reporte por tipo de Servicios
+	public function servicios(){
+		$data['descripcion']  = $this->session->userdata('unidad');
+        $data['rif'] 		  = $this->session->userdata('rif');
+		$data['t_servicios']  = $this->Reporte_model->t_servicios();  
+
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/servicios/parametros_servc.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+
+	public function busq_x_tservicio(){
+		$fecha_D = $this->input->post("start");
+		$parametros = explode("/",$fecha_D);
+		$dia 	= $parametros['0'];
+		$mes	= $parametros['1'];
+		$anio	= $parametros['2'];
+		$star   = $anio .'-'. $mes .'-'. $dia;
+		
+		$fecha_H = $this->input->post("end");
+		$parametros2 = explode("/",$fecha_H);
+		$dia2 	= $parametros2['0'];
+		$mes2	= $parametros2['1'];
+		$anio2	= $parametros2['2'];
+		$end   = $anio2 .'-'. $mes2 .'-'. $dia2;
+		
+		$data = array(
+			't_servicio'	=> $this->input->post("t_servicio"),
+			'start'		=> $star,
+			'end'		=> $end,
+		);
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] 		 = $this->session->userdata('rif');
+		$data['results'] 	 =	$this->Reporte_model->consultar_x_tservicio($data);
+		$totales 	 =	$this->Reporte_model->consultar_x_tservicio2($data);
+		$data['totl_pies_f'] = $totales['0']['total_pies'];
+		$data['totl_monto_f'] = $totales['0']['total'];
+		$data['totl_pies_r'] = $totales['1']['total_pies'];
+		$data['totl_monto_r'] = $totales['1']['total'];
+			
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/servicios/result_x_servicio.php', $data);
         $this->load->view('templates/footer.php');
 	}
 }

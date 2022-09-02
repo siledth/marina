@@ -167,20 +167,18 @@ class Reporte_model extends CI_Model {
     }
 
     public function consultar_t_pago($data){
-        $this->db->select("mc.id_mensualidad,
-                            m.matricula,
+        $this->db->select("m.matricula,
                             m.pies,
                             m.canon,
                             t.descripcion dtp_pago,
-                            m.fecha_deuda,
                             sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
         $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
-        $this->db->join('tipopago t', 't.id_tipo_pago = mc.id_tipo_pago ', 'left');
+        $this->db->join('tipopago t', 't.id_tipo_pago = mc.id_tipo_pago', 'left');
         $this->db->where('mc.id_tipo_pago', $data['t_pago']);
         $this->db->where('mc.fecha_reg >=', $data['start']);
         $this->db->where('mc.fecha_reg <=', $data['end']);
         $this->db->order_by('m.matricula');
-        $this->db->group_by('mc.id_mensualidad, m.matricula, m.pies, m.canon, m.fecha_deuda, t.descripcion');
+        $this->db->group_by('m.matricula, m.pies, m.canon, t.descripcion');
         $query = $this->db->get('mov_consig mc');
         return $query->result_array();
     }
@@ -259,6 +257,49 @@ class Reporte_model extends CI_Model {
             $query = $this->db->get('mov_consig mc');
             return $query->row_array();
         }
-        
+    }
+
+    //Reportes por tipos de servicios
+    public function t_servicios(){         
+        $this->db->select('*');
+        $this->db->where('id_tarifa >', 2);
+        $query = $this->db->get('public.tarifa');
+        return $query->result_array();
+    }
+
+    public function consultar_x_tservicio($data){
+        $tipo_serv = $data['t_servicio'];
+        $start     = $data['start'];
+        $end       = $data['end'];
+        $query = $this->db->query("SELECT df.id, df.matricula, b.nombrebuque, df.pies, df.monto_estimado, df.ob, f.fechaingreso, 'factura' as condicion
+                                    FROM deta_factura df
+                                    LEFT JOIN factura f on f.id = df.id_fact
+                                    LEFT JOIN buque b on b.matricula = df.matricula
+                                    WHERE df.id_tarifa = '$tipo_serv' AND f.fechaingreso >= '$start' AND f.fechaingreso <= '$end'
+                                    UNION
+                                    SELECT dr.id, dr.matricula, b.nombrebuque, dr.pies, dr.monto_estimado, dr.ob, r.fechaingreso , 'recibo'
+                                    FROM deta_recibo dr
+                                    LEFT JOIN recibo r on r.id = dr.id_fact
+                                    LEFT JOIN buque b on b.matricula = dr.matricula
+                                    WHERE dr.id_tarifa = '$tipo_serv' and r.fechaingreso >= '$start' and r.fechaingreso <= '$end'
+                                    ORDER BY condicion ");
+        return $query->result_array();
+    }
+
+    public function consultar_x_tservicio2($data){
+        $tipo_serv = $data['t_servicio'];
+        $start     = $data['start'];
+        $end       = $data['end'];
+        $query = $this->db->query("SELECT sum(to_number(df.pies,'999999999999D99')) total_pies, sum(to_number(df.monto_estimado,'999999999999D99')) total , 'factura' as condicion
+                                    FROM deta_factura df
+                                    LEFT JOIN factura f on f.id = df.id_fact
+                                    WHERE df.id_tarifa = '$tipo_serv' and f.fechaingreso >= '2022-07-01' and f.fechaingreso <= '2022-09-02'
+                                    union
+                                    SELECT sum(to_number(dr.pies,'999999999999D99')) total_pies, sum(to_number(dr.monto_estimado,'999999999999D99')) total, 'recibo'
+                                    FROM deta_recibo dr
+                                    LEFT JOIN recibo r on r.id = dr.id_fact
+                                    WHERE dr.id_tarifa = '$tipo_serv' and r.fechaingreso >= '2022-07-01' and r.fechaingreso <= '2022-09-02'
+                                    ORDER BY condicion ");
+        return $query->result_array();
     }
 }

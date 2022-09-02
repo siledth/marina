@@ -27,50 +27,61 @@
                         <table id="data-table-default" class="table table-striped table-bordered display responsive nowrap" style="width:100%">
                             <thead class="h5 text-center">
                                 <tr>
-                                    <th>Matricula</th>
+                                    <th>Embarcación</th>
                                     <th>Pies</th>
-                                    <th>Canon</th>
-                                    <th>Tipo de pago</th>
-                                    <th>Total Bs.F</th>
+                                    <th>Total</th>
+                                    <th>Fecha de Facturación</th>
+                                    <th>Observaciòn</th>
+                                    <th>-</th>
                                 </tr>
                             </thead>
                             <tbody class="h5" style="color: black;">
                                 <?php if($results != 0){ ?>
                                     <?php foreach($results as $result):?>
                                         <tr class="odd gradeX" style="text-align:center">
-                                            <td><?=$result['matricula']?></td>
+                                            <td><?=$result['nombrebuque']?></td>
                                             <td><?=$result['pies']?></td>
-                                            <td><?=$result['canon']?> </td>
-                                            <td><?=$result['dtp_pago']?> </td>
-                                            <td><?=$result['total_bs']?> </td>
+                                            <td><?=$result['monto_estimado']?> </td>
+                                            <td><?=$result['fechaingreso']?> </td>
+                                            <td><?=$result['ob']?> </td>
+                                            <td><?=$result['condicion']?> </td>
                                     </tr>
                                     <?php endforeach;?>
                                 <?php }?>
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-1"></div>
+                    <div class="col-4"></div>
                     <div class="form-group mt-3 mr-1 row">
-                        <label class="col-md-4 col-form-label">Total Pies:</label>
-                        <div class="col-md-8">
+                        <label class="col-md-6 col-form-label">Total Pies por Factura:</label>
+                        <div class="col-md-6">
                             <div class="input-group input-daterange">
-                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['pies'], 2, ',', '.')?>" readonly>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mr-1 row">
-                        <label class="col-md-4 col-form-label"> Total Canon:</label>
-                        <div class="col-md-8">
-                            <div class="input-group input-daterange">
-                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['canon'], 0, ',', '.')?>" readonly>
+                            <input class="form-control text-center" type="text" value="<?=number_format($totl_pies_f, 2, ',', '.')?>" readonly>
                           </div>
                         </div>
                     </div>
                     <div class="form-group mt-3 row">
-                        <label class="col-md-4 col-form-label"> Total General:</label>
-                        <div class="col-md-8">
+                        <label class="col-md-6 col-form-label"> Total General por Factura:</label>
+                        <div class="col-md-6">
                             <div class="input-group input-daterange">
-                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['total_bs'], 2, ',', '.')?>" readonly>
+                            <input class="form-control text-center" type="text" value="<?=number_format($totl_monto_f, 2, ',', '.')?>" readonly>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-4"></div>
+                    <div class="form-group mt-3 mr-1 row">
+                        <label class="col-md-6 col-form-label">Total Pies por Recibo:</label>
+                        <div class="col-md-6">
+                            <div class="input-group input-daterange">
+                            <input class="form-control text-center" type="text" value="<?=number_format($totl_pies_r, 2, ',', '.')?>" readonly>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3 row">
+                        <label class="col-md-6 col-form-label"> Total General por Recibo:</label>
+                        <div class="col-md-6">
+                            <div class="input-group input-daterange">
+                            <input class="form-control text-center" type="text" value="<?=number_format($totl_monto_r, 2, ',', '.')?>" readonly>
                           </div>
                         </div>
                     </div>
