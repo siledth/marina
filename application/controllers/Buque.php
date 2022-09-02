@@ -94,7 +94,8 @@ class Buque extends CI_Controller {
         $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos();
         $data['time']=date("d-m-Y");
         $data['fuente'] = $this->Programacion_model->consulta_part_pres();
-        $data['tarifa'] = $this->Programacion_model->consulta_tarifa();
+        $data['tarifa'] = $this->Programacion_model->consulta_tarifa_r();
+        $data['ubicacion'] = $this->Programacion_model->consulta_ubicacion();
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('buque/agregare.php', $data);

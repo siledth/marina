@@ -65,6 +65,20 @@
             $query = $this->db->get('public.tipobarco');
             return $result = $query->result_array();
         }
+        public function consulta_tarifa_r(){
+            $this->db->select('*');
+            $this->db->order_by('id_tarifa asc');
+            $this->db->where('id_tarifa <', '3');
+            $query = $this->db->get('public.tarifa');
+            return $result = $query->result_array();
+        }
+        public function consulta_ubicacion(){
+            $this->db->select('*');
+            $this->db->order_by('id asc');
+            
+            $query = $this->db->get('public.ubicacion');
+            return $result = $query->result_array();
+        }
         public function consulta_tarifa(){
             $this->db->select('*');
             $this->db->order_by('id_tarifa asc');

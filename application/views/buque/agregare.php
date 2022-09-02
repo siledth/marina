@@ -37,10 +37,16 @@
                                     <?php echo form_error('matricula'); ?>
                                 </div>
                             </div>
-                            <div class="form-group col-3">
-                                <label>Ubicación <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="ubicacion" id="ubicacion" onkeyup="mayusculas(this);" class="form-control">
-
+                            <div class="form-group col-2">
+                                <label>Ubicación<b style="color:red">*</b></label><br>
+                                <select style="width: 100%;" name="ubicacion" id="ubicacion"
+                                    class="form-control">
+                                    <option value="">SELECCIONE</option>
+                                    <?php foreach ($ubicacion as $data): ?>
+                                    <option value="<?=$data['id']?>">
+                                        <?=$data['descripcion']?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="form-group col-1">
                                 <label>Trailers <b title="Campo Obligatorio" style="color:red">*</b></label>
