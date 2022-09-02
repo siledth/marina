@@ -214,4 +214,22 @@ class Reporte extends CI_Controller {
 		$this->load->view('Reporte/servicios/result_x_servicio.php', $data);
         $this->load->view('templates/footer.php');
 	}
+
+	//Graficas
+	public function tt_ing_egr(){
+		$data['descripcion']  = $this->session->userdata('unidad');
+        $data['rif'] 		  = $this->session->userdata('rif'); 
+
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/graficas/tt_ing_egr.php', $data);
+        $this->load->view('templates/footer_g.php');
+	}
+
+	public function p_tt_ing_egr(){
+		if(!$this->session->userdata('session'))redirect('login');
+		$data = $this->input->post();
+		$data =	$this->Reporte_model->p_tt_ing_egr($data);
+		echo json_encode($data);
+	}
 }

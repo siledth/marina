@@ -184,6 +184,20 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <i class="fas fa-chart-pie"></i>
+                            <span> Gráficas</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="has-sub">
+                                <a href="javascript:;">
+                                    <li><a href="<?= base_url() ?>index.php/Reporte/tt_ing_egr">Totales Ingreso / Egresos</a></li>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
                 <?php if (($this->session->userdata('perfil') <= 2)) : ?>
                     <li class="has-sub">

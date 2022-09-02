@@ -8,7 +8,6 @@ class Reporte_model extends CI_Model {
         return $query->result_array();
 	}
 
-    
     public function consulta_ubicacion( $desde, $hasta) {
         //  die(print_r($resultado, TRUE));
         $num = $this->db->count_all('public.buque');
@@ -45,11 +44,9 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.buque');
         $num = $this->db->count_all_results();
         return $num;
-        
-     
       return $num;
-        
 	}
+
     public function consulta_ubicacion_muelle1a( $desde, $hasta) {
         $cadena = "ubicacion = '1'";
         $this->db->where($cadena);
@@ -61,6 +58,7 @@ class Reporte_model extends CI_Model {
       return $num;
         
 	}
+
     public function consulta_ubicacion_muelle2a( $desde, $hasta) {
         $cadena = "ubicacion = '2'";
         $this->db->where($cadena);
@@ -72,6 +70,7 @@ class Reporte_model extends CI_Model {
       return $num;
         
 	}
+
     public function consulta_ubicacion_patio1( $desde, $hasta) {
         $cadena = "ubicacion = '6'";
         $this->db->where($cadena);
@@ -83,6 +82,7 @@ class Reporte_model extends CI_Model {
       return $num;
         
 	}
+
     public function consulta_ubicacion_patio2( $desde, $hasta) {
         $cadena = "ubicacion = '7'";
         $this->db->where($cadena);
@@ -94,6 +94,7 @@ class Reporte_model extends CI_Model {
       return $num;
         
 	}
+
     public function consulta_ubicacion_muelleb( $desde, $hasta) {
         $cadena = "ubicacion = '3'";
         $this->db->where($cadena);
@@ -105,25 +106,25 @@ class Reporte_model extends CI_Model {
       return $num;
         
 	}
+
     public function consulta_ubicacion_muellec( $desde, $hasta) {
-    $cadena = "ubicacion = '4'";
-    $this->db->where($cadena);
-    $this->db->from('public.buque');
-    $num = $this->db->count_all_results();
-    return $num;
+        $cadena = "ubicacion = '4'";
+        $this->db->where($cadena);
+        $this->db->from('public.buque');
+        $num = $this->db->count_all_results();
+        return $num;
 
-
-    return $num;
+        return $num;
     }
+
     public function consulta_ubicacion_muelled( $desde, $hasta) {
-    $cadena = "ubicacion = '5'";
-    $this->db->where($cadena);
-    $this->db->from('public.buque');
-    $num = $this->db->count_all_results();
-    return $num;
+        $cadena = "ubicacion = '5'";
+        $this->db->where($cadena);
+        $this->db->from('public.buque');
+        $num = $this->db->count_all_results();
+        return $num;
     }
    
-	
     public function total(){         
         $this->db->select('*');
         $query = $this->db->get('public.total_barco');
@@ -151,7 +152,7 @@ class Reporte_model extends CI_Model {
         $query = $this->db->get();
         $resultado = $query->result_array();
         return $resultado;
-        }
+    }
 
     public function deuda(){         
         $this->db->select('*');
@@ -302,4 +303,24 @@ class Reporte_model extends CI_Model {
                                     ORDER BY condicion ");
         return $query->result_array();
     }
+
+    //Gráficos
+    public function p_tt_ing_egr($data){
+        $start = $data['start'];
+        $end   = $data['end'];
+        $query = $this->db->query("SELECT sum(to_number(restante_om ,'999999999999D99')) total,  'Deuda' as condicion
+                                    FROM mov_consig mc
+                                    WHERE id_estatus = 0
+                                    UNION 
+                                    SELECT sum(to_number(total_abonado_om ,'999999999999D99')) total,  'Pagado' as condicion
+                                    FROM mov_consig mc
+                                    WHERE id_estatus = 2
+                                    union 
+                                    select sum(to_number(total_abonado_om ,'999999999999D99')) total,  'Abonado' as condicion
+                                    from mov_consig mc
+                                    where id_estatus = 3
+                                    ORDER BY condicion");
+        return $query->result_array();
+    }
+
 }
