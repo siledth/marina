@@ -18,6 +18,7 @@
                                     Adelantar pago de Mensualidad
                                 </a>
                             </div>
+                            
                             <div class="col-md-12">
                                 <div class="panel-body">
                                     <div class="col-12 text-center">
@@ -223,6 +224,11 @@
                     enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-10"></div>
+                        <div class="form-group col-3">
+                            <label>N° Recib <b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <input type="text" name="numfactura" id="numfactura" onkeyup="mayusculas(this);"
+                                class="form-control" readonly>
+                        </div>
                         <div class="form-group col-4">
                             <label>Embarcación/Matricula <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <select style="width: 100%;" onclick="trae_inf();" id="matricular" name="matricular"
@@ -336,6 +342,8 @@
 
 <script src="<?=base_url()?>/js/bien/guardar_fact.js"></script>
 <script src="<?=base_url()?>/js/bien/mensualidad.js"></script>
+<script src="<?=base_url()?>/js/bien/numeroadelanto.js"></script>
+
 <script type="text/javascript">
 function valideKey(evt) {
     var code = (evt.which) ? evt.which : evt.keyCode;
