@@ -174,10 +174,13 @@
                         <ul class="sub-menu">
                             <li class="has-sub">
                                 <a href="javascript:;">
+                                <li><a href="<?= base_url() ?>index.php/Reporte/ubicaci">Ubicacion</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/Report">Total Canon</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/saldoxpagar">Saldo por Pagar</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/condxpagar">Condición de Pago</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/cxc_embarcacion">Cuentas por Cobrar / por embarcaciòn</a></li>
+                                    ubicaci
+                                   
                                 </a>
                             </li>
                         </ul>

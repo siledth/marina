@@ -10,7 +10,49 @@ class Reporte extends CI_Controller {
 		$this->load->view('Reporte/total_canon.php');
         $this->load->view('templates/footer.php');
 	}*/
+	public function ubicaci(){
+	
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+		$data['time']=date("d-m-Y");
+		$data['total'] = $this->Reporte_model->total();
+		$data['canon'] = $this->Reporte_model->getCanon();
+		
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/ubicacion.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+	
+	public function ubicar(){
+		if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+		$data['time']=date("d-m-Y");
+        $data['rif'] = $this->session->userdata('rif');
+        $data['ver_proyectos'] = $this->Programacion_model->consulta_buque();
+		$hasta     = $this->input->post("hasta");
+		$desde     = $this->input->post("desde");
+		$data['desde'] = date('Y-m-d', strtotime($desde));
+		$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
+		//$hasta1= date('Y-m-d', strtotime($hasta)); 
+		
 
+		$data['fecha'] = $this->Reporte_model->consulta_ubicacion($hasta,$desde);
+		$data['tierra'] = $this->Reporte_model->consulta_ubicacion_tierra($hasta,$desde);
+		$data['agua'] = $this->Reporte_model->consulta_ubicacion_agua($hasta,$desde);
+		$data['muelle1a'] = $this->Reporte_model->consulta_ubicacion_muelle1a($hasta,$desde);
+		$data['muelle2a'] = $this->Reporte_model->consulta_ubicacion_muelle2a($hasta,$desde);
+		$data['patio1'] = $this->Reporte_model->consulta_ubicacion_patio1($hasta,$desde);
+		$data['patio2'] = $this->Reporte_model->consulta_ubicacion_patio2($hasta,$desde);
+		$data['muelleb'] = $this->Reporte_model->consulta_ubicacion_muelleb($hasta,$desde);
+		$data['muellec'] = $this->Reporte_model->consulta_ubicacion_muellec($hasta,$desde);
+		$data['muelled'] = $this->Reporte_model->consulta_ubicacion_muelled($hasta,$desde);
+		
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/ver_ubicacion.php', $data);
+        $this->load->view('templates/footer.php');
+	}
 	public function Report(){
 	
 		$data['descripcion'] = $this->session->userdata('unidad');
