@@ -28,7 +28,7 @@ class Reporte extends CI_Controller {
 	
 		$data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
-	//	$data['time']=date("d-m-Y");
+		//	$data['time']=date("d-m-Y");
 	    $data['total'] = $this->Reporte_model->deuda();
 		$data['ver_deudas'] = $this->Reporte_model->ver_deudas();    
 		$this->load->view('templates/header.php');
@@ -76,6 +76,51 @@ class Reporte extends CI_Controller {
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('Reporte/tp_pago/result_x_pagar.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+
+	//Reporte por cuentas por pagar por cada embarcación
+	public function cxc_embarcacion(){
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] 		 = $this->session->userdata('rif');
+		$data['matriculas']  = $this->Reporte_model->matriculas();    
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/cxc_embarcacion/cxc_embarcaciones.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+
+	public function bus_x_embarcacion(){
+
+		$fecha_D = $this->input->post("start");
+		$parametros = explode("/",$fecha_D);
+		$dia 	= $parametros['0'];
+		$mes	= $parametros['1'];
+		$anio	= $parametros['2'];
+		$star   = $anio .'-'. $mes .'-'. $dia;
+		
+		$fecha_H = $this->input->post("end");
+		$parametros2 = explode("/",$fecha_H);
+		$dia2 	= $parametros2['0'];
+		$mes2	= $parametros2['1'];
+		$anio2	= $parametros2['2'];
+		$end   = $anio2 .'-'. $mes2 .'-'. $dia2;
+		
+		$data = array(
+			'matricula'	=> $this->input->post("matricula"),
+			'start'		=> $star,
+			'end'		=> $end,
+		);
+		
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] 		 = $this->session->userdata('rif');
+
+		$data['results'] 	 =	$this->Reporte_model->consultar_cxc_embarc($data);
+		$data['results_2'] 	 =	$this->Reporte_model->consultar_cxc_embarc2($data);
+
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/cxc_embarcacion/result_cxc_embarcaciones.php', $data);
         $this->load->view('templates/footer.php');
 	}
 }

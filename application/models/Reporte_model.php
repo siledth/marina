@@ -81,4 +81,68 @@ class Reporte_model extends CI_Model {
         return $query->row_array();
     }
     
+    //Reporte cxc por embarcaciones
+    public function matriculas(){         
+        $this->db->select('nombrebuque, matricula');
+        $query = $this->db->get('public.buque');
+        return $query->result_array();
+    }
+
+    public function consultar_cxc_embarc($data){
+        //print_r($data);die;
+        if ($data['matricula'] == 1) {
+            $this->db->select("mc.id_mensualidad,
+                                m.matricula,
+                                m.pies,
+                                m.canon,
+                                m.fecha_deuda");
+            $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
+            $this->db->where('id_status', 0);
+            $this->db->where('mc.fecha_reg >=', $data['start']);
+            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $this->db->order_by('m.matricula');
+            $query = $this->db->get('mov_consig mc');
+            return $query->result_array();
+        }else{
+            $this->db->select("mc.id_mensualidad,
+                                m.matricula,
+                                m.pies,
+                                m.canon,
+                                m.fecha_deuda");
+            $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
+            $this->db->where('m.matricula', $data['matricula']);
+            $this->db->where('id_status', 0);
+            $this->db->where('mc.fecha_reg >=', $data['start']);
+            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $this->db->order_by('m.matricula');
+            $this->db->group_by('mc.id_mensualidad, m.matricula, m.pies, m.canon, m.fecha_deuda');
+            $query = $this->db->get('mov_consig mc');
+            return $query->result_array();
+        }
+    }
+
+    public function consultar_cxc_embarc2($data){
+        if ($data['matricula'] == 1) {
+            $this->db->select("sum(m.canon) as canon,
+                            sum(to_number(m.pies,'999999999999D99')) as pies");
+                            $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
+                            //$this->db->where('m.matricula', $data['matricula']);
+                            $this->db->where('id_status', 0);
+                            $this->db->where('mc.fecha_reg >=', $data['start']);
+                            $this->db->where('mc.fecha_reg <=', $data['end']);
+                            $query = $this->db->get('mov_consig mc');
+                            return $query->row_array();
+        }else{
+            $this->db->select("sum(m.canon) as canon,
+                               sum(to_number(m.pies,'999999999999D99')) as pies");
+            $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
+            $this->db->where('m.matricula', $data['matricula']);
+            $this->db->where('id_status', 0);
+            $this->db->where('mc.fecha_reg >=', $data['start']);
+            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $query = $this->db->get('mov_consig mc');
+            return $query->row_array();
+        }
+        
+    }
 }
