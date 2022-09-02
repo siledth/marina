@@ -24,7 +24,7 @@
                                 <label>Embarcación/Matricula <b title="Campo Obligatorio"
                                         style="color:red">*</b></label>
                                 <select style="width: 100%;" onclick="trae_inf();" id="matricular" name="matricular"
-                                    class="form-control">
+                                    class="default-select2 form-control">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($mat as $data): ?>
                                     <option value="<?=$data['matricula']?>">

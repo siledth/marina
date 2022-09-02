@@ -3,9 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mensualidades extends CI_Controller {
 
-    public function cons_nro_factura(){
+    public function cons_nro_factur(){
         if(!$this->session->userdata('session'))redirect('login');
 	   	$data =	$this->Mensualidades_model->cons_nro_notapago();
+	   	echo json_encode($data);
+    }
+    public function cons_nro_adelanto(){
+        if(!$this->session->userdata('session'))redirect('login');
+	   	$data =	$this->Mensualidades_model->cons_nro_adelantos();
 	   	echo json_encode($data);
     }
 

@@ -3,12 +3,21 @@
         public function cons_nro_notapago(){
             $this->db->select('nro_factura,id_status');
             $this->db->where("id_status", 2);
-            $this->db->order_by('r.nro_factura desc');
-            $query = $this->db->get('mensualidad r');
+            $this->db->order_by('nro_factura desc');
+            $query = $this->db->get('public.mensualidad');
             $response = $query->row_array();
             return $response;
         }
-        
+        public function cons_nro_adelantos(){
+            $this->db->select('nro_factura,id_status');
+            $this->db->where("id_status", 2);
+            $this->db->order_by('nro_factura desc');
+            $query = $this->db->get('public.mensualidad');
+            $response = $query->row_array();
+            return $response;
+        }
+      
+
         function ver_banco(){
             $this->db->select('*');
             $this->db->from('public.banco');
@@ -69,7 +78,8 @@
                                     'fecha_deuda'  => date('Y-m-d'),
                                     'id_status'    => 0,
                                     'fecha_update' => date('Y-m-d'),
-                                    'id_factura'   => 0
+                                    'id_factura'   => 0,
+                                    'nro_factura'   => 0 //agregue esto fue lo unico para que la nota de entega llevara un correlativo
                                 );
                             $query = $this->db->insert('public.mensualidad',$data_mens);
                             if ($query) {
@@ -291,7 +301,8 @@
                         'id_status'    => $id_estatus,
                         'fecha_update' => date('Y-m-d'),
                         'id_factura'   => 0,
-                        'nota'   => $data['nota_a']
+                        'nota'   => $data['nota_a'], // esto lo agregue
+                        'nro_factura'   => $data['numfactura'] // esto lo agregue
                     );
                 
                 $query = $this->db->insert('public.mensualidad',$data_mens);

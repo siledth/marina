@@ -2,12 +2,7 @@
     class Programacion_model extends CI_model{
 
         // PROGRAMACION
-        public function  consultar_programaciones($unidad){
-            $this->db->select('*');
-            $this->db->where('unidad', $unidad);
-            $query = $this->db->get('programacion.programacion');
-            return $query->result_array();
-        }
+        
 
         public function listar_info($data){
             $this->db->select('b.id,
@@ -23,27 +18,9 @@
             return $query->row_array();
         }
 
-        //----Registrar año de programación--
-        public function agg_programacion_anio($data){
-            $quers =$this->db->insert('programacion.programacion',$data);
-            return true;
-        }
 
         
 
-        //Consulta los proyectos por separado de cada programación
-      /*  public function consultar_proyectos(){
-            $this->db->select('mc.*,
-                               tp.id_buque 
-                        	   ');
-            $this->db->from('buque mc');
-           // $query = $this->db->get('mc.public.buque');
-           $this->db->join('programacion.p_proyecto pp', 'pp.id_programacion = p.id_programacion');
-           $this->db->join('programacion.objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
-           $query = $this->db->get();
-            $resultado = $query->result_array();
-            return $resultado;
-        }*/
         public function consulta_buque(){
             $this->db->select('*');
             $this->db->from('buque ');
@@ -74,27 +51,9 @@
             return $resultado;
         }
 
-        public function consultar_proyectos_compl($id_programacion, $id_unidad){
-            $this->db->select('pp.id_p_proyecto,
-	                           pp.nombre_proyecto,
-	                           oc.desc_objeto_contrata ');
-            $this->db->join('programacion.p_proyecto pp', 'pp.id_programacion = p.id_programacion');
-            $this->db->join('programacion.objeto_contrata oc', 'oc.id_objeto_contrata = pp.id_obj_comercial');
-            $this->db->where('p.id_programacion', $id_programacion);
-            $query = $this->db->get('programacion..programacion p');
-            return $query->result_array();
+        
 
-        }
-
-        public function llenar_ff($proyectos){
-            foreach ($proyectos as $key){
-                $this->db->select('*');
-                $this->db->where('id_enlace', $key['id_p_proyecto']);
-                $this->db->from('programacion.p_items');
-                $result = $this->db->get();
-            }
-            return $result->result_array();
-        }
+      
         //------------------------------------------------------
         // CONSULTAS GENERALES
         public function consulta_part_pres(){
@@ -121,11 +80,7 @@
         
 
 
-        public function consulta_unid(){
-            $this->db->select('*');
-            $query = $this->db->get('programacion.unidad_medida');
-            return $result = $query->result_array();
-        }
+      
 
         public function consulta_iva(){
             $this->db->select('*');
@@ -148,7 +103,7 @@
         //------------------------------------------------------
        
         //------------------------------------------------------
-        //REGISTRAR BIENES
+        //REGISTRAR barco
         public function save_bienes($acc_cargar,$dato1,$p_items,$p_ffinanciamiento){
             if ($acc_cargar == '1') {
                 $quers =$this->db->insert('public.buque',$dato1);
