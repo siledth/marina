@@ -19,26 +19,16 @@
                         </div>
                         <div class="col-12">
 
-                        
-                        <div class="p-2 flex-fill bd-highlight" >
-                            <div>
-                                <div class="form-group">
-                                    <label for="txtDesde"><i class="ion-calendar"></i> Desde</label>
-                                    <input type="date" class="form-control" placeholder="Desde"name="desde" id="desde" />
-                                    <small id="errDesde" class="form-text text-danger"></small>
-                                </div>
-                                <div class="form-group">
-                                    <label for="txtHasta"><i class="ion-calendar"></i> Hasta</label>
-                                    <input type="date" class="form-control" placeholder="Hasta" name="hasta" id="hasta" />
-                                    <small id="errHasta" class="form-text text-danger"></small>
-                                </div>
+
+                            <div class="fechas">
+                                <input type="date" id="desde" name="desde" class="dt-fecha">desde
+                                <input type="date" id="hasta" name="hasta" class="dt-fecha">
                             </div>
-                        </div>
                         </div>
                         <div class="col-1 text-center mt-3">
 
-                            <div type="submit" class="ml-auto p-2 bd-highlight"><button class="btn btn-primary btn-lg"
-                                   ><i class="ion-search"> </i>Filtrar</button></div>
+                            <div type="submit" class="ml-auto p-2 bd-highlight"><button
+                                    class="btn btn-primary btn-lg"><i class="ion-search"> </i>Filtrar</button></div>
                         </div>
                     </div>
                 </form>

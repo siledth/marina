@@ -32,10 +32,10 @@ class Reporte extends CI_Controller {
         $data['ver_proyectos'] = $this->Programacion_model->consulta_buque();
 		$hasta     = $this->input->post("hasta");
 		$desde     = $this->input->post("desde");
-		$data['desde'] = date('Y-m-d', strtotime($desde));
+        $data['desde'] = date('Y-m-d', strtotime($desde));
 		$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
 		//$hasta1= date('Y-m-d', strtotime($hasta)); 
-		
+		//die(print_r($data['hasta'], TRUE));
 
 		$data['fecha'] = $this->Reporte_model->consulta_ubicacion($hasta,$desde);
 		$data['tierra'] = $this->Reporte_model->consulta_ubicacion_tierra($hasta,$desde);
