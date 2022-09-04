@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-inverse">
-                <form action="<?=base_url()?>index.php/Reporte/bus_x_embarcacion" method="POST">
+                <form action="<?=base_url()?>index.php/Reporte/bus_ubicacion" method="POST">
                     <div class="row" id="imp1">
                         <div class="col-1"></div>
                         <div class="col-10 mt-4">
@@ -12,7 +12,7 @@
                                     <blockquote class="card-blockquote" style="margin-bottom: -19px;">
                                         <p class="f-s-18 text-inverse f-w-600"> <?=$descripcion?>.</p>
                                         <p class="f-s-16">RIF.: <?=$rif?> <br>
-                                        <h3 class="mt-2"> <b>CUENTAS POR COBRAR</b></h3>
+                                        <h3 class="mt-2"> <b>Listado por Ubicaciones</b></h3>
                                     </blockquote>
                                 </div>
                             </div>
@@ -24,9 +24,9 @@
                             <label class="col-md-3 col-form-label">Matrículas:</label>
                             <div class="col-md-8">
                                 <select class="form-control default-select2" name="matricula" id="matricula">
-                                    <option value="1">Todos</option>
-                                    <?php foreach ($matriculas as $matricula) : ?>
-                                        <option value="<?= $matricula['matricula'] ?>"><?= $matricula['matricula'] ?> / <?= $matricula['nombrebuque'] ?>
+                                    <option value="0">Todos</option>
+                                    <?php foreach ($ubicacion as $matricula) : ?>
+                                        <option value="<?= $matricula['id'] ?>"> <?= $matricula['descripcion'] ?>
                                         </option>
                                     <?php endforeach; ?>
                                 </select>
@@ -51,4 +51,3 @@
         </div>
     </div>
 </div>
-<script src="<?= base_url() ?>/js/bien/reporte.js"></script>

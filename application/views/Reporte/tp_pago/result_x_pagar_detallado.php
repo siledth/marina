@@ -19,10 +19,7 @@
                                 <blockquote class="card-blockquote" style="margin-bottom: -19px;">
                                     <p class="f-s-18 text-inverse f-w-600"> <?=$descripcion?>.</p>
                                     <p class="f-s-16">RIF.: <?=$rif?> <br>
-                                    <h3 class="mt-2"> <b>Cuentas por Cobrar</b></h3>
-                                    
-                                     
-                                    
+                                    <h4 class="mt-2"> <b>Condición de Pago detallado</b></h3>
                                 </blockquote>
                             </div>
                         </div>
@@ -34,8 +31,13 @@
                                     <th>Embarcación</th>
                                     <th>Pies</th>
                                     <th>Canon</th>
-                                    <th>Fecha deuda</th>
-                                    <th>Monto $</th>
+                                    <th>Tipo de pago</th>
+                                    <th>Total Bs.F</th>
+                                    <th>Numero de referencia</th>
+                                    <th>nombre banco</th>
+                                    <th>fecha transferencia</th>
+                                    <th></th>
+
                                 </tr>
                             </thead>
                             <tbody class="h5" style="color: black;">
@@ -45,8 +47,11 @@
                                             <td><?=$result['nombrebuque']?></td>
                                             <td><?=$result['pies']?></td>
                                             <td><?=$result['canon']?> </td>
-                                            <td><?=date("d/m/Y", strtotime($result['fecha_deuda']));?> </td>
-                                            <td><?=$result['canon']?> </td>
+                                            <td><?=$result['dtp_pago']?> </td>
+                                            <td><?=$result['total_bs']?> </td>
+                                            <td><?=$result['nro_referencia']?> </td>
+                                            <td><?=$result['nombre_b']?> </td>
+                                            <td><?=date("d/m/Y", strtotime($result['fechatrnas']));?> </td>
                                     </tr>
                                     <?php endforeach;?>
                                 <?php }?>
@@ -74,7 +79,7 @@
                         <label class="col-md-4 col-form-label"> Total General:</label>
                         <div class="col-md-8">
                             <div class="input-group input-daterange">
-                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['canon'], 0, ',', '.')?>" readonly>
+                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['total_bs'], 2, ',', '.')?>" readonly>
                           </div>
                         </div>
                     </div>

@@ -8,6 +8,13 @@ class Reporte_model extends CI_Model {
         return $query->result_array();
 	}
 
+    public function bus_ubicacion(){         
+        $this->db->select('*');
+        $query = $this->db->get('public.ubicacion');
+        return $query->result_array();
+    }
+   
+    
     public function consulta_ubicacion( $desde, $hasta) {
               
         $cadena = "id >= '1'";
@@ -49,7 +56,20 @@ class Reporte_model extends CI_Model {
         return $num;
       return $num;
 	}
-
+    
+     public function consulta_ubicacion_agua2($data){
+         //die(print_r($data['desde'], TRUE));
+        $this->db->select('m.*');
+        $this->db->from('public.buque m');
+        $this->db->where('m.ubicacion <', '6');
+        $this->db->where('m.fechaingreso >=', $data['desde']);
+        $this->db->where('m.fechaingreso <=', $data['hasta']); 
+        $query = $this->db->get();
+        $resultado = $query->row_array();
+       // die(print_r($resultado, TRUE));
+        return $resultado;
+       
+    }
     public function consulta_ubicacion_muelle1a( $desde, $hasta) {
 
         $cadena = "ubicacion = '1'";
@@ -182,26 +202,71 @@ class Reporte_model extends CI_Model {
     //Reporte Condidión por pagar (tipo de pago)
     public function tp_pago(){         
         $this->db->select('*');
+        $this->db->where('id_tipo_pago <', 5);
         $query = $this->db->get('public.tipopago');
         return $query->result_array();
     }
 
     public function consultar_t_pago($data){
+         
         $this->db->select("m.matricula,
+        r.nombrebuque,
                             m.pies,
                             m.canon,
                             t.descripcion dtp_pago,
                             sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
         $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
         $this->db->join('tipopago t', 't.id_tipo_pago = mc.id_tipo_pago', 'left');
+        $this->db->join('buque r', 'r.matricula = m.matricula', 'left');
         $this->db->where('mc.id_tipo_pago', $data['t_pago']);
         $this->db->where('mc.fecha_reg >=', $data['start']);
         $this->db->where('mc.fecha_reg <=', $data['end']);
         $this->db->order_by('m.matricula');
-        $this->db->group_by('m.matricula, m.pies, m.canon, t.descripcion');
+        $this->db->group_by('m.matricula, m.pies, m.canon, t.descripcion,r.nombrebuque');
         $query = $this->db->get('mov_consig mc');
         return $query->result_array();
+    
+   
+
     }
+    //detallado tipo de pagos
+    public function consultar_t_pago_detallado($data){
+            $this->db->select("m.matricula,
+            r.nombrebuque,
+            m.pies,
+            m.canon,
+            mc.id_estatus, mc.fecha_reg, mc.id_banco, mc.fechatrnas,mc.nro_referencia,
+            y.nombre_b, t.descripcion dtp_pago,
+            sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
+            $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
+            $this->db->join('tipopago t', 't.id_tipo_pago = mc.id_tipo_pago', 'left');
+            $this->db->join('buque r', 'r.matricula = m.matricula', 'left');
+            $this->db->join('banco y', 'y.id_banco = mc.id_banco', 'left');
+            $this->db->where('mc.id_tipo_pago >', 0);
+            $this->db->where('mc.fecha_reg >=', $data['start']);
+            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $this->db->order_by('m.matricula');
+            $this->db->group_by('m.matricula,
+            r.nombrebuque,
+            m.pies,
+            m.canon,
+            mc.id_estatus, mc.fecha_reg, mc.id_banco, mc.fechatrnas,mc.nro_referencia,
+            t.descripcion,y.nombre_b');
+            $query = $this->db->get('mov_consig mc');
+            return $query->result_array();
+        }
+        public function consultar_t_pago2_detalle($data){
+            $this->db->select("sum(m.canon) as canon,
+                            sum(to_number(m.pies,'999999999999D99')) as pies,
+                            sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
+            $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
+            $this->db->where('mc.id_tipo_pago >', 0);
+            $this->db->where('mc.fecha_reg >=', $data['start']);
+            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $query = $this->db->get('mov_consig mc');
+            return $query->row_array();
+        }
+
 
     public function consultar_t_pago2($data){
         $this->db->select("sum(m.canon) as canon,
@@ -229,8 +294,10 @@ class Reporte_model extends CI_Model {
                                 m.matricula,
                                 m.pies,
                                 m.canon,
-                                m.fecha_deuda");
+                                m.fecha_deuda,
+                                t.nombrebuque");
             $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
+            $this->db->join('buque t', 't.matricula = m.matricula', 'left');
             $this->db->where('id_status', 0);
             $this->db->where('mc.fecha_reg >=', $data['start']);
             $this->db->where('mc.fecha_reg <=', $data['end']);
@@ -242,14 +309,16 @@ class Reporte_model extends CI_Model {
                                 m.matricula,
                                 m.pies,
                                 m.canon,
-                                m.fecha_deuda");
+                                m.fecha_deuda,
+                                t.nombrebuque");
             $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
+            $this->db->join('buque t', 't.matricula = m.matricula', 'left');
             $this->db->where('m.matricula', $data['matricula']);
             $this->db->where('id_status', 0);
             $this->db->where('mc.fecha_reg >=', $data['start']);
             $this->db->where('mc.fecha_reg <=', $data['end']);
             $this->db->order_by('m.matricula');
-            $this->db->group_by('mc.id_mensualidad, m.matricula, m.pies, m.canon, m.fecha_deuda');
+            $this->db->group_by('mc.id_mensualidad, m.matricula, m.pies, m.canon, m.fecha_deuda,t.nombrebuque');
             $query = $this->db->get('mov_consig mc');
             return $query->result_array();
         }
@@ -291,13 +360,13 @@ class Reporte_model extends CI_Model {
         $tipo_serv = $data['t_servicio'];
         $start     = $data['start'];
         $end       = $data['end'];
-        $query = $this->db->query("SELECT df.id, df.matricula, b.nombrebuque, df.pies, df.monto_estimado, df.ob, f.fechaingreso, 'factura' as condicion
+        $query = $this->db->query("SELECT df.id, df.matricula,f.nombrep, b.nombrebuque, df.pies, df.monto_estimado, df.ob, f.fechaingreso, 'factura' as condicion
                                     FROM deta_factura df
                                     LEFT JOIN factura f on f.id = df.id_fact
                                     LEFT JOIN buque b on b.matricula = df.matricula
                                     WHERE df.id_tarifa = '$tipo_serv' AND f.fechaingreso >= '$start' AND f.fechaingreso <= '$end'
                                     UNION
-                                    SELECT dr.id, dr.matricula, b.nombrebuque, dr.pies, dr.monto_estimado, dr.ob, r.fechaingreso , 'recibo'
+                                    SELECT dr.id, dr.matricula,r.nombrep, b.nombrebuque, dr.pies, dr.monto_estimado, dr.ob, r.fechaingreso , 'recibo'
                                     FROM deta_recibo dr
                                     LEFT JOIN recibo r on r.id = dr.id_fact
                                     LEFT JOIN buque b on b.matricula = dr.matricula
@@ -367,5 +436,42 @@ class Reporte_model extends CI_Model {
                                     group by t.desc_concepto");
         return $query->result_array();
 
+    }
+
+    ////buscar ubicacion detallada
+    public function consultar_ubicacion_detallada($data){
+        //print_r($data);die;
+        if ($data['matricula'] == 0) {
+            $this->db->select(" m.matricula,
+                                m.pies,
+                                m.canon,
+                                m.fechaingreso,
+                                m.nombrebuque,t.descripcion");
+            $this->db->join('ubicacion t', 't.id = m.ubicacion', 'left');
+            
+            $this->db->where('desincorporar', 1);
+            $this->db->where('m.fechaingreso >=', $data['start']);
+            $this->db->where('m.fechaingreso <=', $data['end']);
+            $this->db->order_by('m.matricula');
+            $query = $this->db->get('buque m');
+            return $query->result_array();
+        }else{
+            $this->db->select("m.matricula,
+                                m.pies,
+                                m.canon,
+                                m.fechaingreso,
+                                m.nombrebuque,
+                                t.descripcion");
+           
+            $this->db->join('ubicacion t', 't.id = m.ubicacion', 'left');
+            $this->db->where('m.ubicacion', $data['matricula']);
+            $this->db->where('desincorporar', 1);
+            $this->db->where('m.fechaingreso >=', $data['start']);
+            $this->db->where('m.fechaingreso <=', $data['end']);
+            $this->db->order_by('m.matricula');
+            $this->db->group_by(' m.matricula, m.pies, m.canon, m.fechaingreso,m.nombrebuque,t.descripcion');
+            $query = $this->db->get('buque m');
+            return $query->result_array();
+        }
     }
 }

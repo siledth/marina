@@ -12,6 +12,7 @@
                                     <blockquote class="card-blockquote" style="margin-bottom: -19px;">
                                         <p class="f-s-18 text-inverse f-w-600"> <?=$descripcion?>.</p>
                                         <p class="f-s-16">RIF.: <?=$rif?> <br>
+                                        <h4 class="mt-2"> <b>CONDICIÓN DE PAGO</b></h3>
                                     </blockquote>
                                 </div>
                             </div>
@@ -23,6 +24,7 @@
                             <label class="col-md-4 col-form-label">Tipo de Pago:</label>
                             <div class="col-md-7">
                                 <select class="form-control" name="t_pago" id="t_pago">
+                                
                                     <?php foreach ($tp_pagos as $tp_pago) : ?>
                                         <option value="<?= $tp_pago['id_tipo_pago'] ?>"><?= $tp_pago['descripcion'] ?>
                                         </option>

@@ -19,7 +19,7 @@
                                 <blockquote class="card-blockquote" style="margin-bottom: -19px;">
                                     <p class="f-s-18 text-inverse f-w-600"> <?=$descripcion?>.</p>
                                     <p class="f-s-16">RIF.: <?=$rif?> <br>
-                                    <h3 class="mt-2"> <b>Cuentas por Cobrar</b></h3>
+                                    <h3 class="mt-2"> <b>Ubicacion</b></h3>
                                     
                                      
                                     
@@ -32,10 +32,10 @@
                             <thead class="h5 text-center">
                                 <tr>
                                     <th>Embarcación</th>
+                                    <th>Matricula</th>
                                     <th>Pies</th>
-                                    <th>Canon</th>
-                                    <th>Fecha deuda</th>
-                                    <th>Monto $</th>
+                                    <th>Fecha Ingreso</th>
+                                    <th>Ubicación</th>
                                 </tr>
                             </thead>
                             <tbody class="h5" style="color: black;">
@@ -43,10 +43,10 @@
                                     <?php foreach($results as $result):?>
                                         <tr class="odd gradeX" style="text-align:center">
                                             <td><?=$result['nombrebuque']?></td>
-                                            <td><?=$result['pies']?></td>
-                                            <td><?=$result['canon']?> </td>
-                                            <td><?=date("d/m/Y", strtotime($result['fecha_deuda']));?> </td>
-                                            <td><?=$result['canon']?> </td>
+                                            <td><?=$result['matricula']?></td>
+                                            <td><?=$result['pies']?> </td>
+                                            <td><?=date("d/m/Y", strtotime($result['fechaingreso']));?> </td>
+                                            <td><?=$result['descripcion']?> </td>
                                     </tr>
                                     <?php endforeach;?>
                                 <?php }?>
@@ -54,30 +54,9 @@
                         </table>
                     </div>
                     <div class="col-1"></div>
-                    <div class="form-group mt-3 mr-1 row">
-                        <label class="col-md-4 col-form-label">Total Pies:</label>
-                        <div class="col-md-8">
-                            <div class="input-group input-daterange">
-                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['pies'], 2, ',', '.')?>" readonly>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 mr-1 row">
-                        <label class="col-md-4 col-form-label"> Total Canon:</label>
-                        <div class="col-md-8">
-                            <div class="input-group input-daterange">
-                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['canon'], 0, ',', '.')?>" readonly>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3 row">
-                        <label class="col-md-4 col-form-label"> Total General:</label>
-                        <div class="col-md-8">
-                            <div class="input-group input-daterange">
-                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['canon'], 0, ',', '.')?>" readonly>
-                          </div>
-                        </div>
-                    </div>
+                    
+                   
+                   
                 </div>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <div id="content" class="content">
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-inverse">
-                <form action="<?=base_url()?>index.php/Reporte/ubicar" method="POST">
+            <div class="panel panel-inverse" data-sortable-id="form-validation-1">
+                <form action="<?=base_url()?>index.php/Reporte/ubicar" data-parsley-validate="true" method="POST">
                     <div class="row" id="imp1">
                         <div class="col-1"></div>
                         <div class="col-10 mt-4">
@@ -17,14 +17,31 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="p-2 flex-fill bd-highlight" id="camposFechas">
 
-
-                            <div class="fechas">
-                                <input type="date" id="desde" name="desde" class="dt-fecha">desde
-                                <input type="date" id="hasta" name="hasta" class="dt-fecha">
+                        <h2 class="mt-2"> <b>Seleccione Los Rangos de Fecha </b></h2>
+                            <div class="form-group">
+                                <label for="txtDesde"><i class="ion-calendar"></i> Desde</label>
+                                <input type="date"
+                                    class="form-control <?php echo form_error('desde') ? 'is-invalid' : ''; ?>"
+                                    placeholder="Desde" id="desde" name="desde"/>
+                                <div class="invalid-feedback">
+                                    <?php echo form_error('desde'); ?>
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label for="txtHasta"><i class="ion-calendar"></i> Hasta</label>
+                                <input type="date"
+                                    class="form-control <?php echo form_error('hasta') ? 'is-invalid' : ''; ?>"
+                                    placeholder="Hasta" id="hasta" name="hasta" />
+                                <div class="invalid-feedback">
+                                    <?php echo form_error('hasta'); ?>
+                                </div>
+                            </div>
+
+
                         </div>
+
                         <div class="col-1 text-center mt-3">
 
                             <div type="submit" class="ml-auto p-2 bd-highlight"><button
@@ -36,3 +53,6 @@
         </div>
     </div>
 </div>
+<?php if ($this->session->flashdata('sa-error')) { ?>
+  <div hidden id="success"> <?= $this->session->flashdata('success') ?> </div>
+<?php } ?>

@@ -19,6 +19,7 @@
                                 <blockquote class="card-blockquote" style="margin-bottom: -19px;">
                                     <p class="f-s-18 text-inverse f-w-600"> <?=$descripcion?>.</p>
                                     <p class="f-s-16">RIF.: <?=$rif?> <br>
+                                    <h3 class="mt-2"> <b>Reporte por Servicio</b></h3>
                                 </blockquote>
                             </div>
                         </div>
@@ -39,10 +40,10 @@
                                 <?php if($results != 0){ ?>
                                     <?php foreach($results as $result):?>
                                         <tr class="odd gradeX" style="text-align:center">
-                                            <td><?=$result['nombrebuque']?></td>
+                                            <td><?=$result['nombrep']?></td>
                                             <td><?=$result['pies']?></td>
                                             <td><?=$result['monto_estimado']?> </td>
-                                            <td><?=$result['fechaingreso']?> </td>
+                                            <td><?=date("d/m/Y", strtotime($result['fechaingreso']));?> </td>
                                             <td><?=$result['ob']?> </td>
                                             <td><?=$result['condicion']?> </td>
                                     </tr>

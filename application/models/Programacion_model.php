@@ -28,6 +28,7 @@
             $this->db->select('*');
             $this->db->from('buque ');
             $this->db->where('desincorporar !=', '0');
+            
             $query = $this->db->get();
             return $result = $query->result_array();
         }

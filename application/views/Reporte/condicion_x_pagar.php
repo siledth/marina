@@ -11,6 +11,7 @@
                                 <blockquote class="card-blockquote" style="margin-bottom: -19px;">
                                     <p class="f-s-18 text-inverse f-w-600"> <?=$descripcion?>.</p>
                                     <p class="f-s-16">RIF.: <?=$rif?> <br>
+                                    <h3 class="mt-2"> <b>CONDICIÓN DE PAGO</b></h3>
                                 </blockquote>
                             </div>
                         </div>

@@ -19,6 +19,7 @@
                                 <blockquote class="card-blockquote" style="margin-bottom: -19px;">
                                     <p class="f-s-18 text-inverse f-w-600"> <?=$descripcion?>.</p>
                                     <p class="f-s-16">RIF.: <?=$rif?> <br>
+                                    <h4 class="mt-2"> <b>Condición de Pago</b></h3>
                                 </blockquote>
                             </div>
                         </div>
@@ -27,7 +28,7 @@
                         <table id="data-table-default" class="table table-striped table-bordered display responsive nowrap" style="width:100%">
                             <thead class="h5 text-center">
                                 <tr>
-                                    <th>Matricula</th>
+                                    <th>Embarcación</th>
                                     <th>Pies</th>
                                     <th>Canon</th>
                                     <th>Tipo de pago</th>
@@ -38,7 +39,7 @@
                                 <?php if($results != 0){ ?>
                                     <?php foreach($results as $result):?>
                                         <tr class="odd gradeX" style="text-align:center">
-                                            <td><?=$result['matricula']?></td>
+                                            <td><?=$result['nombrebuque']?></td>
                                             <td><?=$result['pies']?></td>
                                             <td><?=$result['canon']?> </td>
                                             <td><?=$result['dtp_pago']?> </td>

@@ -2,7 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reporte extends CI_Controller {
- 
+	public function Todos(){
+		if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['ver_proyectos'] = $this->Programacion_model->consulta_buque();
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/todos.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+
 	/*public function Report(){
 		if(!$this->session->userdata('session'))redirect('login');
 		$this->load->view('templates/header.php');
@@ -21,6 +31,21 @@ class Reporte extends CI_Controller {
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('Reporte/ubicacion.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+	public function ver_agua(){
+	
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+		$data['time']=date("d-m-Y");
+		$parametros              = $this->input->get('id');
+        $separar                 = explode("/", $parametros);
+        $data['desde']   = $separar['0'];
+        $data['hasta']       = $separar['1'];
+		$data['agua'] = $this->Reporte_model->consulta_ubicacion_agua2($data);
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/agua.php', $data);
         $this->load->view('templates/footer.php');
 	}
 	
@@ -48,10 +73,30 @@ class Reporte extends CI_Controller {
 		$data['muellec'] = $this->Reporte_model->consulta_ubicacion_muellec($hasta,$desde);
 		$data['muelled'] = $this->Reporte_model->consulta_ubicacion_muelled($hasta,$desde);
 		
-		$this->load->view('templates/header.php');
-        $this->load->view('templates/navigator.php');
-		$this->load->view('Reporte/ver_ubicacion.php', $data);
-        $this->load->view('templates/footer.php');
+		//$this->form_validation->set_rules('desde', 'desde', 'required|min_length[1]');
+		$this->form_validation->set_rules('hasta', 'fecha hasta', 'required|min_length[1]');
+		$this->form_validation->set_rules('desde', 'fecha designacion ', 'required|min_length[1]');
+		//$this->form_validation->set_rules('fecha_designacion', 'fecha designacion ', 'required|min_length[1]');
+		
+		if ($this->form_validation->run() == FALSE) {
+			$data['descripcion'] = $this->session->userdata('unidad');
+			$data['rif'] = $this->session->userdata('rif');
+			$data['time']=date("d-m-Y");
+			$data['total'] = $this->Reporte_model->total();
+			$data['canon'] = $this->Reporte_model->getCanon();
+			
+			$this->load->view('templates/header.php');
+			$this->load->view('templates/navigator.php');
+			$this->load->view('Reporte/ubicacion.php', $data);
+			$this->load->view('templates/footer.php');
+
+
+		} else {
+			$this->load->view('templates/header.php');
+			$this->load->view('templates/navigator.php');
+			$this->load->view('Reporte/ver_ubicacion.php', $data);
+			$this->load->view('templates/footer.php');
+			}
 	}
 
 	public function Report(){
@@ -122,6 +167,46 @@ class Reporte extends CI_Controller {
 		$this->load->view('Reporte/tp_pago/result_x_pagar.php', $data);
         $this->load->view('templates/footer.php');
 	}
+	///tipo de pago general detallado
+	public function condxpagar_detallado(){
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] 		 = $this->session->userdata('rif');
+		$data['tp_pagos']    = $this->Reporte_model->tp_pago();    
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/tp_pago/bus_tipo_pago_detalla.php', $data);
+        $this->load->view('templates/footer.php');
+	}//detalle condicion de pago
+	public function bus_x_tpago_detallado(){
+		
+		$fecha_D = $this->input->post("start");
+		$parametros = explode("/",$fecha_D);
+		$dia 	= $parametros['0'];
+		$mes	= $parametros['1'];
+		$anio	= $parametros['2'];
+		$star   = $anio .'-'. $mes .'-'. $dia;
+		
+		$fecha_H = $this->input->post("end");
+		$parametros2 = explode("/",$fecha_H);
+		$dia2 	= $parametros2['0'];
+		$mes2	= $parametros2['1'];
+		$anio2	= $parametros2['2'];
+		$end   = $anio2 .'-'. $mes2 .'-'. $dia2;
+		
+		$data = array(
+			't_pago'	=> $this->input->post("t_pago"),
+			'start'		=> $star,
+			'end'		=> $end,
+		);
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] 		 = $this->session->userdata('rif');
+		$data['results'] 	 =	$this->Reporte_model->consultar_t_pago_detallado($data);
+		$data['results_2'] 	 =	$this->Reporte_model->consultar_t_pago2_detalle($data);
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/tp_pago/result_x_pagar_detallado.php', $data);
+        $this->load->view('templates/footer.php');
+	}
 
 	//Reporte por cuentas por pagar por cada embarcación
 	public function cxc_embarcacion(){
@@ -164,7 +249,7 @@ class Reporte extends CI_Controller {
 
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
-		$this->load->view('Reporte/cxc_embarcacion/result_cxc_embarcaciones.php', $data);
+		$this->load->view('Reporte/cxc_embarcacion/result_cxc_embarcaciones.php', $data,);
         $this->load->view('templates/footer.php');
 	}
 
@@ -266,5 +351,48 @@ class Reporte extends CI_Controller {
 		$data = $this->input->post();
 		$data =	$this->Reporte_model->f_p_tt_ing_tar($data);
 		echo json_encode($data);
+	}
+/////reporte detallado ubicacion
+	public function ubicaciones(){
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] 		 = $this->session->userdata('rif');
+		$data['ubicacion']  = $this->Reporte_model->bus_ubicacion();    
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/general_ubicacion.php', $data);
+        $this->load->view('templates/footer.php');
+	}
+	public function bus_ubicacion(){
+
+		$fecha_D = $this->input->post("start");
+		$parametros = explode("/",$fecha_D);
+		$dia 	= $parametros['0'];
+		$mes	= $parametros['1'];
+		$anio	= $parametros['2'];
+		$star   = $anio .'-'. $mes .'-'. $dia;
+		
+		$fecha_H = $this->input->post("end");
+		$parametros2 = explode("/",$fecha_H);
+		$dia2 	= $parametros2['0'];
+		$mes2	= $parametros2['1'];
+		$anio2	= $parametros2['2'];
+		$end   = $anio2 .'-'. $mes2 .'-'. $dia2;
+		
+		$data = array(
+			'matricula'	=> $this->input->post("matricula"),
+			'start'		=> $star,
+			'end'		=> $end,
+		);
+		
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] 		 = $this->session->userdata('rif');
+
+		$data['results'] 	 =	$this->Reporte_model->consultar_ubicacion_detallada($data);
+		$data['results_2'] 	 =	$this->Reporte_model->consultar_cxc_embarc2($data);
+
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/ver_general_ubicacion.php', $data,);
+        $this->load->view('templates/footer.php');
 	}
 }
