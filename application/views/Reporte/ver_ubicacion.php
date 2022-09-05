@@ -32,68 +32,52 @@
                         <div class="form-group col-5">
                             <label>Total Embarcaciones <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h3><b><?=$fecha?></b> </h3>
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/Todos?id=1" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>                      
+                                                  
                         </div>
                         
                         <div class="form-group col-3">
                             <label>Total Embarcaciones En Agua <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h3><b><?= $agua?></b> </h3>
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/ver_agua?id=<?php echo $desde;?>/<?php echo $hasta;?>" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>     
+     
                             
                         </div>
                         <div class="form-group col-3">
                             <label>Total Embarcaciones En Tierra <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h3><b><?=$tierra?></b> </h3> 
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/ver_todo?id=1" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>     
+                                
                         </div>
                                                 
                       
                         <div class="col-12 text-center">
-                      
+                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                             <h4 style="color:red;"> Embarcación en Agua</h4>
-                            <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                           
                         </div>
                         <div class="col-3">
                             <label>Total Muelle 1A</label>
                             <h3><b><?=$muelle1a?></b> </h3>
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/ver_todo?id=1" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>     
+                                
                         </div>
                         <div class="col-3">
                             <label>Total Muelle 2A </label>
                             <h3><b><?=$muelle2a?></b> </h3>
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/ver_todo?id=1" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>     
+                                
                         </div>
                         <div class="form-group col-2">
                             <label>Total Muelle MUELLE B<b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h3><b><?=$muelleb?></b> </h3>
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/ver_todo?id=1" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>     
+                               
                         </div>
                   
                         <div class="form-group col-4">
                             <label>Total Muelle MUELLE C<b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h3><b><?=$muellec?></b></h3> 
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/ver_todo?id=1" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>     
+                                
                         </div>
                         <div class="form-group col-7">
                             <label> Total Muelle D<b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h3><b><?=$muelled?></b> </h3> 
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/ver_todo?id=1" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>     
+                                
                         </div> 
                         <div class="form-group col-3">
                            
@@ -101,22 +85,19 @@
                        
                       
                         <div class="col-12 text-center">
+                        <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                             <h4 style="color:red;"> Embarcación en Patio</h3>
-                            <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
+                        
                         </div>
                         <div class="form-group col-3">
                             <label> Total Patio 1<b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h3><b><?=$patio1?></b> </h3> 
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/ver_todo?id=1" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>     
+                              
                         </div> 
                         <div class="form-group col-3">
                             <label> Total Patio 2<b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h3><b><?=$patio2?></b> </h3> 
-                            <a class="button" href="<?php echo base_url() ?>index.php/Reporte/ver_todo?id=1" >
-                                                            <i title="Ver" class="fas fa-lg fa-fw fa-list-alt" style="color: #00d41a;"></i>
-                                                        <a/>     
+                               
                         </div> 
                         
                        
