@@ -67,12 +67,14 @@ class Reporte extends CI_Controller {
 		$data['agua'] = $this->Reporte_model->consulta_ubicacion_agua($hasta,$desde);
 		$data['muelle1a'] = $this->Reporte_model->consulta_ubicacion_muelle1a($hasta,$desde);
 		$data['muelle2a'] = $this->Reporte_model->consulta_ubicacion_muelle2a($hasta,$desde);
-		$data['patio1'] = $this->Reporte_model->consulta_ubicacion_patio1($hasta,$desde);
-		$data['patio2'] = $this->Reporte_model->consulta_ubicacion_patio2($hasta,$desde);
+		
 		$data['muelleb'] = $this->Reporte_model->consulta_ubicacion_muelleb($hasta,$desde);
 		$data['muellec'] = $this->Reporte_model->consulta_ubicacion_muellec($hasta,$desde);
 		$data['muelled'] = $this->Reporte_model->consulta_ubicacion_muelled($hasta,$desde);
-		
+		$data['patio1'] = $this->Reporte_model->consulta_ubicacion_patio1($hasta,$desde);
+		$data['patio2'] = $this->Reporte_model->consulta_ubicacion_patio2($hasta,$desde);
+		$data['patio3'] = $this->Reporte_model->consulta_ubicacion_patio3($hasta,$desde);
+		$data['patio4'] = $this->Reporte_model->consulta_ubicacion_patio4($hasta,$desde);
 		//$this->form_validation->set_rules('desde', 'desde', 'required|min_length[1]');
 		$this->form_validation->set_rules('hasta', 'fecha hasta', 'required|min_length[1]');
 		$this->form_validation->set_rules('desde', 'fecha designacion ', 'required|min_length[1]');

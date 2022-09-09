@@ -33,6 +33,7 @@
                                     <th>Canon</th>
                                     <th>Tipo de pago</th>
                                     <th>Total Bs.F</th>
+                                    <th>Total dolares</th>
                                     <th>Numero de referencia</th>
                                     <th>nombre banco</th>
                                     <th>fecha transferencia</th>
@@ -49,6 +50,7 @@
                                             <td><?=$result['canon']?> </td>
                                             <td><?=$result['dtp_pago']?> </td>
                                             <td><?=$result['total_bs']?> </td>
+                                            <td><?=$result['total_dolares']?> </td>
                                             <td><?=$result['nro_referencia']?> </td>
                                             <td><?=$result['nombre_b']?> </td>
                                             <td><?=date("d/m/Y", strtotime($result['fechatrnas']));?> </td>
@@ -75,8 +77,17 @@
                           </div>
                         </div>
                     </div>
+                     <div class="form-group mt-3 mr-1 row">
+                        <label class="col-md-4 col-form-label"> Total General $:</label>
+                        <div class="col-md-8">
+                            <div class="input-group input-daterange">
+                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['total_dolares'], 0, ',', '.')?>" readonly>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-7"></div>
                     <div class="form-group mt-3 row">
-                        <label class="col-md-4 col-form-label"> Total General:</label>
+                        <label class="col-md-4 col-form-label"> Total General BS:</label>
                         <div class="col-md-8">
                             <div class="input-group input-daterange">
                             <input class="form-control text-center" type="text" value="<?=number_format($results_2['total_bs'], 2, ',', '.')?>" readonly>

@@ -99,6 +99,16 @@
                             <h3><b><?=$patio2?></b> </h3> 
                                
                         </div> 
+                        <div class="form-group col-3">
+                            <label> Total Patio 3<b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <h3><b><?=$patio3?></b> </h3> 
+                               
+                        </div> 
+                        <div class="form-group col-3">
+                            <label> Total Patio 4<b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <h3><b><?=$patio4?></b> </h3> 
+                               
+                        </div> 
                         
                        
                        

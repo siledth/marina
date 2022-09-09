@@ -230,7 +230,7 @@
                                     <ul class="sub-menu">
                                         <li>
                                             <a href="<?= base_url() ?>index.php/Fuentefinanc/tipoestaci">
-                                                - Tipo Estacionamiento
+                                                - Ubicación
                                             </a>
                                         </li>
                                         <li>

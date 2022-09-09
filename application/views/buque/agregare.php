@@ -209,7 +209,7 @@
                             <div class="form-group col-2">
                                 <label>Tipo </label>
                                 <select class="default-select2 form-control " id="tipo" name="tipo" readonly>
-                                    <option value="0">Selecione</option>
+                                <option value="principal">Seleccione</option>
                                     <option value="principal">Principal</option>
                                     <option value="socio">Socio</option>
 
@@ -295,7 +295,7 @@
                             <div class="form-group col-2">
                                 <label>Se autoriza ingresar a la marina </label>
                                 <select class="default-select2 form-control " id="autor" name="autor" readonly>
-                                    <option value="0">Selecione</option>
+                                    <option value="CON ACOMPAÑANTES">Selecione</option>
                                     <option value="CON ACOMPAÑANTES">CON ACOMPAÑANTES</option>
                                     <option value="SIN ACOMPAÑANTES">SIN ACOMPAÑANTES</option>
                                     

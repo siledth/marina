@@ -127,6 +127,32 @@ class Reporte_model extends CI_Model {
       return $num;
         
 	}
+    public function consulta_ubicacion_patio3( $desde, $hasta) {
+        $cadena = "ubicacion = '8'";
+        $this->db->where($cadena);
+        $this->db->where('fechaingreso >=', $hasta);
+        $this->db->where('fechaingreso <=', $desde);
+        $this->db->from('public.buque');
+        $num = $this->db->count_all_results();
+        return $num;
+        
+     
+      return $num;
+        
+	}
+    public function consulta_ubicacion_patio4( $desde, $hasta) {
+        $cadena = "ubicacion = '9'";
+        $this->db->where($cadena);
+        $this->db->where('fechaingreso >=', $hasta);
+        $this->db->where('fechaingreso <=', $desde);
+        $this->db->from('public.buque');
+        $num = $this->db->count_all_results();
+        return $num;
+        
+     
+      return $num;
+        
+	}
 
     public function consulta_ubicacion_muelleb( $desde, $hasta) {
         $cadena = "ubicacion = '3'";
@@ -202,7 +228,7 @@ class Reporte_model extends CI_Model {
     //Reporte Condidión por pagar (tipo de pago)
     public function tp_pago(){         
         $this->db->select('*');
-        $this->db->where('id_tipo_pago <', 5);
+        $this->db->where('id_tipo_pago <', 4);
         $query = $this->db->get('public.tipopago');
         return $query->result_array();
     }
@@ -210,11 +236,11 @@ class Reporte_model extends CI_Model {
     public function consultar_t_pago($data){
          
         $this->db->select("m.matricula,
-        r.nombrebuque,
+                            r.nombrebuque,
                             m.pies,
                             m.canon,
                             t.descripcion dtp_pago,
-                            sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
+                            sum(to_number(mc.total_abonado_om,'999999999999D99'))  as total_bs");
         $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
         $this->db->join('tipopago t', 't.id_tipo_pago = mc.id_tipo_pago', 'left');
         $this->db->join('buque r', 'r.matricula = m.matricula', 'left');
@@ -222,7 +248,7 @@ class Reporte_model extends CI_Model {
         $this->db->where('mc.fecha_reg >=', $data['start']);
         $this->db->where('mc.fecha_reg <=', $data['end']);
         $this->db->order_by('m.matricula');
-        $this->db->group_by('m.matricula, m.pies, m.canon, t.descripcion,r.nombrebuque');
+        $this->db->group_by('m.matricula, m.pies, m.canon, t.descripcion,r.nombrebuque,mc.total_abonado_om');
         $query = $this->db->get('mov_consig mc');
         return $query->result_array();
     
@@ -237,7 +263,8 @@ class Reporte_model extends CI_Model {
             m.canon,
             mc.id_estatus, mc.fecha_reg, mc.id_banco, mc.fechatrnas,mc.nro_referencia,
             y.nombre_b, t.descripcion dtp_pago,
-            sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
+            sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs,
+            sum(to_number(mc.total_abonado_om,'999999999999D99')) as total_dolares");
             $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
             $this->db->join('tipopago t', 't.id_tipo_pago = mc.id_tipo_pago', 'left');
             $this->db->join('buque r', 'r.matricula = m.matricula', 'left');
@@ -258,6 +285,7 @@ class Reporte_model extends CI_Model {
         public function consultar_t_pago2_detalle($data){
             $this->db->select("sum(m.canon) as canon,
                             sum(to_number(m.pies,'999999999999D99')) as pies,
+                             sum(to_number(mc.total_abonado_om,'999999999999D99')) as total_dolares,
                             sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
             $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
             $this->db->where('mc.id_tipo_pago >', 0);
@@ -271,6 +299,7 @@ class Reporte_model extends CI_Model {
     public function consultar_t_pago2($data){
         $this->db->select("sum(m.canon) as canon,
                            sum(to_number(m.pies,'999999999999D99')) as pies,
+                           sum(to_number(mc.total_abonado_om,'999999999999D99')) as total_dolares,
                            sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
         $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
         $this->db->where('mc.id_tipo_pago', $data['t_pago']);
@@ -448,7 +477,6 @@ class Reporte_model extends CI_Model {
                                 m.fechaingreso,
                                 m.nombrebuque,t.descripcion");
             $this->db->join('ubicacion t', 't.id = m.ubicacion', 'left');
-            
             $this->db->where('desincorporar', 1);
             $this->db->where('m.fechaingreso >=', $data['start']);
             $this->db->where('m.fechaingreso <=', $data['end']);
@@ -462,7 +490,6 @@ class Reporte_model extends CI_Model {
                                 m.fechaingreso,
                                 m.nombrebuque,
                                 t.descripcion");
-           
             $this->db->join('ubicacion t', 't.id = m.ubicacion', 'left');
             $this->db->where('m.ubicacion', $data['matricula']);
             $this->db->where('desincorporar', 1);

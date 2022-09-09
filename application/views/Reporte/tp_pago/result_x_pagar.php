@@ -32,7 +32,7 @@
                                     <th>Pies</th>
                                     <th>Canon</th>
                                     <th>Tipo de pago</th>
-                                    <th>Total Bs.F</th>
+                                    <th>Total $</th>
                                 </tr>
                             </thead>
                             <tbody class="h5" style="color: black;">
@@ -53,7 +53,7 @@
                     <div class="col-1"></div>
                     <div class="form-group mt-3 mr-1 row">
                         <label class="col-md-4 col-form-label">Total Pies:</label>
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <div class="input-group input-daterange">
                             <input class="form-control text-center" type="text" value="<?=number_format($results_2['pies'], 2, ',', '.')?>" readonly>
                           </div>
@@ -61,14 +61,23 @@
                     </div>
                     <div class="form-group mt-3 mr-1 row">
                         <label class="col-md-4 col-form-label"> Total Canon:</label>
-                        <div class="col-md-8">
+                        <div class="col-md-5">
                             <div class="input-group input-daterange">
                             <input class="form-control text-center" type="text" value="<?=number_format($results_2['canon'], 0, ',', '.')?>" readonly>
                           </div>
                         </div>
                     </div>
+                    <div class="form-group mt-3 mr-1 row">
+                        <label class="col-md-4 col-form-label"> Total General $:</label>
+                        <div class="col-md-8">
+                            <div class="input-group input-daterange">
+                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['total_dolares'], 0, ',', '.')?>" readonly>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-7"></div>
                     <div class="form-group mt-3 row">
-                        <label class="col-md-4 col-form-label"> Total General:</label>
+                        <label class="col-md-4 col-form-label"> Total General BS:</label>
                         <div class="col-md-8">
                             <div class="input-group input-daterange">
                             <input class="form-control text-center" type="text" value="<?=number_format($results_2['total_bs'], 2, ',', '.')?>" readonly>
