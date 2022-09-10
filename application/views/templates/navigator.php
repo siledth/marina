@@ -183,6 +183,16 @@
                                     <li><a href="<?= base_url() ?>index.php/Reporte/condxpagar_detallado">Condición de Pago detallado</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/cxc_embarcacion">Cuentas por Cobrar / por embarcaciòn</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/servicios">Servicios</a></li>
+                                    <li class="has-sub">
+                                <a href="javascript:;">
+                                    <b class="caret"></b>
+                                    <span>Reporte Jefe</span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li><a href="<?= base_url() ?>index.php/Reporte/Reporte_jefes">Ver</a></li>
+                                    
+                                </ul>
+                            </li>
                                 </a>
                             </li>
                         </ul>

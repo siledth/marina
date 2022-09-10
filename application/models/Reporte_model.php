@@ -501,4 +501,19 @@ class Reporte_model extends CI_Model {
             return $query->result_array();
         }
     }
+//////////reporte del jefe
+    public function get_jefe(){         
+        $this->db->select('r.*,t.desc_concepto');
+        $this->db->join('tarifa t', 't.id_tarifa = r.id_tarifa', 'left');
+        $query = $this->db->get('public.reporte_deuda_corto_final r');
+        return $query->result_array();
+	}
+
+    public function get_jefe_total(){         
+        $this->db->select("sum(m.total) as canon,
+        sum(to_number(m.pies,'999999999999D99')) as pies");
+        $query = $this->db->get('public.reporte_deuda_corto_final m');
+        return $query->result_array();
+	}
+    
 }

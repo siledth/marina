@@ -397,4 +397,17 @@ class Reporte extends CI_Controller {
 		$this->load->view('Reporte/ver_general_ubicacion.php', $data,);
         $this->load->view('templates/footer.php');
 	}
+	public function Reporte_jefes(){
+	
+		$data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+		$data['time']=date("d-m-Y");
+		//$data['total'] = $this->Reporte_model->total();
+		$data['canon'] = $this->Reporte_model->get_jefe();
+		$data['total'] = $this->Reporte_model->get_jefe_total();
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/reporte_jefe/reporte_jefe.php', $data);
+        $this->load->view('templates/footer.php');
+	}
 }
