@@ -61,23 +61,11 @@ class Reporte extends CI_Controller {
 		$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
 		//$hasta1= date('Y-m-d', strtotime($hasta)); 
 		//die(print_r($data['hasta'], TRUE));
-
-		$data['fecha'] = $this->Reporte_model->consulta_ubicacion($hasta,$desde);
-		$data['tierra'] = $this->Reporte_model->consulta_ubicacion_tierra($hasta,$desde);
-		$data['agua'] = $this->Reporte_model->consulta_ubicacion_agua($hasta,$desde);
-		$data['muelle1a'] = $this->Reporte_model->consulta_ubicacion_muelle1a($hasta,$desde);
-		$data['muelle2a'] = $this->Reporte_model->consulta_ubicacion_muelle2a($hasta,$desde);
+		//$this->form_validation->set_rules('fecha_designacion', 'fecha designacion ', 'required|min_length[1]');
 		
-		$data['muelleb'] = $this->Reporte_model->consulta_ubicacion_muelleb($hasta,$desde);
-		$data['muellec'] = $this->Reporte_model->consulta_ubicacion_muellec($hasta,$desde);
-		$data['muelled'] = $this->Reporte_model->consulta_ubicacion_muelled($hasta,$desde);
-		$data['patio1'] = $this->Reporte_model->consulta_ubicacion_patio1($hasta,$desde);
-		$data['patio2'] = $this->Reporte_model->consulta_ubicacion_patio2($hasta,$desde);
-		$data['patio3'] = $this->Reporte_model->consulta_ubicacion_patio3($hasta,$desde);
-		$data['patio4'] = $this->Reporte_model->consulta_ubicacion_patio4($hasta,$desde);
 		//$this->form_validation->set_rules('desde', 'desde', 'required|min_length[1]');
-		$this->form_validation->set_rules('hasta', 'fecha hasta', 'required|min_length[1]');
-		$this->form_validation->set_rules('desde', 'fecha designacion ', 'required|min_length[1]');
+		$this->form_validation->set_rules('hasta', 'Fecha hasta', 'required|min_length[1]');
+		$this->form_validation->set_rules('desde', 'Fecha Desde ', 'required|min_length[1]');
 		//$this->form_validation->set_rules('fecha_designacion', 'fecha designacion ', 'required|min_length[1]');
 		
 		if ($this->form_validation->run() == FALSE) {
@@ -94,6 +82,27 @@ class Reporte extends CI_Controller {
 
 
 		} else {
+			$data['descripcion'] = $this->session->userdata('unidad');
+			$data['time']=date("d-m-Y");
+			$data['rif'] = $this->session->userdata('rif');
+			$data['ver_proyectos'] = $this->Programacion_model->consulta_buque();
+			$hasta     = $this->input->post("hasta");
+			$desde     = $this->input->post("desde");
+			$data['desde'] = date('Y-m-d', strtotime($desde));
+			$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
+		$data['fecha'] = $this->Reporte_model->consulta_ubicacion($hasta,$desde);
+		$data['tierra'] = $this->Reporte_model->consulta_ubicacion_tierra($hasta,$desde);
+		$data['agua'] = $this->Reporte_model->consulta_ubicacion_agua($hasta,$desde);
+		$data['muelle1a'] = $this->Reporte_model->consulta_ubicacion_muelle1a($hasta,$desde);
+		$data['muelle2a'] = $this->Reporte_model->consulta_ubicacion_muelle2a($hasta,$desde);
+		
+		$data['muelleb'] = $this->Reporte_model->consulta_ubicacion_muelleb($hasta,$desde);
+		$data['muellec'] = $this->Reporte_model->consulta_ubicacion_muellec($hasta,$desde);
+		$data['muelled'] = $this->Reporte_model->consulta_ubicacion_muelled($hasta,$desde);
+		$data['patio1'] = $this->Reporte_model->consulta_ubicacion_patio1($hasta,$desde);
+		$data['patio2'] = $this->Reporte_model->consulta_ubicacion_patio2($hasta,$desde);
+		$data['patio3'] = $this->Reporte_model->consulta_ubicacion_patio3($hasta,$desde);
+		$data['patio4'] = $this->Reporte_model->consulta_ubicacion_patio4($hasta,$desde);
 			$this->load->view('templates/header.php');
 			$this->load->view('templates/navigator.php');
 			$this->load->view('Reporte/ver_ubicacion.php', $data);
