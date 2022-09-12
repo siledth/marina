@@ -2,23 +2,16 @@
 <div id="content" class="content">
     <div class="row">
         <div class="col-lg-12">
-            <div class="panel panel-inverse">
-                <form action="<?=base_url()?>index.php/Reporte/bus_x_embarcacion" method="POST">
-                    <div class="row" id="imp1">
-                        <div class="col-1"></div>
-                        <div class="col-10 mt-4">
-                            <div class="card card-outline-danger text-center bg-white">
-                                <div class="card-block">
-                                    <blockquote class="card-blockquote" style="margin-bottom: -19px;">
-                                        <p class="f-s-18 text-inverse f-w-600"> <?=$descripcion?>.</p>
-                                        <p class="f-s-16">RIF.: <?=$rif?> <br>
-                                        <h3 class="mt-2"> <b>CUENTAS POR COBRAR</b></h3>
-                                    </blockquote>
-                                </div>
-                            </div>
-                        </div>
+            <div class="panel panel-inverse" data-sortable-id="form-validation-1">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Seleccione Rango de Fecha Para Listado de CUENTAS POR COBRAR </h2>
+                </div>
+                <div class="panel-body">
+                    <form action="<?=base_url()?>index.php/Reporte/cxc_embarcacion" class="form-horizontal"
+                        data-parsley-validate="true" name="demo-form" method="POST">
+                        <div class="row">
                         <div class="col-12">
-                        <h4 class="text-center"> <b>Parametros de Búsqueda</b></h4>
+                            <h4 class="text-center"> <b>Parametros de Búsqueda</b></h4>
                         </div>
                         <div class="form-group row col-4 mt-3 ml-5">
                             <label class="col-md-3 col-form-label">Matrículas:</label>
@@ -32,23 +25,52 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group mt-3 row">
-                            <label class="col-md-3 col-form-label">Rango de Fecha:</label>
-                            <div class="col-md-8">
-                                <div class="input-group input-daterange">
-                                    <input type="text" class="form-control" id="start" name="start" placeholder="Fecha desde" />
-                                    <span class="input-group-addon">a</span>
-                                    <input type="text" class="form-control" id="end" name="end" placeholder="Fecha hasta" />
+                        
+                            <div class="form-group col-2">
+                                <label>Fecha de Desde</label>
+                                <input type="date" id="desde" name="desde" placeholder="fecha"
+                                    class="form-control  <?php echo form_error('desde') ? 'is-invalid' : ''; ?>" />
+                                <div class="invalid-feedback">
+                                    <?php echo form_error('desde'); ?>
                                 </div>
                             </div>
+                            <div class="form-group col-2">
+                                <label>Fecha Hasta</label>
+                                <input type="date" id="hasta" name="hasta" placeholder="fecha"
+                                    class="form-control  <?php echo form_error('hasta') ? 'is-invalid' : ''; ?>" />
+                                <div class="invalid-feedback">
+                                    <?php echo form_error('hasta'); ?>
+                                </div>
+                            </div>
+                        
                         </div>
-                        <div class="col-1 text-center mt-3">
-                            <button type="submit" class="btn btn-success btn-icon btn-circle btn-lg"><i style="color: white" class="mt-2 fas fa-search"></i></button>
+                        <div class="form-group col 12 text-center">
+                            <button type="submit" class="btn btn-primary"><i class="ion-search"> </i>Buscar</button>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<script src="<?= base_url() ?>/js/bien/reporte.js"></script>
+<?php if ($this->session->flashdata('sa-error')) { ?>
+<div hidden id="success"> <?= $this->session->flashdata('success') ?> </div>
+<?php } ?>
+<script type="text/javascript">
+function mayusculas(e) {
+    e.value = e.value.toUpperCase();
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+<script>
+<?php if($this->session->flashdata("success")): ?>
+
+Swal.fire({
+    icon: 'success',
+    title: 'Guardado Con exito',
+    text: '<?php echo $this->session->flashdata("success"); ?>',
+});
+<?php endif; ?>
+</script>
+<script src="<?=base_url()?>/js/contratista/contratista.js"></script>

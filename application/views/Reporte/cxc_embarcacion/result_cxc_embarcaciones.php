@@ -58,7 +58,7 @@
                         <label class="col-md-4 col-form-label">Total Pies:</label>
                         <div class="col-md-8">
                             <div class="input-group input-daterange">
-                            <input class="form-control text-center" type="text" value="<?=number_format($results_2['pies'], 2, ',', '.')?>" readonly>
+                            <input class="form-control text-center" type="text" value="<?=$results_2['pies']?>" readonly>
                           </div>
                         </div>
                     </div>

@@ -25,7 +25,7 @@ $(document).ready(function() {
                 }
                 return number + ""; // siempre devuelve tipo cadena
             }
-            $("#numfact").val(zeroFill(numero, 5));
+            $("#numfact").val(zeroFill(numero, 10));
             //console.log(zeroFill(numero, 5));
         },
     });

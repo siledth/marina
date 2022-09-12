@@ -245,8 +245,8 @@ class Reporte_model extends CI_Model {
         $this->db->join('tipopago t', 't.id_tipo_pago = mc.id_tipo_pago', 'left');
         $this->db->join('buque r', 'r.matricula = m.matricula', 'left');
         $this->db->where('mc.id_tipo_pago', $data['t_pago']);
-        $this->db->where('mc.fecha_reg >=', $data['start']);
-        $this->db->where('mc.fecha_reg <=', $data['end']);
+        $this->db->where('mc.fecha_reg >=', $data['desde']);
+        $this->db->where('mc.fecha_reg <=', $data['hasta']);
         $this->db->order_by('m.matricula');
         $this->db->group_by('m.matricula, m.pies, m.canon, t.descripcion,r.nombrebuque,mc.total_abonado_om');
         $query = $this->db->get('mov_consig mc');
@@ -255,6 +255,19 @@ class Reporte_model extends CI_Model {
    
 
     }
+    public function consultar_t_pago2($data){
+        $this->db->select("sum(m.canon) as canon,
+                           sum(to_number(m.pies,'999999999999D99')) as pies,
+                           sum(to_number(mc.total_abonado_om,'999999999999D99')) as total_dolares,
+                           sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
+        $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
+        $this->db->where('mc.id_tipo_pago', $data['t_pago']);
+        $this->db->where('mc.fecha_reg >=', $data['desde']);
+        $this->db->where('mc.fecha_reg <=', $data['hasta']);
+        $query = $this->db->get('mov_consig mc');
+        return $query->row_array();
+    }
+
     //detallado tipo de pagos
     public function consultar_t_pago_detallado($data){
             $this->db->select("m.matricula,
@@ -270,8 +283,8 @@ class Reporte_model extends CI_Model {
             $this->db->join('buque r', 'r.matricula = m.matricula', 'left');
             $this->db->join('banco y', 'y.id_banco = mc.id_banco', 'left');
             $this->db->where('mc.id_tipo_pago >', 0);
-            $this->db->where('mc.fecha_reg >=', $data['start']);
-            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $this->db->where('mc.fecha_reg >=', $data['desde']);
+            $this->db->where('mc.fecha_reg <=', $data['hasta']);
             $this->db->order_by('m.matricula');
             $this->db->group_by('m.matricula,
             r.nombrebuque,
@@ -289,25 +302,14 @@ class Reporte_model extends CI_Model {
                             sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
             $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
             $this->db->where('mc.id_tipo_pago >', 0);
-            $this->db->where('mc.fecha_reg >=', $data['start']);
-            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $this->db->where('mc.fecha_reg >=', $data['desde']);
+            $this->db->where('mc.fecha_reg <=', $data['hasta']);
             $query = $this->db->get('mov_consig mc');
             return $query->row_array();
         }
 
 
-    public function consultar_t_pago2($data){
-        $this->db->select("sum(m.canon) as canon,
-                           sum(to_number(m.pies,'999999999999D99')) as pies,
-                           sum(to_number(mc.total_abonado_om,'999999999999D99')) as total_dolares,
-                           sum(to_number(mc.total_abonado_bs,'999999999999D99')) as total_bs");
-        $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
-        $this->db->where('mc.id_tipo_pago', $data['t_pago']);
-        $this->db->where('mc.fecha_reg >=', $data['start']);
-        $this->db->where('mc.fecha_reg <=', $data['end']);
-        $query = $this->db->get('mov_consig mc');
-        return $query->row_array();
-    }
+   
     
     //Reporte cxc por embarcaciones
     public function matriculas(){         
@@ -328,8 +330,8 @@ class Reporte_model extends CI_Model {
             $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
             $this->db->join('buque t', 't.matricula = m.matricula', 'left');
             $this->db->where('id_status', 0);
-            $this->db->where('mc.fecha_reg >=', $data['start']);
-            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $this->db->where('mc.fecha_reg >=', $data['desde']);
+            $this->db->where('mc.fecha_reg <=', $data['hasta']);
             $this->db->order_by('m.matricula');
             $query = $this->db->get('mov_consig mc');
             return $query->result_array();
@@ -344,8 +346,8 @@ class Reporte_model extends CI_Model {
             $this->db->join('buque t', 't.matricula = m.matricula', 'left');
             $this->db->where('m.matricula', $data['matricula']);
             $this->db->where('id_status', 0);
-            $this->db->where('mc.fecha_reg >=', $data['start']);
-            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $this->db->where('mc.fecha_reg >=', $data['desde']);
+            $this->db->where('mc.fecha_reg <=', $data['hasta']);
             $this->db->order_by('m.matricula');
             $this->db->group_by('mc.id_mensualidad, m.matricula, m.pies, m.canon, m.fecha_deuda,t.nombrebuque');
             $query = $this->db->get('mov_consig mc');
@@ -360,8 +362,8 @@ class Reporte_model extends CI_Model {
                             $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
                             //$this->db->where('m.matricula', $data['matricula']);
                             $this->db->where('id_status', 0);
-                            $this->db->where('mc.fecha_reg >=', $data['start']);
-                            $this->db->where('mc.fecha_reg <=', $data['end']);
+                            $this->db->where('mc.fecha_reg >=', $data['desde']);
+                            $this->db->where('mc.fecha_reg <=', $data['hasta']);
                             $query = $this->db->get('mov_consig mc');
                             return $query->row_array();
         }else{
@@ -370,8 +372,8 @@ class Reporte_model extends CI_Model {
             $this->db->join('mensualidad m', 'm.id_mensualidad = mc.id_mensualidad', 'left');
             $this->db->where('m.matricula', $data['matricula']);
             $this->db->where('id_status', 0);
-            $this->db->where('mc.fecha_reg >=', $data['start']);
-            $this->db->where('mc.fecha_reg <=', $data['end']);
+            $this->db->where('mc.fecha_reg >=', $data['desde']);
+            $this->db->where('mc.fecha_reg <=', $data['hasta']);
             $query = $this->db->get('mov_consig mc');
             return $query->row_array();
         }

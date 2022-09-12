@@ -1,4 +1,4 @@
-
+5
 function agregar_ccnu_acc(button) {
 	var row = button.parentNode.parentNode;
   	var cells = row.querySelectorAll('td:not(:last-of-type)');

@@ -57,7 +57,7 @@
                         <label class="col-md-6 col-form-label">Total Pies por Factura:</label>
                         <div class="col-md-6">
                             <div class="input-group input-daterange">
-                            <input class="form-control text-center" type="text" value="<?=number_format($totl_pies_f, 2, ',', '.')?>" readonly>
+                            <input class="form-control text-center" type="text" value="<?=$totl_pies_f?>" readonly>
                           </div>
                         </div>
                     </div>

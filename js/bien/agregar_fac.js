@@ -1,6 +1,6 @@
 function llenar_pago() {
     var tipo_pago = $("#id_tipo_pago").val();
-    if (tipo_pago <= "4") {
+    if (tipo_pago <= "2") {
         $("#campos").show();
     } else {
         $("#campos").hide();

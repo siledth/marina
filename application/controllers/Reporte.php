@@ -139,129 +139,139 @@ class Reporte extends CI_Controller {
 
 	//Reporte Condidión por pagar (tipo de pago)
 	public function condxpagar(){
+		if(!$this->session->userdata('session'))redirect('login');
 		$data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] 		 = $this->session->userdata('rif');
 		$data['tp_pagos']    = $this->Reporte_model->tp_pago();    
-		$this->load->view('templates/header.php');
-        $this->load->view('templates/navigator.php');
-		$this->load->view('Reporte/tp_pago/parametros_x_pagar.php', $data);
-        $this->load->view('templates/footer.php');
-	}
-
-	public function bus_x_tpago(){
-
-		$fecha_D = $this->input->post("start");
-		$parametros = explode("/",$fecha_D);
-		$dia 	= $parametros['0'];
-		$mes	= $parametros['1'];
-		$anio	= $parametros['2'];
-		$star   = $anio .'-'. $mes .'-'. $dia;
 		
-		$fecha_H = $this->input->post("end");
-		$parametros2 = explode("/",$fecha_H);
-		$dia2 	= $parametros2['0'];
-		$mes2	= $parametros2['1'];
-		$anio2	= $parametros2['2'];
-		$end   = $anio2 .'-'. $mes2 .'-'. $dia2;
+		$hasta     = $this->input->post("hasta");
+		$desde     = $this->input->post("desde");
+        $data['desde'] = date('Y-m-d', strtotime($desde));
+		$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
+	//	$this->form_validation->set_rules('t_pago', 't_pago', 'required|callback_select_validate');
+		$this->form_validation->set_rules('hasta', 'Fecha hasta', 'required|min_length[1]');
+		$this->form_validation->set_rules('desde', 'Fecha Desde ', 'required|min_length[1]');
 		
-		$data = array(
-			't_pago'	=> $this->input->post("t_pago"),
-			'start'		=> $star,
-			'end'		=> $end,
-		);
-		$data['descripcion'] = $this->session->userdata('unidad');
-        $data['rif'] 		 = $this->session->userdata('rif');
-		$data['results'] 	 =	$this->Reporte_model->consultar_t_pago($data);
-		$data['results_2'] 	 =	$this->Reporte_model->consultar_t_pago2($data);
+		
+		if ($this->form_validation->run() == FALSE) {
+			$data['descripcion'] = $this->session->userdata('unidad');
+       		$data['rif'] 		 = $this->session->userdata('rif');
+			$data['tp_pagos']    = $this->Reporte_model->tp_pago();
+			$this->load->view('templates/header.php');
+			$this->load->view('templates/navigator.php');
+			$this->load->view('Reporte/tp_pago/parametros_x_pagar.php', $data);
+			$this->load->view('templates/footer.php');
+		
+		
+		
+		
+		} else {
+
+			$data['descripcion'] = $this->session->userdata('unidad');
+			$data['rif'] 		 = $this->session->userdata('rif');
+			$data['tp_pagos']    = $this->Reporte_model->tp_pago();  
+
+			$hasta     = $this->input->post("hasta");
+			$desde     = $this->input->post("desde");
+			$data['desde'] = date('Y-m-d', strtotime($desde));
+			$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
+			$data['t_pago']=$this->input->post("t_pago");
+			
+			$data['results'] 	 =	$this->Reporte_model->consultar_t_pago($data);
+			$data['results_2'] 	 =	$this->Reporte_model->consultar_t_pago2($data);
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
 		$this->load->view('Reporte/tp_pago/result_x_pagar.php', $data);
         $this->load->view('templates/footer.php');
+               
+		
+		}	
 	}
+
+	
 	///tipo de pago general detallado
 	public function condxpagar_detallado(){
+		if(!$this->session->userdata('session'))redirect('login');
 		$data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] 		 = $this->session->userdata('rif');
 		$data['tp_pagos']    = $this->Reporte_model->tp_pago();    
-		$this->load->view('templates/header.php');
-        $this->load->view('templates/navigator.php');
-		$this->load->view('Reporte/tp_pago/bus_tipo_pago_detalla.php', $data);
-        $this->load->view('templates/footer.php');
-	}//detalle condicion de pago
-	public function bus_x_tpago_detallado(){
 		
-		$fecha_D = $this->input->post("start");
-		$parametros = explode("/",$fecha_D);
-		$dia 	= $parametros['0'];
-		$mes	= $parametros['1'];
-		$anio	= $parametros['2'];
-		$star   = $anio .'-'. $mes .'-'. $dia;
-		
-		$fecha_H = $this->input->post("end");
-		$parametros2 = explode("/",$fecha_H);
-		$dia2 	= $parametros2['0'];
-		$mes2	= $parametros2['1'];
-		$anio2	= $parametros2['2'];
-		$end   = $anio2 .'-'. $mes2 .'-'. $dia2;
-		
-		$data = array(
-			't_pago'	=> $this->input->post("t_pago"),
-			'start'		=> $star,
-			'end'		=> $end,
-		);
-		$data['descripcion'] = $this->session->userdata('unidad');
-        $data['rif'] 		 = $this->session->userdata('rif');
-		$data['results'] 	 =	$this->Reporte_model->consultar_t_pago_detallado($data);
-		$data['results_2'] 	 =	$this->Reporte_model->consultar_t_pago2_detalle($data);
-		$this->load->view('templates/header.php');
-        $this->load->view('templates/navigator.php');
-		$this->load->view('Reporte/tp_pago/result_x_pagar_detallado.php', $data);
-        $this->load->view('templates/footer.php');
+		$hasta     = $this->input->post("hasta");
+		$desde     = $this->input->post("desde");
+        $data['desde'] = date('Y-m-d', strtotime($desde));
+		$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
+	//	$this->form_validation->set_rules('t_pago', 't_pago', 'required|callback_select_validate');
+		$this->form_validation->set_rules('hasta', 'Fecha hasta', 'required|min_length[1]');
+		$this->form_validation->set_rules('desde', 'Fecha Desde ', 'required|min_length[1]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['descripcion'] = $this->session->userdata('unidad');
+			$data['rif'] 		 = $this->session->userdata('rif');
+			$data['tp_pagos']    = $this->Reporte_model->tp_pago();    
+			$this->load->view('templates/header.php');
+			$this->load->view('templates/navigator.php');
+			$this->load->view('Reporte/tp_pago/bus_tipo_pago_detalla.php', $data);
+			$this->load->view('templates/footer.php');
+	
+
+
+		} else {
+			$data['descripcion'] = $this->session->userdata('unidad');
+			$data['rif'] 		 = $this->session->userdata('rif');
+			$data['t_pago']=$this->input->post("t_pago");
+			$hasta     = $this->input->post("hasta");
+			$desde     = $this->input->post("desde");
+			$data['desde'] = date('Y-m-d', strtotime($desde));
+			$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
+			$data['results'] 	 =	$this->Reporte_model->consultar_t_pago_detallado($data);
+			$data['results_2'] 	 =	$this->Reporte_model->consultar_t_pago2_detalle($data);
+			$this->load->view('templates/header.php');
+			$this->load->view('templates/navigator.php');
+			$this->load->view('Reporte/tp_pago/result_x_pagar_detallado.php', $data);
+			$this->load->view('templates/footer.php');
+				}
+
+
+
 	}
+
+	
 
 	//Reporte por cuentas por pagar por cada embarcación
 	public function cxc_embarcacion(){
-		$data['descripcion'] = $this->session->userdata('unidad');
-        $data['rif'] 		 = $this->session->userdata('rif');
-		$data['matriculas']  = $this->Reporte_model->matriculas();    
-		$this->load->view('templates/header.php');
-        $this->load->view('templates/navigator.php');
-		$this->load->view('Reporte/cxc_embarcacion/cxc_embarcaciones.php', $data);
-        $this->load->view('templates/footer.php');
-	}
+		if(!$this->session->userdata('session'))redirect('login');
+		$hasta     = $this->input->post("hasta");
+		$desde     = $this->input->post("desde");
+        $data['desde'] = date('Y-m-d', strtotime($desde));
+		$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
+	//	$this->form_validation->set_rules('t_pago', 't_pago', 'required|callback_select_validate');
+		$this->form_validation->set_rules('hasta', 'Fecha hasta', 'required|min_length[1]');
+		$this->form_validation->set_rules('desde', 'Fecha Desde ', 'required|min_length[1]');
 
-	public function bus_x_embarcacion(){
+		if ($this->form_validation->run() == FALSE) {
 
-		$fecha_D = $this->input->post("start");
-		$parametros = explode("/",$fecha_D);
-		$dia 	= $parametros['0'];
-		$mes	= $parametros['1'];
-		$anio	= $parametros['2'];
-		$star   = $anio .'-'. $mes .'-'. $dia;
-		
-		$fecha_H = $this->input->post("end");
-		$parametros2 = explode("/",$fecha_H);
-		$dia2 	= $parametros2['0'];
-		$mes2	= $parametros2['1'];
-		$anio2	= $parametros2['2'];
-		$end   = $anio2 .'-'. $mes2 .'-'. $dia2;
-		
-		$data = array(
-			'matricula'	=> $this->input->post("matricula"),
-			'start'		=> $star,
-			'end'		=> $end,
-		);
-		
-		$data['descripcion'] = $this->session->userdata('unidad');
-        $data['rif'] 		 = $this->session->userdata('rif');
+				$data['descripcion'] = $this->session->userdata('unidad');
+				$data['rif'] 		 = $this->session->userdata('rif');
+				$data['matriculas']  = $this->Reporte_model->matriculas();    
+				$this->load->view('templates/header.php');
+				$this->load->view('templates/navigator.php');
+				$this->load->view('Reporte/cxc_embarcacion/cxc_embarcaciones.php', $data);
+				$this->load->view('templates/footer.php');
+			} else {
+				$data['matricula']=	$this->input->post("matricula");
+				$data['descripcion'] = $this->session->userdata('unidad');
+				$data['rif'] 		 = $this->session->userdata('rif');
 
-		$data['results'] 	 =	$this->Reporte_model->consultar_cxc_embarc($data);
-		$data['results_2'] 	 =	$this->Reporte_model->consultar_cxc_embarc2($data);
-
-		$this->load->view('templates/header.php');
-        $this->load->view('templates/navigator.php');
-		$this->load->view('Reporte/cxc_embarcacion/result_cxc_embarcaciones.php', $data,);
-        $this->load->view('templates/footer.php');
+				$data['results'] 	 =	$this->Reporte_model->consultar_cxc_embarc($data);
+				$data['results_2'] 	 =	$this->Reporte_model->consultar_cxc_embarc2($data);
+				$data['desde'] = date('Y-m-d', strtotime($desde));
+				$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
+				$this->load->view('templates/header.php');
+				$this->load->view('templates/navigator.php');
+				$this->load->view('Reporte/cxc_embarcacion/result_cxc_embarcaciones.php', $data, );
+				$this->load->view('templates/footer.php');
+		}
+	
 	}
 
 	//Reporte por tipo de Servicios
