@@ -81,4 +81,4 @@
 	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
 </head>
 
-<body>
+<body style="background-color:#FFFDFD;">

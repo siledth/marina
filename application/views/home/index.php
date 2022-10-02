@@ -7,7 +7,7 @@
             Sistema Automatizado de Embarcaciones
         </h1>
         <div class="col-12 text-center mt-3">
-            <img style="width: 90%" height="60%"  src="<?= base_url() ?>Plantilla/img/logo_.png" alt="Card image">
+            <img style="width: 90%" height="60%"  src="<?= base_url() ?>Plantilla/img/marina.jpg" alt="Card image">
         </div>
     </div>
 </div>

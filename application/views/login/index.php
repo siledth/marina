@@ -33,7 +33,7 @@ srand(time());
   <div id="page-container" class="fade">
     <div class="login login-with-news-feed">
       <div class="news-feed">
-        <div class="news-image" style="background-image: url(<?= base_url() ?>Plantilla/img/2.png);"></div>
+        <div class="news-image" style="background-image: url(<?= base_url() ?>Plantilla/img/marina.jpg);"></div>
         <!-- <img style="background-repeat: no-repeat;" src="<?= base_url() ?>Plantilla/img/2.png" alt=""> -->
       </div>
       <div class="right-content" style="padding-top:4%">
