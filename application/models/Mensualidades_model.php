@@ -61,7 +61,7 @@
                     $resultado = $query->result_array();
                     //Si es diferente a un array vacio,realizara el ingreso
                     if ($resultado != Array ( )) {
-                       return 'nop';
+                       //return 'nop';
                     }else {
                         $fecha_pago = $key['fecha_pago'];
                         $fecha_pago = explode('-',$fecha_pago);
