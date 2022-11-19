@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-3">
                             <label>Nombre y Apellido</label>
-                            <h4><b><?=$factura_ind['nombrep']?></b> </h4>
+                            <h4><b><?=$factura_ind['nombre']?></b> </h4>
                         </div>
                         <div class="form-group col-2">
                             <label>Telefono <b title="Campo Obligatorio" style="color:red">*</b></label>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="form-group col-4">
                             <label>Embarcación/Matricula <b title="Campo Obligatorio" style="color:red">*</b></label>
-                            <h4><b><?=$factura_ind['nombre']?>/</b><b><?=$factura_ind['matricula']?></b> </h4>
+                            <h4><b><?=$factura_ind['nombrep']?>/</b><b><?=$factura_ind['matricula']?></b> </h4>
                         </div>
 
 
