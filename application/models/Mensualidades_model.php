@@ -232,6 +232,8 @@
                                 m.dia,
                                 m.canon,
                                 m.nota,
+                                m.id_status,
+                                m.fechapago,
                                 e.descripcion estatus");
             $this->db->from('public.mensualidad m');
             $this->db->join('buque b', 'b.matricula = m.matricula', 'left');

@@ -30,7 +30,7 @@
                         <div class="form-group col-10 mt-4">
                            <h4 class="text-center"> <b>Pago de Mensualidad</b></h4> 
                         </div>
-                        <div class="form-group col-6">
+                        <div class="form-group col-4">
                             <label><h5> N° Recibo <b title="Campo Obligatorio" style="color:red">* </h5></b></label>
                             <h5><b>M<?=$inf_buque['nro_factura']?></b> </h5>
                         </div>
@@ -38,6 +38,12 @@
                             <label>Estatus<b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h5><b><?=$inf_buque['estatus']?></b> </h5>
                         </div>
+                        <?php if ($inf_buque['id_status'] == 2)  : ?>
+                        <div class="form-group col-2" style="font-size:20px">
+                            <label>Fecha de pago<b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <h5><b><?=date("d-m-Y", strtotime($inf_buque['fechapago']));?></b> </h5>
+                        </div>
+                        <?php endif; ?>
                         <div class="form-group col-10 mt-4">
                            <h5 class="text-center"> <b> Pago de Arrendamiento de Mes</b></h5> 
                         </div>
