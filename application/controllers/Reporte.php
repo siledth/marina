@@ -115,7 +115,7 @@ class Reporte extends CI_Controller {
 		$data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
 		$data['time']=date("d-m-Y");
-		$data['total'] = $this->Reporte_model->total();
+		$data['total'] = $this->Reporte_model->totalcanon();
 		$data['canon'] = $this->Reporte_model->getCanon2();
 		
 		$this->load->view('templates/header.php');

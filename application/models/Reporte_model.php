@@ -201,6 +201,12 @@ class Reporte_model extends CI_Model {
         $query = $this->db->get('public.total_barco');
         return $query->result_array();
     }
+    public function totalcanon(){         
+        $this->db->select('*');
+        //$this->db->where('desincorporar', 1);
+        $query = $this->db->get('public.total_barco');
+        return $query->result_array();
+    }
 
     public function ver_deudas(){
         $this->db->select('m.id_mensualidad,
