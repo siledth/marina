@@ -179,7 +179,7 @@
                                 </button>
                             </div>
                             <div class="table-responsive mt-4">
-                                <h5 class="text-center">Lista de Requerimiento</h5>
+                                <h5 class="text-center">Lista </h5>
                                 <table id="target_req_acc" class="table table-bordered table-hover">
                                     <thead style="background:#e4e7e8;">
                                         <tr class="text-center">

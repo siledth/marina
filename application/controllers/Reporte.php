@@ -26,7 +26,7 @@ class Reporte extends CI_Controller {
         $data['rif'] = $this->session->userdata('rif');
 		$data['time']=date("d-m-Y");
 		$data['total'] = $this->Reporte_model->total();
-		$data['canon'] = $this->Reporte_model->getCanon();
+		$data['canon'] = $this->Reporte_model->getCanon2();
 		
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
@@ -73,7 +73,7 @@ class Reporte extends CI_Controller {
 			$data['rif'] = $this->session->userdata('rif');
 			$data['time']=date("d-m-Y");
 			$data['total'] = $this->Reporte_model->total();
-			$data['canon'] = $this->Reporte_model->getCanon();
+			$data['canon'] = $this->Reporte_model->getCanon2();
 			
 			$this->load->view('templates/header.php');
 			$this->load->view('templates/navigator.php');
@@ -116,7 +116,7 @@ class Reporte extends CI_Controller {
         $data['rif'] = $this->session->userdata('rif');
 		$data['time']=date("d-m-Y");
 		$data['total'] = $this->Reporte_model->total();
-		$data['canon'] = $this->Reporte_model->getCanon();
+		$data['canon'] = $this->Reporte_model->getCanon2();
 		
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');

@@ -30,7 +30,7 @@
                             <h4><b><?=$factura_ind['nro_factura']?></b> </h4>    
                         </div>
                        <div class="form-group col-6">
-                            <label>Fecha de la Factura <b title="Campo Obligatorio" style="color:red">*</b></label>
+                            <label>Fecha del Recibo <b title="Campo Obligatorio" style="color:red">*</b></label>
                             <h4><b><?= date("d/m/Y", strtotime($factura_ind['fechaingreso']));?></b> </h4>
                             
                         </div>
@@ -75,6 +75,7 @@
                             <h4><b><?=$factura_ind['tipopago']?></b> </h4>
                         </div>
                         <?php if ($factura_ind['tipopago'] <= 2) {?>
+                            <?php if (($factura_ind['id_banco'] >= 0) && $factura_ind['id_tipo_pago'] <= 2) : ?>
                             <div class="form-group col-3">
                                 <label>Nro. de Referencia</label>
                                 <h4><b><?=$factura_ind['nro_referencia']?></b> </h4>
@@ -85,8 +86,9 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Fecha de Tranferencia</label>
-                                <h4><b><?=$factura_ind['fechatrnas']?></b> </h4>
+                                <h4><b><?=date("d/m/Y", strtotime($factura_ind['fechatrnas']));?></b> </h4>
                             </div>
+                            <?php endif; ?>
                         <?php } ?>
 
                         <div class="col-12">

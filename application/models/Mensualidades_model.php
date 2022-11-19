@@ -179,6 +179,13 @@
                 $fecha_tranfer = $data['fechatrnas'];
             }
             
+            $this->db->select('id_mensualidad as id');
+            $this->db->where('e.id_mensualidad', $data['id_mesualidad_ver']);
+            $query = $this->db->get('public.mensualidad e');
+            $response = $query->row_array();
+            if ($response){
+                $id = $response['id']+ 0;
+            
             $data1 = array('id_mensualidad'     => $data['id_mesualidad_ver'],
                             'id_tipo_pago'      => $data['id_tipo_pago'],
                             'nro_referencia'    => $data['nro_referencia'],
@@ -206,7 +213,9 @@
             $this->db->where('id_mensualidad', $data['id_mesualidad_ver']);
             $update = $this->db->update('mensualidad', $data1);
 
-            return true;
+            //return true;
+            return $id;
+        }
         } 
 
         public function ver_nota($data){

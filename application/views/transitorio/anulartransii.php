@@ -20,7 +20,7 @@
                                                 <th class="text-nowrap">Titular de pago</th>
                                                 <th class="text-nowrap">Embarcación</th>
                                                 <th class="text-nowrap">Matricula</th>
-                                                <th class="text-nowrap">Tot al</th>
+                                                <th class="text-nowrap">Total</th>
                                                 
                                                 <th class="text-nowrap">Acciones</th>
                                             </tr>

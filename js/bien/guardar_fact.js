@@ -36,7 +36,7 @@ function guardar_bien() {
     swal
         .fire({
             title: "¿Registrar?",
-            text: "¿Esta seguro de Registrar ?",
+            text: "¿Esta seguro de Registrar tester ?",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -50,6 +50,8 @@ function guardar_bien() {
                 var datos = new FormData($("#reg_bien")[0]);
                 var base_url =
                     window.location.origin + "/marina/index.php/Factura/registrar";
+                    var base_url_3 =
+                    window.location.origin + "/marina/index.php/Factura/verFactura?id=";
                 //   var base_url = '/index.php/Programacion/registrar_bien';
                 $.ajax({
                     url: base_url,
@@ -58,21 +60,22 @@ function guardar_bien() {
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        if (response == "true") {
-                            swal
-                                .fire({
-                                    title: "Registro Exitoso",
-                                    type: "success",
-                                    showCancelButton: false,
-                                    confirmButtonColor: "#3085d6",
-                                    confirmButtonText: "Ok",
-                                })
-                                .then((result) => {
-                                    if (result.value == true) {
-                                        location.reload();
-                                    }
-                                });
-                        }
+                        var menj = 'Numero de Factura: ';
+                    
+                         if(response != '') {
+                             swal.fire({
+                                 title: 'Registro Factura Exitoso ',
+                                 text: menj + response,
+                                 type: 'success',
+                                 showCancelButton: false,
+                                 confirmButtonColor: '#3085d6',
+                                 confirmButtonText: 'Ok'
+                             }).then((result) => {
+                                 if (result.value == true){
+                                     window.location.href = base_url_3 + response;
+                                 }
+                             });
+                         }
                     },
                 });
             }

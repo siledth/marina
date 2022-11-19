@@ -50,29 +50,32 @@ function guardar_bien() {
                 var datos = new FormData($("#reg_bien")[0]);
                 var base_url =
                     window.location.origin + "/marina/index.php/Factura/registrar_transito";
+                    var base_url_3 =
+                    window.location.origin + "/marina/index.php/Factura/verFactura_transito?id="; //esto redirecciona para ver la factura segun el numero de factura
                 //   var base_url = '/index.php/Programacion/registrar_bien';
                 $.ajax({
                     url: base_url,
                     method: "POST",
                     data: datos,
                     contentType: false,
-                    processData: false,
+                    processData: false, 
                     success: function(response) {
-                        if (response == "true") {
-                            swal
-                                .fire({
-                                    title: "Registro Exitoso",
-                                    type: "success",
-                                    showCancelButton: false,
-                                    confirmButtonColor: "#3085d6",
-                                    confirmButtonText: "Ok",
-                                })
-                                .then((result) => {
-                                    if (result.value == true) {
-                                        location.reload();
-                                    }
-                                });
-                        }
+                        var menj = 'Numero de Factura Transito: ';
+                    
+                         if(response != '') {
+                             swal.fire({
+                                 title: 'Registro Factura Transito Exitoso ',
+                                 text: menj + response,
+                                 type: 'success',
+                                 showCancelButton: false,
+                                 confirmButtonColor: '#3085d6',
+                                 confirmButtonText: 'Ok'
+                             }).then((result) => {
+                                 if (result.value == true){
+                                     window.location.href = base_url_3 + response;
+                                 }
+                             });
+                         }
                     },
                 });
             }

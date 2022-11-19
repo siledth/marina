@@ -198,7 +198,7 @@ function guardar_proc_pago() {
     swal
         .fire({
             title: "¿Registrar?",
-            text: "¿Esta seguro de registrar el proceso de Pago?",
+            text: "¿Esta seguro de registrar el proceso de Pago ",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -229,6 +229,8 @@ function guardar_proc_pago() {
                     "/marina/index.php/Mensualidades/guardar_proc_pag";
                 var base_url_2 =
                     window.location.origin + "/marina/index.php/Mensualidades/ver";
+                    var base_url_3 =
+                    window.location.origin + "/marina/index.php/Mensualidades/verPago?id=";
                 $.ajax({
                     url: base_url,
                     method: "POST",
@@ -236,7 +238,8 @@ function guardar_proc_pago() {
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        if (response == "true") {
+                        var menj = 'Numero de Recibo: ';
+                       /* if (response == "true") {
                             swal
                                 .fire({
                                     title: "Registro Exitoso",
@@ -250,6 +253,20 @@ function guardar_proc_pago() {
                                         window.location.href = base_url_2;
                                     }
                                 });
+                        }*/
+                        if(response != '') {
+                            swal.fire({
+                                title: 'Registro Exitoso ',
+                                text: menj + response,
+                                type: 'success',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value == true){
+                                    window.location.href = base_url_3 + response;
+                                }
+                            });
                         }
                     },
                 });

@@ -51,6 +51,8 @@ function guardar_bien() {
                 var base_url =
                     window.location.origin + "/marina/index.php/Factura/registrar_transito_recibo";
                 //   var base_url = '/index.php/Programacion/registrar_bien';
+                var base_url_3 =
+                    window.location.origin + "/marina/index.php/Factura/ver_recibo_transito?id=";
                 $.ajax({
                     url: base_url,
                     method: "POST",
@@ -58,21 +60,36 @@ function guardar_bien() {
                     contentType: false,
                     processData: false,
                     success: function(response) {
-                        if (response == "true") {
-                            swal
-                                .fire({
-                                    title: "Registro Exitoso",
-                                    type: "success",
-                                    showCancelButton: false,
-                                    confirmButtonColor: "#3085d6",
-                                    confirmButtonText: "Ok",
-                                })
-                                .then((result) => {
-                                    if (result.value == true) {
-                                        location.reload();
-                                    }
-                                });
-                        }
+                        var menj = 'Numero de Recibo transitorio: ';
+                        /* if (response == "true") {
+                             swal
+                                 .fire({
+                                     title: "Registro Exitoso",
+                                     type: "success",
+                                     showCancelButton: false,
+                                     confirmButtonColor: "#3085d6",
+                                     confirmButtonText: "Ok",
+                                 })
+                                 .then((result) => {
+                                     if (result.value == true) {
+                                         window.location.href = base_url_2;
+                                     }
+                                 });
+                         }*/
+                         if(response != '') {
+                             swal.fire({
+                                 title: 'Registro transitorio Exitoso ',
+                                 text: menj + response,
+                                 type: 'success',
+                                 showCancelButton: false,
+                                 confirmButtonColor: '#3085d6',
+                                 confirmButtonText: 'Ok'
+                             }).then((result) => {
+                                 if (result.value == true){
+                                     window.location.href = base_url_3 + response;
+                                 }
+                             });
+                         }
                     },
                 });
             }

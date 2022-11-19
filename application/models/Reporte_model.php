@@ -7,7 +7,12 @@ class Reporte_model extends CI_Model {
         $query = $this->db->get('public.buque');
         return $query->result_array();
 	}
-
+    public function getCanon2(){         
+        $this->db->select('* ');
+        $this->db->where('desincorporar', 1);
+        $query = $this->db->get('public.buque');
+        return $query->result_array();
+	}
     public function bus_ubicacion(){         
         $this->db->select('*');
         $query = $this->db->get('public.ubicacion');
@@ -192,6 +197,7 @@ class Reporte_model extends CI_Model {
    
     public function total(){         
         $this->db->select('*');
+        $this->db->where('desincorporar', 1);
         $query = $this->db->get('public.total_barco');
         return $query->result_array();
     }
@@ -228,7 +234,7 @@ class Reporte_model extends CI_Model {
     //Reporte Condidión por pagar (tipo de pago)
     public function tp_pago(){         
         $this->db->select('*');
-        $this->db->where('id_tipo_pago <', 4);
+        $this->db->where('id_tipo_pago <', 7);
         $query = $this->db->get('public.tipopago');
         return $query->result_array();
     }

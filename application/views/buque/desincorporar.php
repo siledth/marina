@@ -54,6 +54,7 @@
                                 <th>N°</th>
                                 <th>nombrebuque</th>
                                 <th>Matricula</th>
+                                <th>estatus</th>
                                 <th>Observaciónn</th>
                                 <th>Fecha Desincorporación</th>
                                 <th>Acciones</th>
@@ -104,6 +105,9 @@ function fetch() {
                         },
                         {
                             "data": "matricula"
+                        },
+                        {
+                            "data": "desincorporar"
                         },
                         {
                             "data": "observacion"

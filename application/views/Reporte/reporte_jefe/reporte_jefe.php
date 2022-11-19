@@ -57,7 +57,7 @@
                     <div class="col-1"></div>
 
                     <div class="col-3">
-                        <label>Total dePie<b title="Campo Obligatorio" style="color:red">*</b></label>
+                        <label>Total de Pie<b title="Campo Obligatorio" style="color:red">*</b></label>
                         <?php foreach ($total as $data): ?>
                         <input wide type="text" name="total1" id="total1" class="form-control"
                             value="<?=$data['pies']?>" style="text-align:right" readonly>

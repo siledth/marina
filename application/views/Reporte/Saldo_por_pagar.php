@@ -55,7 +55,7 @@
                     <div class="col-1"></div>
                     <div class="col-6"></div>
                     <div class="col-2">
-                        <label>Barcos Existente<b title="Campo Obligatorio" style="color:red">*</b></label>
+                        <label>Total Embarcaciones con deudas<b title="Campo Obligatorio" style="color:red">*</b></label>
                         <?php foreach ($total as $data): ?>
                         <input wide type="text" name="total1" id="total1" class="form-control" 
                             value="<?=$data['barcos']?>" style="text-align:center" readonly>
