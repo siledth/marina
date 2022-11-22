@@ -108,6 +108,11 @@
                             <label>ID - Mensualidad</label>
                             <input class="form-control" type="text" name="id_mesualidad_ver" id="id_mesualidad_ver" readonly>
                         </div>
+                        <div class="col-4">
+                            <label>Fecha </label>
+                            <input class="form-control" type="text" name="fechapago" id="fechapago" value="<?=$time?>" readonly>
+
+                        </div>
                         <div class="col-10"></div>
                         <div class="form-group col-4">
                             <label>Matricula</label>
@@ -188,6 +193,7 @@
                         <label>Nota</label>
                         <textarea name="nota" id="nota" rows="5" cols="100"></textarea>
                     </div>
+                   
                 </form>
             </div>
             <div class="modal-footer">

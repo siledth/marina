@@ -54,6 +54,7 @@ class Mensualidades extends CI_Controller {
 
     public function guardar_proc_pag(){
         if(!$this->session->userdata('session'))redirect('login');
+        $data['time']=date("d-m-Y");
         $data = $this->input->post();
         $data =	$this->Mensualidades_model->guardar_proc_pag($data);
         echo json_encode($data);

@@ -208,6 +208,7 @@
                             'fecha_update' => date('Y-m-d h:i:s'),
                             'nro_factura' => $data['numfact'],
                             'nota' => $data['nota'],
+                            'fechapago' => $data['fechapago'],
                         );
                             
             $this->db->where('id_mensualidad', $data['id_mesualidad_ver']);
