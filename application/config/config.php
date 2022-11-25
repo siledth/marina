@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 //$config['base_url'] = 'http://192.168.0.101/marina';
-$config['base_url'] = 'http://localhost:8080/marina';
+$config['base_url'] = 'http://localhost/marina';
 /*
 |--------------------------------------------------------------------------
 | Index File

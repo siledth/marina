@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => '1234',
 	'database' => 'marina',
 	'dbdriver' => 'postgre',
-	'port'	   => '5432',
+	'port'	   => '5435',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

@@ -10,9 +10,11 @@
                                 <h4 class="mt-2"> <b><?=$descripcion?></b></h4>
                                 <h5>RIF.: <?=$rif?></h5>
                                 <h5>Fecha.: <?=$time ?> </h5>
+                                <h4 class="mt-2"> <b>Ver recibo Transito</b></h4>
                             </div>
                             <div class="col-md-12" >
                                 <div class="panel-body">
+                                <h4  class="mt-2"> <b>Ver recibo Transito</b></h4>
                                     <table id="data-table-default" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
