@@ -36,8 +36,8 @@
         
         function generar($date){
             //consulto los buques que tengan el día y el mes en ejecución
-			$this->db->select('matricula, fecha_pago, pies, id_tarifa, tarifa, dia, canon');
-            $this->db->where("TO_CHAR(fecha_pago,'DD')", $date);
+			$this->db->select('matricula, fecha_pago, pies, id_tarifa, tarifa, dia, canon,desincorporar'); ///esto agregue desincorporar
+            $this->db->where("TO_CHAR(fecha_pago,'MM/RR')", $date);
             $this->db->where("desincorporar", 1);
 			$this->db->from('public.buque');
 			$this->db->order_by("nombrebuque", "Asc");

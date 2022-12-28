@@ -21,7 +21,7 @@ class Mensualidades extends CI_Controller {
         $data['time']=date("d-m-Y");
         $data['te']=date('d');
         $data['mat'] = $this->Programacion_model->consulta_matricula();
-        $date = date('d');
+        $date = date('m-Y');
         
         $generar = $this->Mensualidades_model->generar($date);
        

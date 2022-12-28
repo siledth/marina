@@ -30,9 +30,9 @@
                                     <th width="15%" class="text-nowrap">Matricula</th>
                                     <th width="5%" class="text-nowrap">Pies</th>
                                     <th width="5%" class="text-nowrap">Total</th>
-                                    <th width="5%" class="text-nowrap">Mes</th>
+                                    <th width="15%" class="text-nowrap" style="text-align:center">Mes</th>
                                     <th width="5%" class="text-nowrap">Ubicación</th>
-                                    <th width="5%" class="text-nowrap"></th>
+                                
 
                                 </tr>
                             </thead>
@@ -43,10 +43,9 @@
                                     <td><?= $lista['matricula'] ?></td>
                                     <td><?= $lista['pies'] ?></td>
                                     <td><?= $lista['total'] ?></td>
-                                    <td style="text-align:center"><?= $lista['string_agg'] ?></td>
-
+                                    <td style="text-align:center"><?= $lista['string_agg']?></td>
                                     <td><?= $lista['desc_concepto'] ?></td>
-                                    <td></td>
+                                  
 
                                 </tr>
                                 <?php endforeach; ?>
