@@ -51,10 +51,41 @@
 		}
 
 		public function save_buque($buque, $tripulacion, $propietarios){
-                $quers =$this->db->insert('public.buque',$buque);
+            $this->db->select('max(e.id) as id');
+            $query = $this->db->get('public.buque e');
+            $response3 = $query->row_array();
+            $id = $response3['id'] + 1 ;
+            $buque1 = array(
+
+                'id'=> $id,
+                'nombrebuque'=> $buque['nombrebuque'],
+                'matricula'=> $buque['matricula'],
+                'trailer'=> $buque['trailer'],
+                'pies'=> $buque['pies'],
+                'tipo'=> $buque['tipo'],
+                'color'=> $buque['color'],
+                'eslora'=> $buque['eslora'],
+                'manga'=> $buque['manga'],
+                'puntal'=> $buque['puntal'],
+                'bruto'=> $buque['bruto'],
+                'neto'=> $buque['neto'],
+                'canon'=> $buque['canon'],
+                'tarifa'=> $buque['tarifa'],
+                'dia' => $buque['dia'],
+                'ubicacion'=> $buque['ubicacion'],
+                'fechaingreso'=> $buque['fechaingreso'],
+                'fecha_pago' => $buque['fecha_pago'],
+                'id_tarifa'=> $buque['id_tarifa'],
+                'desincorporar' => $buque['desincorporar'],
+
+
+                
+            );         
+            $quers =$this->db->insert('public.buque',$buque1);
 
                 if ($quers) {
-                    $id = $this->db->insert_id();
+
+                    $id = $id;
                     $cant_proy = $tripulacion['cedulat'];
                     $count_prog = count($cant_proy);
                     for ($i=0; $i < $count_prog; $i++) {
