@@ -23,15 +23,15 @@
                     <div class="col-1"></div>
                     <div class="col-11 mt-3 ml-5">
                         <h3 class="text-center">Reporte de Embarcaciones que poseen Cuentas Por cobrar </h3>
-                        <table id="data-table-default" class="table table-striped table-bordered">
+                        <table id="data-table-default" class="table table-striped table-bordered table-responsive">
                             <thead>
                                 <tr>
-                                    <th width="5%" class="text-nowrap">Nombre de la Embarcación</th>
-                                    <th width="15%" class="text-nowrap">Matricula</th>
-                                    <th width="5%" class="text-nowrap">Pies</th>
-                                    <th width="5%" class="text-nowrap">Total</th>
-                                    <th width="15%" class="text-nowrap" style="text-align:center">Mes</th>
-                                    <th width="5%" class="text-nowrap">Ubicación</th>
+                                    <th width="2%" class="text-nowrap">Nombre de la Embarcación</th>
+                                    <th width="2%" class="text-nowrap">Matricula</th>
+                                    <th width="2%" class="text-nowrap">Pies</th>
+                                    <th width="2%" class="text-nowrap">Total</th>
+                                    <th width="2%" class="text-nowrap" style="text-align:center">Mes</th>
+                                    <th width="2%" class="text-nowrap">Ubicación</th>
                                 
 
                                 </tr>
@@ -43,7 +43,7 @@
                                     <td><?= $lista['matricula'] ?></td>
                                     <td><?= $lista['pies'] ?></td>
                                     <td><?= $lista['total'] ?></td>
-                                    <td style="text-align:center"><?= $lista['string_agg']?></td>
+                                    <td width="2%" style="text-align:center"><?= $lista['string_agg']?></td>
                                     <td><?= $lista['desc_concepto'] ?></td>
                                   
 

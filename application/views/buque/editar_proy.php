@@ -37,9 +37,13 @@
                             </div>
                             <div class="form-group col-3">
                                 <label>Ubicación <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="ubicacion" id="ubicacion" onkeyup="mayusculas(this);" class="form-control"
-                                value="<?=$inf_1['ubicacion']?>">
-                                
+                                     <select id="ubicacion" name="ubicacion" class="default-select2 form-control">
+                                        <option value="<?=$inf_1['ubicacion']?>"> <?=$inf_1['descripcion']?></option>
+
+                                        <?php foreach ($ubicacion as $data): ?>
+                                                <option value="<?=$data['id']?>">  <?=$data['descripcion']?></option>
+                                            <?php endforeach; ?>
+                                    </select>
                             </div>
                             <div class="form-group col-1">
                                 <label>Trailers <b title="Campo Obligatorio" style="color:red">*</b></label>
@@ -104,13 +108,18 @@
                                 <input type="text" id="neto" name="neto" placeholder="neto" class="form-control"
                                  value="<?=$inf_1['neto']?>"  />
                             </div>
-                            <?php endforeach;?>
+                           
                             
+
                             <div class="form-group col-3">
                                 <label>Tarifa <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <select style="width: 100%;" id="tarifa" name="tarifa" onchange="calcular_bienes();" class="form-control">
-                                    <option value="0">Seleccione</option> 
-                                    <?php foreach ($tarifa as $data): ?>
+                               
+                                <option value="<?=$inf_1['des_unidad']?>/<?=$inf_1['desc_tarifa']?>/<?=$inf_1['id_tarifa']?>">
+                                        <?=$inf_1['desc_tarifa']?>$ /
+                                        <?=$inf_1['desc_concepto']?>/<?=$inf_1['desc_condicion']?></option>
+
+                                <?php foreach ($tarifa as $data): ?>
                                         <option value="<?=$data['des_unidad']?>/<?=$data['desc_tarifa']?>/<?=$data['id_tarifa']?>">
                                         <?=$data['desc_tarifa']?>$ /
                                         <?=$data['desc_concepto']?>/<?=$data['desc_condicion']?></option>
@@ -122,10 +131,11 @@
                                 <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);" value="1">
                                 <label>Solo Cambiar si es por dias <b title="Campo Obligatorio" style="color:red">*</b></label>
                             </div>
-                            <div class="form-group col-2">
+                            <!-- <div class="form-group col-2">
                                 <label>Fecha de Pago <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="date" id="fecha_pago" name="fecha_pago"  class="form-control">
-                            </div>
+                            </div> -->
+                           
                             <div class="col-2 mt-2">
                                 <div class="card card-outline-danger text-center bg-white">
                                     <div class="card-block">
@@ -133,13 +143,16 @@
                                             <div class="form-group col-10">
                                                 <label >Canon Mensual <b title="Campo Obligatorio"
                                                         style="color:red">*</b></label>
-                                                        <input id="canon" name="canon" type="text" class="form-control" disabled>
+                                                        <!-- <input id="canon" name="canon" type="text" class="form-control" disabled> -->
+                                                        <input type="text" id="canon" name="canon"  class="form-control"
+                                                               value="<?=$inf_1['canon']?>"  />
                                               
                                             </div>
                                         </blockquote>
                                     </div>
                                 </div>
                             </div>
+                            <?php endforeach;?>
                             <div class="col-12">
                                 <hr style="border-top: 1px solid rgba(0, 0, 0, 0.39);">
                             </div>

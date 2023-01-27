@@ -83,10 +83,21 @@
         public function consulta_tarifa(){
             $this->db->select('*');
             $this->db->order_by('id_tarifa asc');
-            
+            $this->db->where('id_tarifa <', '3');
             $query = $this->db->get('public.tarifa');
             return $result = $query->result_array();
         }
+
+        public function consulta_tarifa1($id) {
+            $this->db->select('*');
+            $this->db->order_by('id_tarifa asc');
+            $this->db->where('id_tarifa', $id);
+                $query = $this->db->get('public.tarifa ');
+                return $query->result_array();
+        }
+
+
+
         public function consulta_tarifa2(){
             $this->db->select('*');
             $this->db->order_by('id_tarifa desc');
@@ -667,9 +678,18 @@ if ($response) {
         // INVESTIGAR
         public function inf_1($matricula ){
            
-            $this->db->select('*');
-           // $this->db->join('programacion.propiet oc', 'oc.matricula = pp.matricula');
+            $this->db->select('pp.*,
+                                 oc.id_tarifa,
+                                 oc.desc_concepto,
+                                 oc.desc_tarifa,
+                                 oc.desc_condicion,
+                                 oc.des_unidad,
+                                 ub.descripcion,
+                                 ub.id');
+           $this->db->join('public.tarifa oc', 'oc.id_tarifa = pp.id_tarifa');
+           $this->db->join('public.ubicacion ub', 'ub.id = pp.ubicacion');
             $this->db->where('pp.matricula', $matricula );
+
             $query = $this->db->get('public.buque pp');
             return $query->result_array();
         }

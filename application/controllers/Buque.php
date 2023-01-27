@@ -195,12 +195,17 @@ class Buque extends CI_Controller {
     }
     public function editar_proy(){
 		if(!$this->session->userdata('session'))redirect('login');
+        //$data['id']  = $this->input->get('id');
         $data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
         $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos();
         $data['time']=date("d-m-Y");
         $data['fuente'] = $this->Programacion_model->consulta_part_pres();
         $data['tarifa'] = $this->Programacion_model->consulta_tarifa();
+        $data['ubicacion'] = $this->Programacion_model->consulta_ubicacion();
+
+
+
         $parametros              = $this->input->get('id');
         $separar                 = explode("/", $parametros);
         $data['id']   = $separar['0'];
@@ -209,7 +214,9 @@ class Buque extends CI_Controller {
         
         $data['inf_1'] = $this->Programacion_model->inf_1($data['matricula']);
 
-        $data['inf_1'] = $this->Programacion_model->inf_1($data['matricula']);
+        //$data['inf_1'] = $this->Programacion_model->inf_1($data['matricula']);
+
+
 
 		$this->load->view('templates/header.php');
         $this->load->view('templates/navigator.php');
@@ -255,7 +262,7 @@ class Buque extends CI_Controller {
         $canon = $this->input->post("canon"); 
         $dia = $this->input->post("dia"); 
         $ubicacion = $this->input->post("ubicacion");
-        $fecha_pago  = $this->input->post("fecha_pago");
+        // $fecha_pago  = $this->input->post("fecha_pago");
 
        
 
@@ -277,8 +284,8 @@ class Buque extends CI_Controller {
             "tarifa"        => $tarifa,
             "dia"           => $dia,
             "ubicacion"     => $ubicacion,   
-            "fecha_pago"    => $fecha_pago,      
-            "fechaingreso"  => date("Y-m-d")            
+            // "fecha_pago"    => $fecha_pago,      
+            //"fechaingreso"  => date("Y-m-d")            
         ); 
 
         $tripulacion = array( //tripulacion
