@@ -68,10 +68,10 @@ srand(time());
             </div>
             <hr />
             <div class="login-buttons mt-2">
-              <!-- <button type="button"
-        onclick="location.href='<?php echo base_url() ?>index.php/User/contrato'"
-        class="btn btn-grey btn-lg">Registrar Cuentadante</button>
-                        </div> -->
+                            <button type="button"
+                            onclick="location.href='<?php echo base_url() ?>index.php/'"
+                            class="btn btn-grey btn-lg">Registro de Propietario</button>
+                     </div> 
           </form>
         </div>
       </div>
