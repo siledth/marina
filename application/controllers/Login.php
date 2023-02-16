@@ -100,4 +100,11 @@ class Login extends CI_Controller {
       echo json_encode($data);
     }
   }
+
+  //Registro de Propietarios
+  public function b_cedula(){
+    $cedula_prop = $this->input->POST('cedula_prop');
+    $data = $this->login_model->b_cedula_propietario($cedula_prop);
+    echo json_encode($data);
+  }
 }

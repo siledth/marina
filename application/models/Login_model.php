@@ -39,10 +39,7 @@ class Login_model extends CI_model {
         $this->db->where('rif', $id_unidad);
         $this->db->from('empresa');
         $result = $this->db->get();
-
-        
             return $result->row_array();
-        
     }
 
     public function cambiar_clave($id_usuario, $data) {
@@ -51,6 +48,14 @@ class Login_model extends CI_model {
         return $update;
     }
 
+    //Propietario
+    public function b_cedula_propietario($cedula_prop){
+        $this->db->select('*');
+        $this->db->where('cedula', $cedula_prop);
+        $this->db->from('propiet');
+        $result = $this->db->get();
+        return $result->row_array();
+    }
 }
 
 ?>

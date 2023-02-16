@@ -60,19 +60,62 @@ srand(time());
             <p class="form-group current_captcha">
               <?php //echo $captcha_value; ?>
             </p>
-
-            
-
             <div class="login-buttons">
-              <button onclick="$(this).hide();" name="submitContact" type="submit" class="btn btn-block btn-lg button" style="background-color:#1E90FF;;color:#FFFFFF">Ingresar</button>
+              <button onclick="$(this).hide();" name="submitContact" type="submit" class="btn btn-block btn-lg button" style="background-color:#1E90FF;color:#FFFFFF">Ingresar</button>
             </div>
             <hr />
-            <div class="login-buttons mt-2">
-                            <button type="button"
-                            onclick="location.href='<?php echo base_url() ?>index.php/'"
-                            class="btn btn-grey btn-lg">Registro de Propietario</button>
-                     </div> 
+            <div class="login-buttons mt-1">
+              <button type="button" class="btn btn-lg btn-block" style="background: #161635; color:#FFFFFF;" data-toggle="modal" data-target="#exampleModalCenter">
+                Registro de Propietario
+              </button>
+            </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="form-group col-6 m-b-15">
+              <input type="text" id="cedula_prop" class="form-control form-control-lg" placeholder="Cédula" name="cedula_prop" required />
+            </div>
+            <div class="col-2 mt-1">
+              <button onclick=buscar(); class="btn btn-success btn-lg btn-flat"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="form-group col-6 m-b-15">
+              <input type="text" id="nombrecom" class="form-control form-control-lg" placeholder="Nombre y Apellido" name="nombrecom" />
+            </div>
+            <div class="form-group col-6 m-b-15">
+              <input type="text" id="tele_1" class="form-control form-control-lg" placeholder="Télefono" name="tele_1" />
+            </div>
+            <div class="form-group col-6 m-b-15">
+              <input type="text" id="email" class="form-control form-control-lg" placeholder="Email" name="email" />
+            </div>
+            <div class="form-group col-6 m-b-15">
+              <input type="text" id="tipo" class="form-control form-control-lg" placeholder="Cédula" name="tipo" />
+            </div>
+            <div class="form-group col-6 m-b-15">
+              <input type="text" id="matricula" class="form-control form-control-lg" placeholder="Cédula" name="matricula" />
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -96,12 +139,11 @@ srand(time());
   <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/js-cookie/js.cookie.js"></script>
   <script src="<?= base_url() ?>Plantilla/admin/assets/js/theme/apple.min.js"></script>
   <script src="<?= base_url() ?>Plantilla/admin/assets/js/apps.min.js"></script>
+  <script src="<?= base_url() ?>js/login/consultas.js"></script>
 
   <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/sweetalert/sweetalert.min.js"></script>
   <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/sweetalert/jquery.sweet-alert.custom.js"></script>
   <!-- ================== END BASE JS ================== -->
-
-  
 
   <script>
     $(document).ready(function() {
