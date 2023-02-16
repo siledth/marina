@@ -26,7 +26,7 @@ class Reporte_model extends CI_Model {
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
       return $num;
@@ -34,11 +34,11 @@ class Reporte_model extends CI_Model {
         
     public function consulta_ubicacion_tierra( $desde, $hasta) {
        
-        $cadena = "ubicacion > '5'";
+        $cadena = "id_tarifa ='2'";
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
        
@@ -52,11 +52,11 @@ class Reporte_model extends CI_Model {
         
     public function consulta_ubicacion_agua( $desde, $hasta) {
        // die(print_r($hasta, TRUE));
-        $cadena = "ubicacion < '6'";
+        $cadena = "id_tarifa ='1'";
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
       return $num;
@@ -65,7 +65,7 @@ class Reporte_model extends CI_Model {
      public function consulta_ubicacion_agua2($data){
          //die(print_r($data['desde'], TRUE));
         $this->db->select('m.*');
-        $this->db->from('public.buque m');
+        $this->db->from('public.total_barco_ubica m');
         $this->db->where('m.ubicacion <', '6');
         $this->db->where('m.fechaingreso >=', $data['desde']);
         $this->db->where('m.fechaingreso <=', $data['hasta']); 
@@ -82,7 +82,7 @@ class Reporte_model extends CI_Model {
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
 
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
         
@@ -96,7 +96,7 @@ class Reporte_model extends CI_Model {
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
         
@@ -110,7 +110,7 @@ class Reporte_model extends CI_Model {
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
         
@@ -124,7 +124,7 @@ class Reporte_model extends CI_Model {
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
         
@@ -137,7 +137,7 @@ class Reporte_model extends CI_Model {
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
         
@@ -150,7 +150,7 @@ class Reporte_model extends CI_Model {
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
         
@@ -164,7 +164,7 @@ class Reporte_model extends CI_Model {
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
         
@@ -178,7 +178,7 @@ class Reporte_model extends CI_Model {
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
 
@@ -190,14 +190,14 @@ class Reporte_model extends CI_Model {
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
         $this->db->where('fechaingreso <=', $desde);
-        $this->db->from('public.buque');
+        $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
     }
    
     public function total(){         
         $this->db->select('*');
-        $this->db->where('desincorporar', 1);
+       
         $query = $this->db->get('public.total_barco');
         return $query->result_array();
     }
@@ -403,13 +403,13 @@ class Reporte_model extends CI_Model {
         $tipo_serv = $data['t_servicio'];
         $start     = $data['start'];
         $end       = $data['end'];
-        $query = $this->db->query("SELECT df.id, df.matricula,f.nombrep, b.nombrebuque, df.pies, df.monto_estimado, df.ob, f.fechaingreso, 'factura' as condicion
+        $query = $this->db->query("SELECT df.id, df.matricula,f.nombrep, b.nombrebuque, df.pies, df.canon, df.ob, f.fechaingreso, 'factura' as condicion
                                     FROM deta_factura df
                                     LEFT JOIN factura f on f.id = df.id_fact
                                     LEFT JOIN buque b on b.matricula = df.matricula
                                     WHERE df.id_tarifa = '$tipo_serv' AND f.fechaingreso >= '$start' AND f.fechaingreso <= '$end'
                                     UNION
-                                    SELECT dr.id, dr.matricula,r.nombrep, b.nombrebuque, dr.pies, dr.monto_estimado, dr.ob, r.fechaingreso , 'recibo'
+                                    SELECT dr.id, dr.matricula,r.nombrep, b.nombrebuque, dr.pies, dr.canon, dr.ob, r.fechaingreso , 'recibo'
                                     FROM deta_recibo dr
                                     LEFT JOIN recibo r on r.id = dr.id_fact
                                     LEFT JOIN buque b on b.matricula = dr.matricula
@@ -422,15 +422,15 @@ class Reporte_model extends CI_Model {
         $tipo_serv = $data['t_servicio'];
         $start     = $data['start'];
         $end       = $data['end'];
-        $query = $this->db->query("SELECT sum(to_number(df.pies,'999999999999D99')) total_pies, sum(to_number(df.monto_estimado,'999999999999D99')) total , 'factura' as condicion
+        $query = $this->db->query("SELECT sum(to_number(df.pies,'999999999999D99')) total_pies, sum(to_number(df.canon,'999999999999D99')) total , 'factura' as condicion
                                     FROM deta_factura df
                                     LEFT JOIN factura f on f.id = df.id_fact
                                     WHERE df.id_tarifa = '$tipo_serv' and f.fechaingreso >= '2022-07-01' and f.fechaingreso <= '2022-09-02'
                                     union
-                                    SELECT sum(to_number(dr.pies,'999999999999D99')) total_pies, sum(to_number(dr.monto_estimado,'999999999999D99')) total, 'recibo'
+                                    SELECT sum(to_number(dr.pies,'999999999999D99')) total_pies, sum(to_number(dr.canon,'999999999999D99')) total, 'recibo'
                                     FROM deta_recibo dr
                                     LEFT JOIN recibo r on r.id = dr.id_fact
-                                    WHERE dr.id_tarifa = '$tipo_serv' and r.fechaingreso >= '2022-07-01' and r.fechaingreso <= '2022-09-02'
+                                    WHERE dr.id_tarifa = '$tipo_serv' and r.fechaingreso >= '$start' and r.fechaingreso <= '$end'
                                     ORDER BY condicion ");
         return $query->result_array();
     }

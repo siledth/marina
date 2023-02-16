@@ -45,7 +45,7 @@
 function mayusculas(e) {
     e.value = e.value.toUpperCase();
 }
-</script>
+</script>ubicaci
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 <script>

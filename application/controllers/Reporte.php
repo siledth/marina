@@ -90,7 +90,7 @@ class Reporte extends CI_Controller {
 			$desde     = $this->input->post("desde");
 			$data['desde'] = date('Y-m-d', strtotime($desde));
 			$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
-		$data['fecha'] = $this->Reporte_model->consulta_ubicacion($hasta,$desde);
+		$data['totalembarcacion'] = $this->Reporte_model->consulta_ubicacion($hasta,$desde);
 		$data['tierra'] = $this->Reporte_model->consulta_ubicacion_tierra($hasta,$desde);
 		$data['agua'] = $this->Reporte_model->consulta_ubicacion_agua($hasta,$desde);
 		$data['muelle1a'] = $this->Reporte_model->consulta_ubicacion_muelle1a($hasta,$desde);

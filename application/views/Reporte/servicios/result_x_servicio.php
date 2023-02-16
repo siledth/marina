@@ -30,10 +30,10 @@
                                 <tr>
                                     <th>Embarcación</th>
                                     <th>Pies</th>
-                                    <th>Total</th>
+                                    <th>Total $</th>
                                     <th>Fecha de Facturación</th>
                                     <th>Observaciòn</th>
-                                    <th>-</th>
+                                    <th>Impresión</th>
                                 </tr>
                             </thead>
                             <tbody class="h5" style="color: black;">
@@ -42,7 +42,7 @@
                                         <tr class="odd gradeX" style="text-align:center">
                                             <td><?=$result['nombrep']?></td>
                                             <td><?=$result['pies']?></td>
-                                            <td><?=$result['monto_estimado']?> </td>
+                                            <td><?=$result['canon']?> </td>
                                             <td><?=date("d/m/Y", strtotime($result['fechaingreso']));?> </td>
                                             <td><?=$result['ob']?> </td>
                                             <td><?=$result['condicion']?> </td>
@@ -56,7 +56,7 @@
                     <div class="form-group mt-3 mr-1 row">
                         <label class="col-md-6 col-form-label">Total Pies por Factura:</label>
                         <div class="col-md-6">
-                            <div class="input-group input-daterange">
+                            <div class="input-group ">
                             <input class="form-control text-center" type="text" value="<?=$totl_pies_f?>" readonly>
                           </div>
                         </div>
@@ -64,7 +64,7 @@
                     <div class="form-group mt-3 row">
                         <label class="col-md-6 col-form-label"> Total General por Factura:</label>
                         <div class="col-md-6">
-                            <div class="input-group input-daterange">
+                            <div class="input-group ">
                             <input class="form-control text-center" type="text" value="<?=number_format($totl_monto_f, 2, ',', '.')?>" readonly>
                           </div>
                         </div>
@@ -73,15 +73,15 @@
                     <div class="form-group mt-3 mr-1 row">
                         <label class="col-md-6 col-form-label">Total Pies por Recibo:</label>
                         <div class="col-md-6">
-                            <div class="input-group input-daterange">
+                            <div class="input-group ">
                             <input class="form-control text-center" type="text" value="<?=number_format($totl_pies_r, 2, ',', '.')?>" readonly>
                           </div>
                         </div>
                     </div>
                     <div class="form-group mt-3 row">
-                        <label class="col-md-6 col-form-label"> Total General por Recibo:</label>
+                        <label class="col-md-6 col-form-label"> Total $ General por Recibo:</label>
                         <div class="col-md-6">
-                            <div class="input-group input-daterange">
+                            <div class="input-group ">
                             <input class="form-control text-center" type="text" value="<?=number_format($totl_monto_r, 2, ',', '.')?>" readonly>
                           </div>
                         </div>

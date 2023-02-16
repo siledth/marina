@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group col-5">
                             <label>Total Embarcaciones <b title="Campo Obligatorio" style="color:red">*</b></label>
-                            <h3><b><?=$fecha?></b> </h3>
+                            <h3><b><?=$totalembarcacion?></b> </h3>
                                                   
                         </div>
                         
