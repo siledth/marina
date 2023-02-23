@@ -429,4 +429,15 @@ class Reporte extends CI_Controller {
 		$this->load->view('Reporte/reporte_jefe/reporte_jefe.php', $data);
         $this->load->view('templates/footer.php');
 	}
+
+	//Reporte para usuario
+	public function inf_buque(){
+		$data['empresa'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+		$data['propietario'] = $this->Reporte_model->reporte_usu($data['rif']);
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('Reporte/inf_buque_usuario.php', $data);
+        $this->load->view('templates/footer.php');
+	}
 }

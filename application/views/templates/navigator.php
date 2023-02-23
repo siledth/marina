@@ -16,7 +16,7 @@
             <li class="dropdown navbar-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="<?= base_url() ?>Plantilla/admin/assets/img/user/user-13.jpg" alt="" />
-                    <span class="d-none d-md-inline"><?= $this->session->userdata('nombre') ?></span>
+                    <span class="d-none d-md-inline"><?=$this->session->userdata('nombre')?> <?=$this->session->userdata('apellido')?></span>
                     <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -44,17 +44,10 @@
                         </div>
                     </a>
                 </li>
-                <!-- <li>
-                        <ul class="nav nav-profile">
-                                <li><a href="javascript:;"><i class="ion-ios-cog"></i> Settings</a></li>
-                                <li><a href="javascript:;"><i class="ion-ios-share-alt"></i> Send Feedback</a></li>
-                                <li><a href="javascript:;"><i class="ion-ios-help"></i> Helps</a></li>
-                        </ul>
-                </li> -->
             </ul>
             <ul class="nav">
                 <li class="nav-header">Navegador</li>
-                <?php if (($this->session->userdata('perfil') == 1) || ($this->session->userdata('perfil') == 3)) : ?>
+                <?php if ($this->session->userdata('perfil') == 1) : ?>
                     <li class="has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
@@ -176,7 +169,6 @@
                                 <a href="javascript:;">
                                     <li><a href="<?= base_url() ?>index.php/Reporte/ubicaci">Ubicacion</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/ubicaciones">Ubicación Detallada</a></li>
-                                    
                                     <li><a href="<?= base_url() ?>index.php/Reporte/Report">Total Canon</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/saldoxpagar">Saldo por Pagar</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/condxpagar">Condición de Pago</a></li>
@@ -184,15 +176,14 @@
                                     <li><a href="<?= base_url() ?>index.php/Reporte/cxc_embarcacion">Cuentas por Cobrar / por embarcaciòn</a></li>
                                     <li><a href="<?= base_url() ?>index.php/Reporte/servicios">Servicios</a></li>
                                     <li class="has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    <span>Reporte Jefe</span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/Reporte_jefes">Ver</a></li>
-                                    
-                                </ul>
-                            </li>
+                                        <a href="javascript:;">
+                                            <b class="caret"></b>
+                                            <span>Reporte Jefe</span>
+                                        </a>
+                                        <ul class="sub-menu">
+                                            <li><a href="<?= base_url() ?>index.php/Reporte/Reporte_jefes">Ver</a></li>
+                                        </ul>
+                                    </li>
                                 </a>
                             </li>
                         </ul>
@@ -213,6 +204,15 @@
                             </li>
                         </ul>
                     </li>
+                <?php endif; ?>
+                <?php if ($this->session->userdata('perfil') == 3) : ?>
+                    <li>
+                    <a href="<?= base_url() ?>index.php/Reporte/inf_buque">
+                        <b class="caret"></b>
+                        <i class="fas fa-ship fa-lg"></i>
+                        <span>Informacion del Buque</span>
+                    </a>
+                </li>
                 <?php endif; ?>
                 <?php if (($this->session->userdata('perfil') <= 2)) : ?>
                     <li class="has-sub">

@@ -19,9 +19,7 @@ class Reporte_model extends CI_Model {
         return $query->result_array();
     }
    
-    
-    public function consulta_ubicacion( $desde, $hasta) {
-              
+    public function consulta_ubicacion( $desde, $hasta) {   
         $cadena = "id >= '1'";
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
@@ -29,11 +27,9 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
-      return $num;
 	}
         
     public function consulta_ubicacion_tierra( $desde, $hasta) {
-       
         $cadena = "id_tarifa ='2'";
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
@@ -41,13 +37,6 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
-       
-       
-       
-        
-     
-      
-        
 	}
         
     public function consulta_ubicacion_agua( $desde, $hasta) {
@@ -59,7 +48,6 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
-      return $num;
 	}
     
      public function consulta_ubicacion_agua2($data){
@@ -76,7 +64,6 @@ class Reporte_model extends CI_Model {
        
     }
     public function consulta_ubicacion_muelle1a( $desde, $hasta) {
-
         $cadena = "ubicacion = '1'";
         $this->db->where($cadena);
         $this->db->where('fechaingreso >=', $hasta);
@@ -85,10 +72,6 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
-        
-     
-      return $num;
-        
 	}
 
     public function consulta_ubicacion_muelle2a( $desde, $hasta) {
@@ -99,10 +82,6 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
-        
-     
-      return $num;
-        
 	}
 
     public function consulta_ubicacion_patio1( $desde, $hasta) {
@@ -113,10 +92,6 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
-        
-     
-      return $num;
-        
 	}
 
     public function consulta_ubicacion_patio2( $desde, $hasta) {
@@ -126,12 +101,9 @@ class Reporte_model extends CI_Model {
         $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
-        return $num;
-        
-     
-      return $num;
-        
+        return $num; 
 	}
+
     public function consulta_ubicacion_patio3( $desde, $hasta) {
         $cadena = "ubicacion = '8'";
         $this->db->where($cadena);
@@ -140,11 +112,8 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
-        
-     
-      return $num;
-        
 	}
+
     public function consulta_ubicacion_patio4( $desde, $hasta) {
         $cadena = "ubicacion = '9'";
         $this->db->where($cadena);
@@ -153,10 +122,6 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
-        
-     
-      return $num;
-        
 	}
 
     public function consulta_ubicacion_muelleb( $desde, $hasta) {
@@ -167,10 +132,6 @@ class Reporte_model extends CI_Model {
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
-        
-     
-      return $num;
-        
 	}
 
     public function consulta_ubicacion_muellec( $desde, $hasta) {
@@ -180,8 +141,6 @@ class Reporte_model extends CI_Model {
         $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
-        return $num;
-
         return $num;
     }
 
@@ -197,10 +156,10 @@ class Reporte_model extends CI_Model {
    
     public function total(){         
         $this->db->select('*');
-       
         $query = $this->db->get('public.total_barco');
         return $query->result_array();
     }
+
     public function totalcanon(){         
         $this->db->select('*');
         //$this->db->where('desincorporar', 1);
@@ -246,7 +205,6 @@ class Reporte_model extends CI_Model {
     }
 
     public function consultar_t_pago($data){
-         
         $this->db->select("m.matricula,
                             r.nombrebuque,
                             m.pies,
@@ -263,10 +221,8 @@ class Reporte_model extends CI_Model {
         $this->db->group_by('m.matricula, m.pies, m.canon, t.descripcion,r.nombrebuque,mc.total_abonado_om');
         $query = $this->db->get('mov_consig mc');
         return $query->result_array();
-    
-   
-
     }
+
     public function consultar_t_pago2($data){
         $this->db->select("sum(m.canon) as canon,
                            sum(to_number(m.pies,'999999999999D99')) as pies,
@@ -320,9 +276,6 @@ class Reporte_model extends CI_Model {
             return $query->row_array();
         }
 
-
-   
-    
     //Reporte cxc por embarcaciones
     public function matriculas(){         
         $this->db->select('nombrebuque, matricula');
@@ -529,5 +482,23 @@ class Reporte_model extends CI_Model {
         $query = $this->db->get('public.reporte_deuda_corto_final m');
         return $query->result_array();
 	}
+
+    //Reporte para usuario 
+    public function reporte_usu($data){
+        $this->db->select("cedula");
+        $this->db->where('rif', $data);
+        $queryew = $this->db->get('seguridad.usuarios');
+        $queryew= $queryew->row_array();
+        $cedula = $queryew['cedula'];
+        $variales = explode("-", $cedula);
+
+        $this->db->select("*");
+        $this->db->where('cedula', $variales['1']);
+        $this->db->where('tipo_ced', $variales['0']);
+        $querys = $this->db->get('propiet');
+        $querys = $querys->row_array();
+        return $querys;
+
+    }
     
 }

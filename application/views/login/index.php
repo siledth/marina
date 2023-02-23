@@ -75,10 +75,9 @@ srand(time());
     </div>
   </div>
 
-
   <!-- Modal -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
@@ -86,37 +85,46 @@ srand(time());
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="form-group col-6 m-b-15">
-              <input type="text" id="cedula_prop" class="form-control form-control-lg" placeholder="Cédula" name="cedula_prop" required />
+          <div class="modal-body">
+              <div class="row">
+                <div class="form-group col-3 m-b-15">
+                  <input type="text" id="cedula_prop" class="form-control form-control-lg" placeholder="V-123456789" name="cedula_prop" required />
+                </div>
+                <div class="col-2 mt-1">
+                  <button onclick=buscar(); class="btn btn-success btn-lg btn-flat"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="col-7">
+                  <h4 class="mt-3" style="display:none; color:crimson" id="mensaj" name="mensaj">Por favor llenar sus datos</h4>
+                </div>
+                <div class="form-group col-3 m-b-15">
+                  <label>Nombre y Apellido</label>
+                  <input type="text" id="nombre" name="nombre" class="form-control form-control-lg" placeholder="Nombre y Apellido" />
+                </div>
+                <div class="form-group col-3 m-b-15">
+                  <label>Rif</label>
+                  <input type="text" id="rif" name="rif" class="form-control form-control-lg" placeholder="J-45154524"/>
+                </div>
+                <div class="form-group col-3 m-b-15">
+                  <label>Propietario / Empresa</label>
+                  <input type="text" id="propietario" name="propietario" class="form-control form-control-lg" placeholder="Propietario" />
+                </div>
+                <div class="form-group col-3 m-b-15">
+                  <label>Télefono</label>
+                  <input type="text" id="tele_1" name="tele_1"  class="form-control form-control-lg" placeholder="Télefono"/>
+                </div>
+                <div class="form-group col-3 m-b-15">
+                  <label>Email</label>
+                  <input type="text" id="email" name="email" class="form-control form-control-lg" placeholder="Email"/>
+                </div>
+                <div class="form-group col-3 m-b-15">
+                  <label>Tipo</label>
+                  <input type="text" id="tipo" name="tipo" class="form-control form-control-lg" placeholder="Tipo"/>
+                </div>
             </div>
-            <div class="col-2 mt-1">
-              <button onclick=buscar(); class="btn btn-success btn-lg btn-flat"><i class="fas fa-search"></i></button>
-            </div>
-
-            <div class="form-group col-6 m-b-15">
-              <input type="text" id="nombrecom" class="form-control form-control-lg" placeholder="Nombre y Apellido" name="nombrecom" />
-            </div>
-            <div class="form-group col-6 m-b-15">
-              <input type="text" id="tele_1" class="form-control form-control-lg" placeholder="Télefono" name="tele_1" />
-            </div>
-            <div class="form-group col-6 m-b-15">
-              <input type="text" id="email" class="form-control form-control-lg" placeholder="Email" name="email" />
-            </div>
-            <div class="form-group col-6 m-b-15">
-              <input type="text" id="tipo" class="form-control form-control-lg" placeholder="Cédula" name="tipo" />
-            </div>
-            <div class="form-group col-6 m-b-15">
-              <input type="text" id="matricula" class="form-control form-control-lg" placeholder="Cédula" name="matricula" />
-            </div>
-
-          </div>
-        </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button" onclick="guardar()" class="btn btn-primary">Guardar</button>
+            </div>
       </div>
     </div>
   </div>
