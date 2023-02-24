@@ -1,6 +1,4 @@
 <?php
-require 'PHPMailer/PHPMailerAutoload.php';
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Login extends CI_Controller {
@@ -158,35 +156,36 @@ class Login extends CI_Controller {
 
     $if_emp = array(
       'rif'          => $this->input->post('rif'),
-      'descripcion'          => $this->input->post('propietario'),
+      'descripcion'  => $this->input->post('propietario'),
       'fecha'        => date('Y-m-d h:i:s'),
       'fecha_update' => date('Y-m-d h:i:s')
     );
-
+    require 'PHPMailer/PHPMailerAutoload.php';
     $mail = new PHPMailer(true);                           // Enable verbose debug output
 
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     $mail->Username = 'roxiyasp@gmail.com';               // SMTP username
-    $mail->Password = 'udtxueybndfhbwzr';                 // SMTP password
+    //$mail->Password = 'kefxqwunkuubkdlf';
+    $mail->Password = 'uzoauwmlntkoofgm';                 // SMTP password
     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
-
+    $mail->Timeout = 20;
     $mail->setFrom('roxiyasp@gmail.com', 'Mailer');
-    $mail->addAddress('roxiyasp@gmail.com', 'Joe User');     // Add a recipient
+
+    $mail->addAddress($this->input->post('email'), 'Joe User');     // Add a recipient
     $mail->Subject = 'Envio de contraseña';
     $mail->Body    = 'Contraseña para ingresar <b>' . $clave .'</b>';
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    //$mail->SMTPDebug = true;
     $data = $this->login_model->guardar_prp($inf_usu,$inf_prop, $if_emp);
-    if(!$mail->send()) {
-        echo 'Message could not be sent.';
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
-    } else {
-        echo 'Message has been sent';
+    if ($data == true) {
+      if(!$mail->send()) {
+        echo json_encode(false);
+      }else {
         echo json_encode($data);
+      }
     }
-    
-    
-}
+  }
 }

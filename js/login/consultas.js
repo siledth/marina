@@ -102,9 +102,10 @@ function guardar(){
                         },
                     dataType: 'json',
                     success: function(response) {
+                        console.log(response);
                         var menj = 'La contraseña se envío por correo electronico.';
-                    
-                         if(response != '') {
+                        var menj2 = 'Ocurrido un error, por favor comunicarse con los administradores.';
+                         if(response == true) {
                              swal.fire({
                                  title: 'Registro Exitoso ',
                                  text: menj,
@@ -117,6 +118,19 @@ function guardar(){
                                     location.reload();
                                  }
                              });
+                         }else{
+                            swal.fire({
+                                title: 'Error',
+                                text: menj2,
+                                type: 'error',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'Ok'
+                            }).then((result) => {
+                                if (result.value == true){
+                                   location.reload();
+                                }
+                            });
                          }
                     },
                 });
