@@ -15,3 +15,11 @@ CREATE TABLE seguridad.usuarios (
 	fecha_update timestamp NULL,
 	CONSTRAINT usuarios_pkey PRIMARY KEY (id)
 );
+
+luis.molero80@gmail.com
+$2y$10$.Xif7vd9D9pRPkv.grUxtuG8N..Lk48VWg4v78AIqfqH4r8bxWRS.
+J413233010
+
+admin@gmail.com
+$2y$10$HvFKI0m6jBZ9By41W0O4A.peZrP1DJffhIg4O0hvFtJiuJAfqk3Yu
+J413233010

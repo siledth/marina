@@ -405,7 +405,7 @@ if ($response) {
                                f.matricula,
                                f.nombrep,
                               f.id_status,
-                               f.total_bs as total,
+                               f.total_mas_iva as total,
                                ");
             $this->db->join('deta_recibo c', 'c.matricula = f.matricula', 'left');
             $this->db->where('c.id_tarifa >', '2');
@@ -413,7 +413,7 @@ if ($response) {
             f.nombre,
             f.matricula,
             f.id_status,
-            f.total_bs,
+            f.total_mas_iva,
             f.nombrep
             ");
             $query = $this->db->get('recibo f');

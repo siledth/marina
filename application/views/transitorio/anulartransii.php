@@ -15,14 +15,14 @@
                             <div class="col-md-12" >
                                 <div class="panel-body">
                                 <h4  class="mt-2"> <b>Ver recibo Transito</b></h4>
-                                    <table id="data-table-default" class="table table-striped table-bordered">
+                                    <table id="data-table-default" data-order='[[ 0, "desc" ]]' class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th width="1%"></th>
                                                 <th class="text-nowrap">Titular de pago</th>
                                                 <th class="text-nowrap">Embarcación</th>
                                                 <th class="text-nowrap">Matricula</th>
-                                                <th class="text-nowrap">Total</th>
+                                                <th class="text-nowrap">Total $</th>
                                                 
                                                 <th class="text-nowrap">Acciones</th>
                                             </tr>
@@ -34,7 +34,7 @@
                                                     <td><?=$lista['nombre']?></td>
                                                     <td><?=$lista['nombrep']?></td>
                                                     <td><?=$lista['matricula']?></td>
-                                                    <td><?=$lista['total']?></td>
+                                                    <td><?=$lista['total']?>$</td> <!-- viene de la tabla recibo total_mas_iva  -->
                                                     
                                                     <td>
                                                         <a class="button" href="<?php echo base_url() ?>index.php/Factura/ver_recibo_transito?id=<?php echo $lista['id'];?>" >

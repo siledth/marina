@@ -24,7 +24,7 @@
                                         <h4>Mensualidades de acuerdo al día</h4>
                                     </div>
 
-                                    <table id="data-table-default" class="table table-striped table-bordered">
+                                    <table id="data-table-default" data-order='[[ 0, "desc" ]]' class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th width="1%"></th>
