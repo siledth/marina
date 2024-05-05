@@ -238,6 +238,19 @@ class Reporte_model extends CI_Model {
 
     //detallado tipo de pagos
     public function consultar_t_pago_detallado($data){
+        $this->db->select("mc.*");
+        $this->db->where('mc.fecha_reg >=', $data['desde']);
+        $this->db->where('mc.fecha_reg <=', $data['hasta']);        
+        // $this->db->group_by('m.matricula,
+        // r.nombrebuque,
+        // m.pies,
+        // m.canon,
+        // mc.id_estatus, mc.fecha_reg, mc.id_banco, mc.fechatrnas,mc.nro_referencia,
+        // t.descripcion,y.nombre_b,mc.totatotal_abonado_omlbs2');
+        $query = $this->db->get('public.condxpagar_detallado mc');
+        return $query->result_array();
+    }
+    public function consultar_t_pago_detallado2($data){
             $this->db->select("m.matricula,
             r.nombrebuque,
             m.pies,
@@ -264,6 +277,16 @@ class Reporte_model extends CI_Model {
             return $query->result_array();
         }
         public function consultar_t_pago2_detalle($data){
+            $this->db->select("sum(m.canon) as canon2,
+                            sum(to_number(m.pies,'999999999999D99')) as pies,
+                             sum(to_number(m.total_abonado_om,'999999999999D99')) as total_abonado_om,
+                            sum(to_number(m.total_abonado_bs,'999999999999D99')) as total_bs");
+            $this->db->where('m.fecha_reg >=', $data['desde']);
+            $this->db->where('m.fecha_reg <=', $data['hasta']);
+            $query = $this->db->get('public.condxpagar_detallado m');
+            return $query->row_array();
+        }
+        public function consultar_t_pago2_detalle2($data){
             $this->db->select("sum(m.canon) as canon,
                             sum(to_number(m.pies,'999999999999D99')) as pies,
                              sum(to_number(mc.total_abonado_om,'999999999999D99')) as total_dolares,

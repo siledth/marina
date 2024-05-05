@@ -41,7 +41,7 @@
                         <?php if ($inf_buque['id_status'] == 2)  : ?>
                         <div class="form-group col-2" style="font-size:20px">
                             <label>Fecha de pago<b title="Campo Obligatorio" style="color:red">*</b></label>
-                            <h5><b><?=date("d-m-Y", strtotime($inf_buque['fechapago']));?></b> </h5>
+                            <h5><b><?=date("d-m-Y", strtotime($inf_buque['fecha_update']));?></b> </h5>
                         </div>
                         <?php endif; ?>
                         <div class="form-group col-10 mt-4">
@@ -106,8 +106,8 @@
                                     <tr>    
                                         <th>Forma de pago</th>
                                         <th>Nro. Referencia</th>
-                                        <th>Total Abonado $</th>
-                                        <th>Total Abonado Bs.f</th>
+                                        <th>Total Pagado $</th>
+                                        <th>Total Pagado Bs.f</th>
                                         <th>Restante $</th>
                                         <th>Restante Bs.f</th>
                                     </tr>
@@ -119,8 +119,8 @@
                                             <td><?=$lista['nro_referencia']?></td>
                                             <td><?=$lista['total_abonado_om']?></td>
                                             <td><?=$lista['total_abonado_bs']?></td>
-                                            <td><?=$lista['restante_om']?></td>
-                                            <td><?=$lista['restante_bs']?> </td>
+                                            <td>0</td>
+                                            <td>0</td>
                                         </tr>
                                     <?php endforeach;?>
                                 </tbody>

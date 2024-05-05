@@ -65,9 +65,9 @@ srand(time());
             </div>
             <hr />
             <div class="login-buttons mt-1">
-              <button type="button" class="btn btn-lg btn-block" style="background: #161635; color:#FFFFFF;" data-toggle="modal" data-target="#exampleModalCenter">
+              <!-- <button type="button" class="btn btn-lg btn-block" style="background: #161635; color:#FFFFFF;" data-toggle="modal" data-target="#exampleModalCenter">
                 Registro de Propietario
-              </button>
+              </button> -->
             </div>
           </form>
         </div>

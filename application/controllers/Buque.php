@@ -127,7 +127,7 @@ class Buque extends CI_Controller {
         $canon = $this->input->post("canon"); 
         $dia = $this->input->post("dia"); 
         $ubicacion = $this->input->post("ubicacion");
-        $fecha_pago  = $this->input->post("fecha_pago");   
+        $fecha_pago  = '2022-02-01';  
         
         $buque = array(
                 

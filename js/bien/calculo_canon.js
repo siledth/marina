@@ -21,7 +21,7 @@ function trae_inf(){
 
 
 function calcular_bienes(){
-
+    var tipob = $('#tipob').val(); //tipo de barco
     var pies = $('#pies').val();
     var dia = $('#dia').val();
     var cantidad2 = 30;
@@ -79,12 +79,48 @@ function calcular_bienes(){
                     var tota = ((tarifa * 33)) * dia;
                     var tota2 = parseFloat(tota).toFixed(2);
                     var canon = Intl.NumberFormat("de-DE").format(tota2);
-                    $('#canon').val(canon);
-                }else{
+
+                    var newstr5 = canon.replace('.', "");
+                    var newstr6 = newstr5.replace('.', "");
+                    var newstr7 = newstr6.replace('.', "");
+                    var newstr8 = newstr7.replace('.', "");
+                    var canons1 = newstr8.replace(',', ".");
+                    $('#canon').val(canons1);
+                }
+                else if(idd_tarida == 1 && tipob == 'CATAMARAN'){
+                    swal({
+                        title: "¡ATENCION!",
+                        text: "El tipo de barco es CATAMARAN los pies seran multiplicado por 2 para el cálculo del CANON mensual Muelle.",
+                        type: "warning",
+                        showCancelButton: false,
+                        confirmButtonColor: "#00897b",
+                        confirmButtonText: "CONTINUAR",
+                        closeOnConfirm: false
+                    }, function(){
+                        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                    });
+                    var totacatamaran = ((tarifa * piess)) * 2;
+                    var totacatamaran2 = parseFloat(totacatamaran).toFixed(2);
+                    var canon = Intl.NumberFormat("de-DE").format(totacatamaran2);
+
+                    var newstr5 = canon.replace('.', "");
+                    var newstr6 = newstr5.replace('.', "");
+                    var newstr7 = newstr6.replace('.', "");
+                    var newstr8 = newstr7.replace('.', "");
+                    var canons1 = newstr8.replace(',', ".");
+                    $('#canon').val(canons1);
+
+                }
+                else{
                     var tota = ((tarifa * piess)) * dia;
                     var tota2 = parseFloat(tota).toFixed(2);
                     var canon = Intl.NumberFormat("de-DE").format(tota2);
-                    $('#canon').val(canon);
+                    var newstr5 = canon.replace('.', "");
+                    var newstr6 = newstr5.replace('.', "");
+                    var newstr7 = newstr6.replace('.', "");
+                    var newstr8 = newstr7.replace('.', "");
+                    var canons1 = newstr8.replace(',', ".");
+                    $('#canon').val(canons1);
                 }
 
 

@@ -145,7 +145,7 @@
                         </div>
                         <div class="form-group col-3">
                             <label>Cantidad a pagar $</label>
-                            <input class="form-control" type="text" id="cantidad_pagar_otra" name="cantidad_pagar_otra" onblur="calcular_dol();" onkeypress="return valideKey(event);">
+                            <input class="form-control" type="text" id="cantidad_pagar_otra" name="cantidad_pagar_otra" onblur="calcular_dol();">
                         </div>
                         <div class="form-group col-3">
                             <label>Cantidad a pagar Bs. F</label>
@@ -307,7 +307,7 @@
                         </div>
                         <div class="col-4">
                             <label>Fecha de Tranferencia:</label>
-                            <input class="form-control" type="date" name="fechatrnas_a" id="fechatrnas_a">
+                            <input class="form-control" type="date" name="fechatrnas_a" id="fechatrnas_a" value="<?= $time ?>">
                         </div>
                     </div>
                     <div class="form-group col-3">

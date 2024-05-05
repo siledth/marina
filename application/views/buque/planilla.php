@@ -1,7 +1,7 @@
 <div class="sidebar-bg"></div>
 <div id="content" class="content">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" id="imp1">
             <div class="panel panel-inverse">
                 <div class="row">
                     <div class="col-1"></div>
@@ -16,6 +16,10 @@
                                 </blockquote>
                             </div>
                         </div>
+                        <div class="col 12 text-center">
+                <button class="btn btn-default mt-1 mb-1" type="button" id="print"
+                    onclick="printContent('imp1');">Imprimir </button>
+            </div>
                     </div>
                     <div class="col-12 text-center">
                         <div class="row">
@@ -32,13 +36,14 @@
                     </div>
 
                     <div class="col-1"></div>
-                    <div class="col-10 mt-3">
+                    <div class="col-10 mt-3" >
                         <h3 class="text-center">Tabla Referente a Planillas Generadas</h3>
                         <table id="data-table-default" class="table table-bordered table-hover">
                             <thead style="background:#e4e7e8">
                                 <tr class="text-center">
                                     <th>Embarcación</th>
                                     <th>Placa de la Embarcación</th>
+                                    <th>Ubicación</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -47,6 +52,7 @@
                                 <tr class="odd gradeX" style="text-align:center">
                                     <td><?=$ver_proyecto['nombrebuque']?> </td>
                                     <td><?=$ver_proyecto['matricula']?> </td>
+                                    <td><?=$ver_proyecto['descripcion']?> </td>
                                     <td class="center">
                                         <a href="<?php echo base_url();?>index.php/programacion/ver_programacion_proy?id=<?php echo $ver_proyecto['matricula'];?>"
                                             class="button">
@@ -94,5 +100,14 @@ function valideKey(evt) {
     } else { // other keys.
         return false;
     }
+}
+</script>
+<script>
+function printContent(imp1) {
+    var restorepage = $('body').html();
+    var printcontent = $('#' + imp1).clone();
+    $('body').empty().html(printcontent);
+    window.print();
+    $('body').html(restorepage);
 }
 </script>

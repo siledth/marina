@@ -16,7 +16,7 @@
                                             <p class="f-s-18 text-inverse f-w-600">
                                                 <?=$descripcion?>.</p>
                                             <p class="f-s-16">RIF.: <?=$rif?> <br>
-                                            <p class="f-s-16">Fecha.: <?=$time ?> <br>
+                                            <p class="f-s-16">Fecha .: <?=$time ?> <br>
                                             <input type="hidden" id="id" name="id" value="<?=$id?>/<?=$matricula?>">
                                         </blockquote>
                                     </div>
@@ -24,7 +24,7 @@
                             </div>
                             <?php foreach($inf_1 as $inf_1):?>
                             <div class="col-9 mt-2 form-group">
-                                <label>Nombre del Proyecto <b style="color:red">*</b></label>
+                                <label>Nombre de Embarcación <b style="color:red">*</b></label>
                                 <input id="nombrebuque" name="nombrebuque" value="<?=$inf_1['nombrebuque']?>" type="text" class="form-control" >
                                 <input type="hidden" id="id_buque" name="id_buque" value="<?=$inf_1['id']?>" type="text" class="form-control" >
                             </div>

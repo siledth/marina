@@ -145,7 +145,7 @@
             $this->db->select('m.id_mensualidad,
                                 m.matricula,
                                 m.pies,
-                                m.dia,
+                                m.dia,                               
                                 m.id_tarifa,
                                 mc.restante_om canon,
                                 mc.id_dolar,
@@ -236,7 +236,8 @@
                                 m.nota,
                                 m.id_status,
                                 m.fechapago,
-                                e.descripcion estatus");
+                                e.descripcion estatus,
+                                m.fecha_update");
             $this->db->from('public.mensualidad m');
             $this->db->join('buque b', 'b.matricula = m.matricula', 'left');
             $this->db->join('propiet p', 'p.id_buque = b.id', 'left');

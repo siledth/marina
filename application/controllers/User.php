@@ -187,7 +187,7 @@ class User extends CI_Controller
 				"cedula" => $cedula,
 				"intentos" => 1,				
 				"tele_1" => $tele_1,
-				"nombrecom" =>$nombrecom
+				"email" =>$email
 
 			);
 

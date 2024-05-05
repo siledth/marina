@@ -116,8 +116,10 @@
                                         <tr class="text-center">
                                             <th>Matricula</th>
                                             <th>Descripción</th>
-                                            <th>Cantidad</th>
+                                            <th>Dias/Cantd.</th>
                                             <th>Tarifa $</th>
+                                            <!-- esto lo agrege .agregarloenn mi maquina -->
+                                            <th>Pies </th> 
 
                                             <th>Total $</th>
 
@@ -130,6 +132,9 @@
                                             <td><?=$lista['ob']?></td>
                                             <td><?=$lista['dia']?></td>
                                             <td><?=$lista['tarifa']?></td>
+                                               <!-- esto lo agrege .agregarloenn mi maquina -->
+                                            <td><?=$lista['pies']?></td>
+                                               <!-- esto lo agrege .agregarloenn mi maquina -->
                                             <td><?=$lista['canon']?></td>
 
                                         </tr>
@@ -142,15 +147,16 @@
                                 <label class="col-form-label col-md-6 text-right">Total IVA </label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control text-center"
-                                        value="<?=$factura_ind['total_iva']?>" readonly>
+                                        value="0" readonly>
                                 </div>
                             </div>
                             <div class="col-6"></div>
                             <div class="form-group row col-6">
-                                <label class="col-form-label col-md-6 text-right">Total BS </label>
+                                <label class="col-form-label col-md-6 text-right">Total $ </label>
                                 <div class="col-md-6">
                                     <input type="text" class="form-control text-center"
-                                        value="<?=$factura_ind['total_bs']?>" readonly>
+                                        value="<?=$factura_ind['total_mas_iva']?>$" readonly>
+                                        <!-- cambie los bolivares por los dolars -->
                                 </div>
                             </div>
                             <div class="col-6"></div>

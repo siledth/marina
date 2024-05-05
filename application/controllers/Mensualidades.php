@@ -67,7 +67,7 @@ class Mensualidades extends CI_Controller {
         $data['descripcion'] = $this->session->userdata('unidad');
         $data['rif'] = $this->session->userdata('rif');
         $data['ver_proyectos'] = $this->Programacion_model->consultar_proyectos();
-        $data['time']=date("d");
+        $data['time']=date("d-m-Y");
 
         $data['inf_buque'] =	$this->Mensualidades_model->ver_nota($id_mesualidad);
         $data['inf_pago']  =	$this->Mensualidades_model->ver_pagos($id_mesualidad);

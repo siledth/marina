@@ -25,10 +25,10 @@
         
 
         public function consulta_buque(){
-            $this->db->select('*');
-            $this->db->from('buque ');
+            $this->db->select('b.*,p.descripcion');
+            $this->db->from('buque b ');
             $this->db->where('desincorporar !=', '0');
-            
+            $this->db->join('ubicacion p', 'p.id = b.ubicacion', 'left');
             $query = $this->db->get();
             return $result = $query->result_array();
         }
@@ -497,6 +497,7 @@ if ($response) {
                                f.nombre,
                                f.tele_1,
                                f.fechaingreso,
+                               f.fechaingreso,
                                f.matricula,
                                f.nombrep, 
                                f.cedula,
@@ -514,10 +515,12 @@ if ($response) {
                                f.total_bs,
 	                           e.descripcion,
                                f.id_status,
-                               
+                               d.pies, 
+                           
                                d.ob");
            
-            
+                         
+             //    <!--        d.pies, esto lo agrege .agregarloenn mi maquina -->
             $this->db->join('deta_recibo d', 'd.matricula = f.matricula', 'left');
             $this->db->join('estatus e', 'e.id_status = f.id_status', 'left');
             
@@ -685,7 +688,7 @@ if ($response) {
                                  oc.desc_condicion,
                                  oc.des_unidad,
                                  ub.descripcion,
-                                 ub.id');
+                                 ub.id as id1');
            $this->db->join('public.tarifa oc', 'oc.id_tarifa = pp.id_tarifa');
            $this->db->join('public.ubicacion ub', 'ub.id = pp.ubicacion');
             $this->db->where('pp.matricula', $matricula );
