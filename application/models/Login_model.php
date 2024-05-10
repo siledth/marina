@@ -39,10 +39,16 @@ class Login_model extends CI_model {
         return $result->row_array();
     }
 
-    public function cambiar_clave($id_usuario, $data) {
+    public function cambiar_clave($id_usuario, $data)
+    {
         $this->db->where('id', $id_usuario);
         $update = $this->db->update('seguridad.usuarios', $data);
-        return $update;
+       // return $update;
+        if ($update == true) {               
+            return 1;        
+        } else {
+            return 0;
+        }
     }
 
     //Propietario

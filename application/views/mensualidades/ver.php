@@ -21,13 +21,13 @@
                             <div class="col-md-12">
                                 <div class="panel-body">
                                     <div class="col-12 text-center">
-                                        <h4>Mensualidades de acuerdo al día</h4>
+                                        <h4>Deudas de Mensualidades de acuerdo al día</h4>
                                     </div>
 
-                                    <table id="data-table-default" data-order='[[ 0, "desc" ]]' class="table table-striped table-bordered">
+                                    <table id="data-tablepdf" data-order='[[ 0, "desc" ]]' class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th width="1%"></th>
+                                                <th width="1%">#</th>
                                                 <th width="15%" class="text-nowrap">Nombre de la Embarcación</th>
                                                 <th width="25%" class="text-nowrap">Matricula</th>
                                                 <th width="10%" class="text-nowrap">Canon</th>
@@ -266,7 +266,7 @@
                         </div>
                         <div class="form-group col-3">
                             <label>Cantidad a pagar $</label>
-                            <input class="form-control" type="text" id="cantidad_pagar_otra_a" name="cantidad_pagar_otra_a" onblur="calcular_dol_a();" onkeypress="return valideKey(event);">
+                            <input class="form-control" type="text" id="cantidad_pagar_otra_a" name="cantidad_pagar_otra_a" onblur="calcular_dol_a();" >
                         </div>
                         <div class="form-group col-3">
                             <label>Cantidad a pagar Bs. F</label>

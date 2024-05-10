@@ -103,7 +103,9 @@
                             <span>Mensualidades</span>
                         </a>
                         <ul class="sub-menu">
-                            <li><a href="<?= base_url() ?>index.php/Mensualidades/ver">Ver</a></li>
+                            <li><a href="<?= base_url() ?>index.php/Mensualidades/ver">Ver Deudas</a></li>
+                            <li><a href="<?= base_url() ?>index.php/Mensualidades/ver_t">Ver Historico</a></li>
+
                             <!-- <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver / Anular</a></li> -->
                         </ul>
                     </li>

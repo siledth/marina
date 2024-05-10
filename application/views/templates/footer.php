@@ -39,6 +39,18 @@
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/js/demo/table-manage-default.demo.min.js"></script>
+<!-- se agrego esto  -->
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
+	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js"></script>
+	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js"></script>
+	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js"></script>
+	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js"></script>
+	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js"></script>
+	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
+	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
+  <script src="<?= base_url() ?>Plantilla/admin/assets/js/demo/table-manage-buttons.demo.min.js"></script>
+
+
 
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/js/dataTables.autoFill.min.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/js/autoFill.bootstrap.min.js"></script>
@@ -57,7 +69,80 @@
 <script src="<?= base_url() ?>/js/organoente.js?<?= time() ?>"></script>
 <script src="<?= base_url() ?>/js/llamadoconcurso.js?<?= time() ?>"></script>
 <script src="<?= base_url() ?>/js/asnc.app.js?<?= time() ?>"></script>
-
+<script>
+ 
+$(document).ready(function() {
+  var table = $('#data-tablepdf').DataTable({
+    dom: "Bfrtip",
+    buttons: [
+      {
+        extend: "pdf",
+        text: "Exportar a PDF",
+        orientation: 'landscape',
+        title: function() {
+          return 'Embarcaciones con Deudas - ' + new Date().toLocaleString();
+        },
+        customize: function(doc) {
+          doc.pageMargins = [5, 10, 10, 10]; // left, top, right, bottom
+          doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+          doc.defaultStyle.alignment = 'center';
+          doc.styles.tableHeader.alignment = 'center';
+          doc.content[1].table.layout = 'fixed';
+        },
+        exportOptions: {
+          columns: ':visible:not(:last-child)'
+        },
+        customizeTable: function(table) {
+          table.forEach(function(row) {
+            row.forEach(function(cell) {
+              if (cell.text && cell.text.length > 0) {
+                cell.styles.alignment = 'center';
+              }
+            });
+          });
+        }
+      }
+    ]
+  });
+});
+</script>
+<script>
+ 
+$(document).ready(function() {
+  var table = $('#data-tablepdfp').DataTable({
+    dom: "Bfrtip",
+    buttons: [
+      {
+        extend: "pdf",
+        text: "Exportar a PDF",
+        orientation: 'landscape',
+        title: function() {
+          return 'Historico de Pago Embarcaciones  - ' + new Date().toLocaleString();
+        },
+        customize: function(doc) {
+          doc.pageMargins = [5, 10, 10, 10]; // left, top, right, bottom
+          doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+          doc.defaultStyle.alignment = 'center';
+          doc.styles.tableHeader.alignment = 'center';
+          doc.content[1].table.layout = 'fixed';
+        },
+        exportOptions: {
+          columns: ':visible:not(:last-child)'
+        },
+        customizeTable: function(table) {
+          table.forEach(function(row) {
+            row.forEach(function(cell) {
+              if (cell.text && cell.text.length > 0) {
+                cell.styles.alignment = 'center';
+              }
+            });
+          });
+        }
+      }
+    ]
+  });
+});
+</script>
 <script>
         $(document).ready(function() {
                 App.init();

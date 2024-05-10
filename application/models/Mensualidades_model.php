@@ -127,7 +127,7 @@
             $this->db->select('m.id_mensualidad,
                                 m.matricula,
                                 b.nombrebuque,
-                                m.canon,
+                                CAST(m.canon AS DECIMAL(10,2)) as canon,
                                 m.fecha_deuda,
                                 m.id_status,
                                 m.id_factura,
@@ -135,6 +135,28 @@
                         $this->db->from('public.mensualidad m');
                         $this->db->join('buque b', 'b.matricula = m.matricula ', 'left');
                         $this->db->join('estatus e', 'e.id_status = m.id_status', 'left');
+                        $this->db->where('m.id_status <> 2');
+
+                        $this->db->order_by("m.id_mensualidad", "desc");
+                        $query = $this->db->get();
+                        $resultado = $query->result_array();
+            return $resultado;
+        }
+        public function ver_todos(){
+            $this->db->select('m.id_mensualidad,
+                                m.matricula,
+                                b.nombrebuque,
+                                CAST(m.canon AS DECIMAL(10,2)) as canon,
+                                m.fecha_deuda,
+                                m.id_status,
+                                m.id_factura,
+                                e.descripcion');
+                        $this->db->from('public.mensualidad m');
+                        $this->db->join('buque b', 'b.matricula = m.matricula ', 'left');
+                        $this->db->join('estatus e', 'e.id_status = m.id_status', 'left');
+                        $this->db->where('m.id_status', '2');
+
+
                         $this->db->order_by("m.id_mensualidad", "desc");
                         $query = $this->db->get();
                         $resultado = $query->result_array();

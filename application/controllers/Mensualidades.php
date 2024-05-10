@@ -37,6 +37,26 @@ class Mensualidades extends CI_Controller {
 		$this->load->view('mensualidades/ver.php', $data);
         $this->load->view('templates/footer.php');
 	}
+    public function ver_t(){
+        if(!$this->session->userdata('session'))redirect('login');
+        $data['descripcion'] = $this->session->userdata('unidad');
+        $data['rif'] = $this->session->userdata('rif');
+        $data['time']=date("d-m-Y");
+        $data['te']=date('d');
+        $data['mat'] = $this->Programacion_model->consulta_matricula();
+        $date = date('d');
+        
+        $data['ver_deudas'] = $this->Mensualidades_model->ver_todos($date);           
+         
+
+        $data['banco'] = $this->Mensualidades_model->ver_banco(); 
+        $data['tipoPago'] = $this->Mensualidades_model->ver_tipPago(); 
+
+		$this->load->view('templates/header.php');
+        $this->load->view('templates/navigator.php');
+		$this->load->view('mensualidades/ver_todo.php', $data);
+        $this->load->view('templates/footer.php');
+	}
 
     public function consultar_mens(){
         if(!$this->session->userdata('session'))redirect('login');

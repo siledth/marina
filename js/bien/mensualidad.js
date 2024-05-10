@@ -345,18 +345,19 @@ function calcular_bol_a() {
     var cantidad_pagar_bs = $("#cantidad_pagar_bs_a").val();
     var valor_2 = $("#dolar_1a").val();
 
-    var newstr = cantidad_deu_bs.replace(".", "");
-    var newstr2 = newstr.replace(".", "");
-    var newstr3 = newstr2.replace(".", "");
-    var newstr4 = newstr3.replace(".", "");
-    var cant_deu_bs = newstr4.replace(",", ".");
+    // var newstr = cantidad_deu_bs.replace(".", "");
+    // var newstr2 = newstr.replace(".", "");
+    // var newstr3 = newstr2.replace(".", "");
+    // var newstr4 = newstr3.replace(".", "");
+    // var cant_deu_bs = newstr4.replace(",", ".");
 
-    var newstr = cantidad_pagar_bs.replace(".", "");
-    var newstr5 = newstr.replace(".", "");
-    var newstr6 = newstr5.replace(".", "");
-    var newstr7 = newstr6.replace(".", "");
-    var cant_pag_bs = newstr7.replace(",", ".");
-
+    // var newstr = cantidad_pagar_bs.replace(".", "");
+    // var newstr5 = newstr.replace(".", "");
+    // var newstr6 = newstr5.replace(".", "");
+    // var newstr7 = newstr6.replace(".", "");
+    // var cant_pag_bs = newstr7.replace(",", ".");
+    var cant_deu_bs = cantidad_deu_bs.replace(",", ".");
+    var cant_pag_bs = cantidad_pagar_bs.replace(",", ".");
     var dolarr = valor_2.replace(",", ".");
     // Total restante bs
     var restant_bs = cant_deu_bs - cant_pag_bs;
@@ -371,7 +372,11 @@ function calcular_bol_a() {
     $("#cantidad_pagar_otra_a").val(sub_total_dolar5);
 
     // total restante om
-    var sub_total_dolar = restant_bs / dolarr;
+    // var sub_total_dolar = restant_bs / dolarr;
+    // var sub_total_dolar2 = parseFloat(sub_total_dolar).toFixed(2);
+    // var sub_total_dolar3 = Intl.NumberFormat("de-DE").format(sub_total_dolar2);
+    // $("#total_otra_a").val(sub_total_dolar3);
+    var sub_total_dolar = restant_bs * dolarr;
     var sub_total_dolar2 = parseFloat(sub_total_dolar).toFixed(2);
     var sub_total_dolar3 = Intl.NumberFormat("de-DE").format(sub_total_dolar2);
     $("#total_otra_a").val(sub_total_dolar3);
@@ -398,27 +403,29 @@ function calcular_dol_a() {
 
     var valor_2 = $("#dolar_a").val();
 
-    var newstr = cantidad_deu_om.replace(".", "");
-    var newstr2 = newstr.replace(".", "");
-    var newstr3 = newstr2.replace(".", "");
-    var newstr4 = newstr3.replace(".", "");
-    var cant_deu_om = newstr4.replace(",", ".");
+    // var newstr = cantidad_deu_om.replace(".", "");
+    // var newstr2 = newstr.replace(".", "");
+    // var newstr3 = newstr2.replace(".", "");
+    // var newstr4 = newstr3.replace(".", "");
+    // var cant_deu_om = newstr4.replace(",", ".");
+    var cantidad_pagar_otra1 = cantidad_pagar_otra.replace(",", ".");
 
-    var newstr = cantidad_pagar_otra.replace(".", "");
-    var newstr5 = newstr.replace(".", "");
-    var newstr6 = newstr5.replace(".", "");
-    var newstr7 = newstr6.replace(".", "");
-    var cant_pag_otra = newstr7.replace(",", ".");
+    // var newstr = cantidad_pagar_otra.replace(".", "");
+    // var newstr5 = newstr.replace(".", "");
+    // var newstr6 = newstr5.replace(".", "");
+    // var newstr7 = newstr6.replace(".", "");
+    // var cant_pag_otra = newstr7.replace(",", ".");
+    cant_deu_om=cantidad_deu_om.replace(",", ".");
 
     var dolarr = valor_2.replace(",", ".");
     // Total a pagar de otra moneda
-    var sub_total = cant_deu_om - cant_pag_otra;
+    var sub_total = cant_deu_om - cantidad_pagar_otra1;
     var sub_total2 = parseFloat(sub_total).toFixed(2);
     var sub_total3 = Intl.NumberFormat("de-DE").format(sub_total2);
     $("#total_otra_a").val(sub_total3);
 
     // Total a pagar en bs
-    var sub_total_dolar1 = cant_pag_otra * dolarr;
+    var sub_total_dolar1 = cantidad_pagar_otra1 * dolarr;
     var sub_total_dolar2 = parseFloat(sub_total_dolar1).toFixed(2);
     var sub_total_dolar3 = Intl.NumberFormat("de-DE").format(sub_total_dolar2);
     $("#cantidad_pagar_bs_a").val(sub_total_dolar3);
@@ -431,11 +438,16 @@ function calcular_dol_a() {
     var cantidad_deu_bs4 = cantidad_deu_bs3.replace(".", "");
     var cantidad_deu_bsf = cantidad_deu_bs4.replace(",", ".");
 
-    var total_a_deber = cant_pag_otra * dolarr;
-    var total_deber_bol = cantidad_deu_bsf - total_a_deber;
-    var total_deber_bol2 = parseFloat(total_deber_bol).toFixed(2);
-    var total_a_deb_bs = Intl.NumberFormat("de-DE").format(total_deber_bol2);
-    $("#total_bs_pag_a").val(total_a_deb_bs);
+    // var total_a_deber = cant_pag_otra * dolarr;
+    // var total_deber_bol = cantidad_deu_bsf - total_a_deber;
+    // var total_deber_bol2 = parseFloat(total_deber_bol).toFixed(2);
+    // var total_a_deb_bs = Intl.NumberFormat("de-DE").format(total_deber_bol2);
+    // $("#total_bs_pag_a").val(total_a_deb_bs);
+    var total_a_deber = cantidad_pagar_otra1 * dolarr;
+        var total_deber_bol =   0;
+        var total_deber_bol2 = parseFloat(total_deber_bol).toFixed(2);
+        var total_a_deb_bs = Intl.NumberFormat("de-DE").format(total_deber_bol2);
+        $("#total_bs_pag_a").val(total_a_deb_bs);
 
     }
 
