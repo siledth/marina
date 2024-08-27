@@ -22,8 +22,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion( $desde, $hasta) {   
         $cadena = "id >= '1'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
@@ -32,8 +32,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_tierra( $desde, $hasta) {
         $cadena = "id_tarifa ='2'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
@@ -43,8 +43,8 @@ class Reporte_model extends CI_Model {
        // die(print_r($hasta, TRUE));
         $cadena = "id_tarifa ='1'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
@@ -55,8 +55,8 @@ class Reporte_model extends CI_Model {
         $this->db->select('m.*');
         $this->db->from('public.total_barco_ubica m');
         $this->db->where('m.ubicacion <', '6');
-        $this->db->where('m.fechaingreso >=', $data['desde']);
-        $this->db->where('m.fechaingreso <=', $data['hasta']); 
+        // // $this->db->where('m.fechaingreso >=', $data['desde']);
+        // // $this->db->where('m.fechaingreso <=', $data['hasta']); 
         $query = $this->db->get();
         $resultado = $query->row_array();
        // die(print_r($resultado, TRUE));
@@ -66,8 +66,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_muelle1a( $desde, $hasta) {
         $cadena = "ubicacion = '1'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
 
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
@@ -77,8 +77,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_muelle2a( $desde, $hasta) {
         $cadena = "ubicacion = '2'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
@@ -87,8 +87,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_patio1( $desde, $hasta) {
         $cadena = "ubicacion = '6'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
@@ -97,8 +97,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_patio2( $desde, $hasta) {
         $cadena = "ubicacion = '7'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num; 
@@ -107,8 +107,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_patio3( $desde, $hasta) {
         $cadena = "ubicacion = '8'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
@@ -117,8 +117,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_patio4( $desde, $hasta) {
         $cadena = "ubicacion = '9'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
@@ -127,8 +127,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_muelleb( $desde, $hasta) {
         $cadena = "ubicacion = '3'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
@@ -137,8 +137,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_muellec( $desde, $hasta) {
         $cadena = "ubicacion = '4'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;
@@ -147,8 +147,8 @@ class Reporte_model extends CI_Model {
     public function consulta_ubicacion_muelled( $desde, $hasta) {
         $cadena = "ubicacion = '5'";
         $this->db->where($cadena);
-        $this->db->where('fechaingreso >=', $hasta);
-        $this->db->where('fechaingreso <=', $desde);
+        // $this->db->where('fechaingreso >=', $hasta);
+        // $this->db->where('fechaingreso <=', $desde);
         $this->db->from('public.total_barco_ubica');
         $num = $this->db->count_all_results();
         return $num;

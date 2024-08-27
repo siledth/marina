@@ -25,8 +25,7 @@
                                 <h4 class="mt-2"> <b>Corporación Ormux 2020, CA</b></h3>
                                 <h5>RIF.: <?=$rif?></h5>
                                 <h5>Fecha Impresión: <?=$time ?> </h5>
-                                <h5>Desde: <?=$desde ?> </h5>
-                                <h5>Hasta: <?=$hasta ?> </h5>
+                              
                             </div>
                         </div>
                         <div class="form-group col-5">

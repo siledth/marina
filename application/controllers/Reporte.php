@@ -55,8 +55,8 @@ class Reporte extends CI_Controller {
 		$data['time']=date("d-m-Y");
         $data['rif'] = $this->session->userdata('rif');
         $data['ver_proyectos'] = $this->Programacion_model->consulta_buque();
-		$hasta     = $this->input->post("hasta");
-		$desde     = $this->input->post("desde");
+		$hasta     = "12-12-2026";
+		$desde     = "12-12-2020";
         $data['desde'] = date('Y-m-d', strtotime($desde));
 		$data['hasta'] = date('Y-m-d', strtotime($hasta)); 
 		//$hasta1= date('Y-m-d', strtotime($hasta)); 
