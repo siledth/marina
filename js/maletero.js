@@ -485,6 +485,9 @@ function valideKey(evt){
                             if (result.value) {
                                 // Redirige a la URL generada
                                 window.location.href = base_url_3 + response; // Asegúrate de que 'id_factura' esté en la respuesta
+                                setTimeout(function() {
+                                    window.location.reload(); // Recarga la página después de un tiempo
+                                }, 1000);
                             }
                         });
                     }
