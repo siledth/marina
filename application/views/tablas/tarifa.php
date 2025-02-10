@@ -47,6 +47,7 @@
                                                 <select class="form-control" id="des_unidad">
                                                     <option value="PIE">PIE</option>
                                                     <option value="DIA">DIA</option>
+                                                    <option value="TRIMESTRE">TRIMESTRE</option>
                                                 </select>
                                             </div>
 
@@ -74,7 +75,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <form action="" method="post" id="update_form">
-                                        <input type="hidden" id="edit_id_tarifa" name="edit_id_tarifa"value="">
+                                        <input type="hidden" id="edit_id_tarifa" name="edit_id_tarifa" value="">
                                         <div class="form-group">
                                             <label for="">Concepto</label>
                                             <input type="text" class="form-control" id="edit_desc_concepto">
@@ -125,7 +126,7 @@
         </div>
     </div>
 </div>
-<!-- Toastr --> 
+<!-- Toastr -->
 <script src="<?=base_url()?>/js/cloudflare.js"></script>
 <script src="<?=base_url()?>/js/toastr.js"></script>
 
@@ -271,7 +272,7 @@ function fetch() {
                                 return a = i++;
                             }
                         },
-                       
+
                         {
                             "data": "desc_concepto"
                         },

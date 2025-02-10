@@ -16,7 +16,8 @@
             <li class="dropdown navbar-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="<?= base_url() ?>Plantilla/admin/assets/img/user/user-13.jpg" alt="" />
-                    <span class="d-none d-md-inline"><?=$this->session->userdata('nombre')?> <?=$this->session->userdata('apellido')?></span>
+                    <span class="d-none d-md-inline"><?=$this->session->userdata('nombre')?>
+                        <?=$this->session->userdata('apellido')?></span>
                     <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -48,245 +49,282 @@
             <ul class="nav">
                 <li class="nav-header">Navegador</li>
                 <?php if ($this->session->userdata('perfil') == 1) : ?>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="fas fa-sliders-h fa-lg"></i>
-                            <span>Servicios</span>
-                        </a>
-
-                        <ul class="sub-menu">
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    <span>Servicio-Tarifas</span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li><a href="<?= base_url() ?>index.php/Tarifa/tarif">Registrar</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="fas fa-file-invoice-dollar fa-lg"></i>
-                            <span>Facturación/Recibo</span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    <span>Factura</span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li><a href="<?= base_url() ?>index.php/Factura/fac">Registrar</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    <span>Recibo</span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li><a href="<?= base_url() ?>index.php/Factura/Rec">Registrar</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Factura/verRecibo">Ver </a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="fas fa-calendar-alt fa-lg"></i>
-                            <span>Mensualidades</span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li><a href="<?= base_url() ?>index.php/Mensualidades/ver">Ver Deudas</a></li>
-                            <li><a href="<?= base_url() ?>index.php/Mensualidades/ver_t">Ver Historico</a></li>
-
-                            <!-- <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver / Anular</a></li> -->
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="fas fa-paste fa-lg"></i>
-                            <span> Planilla</span>
-                        </a>
-
-                        <ul class="sub-menu">
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    <li><a href="<?= base_url() ?>index.php/Buque/Plantilla">Registrar</a></li>
-                                </a>
-                            </li>
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    <li><a href="<?= base_url() ?>index.php/Buque/desin">Desincorporar</a></li>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="fas fa-file-invoice-dollar fa-lg"></i>
-                            <span>Transito</span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    <span>Factura</span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li><a href="<?= base_url() ?>index.php/Factura/transito">Registrar</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Factura/anutransito">Ver</a></li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <b class="caret"></b>
-                                    <span>Recibo</span>
-                                </a>
-                                <ul class="sub-menu">
-                                    <li><a href="<?= base_url() ?>index.php/Factura/recibo_transito">Registrar</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Factura/anutransitorecibo">Ver </a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="fas fa-file-alt fa-lg"></i>
-                            <span> Reporte</span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/ubicaci">Ubicacion</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/ubicaciones">Ubicación Detallada</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/Report">Total Canon</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/saldoxpagar">Saldo por Pagar</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/condxpagar">Condición de Pago</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/condxpagar_detallado">Condición de Pago detallado</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/cxc_embarcacion">Cuentas por Cobrar / por embarcaciòn</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/servicios">Servicios</a></li>
-                                    <li class="has-sub">
-                                        <a href="javascript:;">
-                                            <b class="caret"></b>
-                                            <span>Reporte Jefe</span>
-                                        </a>
-                                        <ul class="sub-menu">
-                                            <li><a href="<?= base_url() ?>index.php/Reporte/Reporte_jefes">Ver</a></li>
-                                        </ul>
-                                    </li>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a href="javascript:;">
-                            <b class="caret"></b>
-                            <i class="fas fa-chart-pie"></i>
-                            <span> Gráficas</span>
-                        </a>
-                        <ul class="sub-menu">
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/tt_ing_egr">Totales Ingreso / Egresos</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/tt_ing_tar">Ingreso por Recibos (Tarifas)</a></li>
-                                    <li><a href="<?= base_url() ?>index.php/Reporte/f_tt_ing_tar">Ingreso por Facturas (Tarifas)</a></li>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                <?php endif; ?>
-                <?php if ($this->session->userdata('perfil') == 3) : ?>
-                    <li>
-                    <a href="<?= base_url() ?>index.php/Reporte/inf_buque">
+                <li class="has-sub">
+                    <a href="javascript:;">
                         <b class="caret"></b>
-                        <i class="fas fa-ship fa-lg"></i>
-                        <span>Informacion del Buque</span>
+                        <i class="fas fa-sliders-h fa-lg"></i>
+                        <span>Servicios</span>
                     </a>
+
+                    <ul class="sub-menu">
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <span>Servicio-Tarifas</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="<?= base_url() ?>index.php/Tarifa/tarif">Registrar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
                 </li>
-                <?php endif; ?>
-                <?php if (($this->session->userdata('perfil') <= 2)) : ?>
+                <li class="has-sub">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fas fa-file-invoice-dollar fa-lg"></i>
+                        <span>Facturación/Recibo</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <span>Factura</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="<?= base_url() ?>index.php/Factura/fac">Registrar</a></li>
+                                <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                                <span>Recibo</span>
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="<?= base_url() ?>index.php/Factura/Rec">Registrar</a></li>
+                                <li><a href="<?= base_url() ?>index.php/Factura/verRecibo">Ver </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fas fa-calendar-alt fa-lg"></i>
+                        <span>Mensualidades</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="<?= base_url() ?>index.php/Mensualidades/ver">Ver Deudas</a></li>
+                        <li><a href="<?= base_url() ?>index.php/Mensualidades/ver_t">Ver Historico</a></li>
+
+                        <!-- <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver / Anular</a></li> -->
+                    </ul>
+                </li>
+                <li class="has-sub">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                        <i class="fas fa-paste fa-lg"></i>
+                        <span> Planilla</span>
+                    </a>
+
+                    <ul class="sub-menu">
+                        <li class="has-sub">
+                            <a href="javascript:;">
+                                <b class="caret"></b>
+                        <li><a href="<?= base_url() ?>index.php/Buque/Plantilla">Registrar</a></li>
+                        </a>
+                </li>
+                <li class="has-sub">
+                    <a href="javascript:;">
+                        <b class="caret"></b>
+                <li><a href="<?= base_url() ?>index.php/Buque/desin">Desincorporar</a></li>
+                </a>
+                </li>
+            </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fas fa-suitcase fa-lg"></i>
+                    <span> Maletero</span>
+                </a>
+
+                <ul class="sub-menu">
                     <li class="has-sub">
                         <a href="javascript:;">
                             <b class="caret"></b>
-                            <i class="ion-gear-b fa-spin" style="background-color:#1E90FF;"></i>
-                            <span>Configuración</span>
+                    <li><a href="<?= base_url() ?>index.php/Maletero/registrar_maletero">Crear maleteros</a></li>
+                    </a>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+            <li><a href="<?= base_url() ?>index.php/Maletero/asignar_maletero">Asignar maleteros</a></li>
+            </a>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+            <li><a href="<?= base_url() ?>index.php/Maletero/mensualidades_maletero">Pagos maleteros</a></li>
+            </a>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+            <li><a href="<?= base_url() ?>index.php/Maletero/deudasmensualidades_maletero">Deuda maleteros</a></li>
+            </a>
+            </li>
+            </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fas fa-file-invoice-dollar fa-lg"></i>
+                    <span>Transito</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <span>Factura</span>
                         </a>
                         <ul class="sub-menu">
-                            <?php if (($this->session->userdata('perfil') <= 2)) : ?>
-                                <ul class="sub-menu">
-                                    <li class="has-sub">
-                                        <li></li>
-                                        <li></li>
-                                        <li></li>
-                                    </li>   
-                                </ul>
-                            <?php endif; ?>
-                            <?php if (($this->session->userdata('perfil') == 1)) : ?>
-                                <li class="has-sub">
-                                    <a href="javascript:;">
-                                        <b class="caret"></b>
-                                        <span>Tablas Parametros</span>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li>
-                                            <a href="<?= base_url() ?>index.php/Fuentefinanc/tipoestaci">
-                                                - Ubicación
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= base_url() ?>index.php/Fuentefinanc/tipocliente">
-                                                - Tipo Cliente
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= base_url() ?>index.php/Fuentefinanc/und">
-                                                - Tipo Barco
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= base_url() ?>index.php/Fuentefinanc/alicuotaiva">
-                                                - Alicuota
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="<?= base_url() ?>index.php/Fuentefinanc/dolar">
-                                                - Precio Dolar
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            <?php endif; ?>
-                            <li class="has-sub">
-                                <a href="javascript:;">
-                                    <span>Usuarios</span>
-                                </a>
-                                <ul class="sub-menu">
-                            </li>
-                            <?php if ($this->session->userdata('perfil') <= 2) : ?>
-                                <li>
-                                    <a href="<?= base_url() ?>index.php/user/usuario">
-                                        <i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registro Usuarios
-                                    </a>
-                                </li>
-                            <?php endif; ?>
+                            <li><a href="<?= base_url() ?>index.php/Factura/transito">Registrar</a></li>
+                            <li><a href="<?= base_url() ?>index.php/Factura/anutransito">Ver</a></li>
                         </ul>
                     </li>
-                <?php endif; ?>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <span>Recibo</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="<?= base_url() ?>index.php/Factura/recibo_transito">Registrar</a></li>
+                            <li><a href="<?= base_url() ?>index.php/Factura/anutransitorecibo">Ver </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fas fa-file-alt fa-lg"></i>
+                    <span> Reporte</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                    <li><a href="<?= base_url() ?>index.php/Reporte/ubicaci">Ubicacion</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/ubicaciones">Ubicación Detallada</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/Report">Total Canon</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/saldoxpagar">Saldo por Pagar</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/condxpagar">Condición de Pago</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/condxpagar_detallado">Condición de Pago
+                            detallado</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/cxc_embarcacion">Cuentas por Cobrar / por
+                            embarcaciòn</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/servicios">Servicios</a></li>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <span>Reporte Jefe</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="<?= base_url() ?>index.php/Reporte/Reporte_jefes">Ver</a></li>
+                        </ul>
+                    </li>
+                    </a>
+            </li>
+            </ul>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="fas fa-chart-pie"></i>
+                    <span> Gráficas</span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                    <li><a href="<?= base_url() ?>index.php/Reporte/tt_ing_egr">Totales Ingreso / Egresos</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/tt_ing_tar">Ingreso por Recibos (Tarifas)</a></li>
+                    <li><a href="<?= base_url() ?>index.php/Reporte/f_tt_ing_tar">Ingreso por Facturas (Tarifas)</a>
+                    </li>
+                    </a>
+            </li>
+            </ul>
+            </li>
+            <?php endif; ?>
+            <?php if ($this->session->userdata('perfil') == 3) : ?>
+            <li>
+                <a href="<?= base_url() ?>index.php/Reporte/inf_buque">
+                    <b class="caret"></b>
+                    <i class="fas fa-ship fa-lg"></i>
+                    <span>Informacion del Buque</span>
+                </a>
+            </li>
+            <?php endif; ?>
+            <?php if (($this->session->userdata('perfil') <= 2)) : ?>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <i class="ion-gear-b fa-spin" style="background-color:#1E90FF;"></i>
+                    <span>Configuración</span>
+                </a>
+                <ul class="sub-menu">
+                    <?php if (($this->session->userdata('perfil') <= 2)) : ?>
+                    <ul class="sub-menu">
+                        <li class="has-sub">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+            </li>
+            </ul>
+            <?php endif; ?>
+            <?php if (($this->session->userdata('perfil') == 1)) : ?>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+                    <span>Tablas Parametros</span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="<?= base_url() ?>index.php/Fuentefinanc/tipoestaci">
+                            - Ubicación
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url() ?>index.php/Fuentefinanc/tipocliente">
+                            - Tipo Cliente
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url() ?>index.php/Fuentefinanc/und">
+                            - Tipo Barco
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url() ?>index.php/Fuentefinanc/alicuotaiva">
+                            - Alicuota
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url() ?>index.php/Fuentefinanc/dolar">
+                            - Precio Dolar
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <?php endif; ?>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <span>Usuarios</span>
+                </a>
+                <ul class="sub-menu">
+            </li>
+            <?php if ($this->session->userdata('perfil') <= 2) : ?>
+            <li>
+                <a href="<?= base_url() ?>index.php/user/usuario">
+                    <i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registro Usuarios
+                </a>
+            </li>
+            <?php endif; ?>
+            </ul>
+            </li>
+            <?php endif; ?>
             </ul>
             <li class="mt-5"><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify">
-                <i class="ion-ios-arrow-back"></i> <span>Cerrar Navegador</span></a></li>
+                    <i class="ion-ios-arrow-back"></i> <span>Cerrar Navegador</span></a></li>
         </div>
     </div>
     <div class="sidebar-bg"></div>
