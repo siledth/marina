@@ -323,16 +323,16 @@ function valideKey(evt){
 	// 		});
 	// 	}
 	
-        function guardar_mensualidad_maletero() {
+function guardar_mensualidad_maletero() {
     if (event) {
         event.preventDefault();
     }
-// Verificar si se ha seleccionado un maletero
+   // Verificar si se ha seleccionado un maletero
     const maleteroElement = document.getElementById('id_maletero');
     const nombreElement = document.getElementById('nombre');
     const cedrifElement = document.getElementById('cedrif');
     const telefElement = document.getElementById('tele');
-    const correoElement = document.getElementById('correo');
+    // const correoElement = document.getElementById('correo');
     const nombre_lanchaElement = document.getElementById('nombre_lancha');
 
 
@@ -393,20 +393,7 @@ function valideKey(evt){
         });
         return false; // Detener la ejecución si el campo está vacío
     }
-      if (correoElement.value.trim() === "") {
-        Swal.fire({
-            title: 'El campo correo electronico es obligatorio.',
-            type: 'warning',
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Ok'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                correoElement.focus();
-            }
-        });
-        return false; // Detener la ejecución si el campo está vacío
-    }
+     
     if (nombre_lanchaElement.value.trim() === "") {
         Swal.fire({
             title: 'El campo Nombre de la lancha es obligatorio.',

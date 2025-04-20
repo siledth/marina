@@ -1,8 +1,8 @@
 <!-- Incluye SweetAlert CSS y JS -->
 <style>
-.hidden {
-    display: none;
-}
+    .hidden {
+        display: none;
+    }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -17,14 +17,14 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="form-group col-4">
-                                <label>Seleccione maletero</label><br>
+                                <label>Seleccione un Maletero disponible</label><br>
                                 <select id="id_maletero" name="id_maletero" class="default-select2 form-control"
                                     style="width: 300px;">
                                     <option value="0">-Seleccione -</option>
                                     <?php foreach ($maleteros as $data): ?>
-                                    <option value="<?=$data['id']?>">
-                                        <?=$data['descripcion']?>
-                                    </option>
+                                        <option value="<?= $data['id'] ?>">
+                                            <?= $data['descripcion'] ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -58,11 +58,11 @@
                                 <select id="id_tarifa" name="id_tarifa" class="default-select2 form-control"
                                     style="width: 300px;">
                                     <?php foreach ($tarifa as $data): ?>
-                                    <option value="<?=$data['id_tarifa']?>">
-                                        <?=$data['desc_concepto']?>/<?=$data['desc_tarifa']?>
-                                    </option>
-                                    <input class="form-control" type="hidden" name="pago" id="pago"
-                                        value=" <?= $data['desc_tarifa'] ?>">
+                                        <option value="<?= $data['id_tarifa'] ?>">
+                                            <?= $data['desc_concepto'] ?>/<?= $data['desc_tarifa'] ?>
+                                        </option>
+                                        <input class="form-control" type="hidden" name="pago" id="pago"
+                                            value=" <?= $data['desc_tarifa'] ?>">
 
                                     <?php endforeach; ?>
                                 </select>
@@ -85,7 +85,7 @@
                                     onclick="llenar_pago();">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($tipoPago as $data) : ?>
-                                    <option value="<?= $data['id_tipo_pago'] ?>"><?= $data['descripcion'] ?></option>
+                                        <option value="<?= $data['id_tipo_pago'] ?>"><?= $data['descripcion'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -97,9 +97,9 @@
                                     <select class="form-control" name="id_banco" id="id_banco">
                                         <option value="0">Seleccione</option>
                                         <?php foreach ($banco as $data) : ?>
-                                        <option value="<?= $data['id_banco'] ?>"><?= $data['codigo_b'] ?> /
-                                            <?= $data['nombre_b'] ?>
-                                        </option>
+                                            <option value="<?= $data['id_banco'] ?>"><?= $data['codigo_b'] ?> /
+                                                <?= $data['nombre_b'] ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -142,24 +142,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($asignacion as $data):?>
-                                        <tr class="odd gradeX" style="text-align:center">
-                                            <td><?=$data['id_asignacion_maletero']?> </td>
-                                            <td><?=$data['descripcion']?> </td>
-                                            <td><?=$data['nombre']?> </td>
-                                            <td><?=$data['nombre_lancha']?> </td>
+                                        <?php foreach ($asignacion as $data): ?>
+                                            <tr class="odd gradeX" style="text-align:center">
+                                                <td><?= $data['id_asignacion_maletero'] ?> </td>
+                                                <td><?= $data['descripcion'] ?> </td>
+                                                <td><?= $data['nombre'] ?> </td>
+                                                <td><?= $data['nombre_lancha'] ?> </td>
 
 
-                                            <td class="center">
-                                                <!-- <a href="<?php echo base_url();?>index.php/Pdf_maletero/pdfrt?id=<?php echo $lista['id_programacion'];?>"
+                                                <td class="center">
+                                                    <!-- <a href="<?php echo base_url(); ?>index.php/Pdf_maletero/pdfrt?id=<?php echo $lista['id_programacion']; ?>"
                                                     class="button">
                                                     <i class="fas   fa-lg fa-cloud-download-alt" title="Descargar "
                                                         style="color: blue;"></i>
                                                     <a /> -->
 
-                                            </td>
-                                        </tr>
-                                        <?php endforeach;?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -168,7 +168,7 @@
             </div>
         </div>
 
-        <script src="<?=base_url()?>/js/maletero.js"></script>
+        <script src="<?= base_url() ?>/js/maletero.js"></script>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">

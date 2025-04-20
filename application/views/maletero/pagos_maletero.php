@@ -21,25 +21,25 @@
                             <table id="data-tablepdfp" class="table table-bordered table-hover">
                                 <thead style="background:#e4e7e8">
                                     <tr>
-                                        <th>#</th>
+
                                         <th>Nombre del maletero</th>
                                         <th>asignado a </th>
                                         <th>lancha </th>
 
-                                        <th>Acción</th>
+                                        <th>Descargar recibo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($asignacion as $data):?>
+                                    <?php foreach ($asignacion as $data): ?>
                                     <tr class="odd gradeX" style="text-align:center">
-                                        <td><?=$data['id_asignacion_maletero']?> </td>
-                                        <td><?=$data['descripcion']?> </td>
-                                        <td><?=$data['nombre']?> </td>
-                                        <td><?=$data['nombre_lancha']?> </td>
+
+                                        <td><?= $data['descripcion'] ?> </td>
+                                        <td><?= $data['nombre'] ?> </td>
+                                        <td><?= $data['nombre_lancha'] ?> </td>
 
 
                                         <td class="center">
-                                            <a href="<?php echo base_url();?>index.php/Pdf_maletero/pdfrt?id=<?php echo $data['id_factura'];?>"
+                                            <a href="<?php echo base_url(); ?>index.php/Pdf_maletero/pdfrt?id=<?php echo $data['id_factura']; ?>"
                                                 class="button">
                                                 <i class="fas   fa-lg fa-cloud-download-alt" title="Descargar "
                                                     style="color: blue;"></i>
@@ -47,7 +47,7 @@
 
                                         </td>
                                     </tr>
-                                    <?php endforeach;?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <script src="<?=base_url()?>/js/maletero.js"></script>
+        <script src="<?= base_url() ?>/js/maletero.js"></script>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">

@@ -16,8 +16,8 @@
             <li class="dropdown navbar-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="<?= base_url() ?>Plantilla/admin/assets/img/user/user-13.jpg" alt="" />
-                    <span class="d-none d-md-inline"><?=$this->session->userdata('nombre')?>
-                        <?=$this->session->userdata('apellido')?></span>
+                    <span class="d-none d-md-inline"><?= $this->session->userdata('nombre') ?>
+                        <?= $this->session->userdata('apellido') ?></span>
                     <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
@@ -162,6 +162,12 @@
                 <a href="javascript:;">
                     <b class="caret"></b>
             <li><a href="<?= base_url() ?>index.php/Maletero/deudasmensualidades_maletero">Deuda maleteros</a></li>
+            </a>
+            </li>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <b class="caret"></b>
+            <li><a href="<?= base_url() ?>index.php/Maletero/reporte_maleteros">Reporte maleteros</a></li>
             </a>
             </li>
             </ul>

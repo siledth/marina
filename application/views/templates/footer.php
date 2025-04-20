@@ -1,4 +1,5 @@
-<div class="modal" id="sncModalDlg" tabindex="-1" role="dialog" aria-labelledby="miVentanaModalLabel" aria-hidden="true"></div>
+<div class="modal" id="sncModalDlg" tabindex="-1" role="dialog" aria-labelledby="miVentanaModalLabel"
+  aria-hidden="true"></div>
 
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/js/theme/material.min.js"></script>
@@ -15,45 +16,67 @@
 <script src="<?= base_url() ?>Plantilla/admin/assets/js/demo/gallery.demo.min.js"></script>
 <!-- ================== BEGIN PAGE LEVEL JS ================== -->
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/ionRangeSlider/js/ion-rangeSlider/ion.rangeSlider.min.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js">
+</script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/masked-input/masked-input.min.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js">
+</script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/password-indicator/js/password-indicator.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-combobox/js/bootstrap-combobox.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-select/bootstrap-select.min.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js"></script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.js">
+</script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-tag-it/js/tag-it.min.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-daterangepicker/moment.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/select2/dist/js/select2.min.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-show-password/bootstrap-show-password.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js"></script>
+<script
+  src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-eonasdan-datetimepicker/build/js/bootstrap-datetimepicker.min.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-show-password/bootstrap-show-password.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/bootstrap-colorpalette/js/bootstrap-colorpalette.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.js">
+</script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/clipboard/clipboard.min.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/js/demo/form-plugins.demo.min.js"></script>
 
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/media/js/jquery.dataTables.js"></script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/media/js/dataTables.bootstrap.min.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js"></script>
+<script
+  src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Responsive/js/dataTables.responsive.min.js">
+</script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/js/demo/table-manage-default.demo.min.js"></script>
 <!-- se agrego esto  -->
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js"></script>
-	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js"></script>
-	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js"></script>
-	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js"></script>
-	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js"></script>
-	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js"></script>
-	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js"></script>
-	<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js"></script>
-  <script src="<?= base_url() ?>Plantilla/admin/assets/js/demo/table-manage-buttons.demo.min.js"></script>
+<script
+  src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/dataTables.buttons.min.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.bootstrap.min.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.flash.min.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/jszip.min.js"></script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/pdfmake.min.js"></script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/vfs_fonts.min.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.html5.min.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/Buttons/js/buttons.print.min.js">
+</script>
+<script src="<?= base_url() ?>Plantilla/admin/assets/js/demo/table-manage-buttons.demo.min.js"></script>
 
 
 
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/js/dataTables.autoFill.min.js"></script>
-<script src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/js/autoFill.bootstrap.min.js"></script>
+<script
+  src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/js/dataTables.autoFill.min.js">
+</script>
+<script
+  src="<?= base_url() ?>Plantilla/admin/assets/plugins/DataTables/extensions/AutoFill/js/autoFill.bootstrap.min.js">
+</script>
 <script src="<?= base_url() ?>Plantilla/admin/assets/js/demo/table-manage-autofill.demo.min.js"></script>
 <!-- ================== END PAGE LEVEL JS ================== -->
 
@@ -70,12 +93,10 @@
 <script src="<?= base_url() ?>/js/llamadoconcurso.js?<?= time() ?>"></script>
 <script src="<?= base_url() ?>/js/asnc.app.js?<?= time() ?>"></script>
 <script>
- 
-$(document).ready(function() {
-  var table = $('#data-tablepdf').DataTable({
-    dom: "Bfrtip",
-    buttons: [
-      {
+  $(document).ready(function() {
+    var table = $('#data-tablepdf').DataTable({
+      dom: "Bfrtip",
+      buttons: [{
         extend: "pdf",
         text: "Exportar a PDF",
         orientation: 'landscape',
@@ -84,7 +105,8 @@ $(document).ready(function() {
         },
         customize: function(doc) {
           doc.pageMargins = [5, 10, 10, 10]; // left, top, right, bottom
-          doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+          doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1)
+            .join('*').split('');
           doc.defaultStyle.alignment = 'center';
           doc.styles.tableHeader.alignment = 'center';
           doc.content[1].table.layout = 'fixed';
@@ -101,18 +123,15 @@ $(document).ready(function() {
             });
           });
         }
-      }
-    ]
+      }]
+    });
   });
-});
 </script>
 <script>
- 
-$(document).ready(function() {
-  var table = $('#data-tablepdfp').DataTable({
-    dom: "Bfrtip",
-    buttons: [
-      {
+  $(document).ready(function() {
+    var table = $('#data-tablepdfp').DataTable({
+      dom: "Bfrtip",
+      buttons: [{
         extend: "pdf",
         text: "Exportar a PDF",
         orientation: 'landscape',
@@ -121,7 +140,8 @@ $(document).ready(function() {
         },
         customize: function(doc) {
           doc.pageMargins = [5, 10, 10, 10]; // left, top, right, bottom
-          doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+          doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1)
+            .join('*').split('');
           doc.defaultStyle.alignment = 'center';
           doc.styles.tableHeader.alignment = 'center';
           doc.content[1].table.layout = 'fixed';
@@ -138,24 +158,53 @@ $(document).ready(function() {
             });
           });
         }
-      }
-    ]
+      }]
+    });
   });
-});
 </script>
 <script>
-        $(document).ready(function() {
-                App.init();
-                TableManageDefault.init();
-                TableManageAutofill.init();
-                FormPlugins.init();
-                Gallery.init();
-                Highlight.init();
-                var ubiAct = window.location + "";
-                var arrayURL = ubiAct.split("index.php");
-                ubiAct = arrayURL[1];
-                sncApp.cargarDatosDePagina(ubiAct);
-        });
+  $(document).ready(function() {
+    var table = $('#data-table5').DataTable({
+      dom: "Bfrtip",
+      pageLength: 5,
+      buttons: [
+
+        {
+          extend: "excel",
+          text: "Exportar excel"
+        }
+      ]
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    var table = $('#data-table6').DataTable({
+      dom: "Bfrtip",
+      pageLength: 5,
+      buttons: [
+
+        {
+          extend: "excel",
+          text: "Exportar excel"
+        }
+      ]
+    });
+  });
+</script>
+<script>
+  $(document).ready(function() {
+    App.init();
+    TableManageDefault.init();
+    TableManageAutofill.init();
+    FormPlugins.init();
+    Gallery.init();
+    Highlight.init();
+    var ubiAct = window.location + "";
+    var arrayURL = ubiAct.split("index.php");
+    ubiAct = arrayURL[1];
+    sncApp.cargarDatosDePagina(ubiAct);
+  });
 </script>
 <!-- <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -25,25 +25,31 @@
                                         <th>Nombre del maletero</th>
                                         <th>asignado a </th>
                                         <th>lancha </th>
+                                        <th>Monto deuda </th>
 
                                         <th>Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach($asignacion as $data):?>
+                                    <?php foreach ($asignacion as $data): ?>
                                     <tr class="odd gradeX" style="text-align:center">
-                                        <td><?=$data['id_mov_consig']?> </td>
-                                        <td><?=$data['descripcion']?> </td>
-                                        <td><?=$data['nombre']?> </td>
-                                        <td><?=$data['nombre_lancha']?> </td>
+                                        <td><?= $data['id_mov_consig'] ?> </td>
+                                        <td><?= $data['descripcion'] ?> </td>
+                                        <td><?= $data['nombre'] ?> </td>
+                                        <td><?= $data['nombre_lancha'] ?> </td>
+                                        <td><?= $data['pago'] ?> </td>
+
 
 
                                         <td class="center">
-                                            <a href="<?php echo base_url();?>index.php/Pdf_maletero/pdfrt?id=<?php echo $data['id_factura'];?>"
+                                            <?php if ($data['id_status'] != 0) : ?>
+                                            <a href="<?php echo base_url(); ?>index.php/Pdf_maletero/pdfrt?id=<?php echo $data['id_factura']; ?>"
                                                 class="button">
                                                 <i class="fas   fa-lg fa-cloud-download-alt" title="Descargar "
                                                     style="color: blue;"></i>
                                                 <a />
+                                                <?php endif; ?>
+
                                                 <?php if ($data['id_status'] != 2) : ?>
                                                 <a onclick="modal1(<?php echo $data['id_mov_consig'] ?>);"
                                                     data-toggle="modal" data-target="#exampleModal"
@@ -55,7 +61,7 @@
 
                                         </td>
                                     </tr>
-                                    <?php endforeach;?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -64,7 +70,7 @@
             </div>
         </div>
 
-        <script src="<?=base_url()?>/js/maletero.js"></script>
+        <script src="<?= base_url() ?>/js/maletero.js"></script>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -89,7 +95,7 @@
                                 <div class="col-4">
                                     <label>Fecha </label>
                                     <input class="form-control" type="text" name="fechapago" id="fechapago"
-                                        value="<?=$time?>" readonly>
+                                        value="<?= $time ?>" readonly>
 
                                 </div>
                                 <div class="col-10"></div>
