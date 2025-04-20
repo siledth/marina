@@ -57,17 +57,14 @@
                             <tr>
                                 <th>Total Deuda Pendiente</th>
                                 <th>Total Pagado</th>
-                                <th>Ingresos General</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="odd gradeX" style="text-align:center">
                                 <td class="text-danger"><?= number_format($finanzas['total_deuda'], 2) ?></td>
                                 <td class="text-success"><?= number_format($finanzas['total_pagado'], 2) ?></td>
-                                <td
-                                    class="<?= ($finanzas['total_pagado'] >= $finanzas['total_deuda']) ? 'text-success' : 'text-danger' ?>">
-                                    <?= number_format($finanzas['total_pagado'] + $finanzas['total_deuda'], 2) ?>
-                                </td>
+
                             </tr>
                         </tbody>
                     </table>
