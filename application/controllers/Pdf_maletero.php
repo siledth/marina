@@ -29,7 +29,7 @@ class Pdf extends FPDF
     // Add a new cell with the header text
     $this->SetFont('Arial', 'B', 20);
 
-    $this->Cell(0, 5, utf8_decode('Corporación Ormux 2020, CA'), 0, 1, 'C');
+    $this->Cell(0, 5, utf8_decode('MARINA CARABALLEDA'), 0, 1, 'C');
     $this->Ln(4);
 
     $this->Cell(0, 5, utf8_decode('Recibo Pago Maleteros  '), 0, 1, 'C');
