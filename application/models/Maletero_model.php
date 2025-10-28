@@ -263,7 +263,7 @@ class Maletero_model extends CI_model
         $this->db->from('public.mensualidad_maletero m');
         $this->db->join('public.asignacion_maletero p', 'p.id_asignacion_maletero = m.id_asignacion_maletero');
         $this->db->join('public.maleteros t', 't.id = p.id_maletero');
-        $this->db->where('m.id_status', 0);
+        // $this->db->where('m.id_status', 0);
 
         $this->db->order_by("m.id_asignacion_maletero", "desc");
         $query = $this->db->get();
@@ -512,5 +512,172 @@ class Maletero_model extends CI_model
         $this->db->group_by('m.id_asignacion_maletero, mal.descripcion, a.nombre');
 
         return $this->db->get()->result_array();
+    }
+
+    ////////////////nuevo adelanto pago maletero
+    // === PREVIEW: datos para el modal de Adelanto (sin elegir fecha) ===
+    public function preparar_prepago_info($id_asignacion_maletero)
+    {
+        // Traer cabecera de asignación y tarifa
+        $this->db->select('a.id_asignacion_maletero, a.id_maletero, a.id_tarifa, a.fecha_reg, a.nombre, a.nombre_lancha, m.descripcion AS maletero');
+        $this->db->from('public.asignacion_maletero a');
+        $this->db->join('public.maleteros m', 'm.id = a.id_maletero');
+        $this->db->where('a.id_asignacion_maletero', $id_asignacion_maletero);
+        $asig = $this->db->get()->row_array();
+
+        if (!$asig) return ['error' => 'Asignación no encontrada'];
+
+        // 1) Bloqueo por trimestre vencido
+        $hoy = date('Y-m-d');
+        $this->db->select('COUNT(*) AS cnt');
+        $this->db->from('public.mensualidad_maletero');
+        $this->db->where('id_asignacion_maletero', $id_asignacion_maletero);
+        $this->db->where('id_status', 0);
+        $this->db->where('date_deuda <=', $hoy);
+        $vencidos = $this->db->get()->row_array();
+        if ((int)$vencidos['cnt'] > 0) {
+            return ['bloqueado' => true, 'message' => 'Tiene un trimestre vencido. No puede adelantar.'];
+        }
+
+        // Tarifa (monto)
+        $this->db->select('desc_tarifa AS monto');
+        $this->db->from('public.tarifa');
+        $this->db->where('id_tarifa', $asig['id_tarifa']);
+        $tarifa = $this->db->get()->row_array();
+        if (!$tarifa) return ['error' => 'Tarifa no encontrada'];
+
+        // 2) Calcular el próximo trimestre (sin saltos)
+        $proximo = $this->calcular_proximo_trimestre($asig['fecha_reg'], $id_asignacion_maletero);
+
+        if (!$proximo) {
+            return ['error' => 'No se pudo calcular el próximo trimestre.'];
+        }
+
+        return [
+            'success'                 => true,
+            'id_asignacion_maletero'  => $asig['id_asignacion_maletero'],
+            'maletero'                => $asig['maletero'],
+            'asignado_a'              => $asig['nombre'],
+            'lancha'                  => $asig['nombre_lancha'],
+            'monto'                   => $tarifa['monto'],
+            'date_deuda_sugerida'     => $proximo,   // <- esto se muestra en el modal (solo lectura)
+        ];
+    }
+
+    // === CONFIRMAR: paga automáticamente el próximo trimestre calculado ===
+    public function registrar_prepago_maletero_auto($data)
+    {
+        $id_asig = $data['id_asignacion_maletero'];
+
+        // Repetimos controles y cálculos para consistencia
+        $info = $this->preparar_prepago_info($id_asig);
+        if (!empty($info['error'])) return $info;
+        if (!empty($info['bloqueado'])) return $info;
+
+        $date_deuda = $info['date_deuda_sugerida'];
+        $monto      = $info['monto'];
+        $fecha_transfer = !empty($data['fechatrnas']) ? $data['fechatrnas'] : date('Y-m-d');
+
+        // ¿Ya existe registro para ese período?
+        $this->db->from('public.mensualidad_maletero');
+        $this->db->where('id_asignacion_maletero', $id_asig);
+        $this->db->where('DATE(date_deuda) =', $date_deuda);
+        $existe = $this->db->get()->row_array();
+
+        // Siguiente id_factura
+        $this->db->select('MAX(m.id_factura) AS id1');
+        $max = $this->db->get('public.mensualidad_maletero m')->row_array();
+        $id_factura = ((int)($max['id1'] ?? 0)) + 1;
+
+        if ($existe) {
+            // Si ya existe pagado, no permitir
+            if ((int)$existe['id_status'] === 2) {
+                return ['error' => 'Ese trimestre ya fue pagado.'];
+            }
+            // Si existe como pendiente (creado por tu generador) → actualizar a pagado (prepago)
+            if ((int)$existe['id_status'] === 0) {
+                $upd = [
+                    'id_status'     => 2,
+                    'fechapago'     => date('Y-m-d'),
+                    'nota'          => $data['nota'],
+                    'id_factura'    => $id_factura,
+                    'pago'          => $monto,
+                    'id_tipo_pago'  => $data['id_tipo_pago'] ?: 0,
+                    'id_banco'      => $data['id_banco'] ?: 0,
+                    'transactionid' => $data['nro_referencia'] ?: '0',
+                    'fechatrnas'    => $fecha_transfer,
+                ];
+                $this->db->where('id_mov_consig', $existe['id_mov_consig']);
+                $this->db->update('public.mensualidad_maletero', $upd);
+
+                return ['success' => true, 'id_factura' => $id_factura, 'date_deuda' => $date_deuda, 'message' => 'Prepago aplicado al período pendiente.'];
+            }
+        }
+
+        // No existe: crear registro como pagado para ese período (prepago)
+        $insert = [
+            'id_asignacion_maletero' => $id_asig,
+            'id_status'     => 2, // pagado
+            'id_factura'    => $id_factura,
+            'id_tipo_pago'  => $data['id_tipo_pago'] ?: 0,
+            'nro_referencia' => $data['nro_referencia'] ?: null,
+            'pago'          => $monto,
+            'id_banco'      => $data['id_banco'] ?: 0,
+            'fechatrnas'    => $fecha_transfer,
+            'transactionid' => $data['nro_referencia'] ?: '0',
+            'nota'          => $data['nota'],
+            'fechapago'     => date('Y-m-d'),
+            'fecha_reg'     => date('Y-m-d'),
+            'tasa'          => 0,
+            'bolivares'     => 0,
+            'date_deuda'    => $date_deuda,
+        ];
+        $ok = $this->db->insert('public.mensualidad_maletero', $insert);
+
+        if ($ok) {
+            return ['success' => true, 'id_factura' => $id_factura, 'date_deuda' => $date_deuda, 'message' => 'Prepago registrado correctamente.'];
+        } else {
+            return ['error' => 'No se pudo registrar el prepago.'];
+        }
+    }
+
+    /**
+     * Calcula el PRÓXIMO trimestre (cada 3 meses desde fecha_reg),
+     * respetando estas reglas:
+     *  - No se permite “saltar”: siempre devuelve el INMEDIATO siguiente
+     *    a partir del ancla de ciclo (fecha_reg).
+     *  - Si ya existe un registro (pendiente o pagado) para ese date_deuda,
+     *    avanza +3m, y así sucesivamente, hasta encontrar el primer hueco futuro.
+     */
+    private function calcular_proximo_trimestre($fecha_reg, $id_asignacion_maletero)
+    {
+        if (!$fecha_reg) return null;
+
+        $hoy = new DateTime(date('Y-m-d'));
+        $anchor = new DateTime($fecha_reg); // ancla del ciclo (inicio)
+
+        // Función para saber si existe algún registro (cualquiera status) para un date_deuda
+        $existePeriodo = function ($dateStr) use ($id_asignacion_maletero) {
+            $this->db->from('public.mensualidad_maletero');
+            $this->db->where('id_asignacion_maletero', $id_asignacion_maletero);
+            $this->db->where('DATE(date_deuda) =', $dateStr);
+            return $this->db->count_all_results() > 0;
+        };
+
+        // Avanza en pasos de 3 meses desde el ancla hasta ubicar el 1er período futuro libre
+        $curr = clone $anchor;
+        while ($curr <= $hoy) {
+            $curr->modify('+3 months');
+        }
+
+        // Si el primer futuro ya existe (pagado o pendiente), sigue sumando de a 3 meses
+        $safeCounter = 0;
+        while ($existePeriodo($curr->format('Y-m-d'))) {
+            $curr->modify('+3 months');
+            $safeCounter++;
+            if ($safeCounter > 40) break; // safety
+        }
+
+        return $curr->format('Y-m-d');
     }
 }

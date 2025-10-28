@@ -554,24 +554,24 @@ function obtenerPago() {
         }, 1000); // Simulando un retraso de 1 segundo
     });
 }
-// Función para obtener el valor del dólar
-function obtenerDolar() {
-    return fetch('https://pydolarve.org/api/v1/dollar?page=bcv')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error en la red');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const usd = data.monitors.usd;
-             document.getElementById('usd-title').textContent = 'dolar BCV';
-            const usdPrice = data.monitors.usd.price; // Asigna el valor del dólar
-            document.getElementById('usd-price').value = usdPrice; // Asigna el valor al input
-            document.getElementById('usd-last-update').textContent = usd.last_update;
-            return usdPrice;
-        });
-}
+// // Función para obtener el valor del dólar
+// function obtenerDolar() {
+//     return fetch('https://pydolarve.org/api/v1/dollar?page=bcv')
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Error en la red');
+//             }
+//             return response.json();
+//         })
+//         .then(data => {
+//             const usd = data.monitors.usd;
+//              document.getElementById('usd-title').textContent = 'dolar BCV';
+//             const usdPrice = data.monitors.usd.price; // Asigna el valor del dólar
+//             document.getElementById('usd-price').value = usdPrice; // Asigna el valor al input
+//             document.getElementById('usd-last-update').textContent = usd.last_update;
+//             return usdPrice;
+//         });
+// }
 
 
 // fetch('https://pydolarve.org/api/v1/dollar?page=bcv')
@@ -706,4 +706,64 @@ Promise.all([obtenerPago(), obtenerDolar()])
                 });
             }
         });
+}
+/////////////////adelantar pago maletero
+function modalAdelantoAuto(id_asig) {
+  // Limpia
+  document.getElementById('formPrepagoAuto').reset();
+  document.getElementById('ad_auto_id_asig').value = id_asig;
+// url:BASE_URL + 'index.php/Programacion/eliminar_items_bienes',
+  fetch('info_prepago', {
+    method: 'POST',
+    body: new URLSearchParams({ id_asignacion_maletero: id_asig })
+  })
+  .then(r => r.json())
+  .then(json => {
+    if (json.error) {
+      Swal.fire('Atención', json.error, 'error');
+      return;
+    }
+    if (json.bloqueado) {
+      Swal.fire('Bloqueado', json.message, 'warning');
+      return;
+    }
+
+    document.getElementById('ad_auto_maletero').value   = json.maletero;
+    document.getElementById('ad_auto_asignado').value   = json.asignado_a;
+    document.getElementById('ad_auto_lancha').value     = json.lancha;
+    document.getElementById('ad_auto_monto').value      = json.monto;
+    document.getElementById('ad_auto_date_deuda').value = json.date_deuda_sugerida;
+
+    $('#modalAdelantoAuto').modal('show');
+  })
+  .catch(err => {
+    console.error(err);
+    Swal.fire('Error', 'No se pudo obtener información de adelanto.', 'error');
+  });
+}
+
+function guardarPrepagoAuto() {
+  const form = document.getElementById('formPrepagoAuto');
+  const fd = new FormData(form);
+
+  // Validación rápida de forma de pago
+  if (fd.get('id_tipo_pago') === '0') {
+    Swal.fire('Campos incompletos', 'Seleccione el tipo de pago.', 'warning');
+    return;
+  }
+
+  fetch('registrar_prepago_maletero_auto', { method: 'POST', body: fd })
+    .then(r => r.json())
+    .then(json => {
+      if (json.error) {
+        Swal.fire('Atención', json.error, 'error');
+        return;
+      }
+      Swal.fire('Éxito', json.message || 'Prepago registrado', 'success')
+        .then(() => { window.location.reload(); });
+    })
+    .catch(err => {
+      console.error(err);
+      Swal.fire('Error', 'No se pudo registrar el adelanto.', 'error');
+    });
 }

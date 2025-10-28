@@ -5,7 +5,7 @@
             <div class="panel panel-inverse">
                 <div class="panel-body">
 
-                    <form id="reg_bien" name="reg_bien"  method="POST" class="form-horizontal">
+                    <form id="reg_bien" name="reg_bien" method="POST" class="form-horizontal">
                         <div class="row">
 
                             <div class="col-1"></div>
@@ -14,9 +14,9 @@
                                     <div class="card-block">
                                         <blockquote class="card-blockquote" style="margin-bottom: -19px;">
                                             <p class="f-s-18 text-inverse f-w-600">
-                                                <?=$descripcion?>.</p>
-                                            <p class="f-s-16">RIF.: <?=$rif?> <br>
-                                            <p class="f-s-16">Fecha.: <?=$time ?> <br>
+                                                <?= $descripcion ?>.</p>
+                                            <p class="f-s-16">RIF.: <?= $rif ?> <br>
+                                            <p class="f-s-16">Fecha.: <?= $time ?> <br>
                                                 <input type="hidden" name="acc_cargar" id="acc_cargar"
                                                     class="form-control" value="1">
                                         </blockquote>
@@ -24,13 +24,15 @@
                                 </div>
                             </div>
                             <div class="form-group col-3">
-                                <label>Nombre de la Embarcación <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" id="nombrebuque" name="nombrebuque" onkeyup="mayusculas(this);" class="form-control">
+                                <label>Nombre de la Embarcación <b title="Campo Obligatorio"
+                                        style="color:red">*</b></label>
+                                <input type="text" id="nombrebuque" name="nombrebuque" onkeyup="mayusculas(this);"
+                                    class="form-control">
 
                             </div>
                             <div class="form-group col-3">
                                 <label>Matrícula <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="text" name="matricula" id="matricula"  onkeyup="mayusculas(this);"
+                                <input type="text" name="matricula" id="matricula" onkeyup="mayusculas(this);"
                                     class="form-control  <?php echo form_error('matricula') ? 'is-invalid' : ''; ?>"
                                     onKeyUp="mayus(this);" value="<?php echo set_value('matricula'); ?>">
                                 <div class="invalid-feedback">
@@ -39,12 +41,11 @@
                             </div>
                             <div class="form-group col-2">
                                 <label>Ubicación<b style="color:red">*</b></label><br>
-                                <select style="width: 100%;" name="ubicacion" id="ubicacion"
-                                    class="form-control">
+                                <select style="width: 100%;" name="ubicacion" id="ubicacion" class="form-control">
                                     <option value="">SELECCIONE</option>
                                     <?php foreach ($ubicacion as $data): ?>
-                                    <option value="<?=$data['id']?>">
-                                        <?=$data['descripcion']?></option>
+                                        <option value="<?= $data['id'] ?>">
+                                            <?= $data['descripcion'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
@@ -59,7 +60,8 @@
                             </div>
                             <div class="form-group col-2">
                                 <label>Pies <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input id="pies" name="pies" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);">
+                                <input id="pies" name="pies" onblur="calcular_bienes();" class="form-control"
+                                    onkeypress="return valideKey(event);">
 
                             </div>
 
@@ -68,11 +70,11 @@
                                 <select style="width: 100%;" id="tipob" name="tipob" class="form-control">
                                     <option value="0">Seleccione</option>
                                     <?php foreach ($fuente as $data): ?>
-                                    <option value="<?=$data['desc_tipobarco']?>">
-                                        <?=$data['desc_tipobarco']?></option>
+                                        <option value="<?= $data['desc_tipobarco'] ?>">
+                                            <?= $data['desc_tipobarco'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
-                            </div> 
+                            </div>
                             <div class="form-group col-2">
                                 <label>color <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" id="color" name="color" placeholder="color"
@@ -115,35 +117,45 @@
                                 <label>Neto <b title="Campo Obligatorio" style="color:red">*</b></label>
                                 <input type="text" id="neto" name="neto" placeholder="neto" class="form-control" />
                             </div>
+                            <div class="form-group col-2">
+                                <label>Fecha vencimiento licencia <b title="Campo Obligatorio"
+                                        style="color:red">*</b></label>
+                                <input type="date" id="vencimiento" name="vencimiento" class="form-control" />
+                            </div>
                             <div class="form-group col-3">
                                 <label>Tarifa <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <select style="width: 100%;" id="tarifa" name="tarifa" onchange="calcular_bienes();" class="form-control">
-                                    <option value="0">Seleccione</option> 
+                                <select style="width: 100%;" id="tarifa" name="tarifa" onchange="calcular_bienes();"
+                                    class="form-control">
+                                    <option value="0">Seleccione</option>
                                     <?php foreach ($tarifa as $data): ?>
-                                        <option value="<?=$data['des_unidad']?>/<?=$data['desc_tarifa']?>/<?=$data['id_tarifa']?>">
-                                        <?=$data['desc_tarifa']?>$ /
-                                        <?=$data['desc_concepto']?>/<?=$data['desc_condicion']?></option>
+                                        <option
+                                            value="<?= $data['des_unidad'] ?>/<?= $data['desc_tarifa'] ?>/<?= $data['id_tarifa'] ?>">
+                                            <?= $data['desc_tarifa'] ?>$ /
+                                            <?= $data['desc_concepto'] ?>/<?= $data['desc_condicion'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
                             <div class="form-group col-2">
                                 <label>Dias <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control" onkeypress="return valideKey(event);" value="1">
-                                <label>Solo Cambiar si es por dias <b title="Campo Obligatorio" style="color:red">*</b></label>
+                                <input id="dia" name="dia" onblur="calcular_bienes();" class="form-control"
+                                    onkeypress="return valideKey(event);" value="1">
+                                <label>Solo Cambiar si es por dias <b title="Campo Obligatorio"
+                                        style="color:red">*</b></label>
                             </div>
                             <div class="form-group col-2">
                                 <label>Fecha de Pago <b title="Campo Obligatorio" style="color:red">*</b></label>
-                                <input type="date" id="fecha_pago" name="fecha_pago"  class="form-control">
+                                <input type="date" id="fecha_pago" name="fecha_pago" class="form-control">
                             </div>
                             <div class="col-2 mt-2">
                                 <div class="card card-outline-danger text-center bg-white">
                                     <div class="card-block">
                                         <blockquote class="card-blockquote" style="margin-bottom: -19px;">
                                             <div class="form-group col-10">
-                                                <label >Canon Mensual <b title="Campo Obligatorio"
+                                                <label>Canon Mensual <b title="Campo Obligatorio"
                                                         style="color:red">*</b></label>
-                                                        <input id="canon" name="canon" type="text" class="form-control" readonly>
-                                              
+                                                <input id="canon" name="canon" type="text" class="form-control"
+                                                    readonly>
+
                                             </div>
                                         </blockquote>
                                     </div>
@@ -172,7 +184,7 @@
                                     <option value="E">E</option>
                                     <option value="P">P</option>
                                     <option value="J">J</option>
-                                    <option value="G">G</option> 
+                                    <option value="G">G</option>
                                 </select>
 
                             </div>
@@ -209,7 +221,7 @@
                             <div class="form-group col-2">
                                 <label>Tipo </label>
                                 <select class="default-select2 form-control " id="tipo" name="tipo" readonly>
-                                <option value="principal">Seleccione</option>
+                                    <option value="principal">Seleccione</option>
                                     <option value="principal">Principal</option>
                                     <option value="socio">Socio</option>
 
@@ -285,7 +297,7 @@
                                     <?php echo form_error('tele_1'); ?>
                                 </div>
                             </div>
-                           
+
                             <div class="form-group col-2">
                                 <label>Cargo </label>
                                 <input type="text" id="cargot" name="cargot" placeholder=""
@@ -298,7 +310,7 @@
                                     <option value="CON ACOMPAÑANTES">Selecione</option>
                                     <option value="CON ACOMPAÑANTES">CON ACOMPAÑANTES</option>
                                     <option value="SIN ACOMPAÑANTES">SIN ACOMPAÑANTES</option>
-                                    
+
                                 </select>
                             </div>
 
@@ -312,7 +324,7 @@
                                 <button type="button" onclick="agregar_ccnu_acc(this);" class="btn btn-lg btn-default">
                                     Agregar
                                 </button>
-                            </div> 
+                            </div>
 
                             <div class="table-responsive mt-4">
                                 <h5 class="text-center">Lista de Requerimiento</h5>
@@ -349,33 +361,33 @@
                 </div>
                 </form>
             </div>
-        </div> 
+        </div>
     </div>
 </div>
-<!-- <script src="<?=base_url()?>/js/programacion.js"></script> -->
-<!-- <script src="<?=base_url()?>/js/bien/calculos_bienes.js"></script> -->
+<!-- <script src="<?= base_url() ?>/js/programacion.js"></script> -->
+<!-- <script src="<?= base_url() ?>/js/bien/calculos_bienes.js"></script> -->
 <!-- Agegar Propietario -->
-<script src="<?=base_url()?>/js/bien/agregar_ff.js"></script>
+<script src="<?= base_url() ?>/js/bien/agregar_ff.js"></script>
 <!-- Agegar Tripulacion -->
-<script src="<?=base_url()?>/js/bien/agregar_ip.js"></script>
+<script src="<?= base_url() ?>/js/bien/agregar_ip.js"></script>
 <!-- Calcular cannon -->
-<script src="<?=base_url()?>/js/bien/calculo_canon.js"></script>
+<script src="<?= base_url() ?>/js/bien/calculo_canon.js"></script>
 <!-- Registrar -->
-<script src="<?=base_url()?>/js/bien/registro.js"></script>
+<script src="<?= base_url() ?>/js/bien/registro.js"></script>
 <script type="text/javascript">
-function mayusculas(e) {
-    e.value = e.value.toUpperCase();
-}
+    function mayusculas(e) {
+        e.value = e.value.toUpperCase();
+    }
 </script>
 <script type="text/javascript">
-function valideKey(evt) {
-    var code = (evt.which) ? evt.which : evt.keyCode;
-    if (code == 8) { // backspace.
-        return true;
-    } else if (code >= 48 && code <= 57) { // is a number.
-        return true;
-    } else { // other keys.
-        return false;
+    function valideKey(evt) {
+        var code = (evt.which) ? evt.which : evt.keyCode;
+        if (code == 8) { // backspace.
+            return true;
+        } else if (code >= 48 && code <= 57) { // is a number.
+            return true;
+        } else { // other keys.
+            return false;
+        }
     }
-}
 </script>

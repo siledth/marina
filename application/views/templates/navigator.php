@@ -13,6 +13,30 @@
         <ul class="navbar-nav navbar-right">
             <li></li>
             <li class="dropdown"></li>
+            <li class="dropdown" id="notif-buque">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
+                    title="Notificaciones de vencimientos">
+                    <i class="fa fa-bell"></i>
+                    <span class="label label-danger" id="nbadge" style="display:none;">0</span>
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-right media-list" style="min-width:320px;">
+                    <div class="dropdown-header">Notificaciones</div>
+
+                    <div id="nresumen" class="p-2" style="font-size:13px; border-bottom:1px solid #eee;">
+                        <em>Cargando...</em>
+                    </div>
+
+                    <div id="nitems" style="max-height:320px;overflow:auto;"></div>
+
+                    <div class="dropdown-footer text-center">
+                        <a href="<?= base_url('index.php/Buque/Plantilla'); ?>">Ver planillas</a>
+                    </div>
+                </div>
+            </li>
+
+
+
             <li class="dropdown navbar-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="<?= base_url() ?>Plantilla/admin/assets/img/user/user-13.jpg" alt="" />
@@ -49,87 +73,87 @@
             <ul class="nav">
                 <li class="nav-header">Navegador</li>
                 <?php if ($this->session->userdata('perfil') == 1) : ?>
-                <li class="has-sub">
-                    <a href="javascript:;">
-                        <b class="caret"></b>
-                        <i class="fas fa-sliders-h fa-lg"></i>
-                        <span>Servicios</span>
-                    </a>
-
-                    <ul class="sub-menu">
-                        <li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                                <span>Servicio-Tarifas</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li><a href="<?= base_url() ?>index.php/Tarifa/tarif">Registrar</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="has-sub">
-                    <a href="javascript:;">
-                        <b class="caret"></b>
-                        <i class="fas fa-file-invoice-dollar fa-lg"></i>
-                        <span>Facturación/Recibo</span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                                <span>Factura</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li><a href="<?= base_url() ?>index.php/Factura/fac">Registrar</a></li>
-                                <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                                <span>Recibo</span>
-                            </a>
-                            <ul class="sub-menu">
-                                <li><a href="<?= base_url() ?>index.php/Factura/Rec">Registrar</a></li>
-                                <li><a href="<?= base_url() ?>index.php/Factura/verRecibo">Ver </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="has-sub">
-                    <a href="javascript:;">
-                        <b class="caret"></b>
-                        <i class="fas fa-calendar-alt fa-lg"></i>
-                        <span>Mensualidades</span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li><a href="<?= base_url() ?>index.php/Mensualidades/ver">Ver Deudas</a></li>
-                        <li><a href="<?= base_url() ?>index.php/Mensualidades/ver_t">Ver Historico</a></li>
-
-                        <!-- <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver / Anular</a></li> -->
-                    </ul>
-                </li>
-                <li class="has-sub">
-                    <a href="javascript:;">
-                        <b class="caret"></b>
-                        <i class="fas fa-paste fa-lg"></i>
-                        <span> Planilla</span>
-                    </a>
-
-                    <ul class="sub-menu">
-                        <li class="has-sub">
-                            <a href="javascript:;">
-                                <b class="caret"></b>
-                        <li><a href="<?= base_url() ?>index.php/Buque/Plantilla">Registrar</a></li>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <i class="fas fa-sliders-h fa-lg"></i>
+                            <span>Servicios</span>
                         </a>
-                </li>
-                <li class="has-sub">
-                    <a href="javascript:;">
-                        <b class="caret"></b>
-                <li><a href="<?= base_url() ?>index.php/Buque/desin">Desincorporar</a></li>
-                </a>
-                </li>
+
+                        <ul class="sub-menu">
+                            <li class="has-sub">
+                                <a href="javascript:;">
+                                    <b class="caret"></b>
+                                    <span>Servicio-Tarifas</span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li><a href="<?= base_url() ?>index.php/Tarifa/tarif">Registrar</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <i class="fas fa-file-invoice-dollar fa-lg"></i>
+                            <span>Facturación/Recibo</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="has-sub">
+                                <a href="javascript:;">
+                                    <b class="caret"></b>
+                                    <span>Factura</span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li><a href="<?= base_url() ?>index.php/Factura/fac">Registrar</a></li>
+                                    <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-sub">
+                                <a href="javascript:;">
+                                    <b class="caret"></b>
+                                    <span>Recibo</span>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li><a href="<?= base_url() ?>index.php/Factura/Rec">Registrar</a></li>
+                                    <li><a href="<?= base_url() ?>index.php/Factura/verRecibo">Ver </a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <i class="fas fa-calendar-alt fa-lg"></i>
+                            <span>Mensualidades</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li><a href="<?= base_url() ?>index.php/Mensualidades/ver">Ver Deudas</a></li>
+                            <li><a href="<?= base_url() ?>index.php/Mensualidades/ver_t">Ver Historico</a></li>
+
+                            <!-- <li><a href="<?= base_url() ?>index.php/Factura/anuFac">Ver / Anular</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                            <i class="fas fa-paste fa-lg"></i>
+                            <span> Planilla</span>
+                        </a>
+
+                        <ul class="sub-menu">
+                            <li class="has-sub">
+                                <a href="javascript:;">
+                                    <b class="caret"></b>
+                            <li><a href="<?= base_url() ?>index.php/Buque/Plantilla">Registrar</a></li>
+                            </a>
+                    </li>
+                    <li class="has-sub">
+                        <a href="javascript:;">
+                            <b class="caret"></b>
+                    <li><a href="<?= base_url() ?>index.php/Buque/desin">Desincorporar</a></li>
+                    </a>
+                    </li>
             </ul>
             </li>
             <li class="has-sub">
@@ -250,8 +274,8 @@
             </li>
             </ul>
             </li>
-            <?php endif; ?>
-            <?php if ($this->session->userdata('perfil') == 3) : ?>
+        <?php endif; ?>
+        <?php if ($this->session->userdata('perfil') == 3) : ?>
             <li>
                 <a href="<?= base_url() ?>index.php/Reporte/inf_buque">
                     <b class="caret"></b>
@@ -259,8 +283,8 @@
                     <span>Informacion del Buque</span>
                 </a>
             </li>
-            <?php endif; ?>
-            <?php if (($this->session->userdata('perfil') <= 2)) : ?>
+        <?php endif; ?>
+        <?php if (($this->session->userdata('perfil') <= 2)) : ?>
             <li class="has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>
@@ -269,15 +293,15 @@
                 </a>
                 <ul class="sub-menu">
                     <?php if (($this->session->userdata('perfil') <= 2)) : ?>
-                    <ul class="sub-menu">
-                        <li class="has-sub">
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        <ul class="sub-menu">
+                            <li class="has-sub">
+                            <li></li>
+                            <li></li>
+                            <li></li>
             </li>
             </ul>
-            <?php endif; ?>
-            <?php if (($this->session->userdata('perfil') == 1)) : ?>
+        <?php endif; ?>
+        <?php if (($this->session->userdata('perfil') == 1)) : ?>
             <li class="has-sub">
                 <a href="javascript:;">
                     <b class="caret"></b>
@@ -311,26 +335,31 @@
                     </li>
                 </ul>
             </li>
-            <?php endif; ?>
-            <li class="has-sub">
-                <a href="javascript:;">
-                    <span>Usuarios</span>
-                </a>
-                <ul class="sub-menu">
-            </li>
-            <?php if ($this->session->userdata('perfil') <= 2) : ?>
+        <?php endif; ?>
+        <li class="has-sub">
+            <a href="javascript:;">
+                <span>Usuarios</span>
+            </a>
+            <ul class="sub-menu">
+        </li>
+        <?php if ($this->session->userdata('perfil') <= 2) : ?>
             <li>
                 <a href="<?= base_url() ?>index.php/user/usuario">
                     <i class="fas fa-lg fa-fw m-r-10 fa-list-alt"></i>- Registro Usuarios
                 </a>
             </li>
-            <?php endif; ?>
-            </ul>
-            </li>
-            <?php endif; ?>
-            </ul>
-            <li class="mt-5"><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify">
-                    <i class="ion-ios-arrow-back"></i> <span>Cerrar Navegador</span></a></li>
+        <?php endif; ?>
+        </ul>
+        </li>
+    <?php endif; ?>
+    </ul>
+    <li class="mt-5"><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify">
+            <i class="ion-ios-arrow-back"></i> <span>Cerrar Navegador</span></a></li>
         </div>
     </div>
     <div class="sidebar-bg"></div>
+
+    <script>
+        const BASE_URL = '<?= base_url(); ?>';
+    </script>
+    <script src="<?= base_url('js/alertas_buque.js'); ?>"></script>

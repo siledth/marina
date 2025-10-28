@@ -1,8 +1,8 @@
 <!-- Incluye SweetAlert CSS y JS -->
 <style>
-.hidden {
-    display: none;
-}
+    .hidden {
+        display: none;
+    }
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -32,35 +32,41 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($asignacion as $data): ?>
-                                    <tr class="odd gradeX" style="text-align:center">
-                                        <td><?= $data['id_mov_consig'] ?> </td>
-                                        <td><?= $data['descripcion'] ?> </td>
-                                        <td><?= $data['nombre'] ?> </td>
-                                        <td><?= $data['nombre_lancha'] ?> </td>
-                                        <td><?= $data['pago'] ?> </td>
+                                        <tr class="odd gradeX" style="text-align:center">
+                                            <td><?= $data['id_mov_consig'] ?> </td>
+                                            <td><?= $data['descripcion'] ?> </td>
+                                            <td><?= $data['nombre'] ?> </td>
+                                            <td><?= $data['nombre_lancha'] ?> </td>
+                                            <td><?= $data['pago'] ?> </td>
 
 
 
-                                        <td class="center">
-                                            <?php if ($data['id_status'] != 0) : ?>
-                                            <a href="<?php echo base_url(); ?>index.php/Pdf_maletero/pdfrt?id=<?php echo $data['id_factura']; ?>"
-                                                class="button">
-                                                <i class="fas   fa-lg fa-cloud-download-alt" title="Descargar "
-                                                    style="color: blue;"></i>
-                                                <a />
+                                            <td class="center">
+                                                <?php if ($data['id_status'] != 0) : ?>
+                                                    <a href="<?php echo base_url(); ?>index.php/Pdf_maletero/pdfrt?id=<?php echo $data['id_factura']; ?>"
+                                                        class="button">
+                                                        <i class="fas fa-lg fa-cloud-download-alt" title="Descargar "
+                                                            style="color: blue;"></i>
+                                                    </a>
                                                 <?php endif; ?>
 
                                                 <?php if ($data['id_status'] != 2) : ?>
-                                                <a onclick="modal1(<?php echo $data['id_mov_consig'] ?>);"
-                                                    data-toggle="modal" data-target="#exampleModal"
-                                                    style="color: white">
-                                                    <i title="Pagar" class="fas fa-lg fa-fw fa-donate"
-                                                        style="color: darkgreen;"></i>
-                                                </a>
+                                                    <a onclick="modal1(<?php echo $data['id_mov_consig'] ?>);"
+                                                        data-toggle="modal" data-target="#exampleModal" style="color: white">
+                                                        <i title="Pagar" class="fas fa-lg fa-fw fa-donate"
+                                                            style="color: darkgreen;"></i>
+                                                    </a>
                                                 <?php endif; ?>
 
-                                        </td>
-                                    </tr>
+                                                <!-- NUEVO: Adelantar (auto-calculado) -->
+                                                <a onclick="modalAdelantoAuto('<?php echo $data['id_asignacion_maletero']; ?>')"
+                                                    data-toggle="modal" data-target="#modalAdelantoAuto"
+                                                    style="cursor:pointer;">
+                                                    <i title="Adelantar trimestre" class="fas fa-lg fa-forward"
+                                                        style="color:#b35cff;"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
@@ -126,8 +132,8 @@
                                         onclick="llenar_pago();">
                                         <option value="0">Seleccione</option>
                                         <?php foreach ($tipoPago as $data) : ?>
-                                        <option value="<?= $data['id_tipo_pago'] ?>"><?= $data['descripcion'] ?>
-                                        </option>
+                                            <option value="<?= $data['id_tipo_pago'] ?>"><?= $data['descripcion'] ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -138,9 +144,9 @@
                                     <select class="form-control" name="id_banco" id="id_banco">
                                         <option value="0">Seleccione</option>
                                         <?php foreach ($banco as $data) : ?>
-                                        <option value="<?= $data['id_banco'] ?>"><?= $data['codigo_b'] ?> /
-                                            <?= $data['nombre_b'] ?>
-                                        </option>
+                                            <option value="<?= $data['id_banco'] ?>"><?= $data['codigo_b'] ?> /
+                                                <?= $data['nombre_b'] ?>
+                                            </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
@@ -173,3 +179,93 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal Adelanto Auto-->
+        <div class="modal fade" id="modalAdelantoAuto" tabindex="-1" role="dialog" aria-labelledby="labelAdelantoAuto"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background:#f5f1ff">
+                        <h5 class="modal-title" id="labelAdelantoAuto">Adelantar pago (trimestre siguiente)</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formPrepagoAuto" method="POST">
+                            <input type="hidden" name="id_asignacion_maletero" id="ad_auto_id_asig">
+
+                            <div class="row">
+                                <div class="form-group col-4">
+                                    <label>Maletero</label>
+                                    <input class="form-control" type="text" id="ad_auto_maletero" readonly>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label>Asignado a</label>
+                                    <input class="form-control" type="text" id="ad_auto_asignado" readonly>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label>Lancha</label>
+                                    <input class="form-control" type="text" id="ad_auto_lancha" readonly>
+                                </div>
+
+                                <div class="form-group col-4">
+                                    <label>Monto (tarifa)</label>
+                                    <input class="form-control" type="text" id="ad_auto_monto" readonly>
+                                </div>
+                                <div class="form-group col-4">
+                                    <label>Período a cubrir</label>
+                                    <input class="form-control" type="text" id="ad_auto_date_deuda" readonly>
+                                    <small>Calculado automáticamente</small>
+                                </div>
+
+                                <div class="form-group col-4">
+                                    <label>Tipo de pago</label>
+                                    <select class="form-control" name="id_tipo_pago" id="ad_auto_id_tipo_pago">
+                                        <option value="0">Seleccione</option>
+                                        <?php foreach ($tipoPago as $tp) : ?>
+                                            <option value="<?= $tp['id_tipo_pago'] ?>"><?= $tp['descripcion'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-4">
+                                    <label>Banco</label>
+                                    <select class="form-control" name="id_banco" id="ad_auto_id_banco">
+                                        <option value="0">Seleccione</option>
+                                        <?php foreach ($banco as $b) : ?>
+                                            <option value="<?= $b['id_banco'] ?>"><?= $b['codigo_b'] ?> /
+                                                <?= $b['nombre_b'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-4">
+                                    <label>N° Referencia</label>
+                                    <input class="form-control" type="text" name="nro_referencia"
+                                        id="ad_auto_nro_referencia">
+                                </div>
+
+                                <div class="form-group col-4">
+                                    <label>Fecha de Transferencia</label>
+                                    <input class="form-control" type="date" name="fechatrnas" id="ad_auto_fechatrnas">
+                                </div>
+
+                                <div class="form-group col-12">
+                                    <label>Nota</label>
+                                    <textarea class="form-control" name="nota" id="ad_auto_nota" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer" style="background:#f5f1ff">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" onclick="guardarPrepagoAuto()">Adelantar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const BASE_URL = '<?= base_url() ?>';
+        </script>

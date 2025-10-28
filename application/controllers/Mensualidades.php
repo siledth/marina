@@ -42,20 +42,86 @@ class Mensualidades extends CI_Controller
         $this->load->view('mensualidades/ver.php', $data);
         $this->load->view('templates/footer.php');
     }
+    // public function ver_t()
+    // {
+    //     if (!$this->session->userdata('session')) redirect('login');
+    //     $data['descripcion'] = $this->session->userdata('unidad');
+    //     $data['rif'] = $this->session->userdata('rif');
+    //     $data['time'] = date("d-m-Y");
+    //     $data['te'] = date('d');
+    //     $data['mat'] = $this->Programacion_model->consulta_matricula();
+    //     $date = date('d');
+
+    //     $data['ver_deudas'] = $this->Mensualidades_model->ver_todos($date);
+
+
+    //     $data['banco'] = $this->Mensualidades_model->ver_banco();
+    //     $data['tipoPago'] = $this->Mensualidades_model->ver_tipPago();
+
+    //     $this->load->view('templates/header.php');
+    //     $this->load->view('templates/navigator.php');
+    //     $this->load->view('mensualidades/ver_todo.php', $data);
+    //     $this->load->view('templates/footer.php');
+    // }
+
     public function ver_t()
     {
         if (!$this->session->userdata('session')) redirect('login');
+
         $data['descripcion'] = $this->session->userdata('unidad');
-        $data['rif'] = $this->session->userdata('rif');
-        $data['time'] = date("d-m-Y");
-        $data['te'] = date('d');
+        $data['rif']         = $this->session->userdata('rif');
+        $data['time']        = date("d-m-Y");
+        $data['te']          = date('d');
+
+        // Para el combo de matrículas
         $data['mat'] = $this->Programacion_model->consulta_matricula();
-        $date = date('d');
 
-        $data['ver_deudas'] = $this->Mensualidades_model->ver_todos($date);
+        // Filtros por GET
+        $desde     = $this->input->get('desde');      // YYYY-MM-DD
+        $hasta     = $this->input->get('hasta');      // YYYY-MM-DD
+        $matricula = $this->input->get('matricula');  // string
 
+        $filters = [
+            'desde'     => $desde,
+            'hasta'     => $hasta,
+            'matricula' => $matricula
+        ];
+        $data['filters'] = $filters;
 
-        $data['banco'] = $this->Mensualidades_model->ver_banco();
+        // ¿El usuario aplicó algún filtro?
+        $applied = (!empty($matricula)) || (!empty($desde) && !empty($hasta));
+        $data['applied'] = $applied;
+
+        // Validación del rango
+        $data['range_error'] = '';
+        if (!empty($desde) || !empty($hasta)) {
+            if (empty($desde) || empty($hasta)) {
+                $data['range_error'] = 'Si filtra por fechas, debe seleccionar "Desde" y "Hasta".';
+            } else {
+                $d1 = DateTime::createFromFormat('Y-m-d', $desde);
+                $d2 = DateTime::createFromFormat('Y-m-d', $hasta);
+                if (!$d1 || !$d2) {
+                    $data['range_error'] = 'Formato de fecha inválido.';
+                } else {
+                    $diff = $d1->diff($d2)->days;
+                    if ($diff > 60) {
+                        $data['range_error'] = 'El rango de fechas no puede ser mayor a 60 días.';
+                    } elseif ($d2 < $d1) {
+                        $data['range_error'] = '"Hasta" no puede ser menor que "Desde".';
+                    }
+                }
+            }
+        }
+
+        // Solo consultar si hay filtros aplicados y sin errores
+        if ($applied && $data['range_error'] === '') {
+            $data['ver_deudas'] = $this->Mensualidades_model->ver_todos2($filters);
+        } else {
+            $data['ver_deudas'] = []; // no consultas, no renderizas tabla
+        }
+
+        // Otros datos que ya cargabas
+        $data['banco']    = $this->Mensualidades_model->ver_banco();
         $data['tipoPago'] = $this->Mensualidades_model->ver_tipPago();
 
         $this->load->view('templates/header.php');
@@ -63,6 +129,7 @@ class Mensualidades extends CI_Controller
         $this->load->view('mensualidades/ver_todo.php', $data);
         $this->load->view('templates/footer.php');
     }
+
 
     public function consultar_mens()
     {

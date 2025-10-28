@@ -85,6 +85,7 @@ class Buque_model extends CI_model
             'puntal' => $buque['puntal'],
             'bruto' => $buque['bruto'],
             'neto' => $buque['neto'],
+            'vencimiento' => $buque['vencimiento'],
             'canon' => $buque['canon'],
             'tarifa' => $buque['tarifa'],
             'dia' => $buque['dia'],
@@ -219,5 +220,89 @@ class Buque_model extends CI_model
         $this->db->where('matricula', $data['matricula']);
         $query = $this->db->delete('public.buque');
         return true;
+    }
+
+    ///editar embarcacion 
+    public function consulta_buque_listado()
+    {
+        $this->db->select('b.id, b.nombrebuque, b.matricula, b.vencimiento, b.desincorporar, u.descripcion');
+        $this->db->from('public.buque b');
+        $this->db->join('public.ubicacion u', 'u.id = b.ubicacion', 'left');
+        $this->db->where('b.desincorporar !=', '0');
+        $this->db->order_by('b.nombrebuque', 'ASC');
+        return $this->db->get()->result_array();
+    }
+
+    public function get_buque_by_id($id)
+    {
+        return $this->db->where('id', (int)$id)->get('public.buque')->row_array();
+    }
+
+    public function get_tarifas()
+    {
+        return $this->db->order_by('fecha', 'DESC')->get('public.tarifa')->result_array();
+    }
+
+    public function get_tarifa_by_id($id_tarifa)
+    {
+        return $this->db->where('id_tarifa', (int)$id_tarifa)->get('public.tarifa')->row_array();
+    }
+
+    public function get_tipobarcos()
+    {
+        return $this->db->order_by('desc_tipobarco', 'ASC')->get('public.tipobarco')->result_array();
+    }
+
+    public function update_buque($data)
+    {
+        $this->db->where('id', (int)$data['id']);
+        return $this->db->update('public.buque', $data);
+    }
+
+    public function get_ubicaciones()
+    {
+        return $this->db->order_by('descripcion', 'ASC')
+            ->get('public.ubicacion')
+            ->result_array();
+    }
+
+    // $dias = 5 por defecto
+    public function get_alertas_buques($dias = 5)
+    {
+        // Vencidas (vencimiento < hoy)
+        $vencidas = $this->db->query("
+        SELECT id, nombrebuque, matricula, vencimiento
+        FROM public.buque
+        WHERE desincorporar != 0
+          AND vencimiento IS NOT NULL
+          AND vencimiento < CURRENT_DATE
+        ORDER BY vencimiento ASC
+    ")->result_array();
+
+        // Por vencer (hoy <= vto <= hoy + $dias)
+        $por_vencer = $this->db->query("
+        SELECT id, nombrebuque, matricula, vencimiento
+        FROM public.buque
+        WHERE desincorporar != 0
+          AND vencimiento IS NOT NULL
+          AND vencimiento BETWEEN CURRENT_DATE AND (CURRENT_DATE + INTERVAL '{$dias} day')
+        ORDER BY vencimiento ASC
+    ")->result_array();
+
+        // Sin fecha (NULL)
+        $sin_fecha = $this->db->query("
+        SELECT id, nombrebuque, matricula, vencimiento
+        FROM public.buque
+        WHERE desincorporar != 0
+          AND (vencimiento IS NULL)
+        ORDER BY nombrebuque ASC
+    ")->result_array();
+
+        return [
+            'vencidas'    => $vencidas,
+            'por_vencer'  => $por_vencer,
+            'sin_fecha'   => $sin_fecha,
+            'total'       => count($vencidas) + count($por_vencer) + count($sin_fecha),
+        ];
     }
 }

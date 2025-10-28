@@ -192,4 +192,41 @@ class Maletero extends CI_Controller
         $this->load->view('maletero/reportemaletero.php', $data);
         $this->load->view('templates/footer.php');
     }
+
+    //////////////////nuevo
+    public function info_prepago()
+    {
+        if (!$this->session->userdata('session')) redirect('login');
+
+        $id_asignacion_maletero = $this->input->post('id_asignacion_maletero');
+        if (empty($id_asignacion_maletero)) {
+            echo json_encode(['error' => 'Falta id_asignacion_maletero']);
+            return;
+        }
+
+        $resp = $this->Maletero_model->preparar_prepago_info($id_asignacion_maletero);
+        echo json_encode($resp);
+    }
+
+    public function registrar_prepago_maletero_auto()
+    {
+        if (!$this->session->userdata('session')) redirect('login');
+
+        $data = [
+            'id_asignacion_maletero' => $this->input->post('id_asignacion_maletero'),
+            'id_tipo_pago'           => $this->input->post('id_tipo_pago'),
+            'id_banco'               => $this->input->post('id_banco'),
+            'nro_referencia'         => $this->input->post('nro_referencia'),
+            'fechatrnas'             => $this->input->post('fechatrnas'),
+            'nota'                   => $this->input->post('nota'),
+        ];
+
+        if (empty($data['id_asignacion_maletero'])) {
+            echo json_encode(['error' => 'Falta id_asignacion_maletero']);
+            return;
+        }
+
+        $resp = $this->Maletero_model->registrar_prepago_maletero_auto($data);
+        echo json_encode($resp);
+    }
 }
